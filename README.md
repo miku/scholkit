@@ -1,14 +1,55 @@
 # scholkit
 
-Assorted utitlies around scholarly metadata.
+Sketch project, assorted utitlies around scholarly metadata.
 
-## Pubmed Single File Dump
+## Tools
 
-```shell
-$ curl -sL "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/" | \
-    pup 'a[href] text{}' \
-    grep -o 'pubmed.*[.]xml[.]gz' | \
-    awk '{print "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/"$0}' | \
-    schol-agg-links -v | \
-    zstd -T0 -c > pubmed-$(date +"%Y-%m-%d").xml.zst
+### Conversions
+
+We want conversions from various formats to one single format (e.g. release
+entities). Source formats include:
+
+* [x] crossref
+* [x] datacite
+* [x] pubmed
+* [x] arxiv
+* [x] oaiscrape
+* [x] openalex
+* [x] dblp
+* [x] fatcat
+
+For each format, try to find the smallest conversion unit, e.g. one record.
+Then add convenience layers on top, e.g. for streams.
+
+No bulk conversion should take longer than an 1 hour, roughly (slowest
+currently is openalex - 250M records - which takes about 45 min).
+
+### Clustering
+
+Create a "works" view from releases.
+
+### Misc
+
+The `urlstream` utility streams content from multiple URLs to stdout. Can help
+to create single file versions of larger datasets like pubmed, openalex, etc.
+
 ```
+$ curl -s "https://www.gutenberg.org/browse/scores/top" | \
+    grep -Eo "/ebooks/[0-9]+" | \
+    awk '{print "https://gutenberg.org"$0".txt.utf-8"}' > top100.txt
+
+$ urlstream < top100.txt > top100books.txt
+```
+
+## Notes
+
+* [upstream id comparison](notes/2024-02-09-upstream-ids.md)
+* [stub releases](notes/2024-03-15-first-stub-releases.md)
+* [big url list](notes/2024-03-27-big-url-list.md)
+
+## TODO
+
+* [x] map basic fields to fatcat release entities
+* [ ] map all fields to fatcat release entities
+* [ ] basic clustering algorithm
+

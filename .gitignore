@@ -20,4 +20,11 @@
 # Go workspace file
 go.work
 
-/schol-agg-links
+/urlstream
+/.venv
+/strnorm
+/catshape
+/cdxlookup
+/data/*zst
+/data/input/*zst
+

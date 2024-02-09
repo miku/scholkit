@@ -1,11 +1,15 @@
 SHELL := /bin/bash
-TARGETS := schol-agg-links
+TARGETS := urlstream strnorm catshape cdxlookup
 
 .PHONY: all
 all: $(TARGETS)
 
 %: cmd/%/main.go
 	go build -o $@ $<
+
+.PHONY: test
+test:
+	go test -cover ./...
 
 .PHONY: clean
 clean:
