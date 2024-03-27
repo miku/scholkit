@@ -54,7 +54,10 @@ entities). Source formats include:
 * [x] oaiscrape
 * [x] openalex
 * [x] dblp
-* [x] fatcat
+
+Target:
+
+* [ ] fatcat entities (release, work, container, file, contrib, abstract)
 
 For each format, try to find the smallest conversion unit, e.g. one record.
 Then add convenience layers on top, e.g. for streams.
