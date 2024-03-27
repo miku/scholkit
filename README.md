@@ -83,7 +83,7 @@ $ urlstream < top100.txt > top100books.txt
 
 * [upstream id comparison](notes/2024-02-09-upstream-ids.md)
 * [stub releases](notes/2024-03-15-first-stub-releases.md)
-* [big url list](notes/2024-03-27-big-url-list.md)
+* [url list](notes/2024-03-27-url-list.md)
 
 ## TODO
 
