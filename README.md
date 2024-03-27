@@ -1,6 +1,44 @@
 # scholkit
 
+```
+   ,   ,
+  /////|
+ ///// |
+|~~~|  |
+|===|  |
+|j  |  |
+| g |  |
+|  s| /
+|===|/
+'---'
+```
+
 Sketch project, assorted utitlies around scholarly metadata.
+
+status: unstable, wip
+
+## Try
+
+```
+$ git clone https://github.com/miku/scholkit.git
+$ cd scholkit
+$ make
+```
+
+This builds a couple of executables:
+
+* catshape (conversions)
+* urlstream (stream from many urls)
+* cdxlookup (ad-hoc cdx api lookup)
+* strnorm (quick string normalization)
+
+Example dataset to work with, e.g. convert arxiv to fatcat release:
+
+```sh
+$ curl -sL https://archive.org/download/arxiv-2024-02-15/arxiv-2024-02-15.xml.zst | \
+    zstd -dc | \
+    catshape -f arxiv
+```
 
 ## Tools
 
