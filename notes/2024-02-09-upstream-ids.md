@@ -23,6 +23,8 @@ Main datasets ("8D"): "oaiscrape", fatcat, openalex, crossref, datacite, pubmed,
 
 The DOI union of these datasets consists of: 223085045 DOI. There may be around 275000000 DOI given out in total as of 02/2024.
 
+Table shows (7) columns: "dataset 1", "dataset 2", "size of 1", "size of 2", "overlap between 1 and 2", "1 only", "2 only"
+
 ```shell
 $ cat result.tsv | column -t
 fatcat     crossref   183_017_029  153_842_785  134_042_379  48_974_650   19_800_406

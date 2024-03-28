@@ -20,11 +20,16 @@
 # Go workspace file
 go.work
 
-/urlstream
+# Python venv
 /.venv
-/strnorm
+
+# Binaries
 /catshape
 /cdxlookup
+/strnorm
+/urlstream
+
+# Data
 /data/*zst
 /data/input/*zst
 
