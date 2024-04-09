@@ -27,8 +27,8 @@ $ make
 
 This builds a couple of executables:
 
-* catshape (conversions)
-* urlstream (stream from many urls)
+* catshape (data format conversions)
+* urlstream (stream data from many urls)
 * cdxlookup (ad-hoc cdx api lookup)
 * strnorm (quick string normalization)
 
