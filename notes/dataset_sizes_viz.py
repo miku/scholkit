@@ -5,6 +5,7 @@ import duckdb
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib
+import dataframe_image as dfi
 
 fileset = {
     "crossref": "/var/data/share/crossref/crossref-2024-01-01-doi-sorted-lower.tsv.zst",
@@ -30,6 +31,7 @@ if __name__ == '__main__':
         counts[k] = con.execute(q).fetchone()[0]
 
     df = pd.DataFrame(counts.values(), index=counts.keys(), columns=["num_doi"])
+    print(df)
     df = df.sort_values(by="num_doi", ascending=True)
     ax = df.plot.barh(title="DOI count per dataset (02/2024)", grid=True)
     # ax.ticklabel_format(style='plain')
@@ -40,3 +42,6 @@ if __name__ == '__main__':
     ax.tick_params(axis='x', labelrotation=45)
     fig = ax.get_figure()
     fig.savefig("out.png")
+
+    # table as png
+    dfi.export(df, 'df_styled.png')
