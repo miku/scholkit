@@ -49,8 +49,20 @@ O123)`, ...
 
 We start with an empty database.
 
-First, take fatcat.ndj.zst and extract all ids into tables; source would be nice as well.
+First, take fatcat.ndj.zst and extract all ids into tables; source would be
+nice as well.
 
 ```
 source | id | doi | pmid | pmcid | arxiv | oai | any
 ```
+
+Also, create a table per `match_key` algorithm.
+
+```
+id | match_key
+```
+
+Then find all groups and run a finer comparison, similar to citation graph
+clustering. For that we would need a fast way to iterate over the keys. In
+refcat, we use the "zipkey" structure for that. Can we generalize this a bit?
+
