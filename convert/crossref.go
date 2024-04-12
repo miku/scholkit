@@ -110,6 +110,7 @@ func CrossrefWorkToFatcatRelease(work *crossref.Work) (*fatcat.Release, error) {
 		return nil, ErrSkipNoDOI
 	}
 	rel.ID = fmt.Sprintf("crossref-%s", hashString(doi)) // crossref-sha1(DOI)
+	rel.Source = "crossref"
 	// Set title.
 	rel.Title = work.Title[0]
 	if len(work.Subtitle) > 0 {

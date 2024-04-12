@@ -17,6 +17,7 @@ func OpenAlexWorkToFatcatRelease(work *openalex.Work) (*fatcat.Release, error) {
 		return nil, ErrMissingOpenAlexIdentifier
 	}
 	release.ID = fmt.Sprintf("openalex-%s", hashString(work.IDs.Openalex))
+	release.Source = "openalex"
 	// Set title
 	release.Title = work.Title
 	// Set contributors

@@ -56,6 +56,7 @@ type Abstract struct {
 
 // Release, with expanded entities, from v0 API.
 type Release struct {
+	Source      string     `json:"source"` // source name; uniq; newly added
 	Abstracts   []Abstract `json:"abstracts,omitempty"`
 	ContainerId string     `json:"container_id,omitempty"`
 	Contribs    []Contrib  `json:"contribs,omitempty"`

@@ -33,3 +33,4 @@ go.work
 /data/*zst
 /data/input/*zst
 
+*.duck

@@ -11,6 +11,7 @@ import (
 func OaiScrapeToFatcatRelease(doc *oaiscrape.Document) (*fatcat.Release, error) {
 	var release fatcat.Release
 	release.ID = fmt.Sprintf("oaiscrape-%s", hashString(doc.OAI))
+	release.Source = "oaiscrape"
 	// Set title
 	if len(doc.Titles) > 0 {
 		release.Title = doc.Titles[0]

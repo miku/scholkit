@@ -25,6 +25,7 @@ func ArxivRecordToFatcatRelease(record *arxiv.Record) (*fatcat.Release, error) {
 	rel.ExtIDs.DOI = record.DOI()
 	rel.ExtIDs.OAI = record.Header.Identifier
 	rel.ExtIDs.Arxiv = record.ID()
+	rel.Source = "arxiv"
 	// Setting title
 	rel.Title = record.Metadata.Dc.Title
 	// Setting release date

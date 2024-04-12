@@ -11,6 +11,7 @@ import (
 func DBLPArticleToFatcatRelease(doc *dblp.Article) (*fatcat.Release, error) {
 	var rel fatcat.Release
 	rel.ID = fmt.Sprintf("dblp-%s", hashString(doc.Key)) // dblp-sha1(key)
+	rel.Source = "dblp"
 	rel.ExtIDs = fatcat.ExtID{
 		DBLP: doc.Key,
 		DOI:  doc.DOI(),

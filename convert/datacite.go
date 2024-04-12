@@ -11,6 +11,7 @@ import (
 func DataCiteToFatcatRelease(doc *datacite.Document) (*fatcat.Release, error) {
 	var release fatcat.Release
 	release.ID = fmt.Sprintf("datacite-%s", hashString(doc.Attributes.DOI)) // datacite-sha1(DOI)
+	release.Source = "datacite"
 	// Set title
 	if len(doc.Attributes.Titles) > 0 {
 		release.Title = doc.Attributes.Titles[0].Title

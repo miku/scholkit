@@ -1,4 +1,4 @@
-// catshape CLI to convert various metadata formats.
+// catshape CLI to convert various metadata formats, mostly to fatcat entities.
 package main
 
 import (

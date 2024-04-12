@@ -16,6 +16,7 @@ func PubmedArticleToFatcatRelease(doc *pubmed.Article) (*fatcat.Release, error) 
 		return nil, ErrMissingPMID
 	}
 	release.ID = fmt.Sprintf("pubmed-%s", hashString(doc.MedlineCitation.PMID.Text))
+	release.Source = "pubmed"
 	// Set title
 	release.Title = doc.MedlineCitation.Article.ArticleTitle.Text
 	// Set contributors

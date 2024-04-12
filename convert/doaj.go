@@ -18,6 +18,7 @@ func DOAJRecordToFatcatRelease(record *doaj.Record) (*fatcat.Release, error) {
 		return nil, ErrMissingDOAJIdentifier
 	}
 	release.ID = fmt.Sprintf("doaj-%s", record.ID())
+	release.Source = "doaj"
 	release.Title = record.Metadata.Dc.Title
 	// Set contributors
 	for _, creator := range record.Metadata.Dc.Creator {
