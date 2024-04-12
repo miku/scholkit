@@ -28,7 +28,7 @@ import (
 
 var (
 	fromFormat     = flag.String("f", "", fmt.Sprintf("source format (one of: %s)", strings.Join(availableSourceFormats, ", ")))
-	toFormat       = flag.String("t", "fatcat-release", "target format, only fatcat-release for now")
+	toFormat       = flag.String("t", "fatcat-release", "target format, only fatcat-release for now; and id-table")
 	maxBytesApprox = flag.Uint("x", 1048576, "max bytes per batch for XML processing")
 	batchSize      = flag.Int("b", 10000, "batch size")
 )
@@ -42,6 +42,7 @@ var availableSourceFormats = []string{
 	"oaiscrape",
 	"openalex",
 	"pubmed",
+	"fatcat-release", // for downstream tasks
 }
 
 var bufPool = sync.Pool{
@@ -81,6 +82,11 @@ func main() {
 	bw := bufio.NewWriter(os.Stdout)
 	defer bw.Flush()
 	switch *fromFormat {
+	case "fatcat-release":
+		if *toFormat != "id-tables" {
+			log.Fatal("only id-tables supported")
+		}
+		// TODO: turn release combined release entitiy into tables
 	case "arxiv": // XML
 		// t: 02:18 min single threaded, 8s with threads :)
 		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
