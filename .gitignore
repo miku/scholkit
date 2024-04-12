@@ -34,3 +34,4 @@ go.work
 /data/input/*zst
 
 *.duck
+*.ipynb_checkpoints
