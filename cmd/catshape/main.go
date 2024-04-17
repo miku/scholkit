@@ -1,4 +1,6 @@
 // catshape CLI to convert various metadata formats, mostly to fatcat entities.
+//
+// $ cat file | catshape -f openalex > out.jsonl
 package main
 
 import (
