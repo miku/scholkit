@@ -48,7 +48,9 @@ func main() {
 			C(release.ExtIDs.PMID),
 			C(release.ExtIDs.WikidataQID),
 		}
-		return []byte(strings.Join(fields, "\t")), nil
+		b := []byte(strings.Join(fields, "\t"))
+		b = append(b, '\n')
+		return b, nil
 	})
 	if err := pp.Run(); err != nil {
 		log.Fatal(err)
