@@ -102,3 +102,80 @@ we would need to index 1B docs, we could generate embeddings for the record
 * memory issues: https://github.com/facebookresearch/faiss/issues/3020
 
 
+----
+
+## 2024-02-18
+
+Take releases file and create tabular version.
+
+* line number, source, title normalized, doi, other ids ...
+
+----
+
+We could:
+
+* try to find a way to turn parts of our JSON docs into an d-dimensional vector
+  and then index that into e.g. annoy
+* what kind of embedding should we use?
+* similar docs should be have small distance
+
+Could use something like this:
+
+* [https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py](https://github.com/typesense/showcase-ecommerce-store/blob/master/scripts/vector-generation/main.py)
+* [https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+
+Boils down to SBERT: [https://www.sbert.net](https://www.sbert.net)
+
+* sentence transformer has a limit of 256 tokens
+* [https://www.reddit.com/r/LocalLLaMA/comments/176u53g/is_the_075_tokens_per_word_rule_of_thumb_general/](https://www.reddit.com/r/LocalLLaMA/comments/176u53g/is_the_075_tokens_per_word_rule_of_thumb_general/)
+
+Let's see how long the titles of the records are on average. We would need
+title, author, embeddings. If we are above 192 words too often, we cannot use
+this approach.
+
+In order to see, whether we get some sensible results, we could try to
+calculate embeddings for arxiv; and then see, whether we are getting all the
+different versions of a paper; most likely they are almost exact matches.
+
+We could distort the data to get some better idea how far an embedding goes.
+Could try to evaluate a list of embeddings for this task.
+
+Summing a file with 10M integers, one per line?
+
+```
+$ paste -sd+ 10M.len | bc
+712219434
+```
+
+On average 71 bytes. But that is just the title.
+
+```
+In [7]: df.describe()
+Out[7]:
+               92
+count 9999999.000
+mean       71.222
+std        49.205
+min         3.000
+25%        39.000
+50%        66.000
+75%        94.000
+max     20612.000
+```
+
+However, we would need to skip about 5% of the data:
+
+```
+In [15]: df.quantile([0.5, 0.9, 0.95, 0.98, 0.99, 0.999, 0.9999])
+Out[15]:
+           92
+0.500  66.000
+0.900 124.000
+0.950 147.000
+0.980 183.000
+0.990 217.000
+0.999 387.000
+1.000 898.000
+```
+
+Try to match by ID first.
