@@ -35,3 +35,4 @@ go.work
 
 *.duck
 *.ipynb_checkpoints
+import.sh
