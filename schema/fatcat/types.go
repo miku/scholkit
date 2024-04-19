@@ -101,6 +101,7 @@ type Release struct {
 		} `json:"crossref,omitempty"`
 		OAI struct {
 			SetSpec []string `json:"set_spec,omitempty"` // setSpec
+			URL     []string `json:"url,omitempty"`
 		} `json:"oai,omitempty"`
 	} `json:"extra,omitempty"`
 	Ident           string `json:"ident,omitempty"` // release ident

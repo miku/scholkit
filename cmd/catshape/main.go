@@ -42,6 +42,7 @@ var availableSourceFormats = []string{
 	"dblp",
 	"doaj",
 	"oaiscrape",
+	"oai",
 	"openalex",
 	"pubmed",
 	"fatcat-release", // for downstream tasks
@@ -214,6 +215,42 @@ func main() {
 		})
 		pp.BatchSize = *batchSize
 		if err := pp.Run(); err != nil {
+			log.Fatal(err)
+		}
+	case "oai": // XML
+		// t: about 20 min
+		//
+		// real    22m41.454s
+		// user    207m46.951s
+		// sys     5m31.498s
+		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
+			// setup new xml streaming scanner
+			r := bytes.NewReader(p)
+			scanner := xmlstream.NewScanner(r, new(oaiscrape.Record))
+			scanner.Decoder.Strict = false
+			// get a buffer to write result to
+			buf := bufPool.Get().(bytes.Buffer)
+			defer bufPool.Put(buf)
+			var enc = json.NewEncoder(&buf)
+			// iterate over batch
+			for scanner.Scan() {
+				tag := scanner.Element()
+				if article, ok := tag.(*oaiscrape.Record); ok {
+					release, _ := convert.OaiRecordToFatcatRelease(article)
+					if err := enc.Encode(release); err != nil {
+						return nil, err
+					}
+				}
+			}
+			if scanner.Err() != nil {
+				return nil, fmt.Errorf("scan: %w", scanner.Err())
+			}
+			return buf.Bytes(), nil
+		})
+		// batch XML elements, without expensive XML parsing
+		ts := &record.TagSplitter{Tag: "record", MaxBytesApprox: *maxBytesApprox}
+		proc.Split(ts.Split)
+		if err := proc.Run(); err != nil {
 			log.Fatal(err)
 		}
 	case "openalex": // JSON

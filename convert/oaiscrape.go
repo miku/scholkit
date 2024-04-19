@@ -8,6 +8,35 @@ import (
 	"github.com/miku/scholkit/schema/oaiscrape"
 )
 
+func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error) {
+	var release fatcat.Release
+	release.ID = fmt.Sprintf("oaiscrape-%s", hashString(record.Header.Identifier))
+	release.Source = "oaiscrape"
+	var dc = record.Metadata.Dc
+	// Set title
+	release.Title = dc.Title
+	// Set contributors
+	for _, creator := range dc.Creator {
+		release.Contribs = append(release.Contribs, fatcat.Contrib{
+			RawName: creator,
+		})
+	}
+	// Set DOI
+	release.ExtIDs.DOI = record.DOI()
+	if u := record.URL(); len(u) != 0 {
+		release.Extra.OAI.URL = u
+	}
+	release.ExtIDs.OAI = record.Header.Identifier
+	release.Language = dc.Language
+	// Set release date
+	if len(dc.Date) > 0 {
+		release.ReleaseDate = dc.Date[0]
+	}
+	release.Extra.OAI.SetSpec = record.Header.SetSpec
+	return &release, nil
+
+}
+
 func OaiScrapeToFatcatRelease(doc *oaiscrape.Document) (*fatcat.Release, error) {
 	var release fatcat.Release
 	release.ID = fmt.Sprintf("oaiscrape-%s", hashString(doc.OAI))
@@ -34,8 +63,6 @@ func OaiScrapeToFatcatRelease(doc *oaiscrape.Document) (*fatcat.Release, error) 
 	// Set DOI
 	release.ExtIDs.DOI = doc.DOI()
 	release.ExtIDs.OAI = doc.OAI
-	// Set URL
-	release.Extra.Crossref.AlternativeId = append(release.Extra.Crossref.AlternativeId, doc.URL())
 	// Set release date
 	release.ReleaseDate = doc.Datestamp
 	release.Extra.OAI.SetSpec = doc.Sets
