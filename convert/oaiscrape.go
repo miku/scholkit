@@ -17,8 +17,11 @@ func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error)
 	release.Source = "oaiscrape"
 	var dc = record.Metadata.Dc
 	// Set title
+	if dc.Title == "" {
+		return nil, nil
+	}
 	release.Title = dc.Title
-	// Set contributors
+	// Set contributor
 	for _, creator := range dc.Creator {
 		release.Contribs = append(release.Contribs, fatcat.Contrib{
 			RawName: creator,
