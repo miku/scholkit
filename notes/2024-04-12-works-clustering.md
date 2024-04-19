@@ -179,3 +179,7 @@ Out[15]:
 ```
 
 Try to match by ID first.
+
+Extract table from combined data, `zstdcat fatcat.ndj.zst | clowder -T >
+fatcat.tsv` - should list all ids and a normalized title.
+
