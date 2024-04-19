@@ -237,6 +237,9 @@ func main() {
 				tag := scanner.Element()
 				if article, ok := tag.(*oaiscrape.Record); ok {
 					release, _ := convert.OaiRecordToFatcatRelease(article)
+					if release == nil {
+						continue
+					}
 					if err := enc.Encode(release); err != nil {
 						return nil, err
 					}
