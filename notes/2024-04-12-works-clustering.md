@@ -183,3 +183,46 @@ Try to match by ID first.
 Extract table from combined data, `zstdcat fatcat.ndj.zst | clowder -T >
 fatcat.tsv` - should list all ids and a normalized title.
 
+Load into duckdb.
+
+```
+create table record (
+    id VARCHAR,
+    source VARCHAR,
+    ark VARCHAR,
+    arxiv VARCHAR,
+    core VARCHAR,
+    dblp VARCHAR,
+    ri VARCHAR,
+    wi VARCHAR,
+    hdl VARCHAR,
+    isbn13 VARCHAR,
+    jstor VARCHAR,
+    mag VARCHAR,
+    mid VARCHAR,
+    oai VARCHAR,
+    openalex VARCHAR,
+    pii VARCHAR,
+    pmcid VARCHAR,
+    pmid VARCHAR,
+    qid VARCHAR,
+)
+```
+
+Create sqlite3 db for metadata lookup based on identifiers. Takes 22min to tabularize 800M+ records.
+
+```
+$ time zstdcat -T0 fatcat.ndj.zst | pv | clowder -T | zstd -c -T0 > fatcat.tsv.zst
+
+522GiB 0:22:10 [ 402MiB/s] [                                                                                                                               <=>                                                                               ]
+
+real    22m11.234s
+user    291m19.859s
+sys     15m56.985s
+
+$ ll
+-rw-rw-r--  1 tir tir  97G Apr 19 18:12 fatcat.ndj.zst
+-rw-rw-r--  1 tir tir  50G Apr 19 18:48 fatcat.tsv.zst
+```
+
+Load into duck.
