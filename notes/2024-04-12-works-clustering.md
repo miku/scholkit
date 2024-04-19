@@ -193,6 +193,7 @@ create table record (
     arxiv VARCHAR,
     core VARCHAR,
     dblp VARCHAR,
+    doi VARCHAR,
     ri VARCHAR,
     wi VARCHAR,
     hdl VARCHAR,
@@ -206,6 +207,7 @@ create table record (
     pmcid VARCHAR,
     pmid VARCHAR,
     qid VARCHAR,
+    ntitle VARCHAR
 )
 ```
 
@@ -226,3 +228,283 @@ $ ll
 ```
 
 Load into duck.
+
+```sql
+D create table record (
+      id VARCHAR,
+      source VARCHAR,
+      ark VARCHAR,
+      arxiv VARCHAR,
+      core VARCHAR,
+      dblp VARCHAR,
+      doi VARCHAR,
+      ri VARCHAR,
+      wi VARCHAR,
+      hdl VARCHAR,
+      isbn13 VARCHAR,
+      jstor VARCHAR,
+      mag VARCHAR,
+      mid VARCHAR,
+      oai VARCHAR,
+      openalex VARCHAR,
+      pii VARCHAR,
+      pmcid VARCHAR,
+      pmid VARCHAR,
+      qid VARCHAR,
+      ntitle VARCHAR
+  )
+  ;
+D INSERT INTO record SELECT * FROM read_csv('fatcat.tsv.zst', compression='zstd', sep='\t');
+```
+
+Failed on some line:
+
+```
+ 85% ▕███████████████████████████████████████████████████         ▏ Error: Invalid Input Error: CSV Error on Line: 275747065
+Expected Number of Columns: 21 Found: 7
+  file=fatcat.tsv.zst
+  delimiter =    (Set By User)
+  quote = " (Auto-Detected)
+  escape = " (Auto-Detected)
+  new_line = \n (Auto-Detected)
+  header = false (Auto-Detected)
+  skip_rows = 0 (Auto-Detected)
+  date_format =  (Auto-Detected)
+  timestamp_format =  (Auto-Detected)
+  null_padding=0
+  sample_size=20480
+  ignore_errors=0
+  all_varchar=0
+```
+
+Try with `ignore_errors=true`, just to see, if it fits into memory.
+
+```
+D INSERT INTO record SELECT * FROM read_csv('fatcat.tsv.zst', compression='zstd', sep='\t', ignore_errors=true);
+```
+
+This take about 15min (99% ....) but then actually is done:
+
+```
+D select count(*) from record;
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    812130305 │
+└──────────────┘
+
+D select source, count(*) from record group by source;
+┌───────────┬──────────────┐
+│  source   │ count_star() │
+│  varchar  │    int64     │
+├───────────┼──────────────┤
+│ arxiv     │      2439358 │
+│ datacite  │     54173141 │
+│ doaj      │     29357186 │
+│ dblp      │      3465807 │
+│ crossref  │    146402248 │
+│           │          245 │
+│ oaiscrape │    326162587 │
+│ openalex  │    250129733 │
+└───────────┴──────────────┘
+
+D select count(*) from record where doi is NULL;
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    355570276 │
+└──────────────┘
+
+D select source, count(*) from record where doi is NULL group by source;
+┌───────────┬──────────────┐
+│  source   │ count_star() │
+│  varchar  │    int64     │
+├───────────┼──────────────┤
+│ dblp      │       544483 │
+│           │          245 │
+│ arxiv     │      1269542 │
+│ doaj      │      6367603 │
+│ oaiscrape │    253614915 │
+│ openalex  │     93773488 │
+└───────────┴──────────────┘
+
+D select count(*) from record where ntitle == '';
+100% ▕████████████████████████████████████████████████████████████▏
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│            0 │
+└──────────────┘
+
+D select count(*) from record where ntitle != '';
+100% ▕████████████████████████████████████████████████████████████▏
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    812130305 │
+└──────────────┘
+D select count(distinct ntitle) from record;
+100% ▕████████████████████████████████████████████████████████████▏
+┌────────────────────────┐
+│ count(DISTINCT ntitle) │
+│         int64          │
+├────────────────────────┤
+│              309071441 │
+└────────────────────────┘
+
+D select count(distinct doi) from record;
+100% ▕████████████████████████████████████████████████████████████▏
+┌─────────────────────┐
+│ count(DISTINCT doi) │
+│        int64        │
+├─────────────────────┤
+│           218230487 │
+└─────────────────────┘
+
+D select * from record where doi = '10.1112/S002557931600005X';
+┌──────────────────────┬───────────┬─────────┬───────────┬─────────┬─────────┬──────────────────────┬─────────┬───┬─────────┬─────────┬──────────────────────┬──────────┬─────────┬─────────┬─────────┬─────────┬──────────────────────┐
+│          id          │  source   │   ark   │   arxiv   │  core   │  dblp   │         doi          │   ri    │ … │   mag   │   mid   │         oai          │ openalex │   pii   │  pmcid  │  pmid   │   qid   │        ntitle        │
+│       varchar        │  varchar  │ varchar │  varchar  │ varchar │ varchar │       varchar        │ varchar │   │ varchar │ varchar │       varchar        │ varchar  │ varchar │ varchar │ varchar │ varchar │       varchar        │
+├──────────────────────┼───────────┼─────────┼───────────┼─────────┼─────────┼──────────────────────┼─────────┼───┼─────────┼─────────┼──────────────────────┼──────────┼─────────┼─────────┼─────────┼─────────┼──────────────────────┤
+│ arxiv-f36f78b39e91…  │ arxiv     │         │ 1401.0035 │         │         │ 10.1112/S002557931…  │         │ … │         │         │ oai:arXiv.org:1401…  │          │         │         │         │         │ theduffinschaeffer…  │
+│ oaiscrape-87344624…  │ oaiscrape │         │           │         │         │ 10.1112/S002557931…  │         │ … │         │         │ oai:arXiv.org:1401…  │          │         │         │         │         │ theduffinschaeffer…  │
+│ oaiscrape-84d829b9…  │ oaiscrape │         │           │         │         │ 10.1112/S002557931…  │         │ … │         │         │ oai:tib.eu:arxiv:8…  │          │         │         │         │         │ theduffinschaeffer…  │
+├──────────────────────┴───────────┴─────────┴───────────┴─────────┴─────────┴──────────────────────┴─────────┴───┴─────────┴─────────┴──────────────────────┴──────────┴─────────┴─────────┴─────────┴─────────┴──────────────────────┤
+│ 3 rows                                                                                                                                                                                                         21 columns (17 shown) │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+D select count(*) from record group by doi having count(doi) > 1;
+100% ▕████████████████████████████████████████████████████████████▏
+┌────────────────┐
+│  count_star()  │
+│     int64      │
+├────────────────┤
+│              5 │
+│              3 │
+│             10 │
+│              7 │
+│              5 │
+│              4 │
+│              6 │
+│              8 │
+│              3 │
+│             12 │
+│             13 │
+│              4 │
+│              3 │
+│              3 │
+│              3 │
+│              3 │
+│             11 │
+│              3 │
+│              3 │
+│              8 │
+│              · │
+│              · │
+│              · │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│              2 │
+│            100 │
+│              2 │
+│              3 │
+│              2 │
+├────────────────┤
+│ 155028678 rows │
+│   (40 shown)   │
+└────────────────┘
+
+D select id, source, doi, ntitle from record where doi in (select * from (select doi from record group by doi having count(doi) > 1) using sample 10);
+100% ▕████████████████████████████████████████████████████████████▏
+┌────────────────────────────────────────────────────┬───────────┬──────────────────────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                         id                         │  source   │               doi                │                                                   ntitle                                                    │
+│                      varchar                       │  varchar  │             varchar              │                                                   varchar                                                   │
+├────────────────────────────────────────────────────┼───────────┼──────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ oaiscrape-31e2a46dc092f9bb2ed7fb79eda5131284a65885 │ oaiscrape │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+│ oaiscrape-31e2a46dc092f9bb2ed7fb79eda5131284a65885 │ oaiscrape │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+│ oaiscrape-31e2a46dc092f9bb2ed7fb79eda5131284a65885 │ oaiscrape │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+│ crossref-0e57f4a51cc01f4700a5850727c27947e305ffef  │ crossref  │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+│ oaiscrape-74d832aa997fe190876d7bc3cfb070578d10ad1f │ oaiscrape │ 10.1594/PANGAEA.196469           │ physicaloceanographyfromseasoarctdditr                                                                      │
+│ oaiscrape-74d832aa997fe190876d7bc3cfb070578d10ad1f │ oaiscrape │ 10.1594/PANGAEA.196469           │ physicaloceanographyfromseasoarctdditr                                                                      │
+│ openalex-2fe3ce55311dc8d4e2167eea68e441419f8c1d61  │ openalex  │ 10.1016/s0016-0032(32)90481-5    │ theexplodingwedge                                                                                           │
+│ crossref-87922e90367f424892e4d609024c856a58dc0c65  │ crossref  │ 10.1001/jama.1973.03220070030007 │ survivalofspermatozoainahumanspermbank                                                                      │
+│ openalex-f30ad23fc4c95a5cf98908b3d23802e982ea2365  │ openalex  │ 10.2514/6.2003-3287              │ numericalmodelingrequirementsforcoaxialandchevronnozzleflows                                                │
+│ crossref-94ec8e1552edb1c9183f09e47c39e3e5ce46ee19  │ crossref  │ 10.1016/0002-8703(47)90404-3     │ renalfiltrationratesinpregnancytoxemiainulinandexogenouscreatinine                                          │
+│ openalex-f3fc235fe1a24718c44a8e6c8ec03e6d58056078  │ openalex  │ 10.32839/2304-5809/2021-11-99-44 │ рoзвитoкемоційногоінтелектуучнівпoчaткoвoїшколивконтекстімистецькоїосвіти                                   │
+│ crossref-eed529d818c76671fd5750b48879f2ac7c1c0f81  │ crossref  │ 10.1016/s0016-0032(32)90481-5    │ theexplodingwedge                                                                                           │
+│ oaiscrape-e4e27a8e606a9ea39c5481e9f275b3cf7bdd0c5b │ oaiscrape │ 10.32839/2304-5809/2021-11-99-44 │ developmentofemotionalintelligenceofprimaryschoolstudentsinthecontextofarteducation                         │
+│ crossref-03affd2efef5abea0bb0007721f7ff5e760c3100  │ crossref  │ 10.2514/6.2003-3287              │ numericalmodelingrequirementsforcoaxialandchevronnozzleflows                                                │
+│ crossref-6fdb706b9b6918db0c05afe8f280baadeaccc5d1  │ crossref  │ 10.32839/2304-5809/2021-11-99-44 │ рoзвитoкемоційногоінтелектуучнівпoчaткoвoїшколивконтекстімистецькоїосвіти                                   │
+│ openalex-96bd2222e201052e3c427ebaade03454d7709b45  │ openalex  │ 10.1016/0002-8703(47)90404-3     │ renalfiltrationratesinpregnancytoxemiainulinandexogenouscreatinine                                          │
+│ oaiscrape-7de7a3b24b8c825bc1d24fd86cc5e090b10d75ef │ oaiscrape │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+│ crossref-ba3e97de54799ec24ed10fb4db604ea26d2830b2  │ crossref  │ 10.5980/jpnjurol1989.87.831      │ roleofserumeselectinelamandinflammatorparametersinpatientswithrenalcellcarcinoma                            │
+│ crossref-d017d56929d1cea3d5bd74785763a90d77fbc974  │ crossref  │ 10.1021/am509116s                │ indiumtinoxidefreetransparentconductiveelectrodeforganbasedultravioletlightemittingdiodes                   │
+│ openalex-89effe19254196a37042d0ffd2c34d1f39850247  │ openalex  │ 10.1001/jama.1973.03220070030007 │ survivalofspermatozoainahumanspermbank                                                                      │
+│ openalex-37de582ef62bc172a6f4e919ab41ecac95afd54e  │ openalex  │ 10.1021/am509116s                │ indiumtinoxidefreetransparentconductiveelectrodeforganbasedultravioletlightemittingdiodes                   │
+│ openalex-b1025a66d4fb404e7a000ac04d9aa58b1e759f1d  │ openalex  │ 10.5980/jpnjurol1989.87.831      │ roleofserumeselectinelamandinflammatorparametersinpatientswithrenalcellcarcinoma                            │
+│ crossref-4acb19724e7884ae7b206eb906158b35dd67e3e3  │ crossref  │ 10.1016/j.ijrobp.2014.05.2443    │ ctnumberchangesobservedduringctguidedradiationtherapyforheadandneckcanceranewindicatorfortreatmentresponse  │
+│ openalex-8e9fcbaba3bc350eb65a677a03d6cab6919d2cdb  │ openalex  │ 10.1016/j.ijrobp.2014.05.2443    │ ctnumberchangesobservedduringctguidedradiationtherapyforheadandneckcanceranewindicatorfortreatmentresponse  │
+│ openalex-0263900bc03655b89aaba35e570dabe74b35e95c  │ openalex  │ 10.26575/daj.v13i1.199           │ dentalhealthanddietoftwoprehistoricpopulationsfromchilessemiaridnorth                                       │
+├────────────────────────────────────────────────────┴───────────┴──────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 25 rows                                                                                                                                                                                               4 columns │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+D select id, source, doi, ntitle from record where doi in (select * from (select doi from record group by doi having count(doi) > 1) using sample 15) order by doi;
+100% ▕████████████████████████████████████████████████████████████▏
+┌────────────────────────────────────────────────────┬───────────┬─────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                         id                         │  source   │               doi               │                                                        ntitle                                                        │
+│                      varchar                       │  varchar  │             varchar             │                                                       varchar                                                        │
+├────────────────────────────────────────────────────┼───────────┼─────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ openalex-0929e456ba2d48bf933bdfd24ab92f8cc801b02d  │ openalex  │ 10.1007/978-1-4939-1197-4_21    │ medicalapproachtoapatientwithpostoperativeweightregain                                                               │
+│ crossref-579cca5b746d88785404fa7c765254784035a794  │ crossref  │ 10.1007/978-1-4939-1197-4_21    │ medicalapproachtoapatientwithpostoperativeweightregain                                                               │
+│ crossref-99620989379ec3505346a2619f44cc93852e5aee  │ crossref  │ 10.1016/j.jradio.2013.12.012    │ lesmacrobiopsiesmammairessousirm                                                                                     │
+│ openalex-ce4cc0dd8262bf8c8c0758e2d8720c7c5ba718ef  │ openalex  │ 10.1016/j.jradio.2013.12.012    │ lesmacrobiopsiesmammairessousirm                                                                                     │
+│ openalex-a45cc3e679bc99ca484704a53191922f072c9589  │ openalex  │ 10.1039/c6ra24949c              │ insiturepairofgraphenedefectsandenhancementofitsreinforcementeffectinpolyvinylalcoholhydrogels                       │
+│ crossref-c31fce5463a83cd0ee7838d31ba9d2dee602324a  │ crossref  │ 10.1039/c6ra24949c              │ insiturepairofgraphenedefectsandenhancementofitsreinforcementeffectinpolyvinylalcoholhydrogels                       │
+│ crossref-71c90d2f1559a9f6a8eda32bd9a68e0c96e1df5f  │ crossref  │ 10.1134/1.1771435               │ erratumtocorrelatedcomplexexponentialwavefunctionsforatomicmolecularsystems                                          │
+│ openalex-69af63f7a45c402f3526d7cfbdcd02b376c28987  │ openalex  │ 10.1134/1.1771435               │ erratumtocorrelatedcomplexexponentialwavefunctionsforatomicmolecularsystems                                          │
+│ oaiscrape-2ff182e1fda6f8eac743aef5b6c1ca3d03b62632 │ oaiscrape │ 10.1134/1.1771435               │ erratumtocorrelatedcomplexexponentialwavefunctionsforatomicmolecularsystems                                          │
+│ openalex-5825455c9a459f9a8db55659a0347a5e0b2a52a9  │ openalex  │ 10.1163/9789004209107_018       │ traditionalgrammaranditslegacyintwentiethcenturylinguistics                                                          │
+│ crossref-ce8aee2b991c0e5e5451c8fdc590f77822839f44  │ crossref  │ 10.1163/9789004209107_018       │ traditionalgrammaranditslegacyintwentiethcenturylinguistics                                                          │
+│ openalex-aab186a04cb6c007417329c7671c800df88afd6f  │ openalex  │ 10.1176/ajp.138.2.272-a         │ alcoholismandaffectivedisordersclinicalgeneticandbiochemicalstudieswithemphasisonalcohollithiuminteraction           │
+│ crossref-33f4fd1ec8656182e56d2321b336ed51f0f455f1  │ crossref  │ 10.1176/ajp.138.2.272-a         │ alcoholismandaffectivedisordersclinicalgeneticandbiochemicalstudieswithemphasisonalcohollithiuminteraction           │
+│ openalex-fb978669df8be7c63127cd74039fdfc9ed3217b6  │ openalex  │ 10.2147/cmar.s359545            │ cstfactsasaprognosticmarkercorrelatedwithimmuneinfiltrationinhepatocellularcarcinoma                                 │
+│ crossref-0064a170199b0f0a93ec1f3952853e05f14bba8b  │ crossref  │ 10.2147/cmar.s359545            │ cstfactsasaprognosticmarkercorrelatedwithimmuneinfiltrationinhepatocellularcarcinoma                                 │
+│ crossref-634aa3b926755acb467ab8616c2e743043c63a8b  │ crossref  │ 10.2218/iclass.2021.6112        │ experimentalinvestigationonspraycharacteristicsofacoaltoliquidblendedfuelunderdifferentinjectionconditions           │
+│ openalex-4e4f9550d83c40c2e8a5b84ce0eb2913d5ecf3fd  │ openalex  │ 10.2218/iclass.2021.6112        │ experimentalinvestigationonspraycharacteristicsofacoaltoliquidblendedfuelunderdifferentinjectionconditions           │
+│ crossref-f174ee8f7ce8d021116e7182205143fa2c0c1d59  │ crossref  │ 10.24843/jiwsp.2022.v04.i02.p01 │ analisisperubahanorientasipolaperilakumasyarakatdalampemanfaatanaplikasieperpusprovinsibengkulupadamasapandemicovid  │
+│ openalex-057e2229d99ae06262a82ff7d780ffeeb8fa3a89  │ openalex  │ 10.24843/jiwsp.2022.v04.i02.p01 │ analisisperubahanorientasipolaperilakumasyarakatdalampemanfaatanaplikasieperpusprovinsibengkulupadamasapandemicovid  │
+│ openalex-dcb1d28a0e3368f6946146a8802868a53f9c2470  │ openalex  │ 10.3102/1588159                 │ howwegonnawinwhenweaintrightwithinmindfulnesssocialjusticeandhiphopliteracies                                        │
+│ crossref-86af837168e7731faa712a8f032b4fdf55166fef  │ crossref  │ 10.3102/1588159                 │ howwegonnawinwhenweaintrightwithinmindfulnesssocialjusticeandhiphopliteracies                                        │
+│ crossref-920ba1256a7b876ffb768e00a5472f91ea4bd246  │ crossref  │ 10.4009/jsdt.37.1286            │                                                                                                                      │
+│ openalex-4cf32cd5c5c5654cbf6acf083323c251a649322a  │ openalex  │ 10.4009/jsdt.37.1286            │                                                                                                                      │
+│ crossref-cd79b1ee13dcdc9db74cf91193e0738b9d30ac0b  │ crossref  │ 10.4103/ijn.ijn_247_20          │ passengerlymphocytesyndromeafterrenaltransplantcasereport                                                            │
+│ openalex-c2e8c154f3f1b133671e4fd2d0a4278914ec07a4  │ openalex  │ 10.4103/ijn.ijn_247_20          │ passengerlymphocytesyndromeafterrenaltransplantcasereport                                                            │
+│ openalex-5d32916975b04402627d56372d93894d10135e25  │ openalex  │ 10.48550/arxiv.2401.04609       │ analysisofafamilyoftimecontinuousstronglyconservativespacetimefiniteelementmethodsforthedynamicbiotmodel             │
+│ datacite-44ff8da6ada7f4fe39a8683fa05ae340f22ac049  │ datacite  │ 10.48550/arxiv.2401.04609       │ analysisofafamilyoftimecontinuousstronglyconservativespacetimefiniteelementmethodsforthedynamicbiotmodel             │
+│ datacite-b728bae392763e7174e2924ce65e1c9b36dfa040  │ datacite  │ 10.5281/zenodo.6448549          │ boshlangichsinflardaoqishsavodxonliginioshirish                                                                      │
+│ openalex-a0d0a0e533a171bbbdce2500657852d4607fa3cf  │ openalex  │ 10.5281/zenodo.6448549          │ boshlangichsinflardaoqishsavodxonliginioshirish                                                                      │
+│ crossref-f795856495f95094f2d4bcd9a3cd4cfa3b7103a0  │ crossref  │ 10.5539/mer.v7n2p18             │ numericalanalysisofflowbehaviorinvortextubefordifferentgases                                                         │
+│ openalex-c5ca5f4a59057e7f8fe9f3e0563a82312fe4e80c  │ openalex  │ 10.5539/mer.v7n2p18             │ numericalanalysisofflowbehaviorinvortextubefordifferentgases                                                         │
+├────────────────────────────────────────────────────┴───────────┴─────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 31 rows                                                                                                                                                                                                       4 columns │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
