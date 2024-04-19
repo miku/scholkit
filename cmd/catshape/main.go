@@ -165,6 +165,11 @@ func main() {
 		}
 	case "doaj": // XML
 		// t: about 2 min (45 min, single threaded)
+		//
+		// real    5m28.915s
+		// user    57m51.091s
+		// sys     1m59.721s
+		//
 		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
 			// setup new xml streaming scanner
 			r := bytes.NewReader(p)
