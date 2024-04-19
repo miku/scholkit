@@ -9,6 +9,9 @@ import (
 )
 
 func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error) {
+	if record.Header.Status == "deleted" {
+		return nil, nil
+	}
 	var release fatcat.Release
 	release.ID = fmt.Sprintf("oaiscrape-%s", hashString(record.Header.Identifier))
 	release.Source = "oaiscrape"
