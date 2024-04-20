@@ -1,7 +1,7 @@
-// clowder is a release entity clusterer. It takes a big bunch of release
-// entities and will group similar items together.
+// clowder is a release entity clusterer. It takes release
+// entities and will group similar items together. WIP.
 //
-// $ cat releases.ndj | clouder
+// $ cat releases.ndj | clowder
 package main
 
 import (
