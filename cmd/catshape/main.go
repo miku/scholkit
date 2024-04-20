@@ -241,8 +241,10 @@ func main() {
 					case release == nil:
 						continue
 					case err == convert.ErrOaiDeleted:
+						log.Println("skip: deleted")
 						continue
 					case err == convert.ErrOaiMissingTitle:
+						log.Println("skip: missing title")
 						continue
 					}
 					if err := enc.Encode(release); err != nil {
