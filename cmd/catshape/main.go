@@ -236,8 +236,13 @@ func main() {
 			for scanner.Scan() {
 				tag := scanner.Element()
 				if article, ok := tag.(*oaiscrape.Record); ok {
-					release, _ := convert.OaiRecordToFatcatRelease(article)
-					if release == nil {
+					release, err := convert.OaiRecordToFatcatRelease(article)
+					switch {
+					case release == nil:
+						continue
+					case err == convert.ErrOaiDeleted:
+						continue
+					case err == convert.ErrOaiMissingTitle:
 						continue
 					}
 					if err := enc.Encode(release); err != nil {

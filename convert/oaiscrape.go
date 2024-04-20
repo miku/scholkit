@@ -1,6 +1,7 @@
 package convert
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -8,9 +9,14 @@ import (
 	"github.com/miku/scholkit/schema/oaiscrape"
 )
 
+var (
+	ErrOaiDeleted      = errors.New("oai deleted record")
+	ErrOaiMissingTitle = errors.New("oai missing title")
+)
+
 func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error) {
 	if record.Header.Status == "deleted" {
-		return nil, nil
+		return nil, ErrOaiDeleted
 	}
 	var release fatcat.Release
 	release.ID = fmt.Sprintf("oaiscrape-%s", hashString(record.Header.Identifier))
@@ -18,7 +24,7 @@ func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error)
 	var dc = record.Metadata.Dc
 	// Set title
 	if dc.Title == "" {
-		return nil, nil
+		return nil, ErrOaiMissingTitle
 	}
 	release.Title = dc.Title
 	// Set contributor
