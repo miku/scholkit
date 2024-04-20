@@ -26,11 +26,11 @@ func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error)
 	if dc.Title == "" {
 		return nil, ErrOaiMissingTitle
 	}
-	release.Title = dc.Title
+	release.Title = strings.TrimSpace(dc.Title)
 	// Set contributor
 	for _, creator := range dc.Creator {
 		release.Contribs = append(release.Contribs, fatcat.Contrib{
-			RawName: creator,
+			RawName: strings.TrimSpace(creator),
 		})
 	}
 	// Set DOI

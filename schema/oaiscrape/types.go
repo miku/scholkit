@@ -54,7 +54,7 @@ type Record struct {
 func (record *Record) URL() (result []string) {
 	for _, f := range record.Metadata.Dc.Identifier {
 		if strings.HasPrefix(f, "http") {
-			result = append(result, f)
+			result = append(result, strings.TrimSpace(f))
 		}
 	}
 	return result
@@ -67,7 +67,7 @@ func (record *Record) DOI() string {
 		}
 		for _, p := range doiPreceding {
 			if strings.HasPrefix(f, p) {
-				return strings.Replace(f, p, "", 1)
+				return strings.TrimSpace(strings.Replace(f, p, "", 1))
 			}
 		}
 	}
