@@ -110,7 +110,7 @@ func (s *TagSplitter) ensureTags() {
 
 // Split accumulates one or more XML element contents and returns a batch of
 // them as a token. This can be used for downstream XML parsing, where the
-// consumer expects a valid tag.
+// consumer expects a valid XML, that is it contains both start and end tag.
 func (s *TagSplitter) Split(data []byte, atEOF bool) (advance int, token []byte, err error) {
 	if s.Tag == "" {
 		return 0, nil, ErrTagRequired
