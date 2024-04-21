@@ -3,7 +3,9 @@ package record
 import (
 	"bytes"
 	"errors"
+	"index/suffixarray"
 	"io"
+	"sort"
 	"sync"
 )
 
@@ -13,27 +15,30 @@ const (
 	// internalBufferPruneLimit is the number of bytes kept in the buffer; this
 	// mostly keep the internal buffer from growing w/o limits when no tag is
 	// found in the stream.
-	internalBufferPruneLimit = 16 * 1024
+	internalBufferPruneLimit = 16384      // bytes
+	maxBufSize               = 1073741824 // 1GB (please send me real-world XML where an element exceeds 1GB -- I think they exist)
 )
 
 var (
 	ErrTagRequired              = errors.New("tag required")
 	ErrGarbledInput             = errors.New("likely gabled input")
 	ErrNestedTagsNotImplemented = errors.New("nested tags with the same name not implemented yet")
-	ErrOpenTagNotFound          = errors.New("open tag not found")
+	ErrMaxBufSizeExceeded       = errors.New("max buf size exceeded (data may not be valid xml)")
+
+	errOpenTagNotFound = errors.New("open tag not found")
 )
 
 // TagSplitter splits input on XML elements. It will batch content up to
 // approximately MaxBytesApprox bytes. It is guaranteed that each batch
 // contains at least one complete element content.
 type TagSplitter struct {
-	// Tag to split on. Nested tags with the same name are not supperted
+	// Tag to split on. Nested tags with the same name are not supported
 	// currently (they will cause an error).
 	Tag string
 	// MaxBytesApprox is the approximate number of bytes in a batch. A batch
 	// will always contain at least one element, which may exceed this number.
-	// By default, we use 16MB per batch.
 	MaxBytesApprox uint
+
 	// buf is the internal scratch space that is used to find a complete
 	// element. This buffer will grow as large as required to accomodate a tag.
 	buf []byte
@@ -83,7 +88,7 @@ func (s *TagSplitter) maxBytes() int {
 //	max    289179.000
 func (s *TagSplitter) pruneBuf(data []byte) {
 	// If the data passed is too small, we want to accumulate at least a
-	// certain number of bytes, they could accomodate an XML tag.
+	// certain number of bytes, so they could accomodate an XML tag.
 	L := 2 * len(data)
 	if internalBufferPruneLimit > L {
 		L = internalBufferPruneLimit
@@ -110,7 +115,7 @@ func (s *TagSplitter) ensureTags() {
 
 // Split accumulates one or more XML element contents and returns a batch of
 // them as a token. This can be used for downstream XML parsing, where the
-// consumer expects a valid XML, that is it contains both start and end tag.
+// consumer expects a valid tag.
 func (s *TagSplitter) Split(data []byte, atEOF bool) (advance int, token []byte, err error) {
 	if s.Tag == "" {
 		return 0, nil, ErrTagRequired
@@ -124,15 +129,17 @@ func (s *TagSplitter) Split(data []byte, atEOF bool) (advance int, token []byte,
 	s.buf = append(s.buf, data...)
 	for {
 		if s.batch.Len() >= s.maxBytes() {
-			// If batch accumulated enough bytes, actually return a token.
+			// Return token, if we hit batch threshold.
 			b := s.batch.Bytes()
 			s.batch.Reset()
 			return len(data), b, nil
 		}
 		n, err := s.copyContent(&s.batch)
 		switch {
-		case err == ErrOpenTagNotFound:
-			// Keep the internal buffer from growing.
+		case err == errOpenTagNotFound:
+			// Keep the internal buffer from growing, but only if we do not
+			// find an opening tag. Searching for a closing tag means we are
+			// inside a tag and we may want to search on.
 			s.pruneBuf(data)
 		case err != nil:
 			return len(data), nil, err
@@ -150,59 +157,76 @@ func (s *TagSplitter) Split(data []byte, atEOF bool) (advance int, token []byte,
 			}
 		}
 	}
-	return 0, nil, nil
 }
 
 // copyContent reads at most one element content from the internal buffer and
-// writes it to the given writer. If no complete element has been found in the
-// internal buffer, zero is returned. This may fail, if the content is invalid
-// XML or if it contains nested tags of the same name.
+// writes it to the given writer. Returns the number of bytes read, e.g. zero
+// if no complete element has been found in the internal buffer. This may fail
+// on invalid XML or very large XML elements.
 func (s *TagSplitter) copyContent(w io.Writer) (n int, err error) {
-	var start, end, last int
-	if start = s.indexOpeningTag(s.buf); start == -1 {
-		return 0, ErrOpenTagNotFound
+	if len(s.buf) > maxBufSize {
+		return 0, ErrMaxBufSizeExceeded
 	}
-	if end = s.indexClosingTag(s.buf); end == -1 {
+	index := suffixarray.New(s.buf)
+	// We can treat both tags the same, as they have the same length,
+	// accidentally.
+	ot1 := index.Lookup(s.openingTag1, -1)
+	ot2 := index.Lookup(s.openingTag2, -1)
+	openingTagIndices := append(ot1, ot2...)
+	if len(openingTagIndices) == 0 {
+		return 0, errOpenTagNotFound
+	}
+	closingTagIndices := index.Lookup(s.closingTag, -1)
+	if len(closingTagIndices) == 0 {
 		return 0, nil
 	}
-	if end < start {
-		return 0, ErrGarbledInput
-	}
-	last = end + len(s.Tag) + 3
-	// sanity check, TODO: fix this w/ a stack
-	if s.indexOpeningTag(s.buf[start+1:end]) != -1 {
-		return 0, ErrNestedTagsNotImplemented
+	var start, end, last int
+	if len(openingTagIndices) == 1 && len(closingTagIndices) == 1 {
+		start = openingTagIndices[0]
+		end = closingTagIndices[0]
+		if end < start {
+			return 0, ErrGarbledInput
+		}
+		last = end + len(s.Tag) + 3 // TODO: assumes </...>
+	} else {
+		sort.Ints(openingTagIndices)
+		sort.Ints(closingTagIndices)
+		start, end = findMatchingTags(openingTagIndices, closingTagIndices)
+		if end < start {
+			return 0, ErrGarbledInput
+		}
+		if start == -1 {
+			// no matching tag found
+			return 0, nil
+		}
+		last = end + len(s.Tag) + 3 // TODO: assumes </...>
 	}
 	n, err = w.Write(s.buf[start:last])
 	s.buf = s.buf[last:] // TODO: optimize this, ringbuffer?
 	return
 }
 
-// indexOpeningTag returns the index of the first opening tag in data, or -1;
-// cf. https://www.w3.org/TR/REC-xml/#sec-starttags
-func (s *TagSplitter) indexOpeningTag(data []byte) int {
-	// TODO: this seems to be a bigger bottleneck
-	// (https://i.imgur.com/fYzN2mq.png) that I originally thought. Average
-	// size of data is about 3K.
-	u := bytes.Index(data, s.openingTag1)
-	v := bytes.Index(data, s.openingTag2)
-	if u == -1 && v == -1 {
-		return -1
+// findMatchingTags returns the indices of matching opening and close tags. The
+// opening tag used is always the first one. Returns [-1, -1] if no matching
+// closing tag exists.
+func findMatchingTags(opening []int, closing []int) (int, int) {
+	if len(opening) == 0 || len(closing) == 0 {
+		return -1, -1
 	}
-	if v == -1 {
-		return u
+	var i, j, size int
+	for {
+		if j == len(closing) {
+			return -1, -1
+		}
+		if i < len(opening) && opening[i] < closing[j] {
+			size++
+			i++
+		} else {
+			size--
+			if size == 0 {
+				return opening[0], closing[j]
+			}
+			j++
+		}
 	}
-	if u == -1 {
-		return v
-	}
-	if u < v {
-		return u
-	} else {
-		return v
-	}
-}
-
-// indexClosingTag returns the index of the first closing tag in data or -1.
-func (s *TagSplitter) indexClosingTag(data []byte) int {
-	return bytes.Index(data, s.closingTag)
 }
