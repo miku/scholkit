@@ -55,6 +55,8 @@ type TagSplitter struct {
 	closingTag  []byte
 	openingTag1 []byte
 	openingTag2 []byte
+	indexDirty  bool
+	index       *suffixarray.Index
 }
 
 // maxBytes returns the maximum byte size per batch.
@@ -167,16 +169,19 @@ func (s *TagSplitter) copyContent(w io.Writer) (n int, err error) {
 	if len(s.buf) > maxBufSize {
 		return 0, ErrMaxBufSizeExceeded
 	}
-	index := suffixarray.New(s.buf)
+	// TODO: only recreate, if the underlying buffer has changed
+	if s.index == nil || s.indexDirty {
+		s.index = suffixarray.New(s.buf)
+	}
 	// We can treat both tags the same, as they have the same length,
 	// accidentally.
-	ot1 := index.Lookup(s.openingTag1, -1)
-	ot2 := index.Lookup(s.openingTag2, -1)
+	ot1 := s.index.Lookup(s.openingTag1, -1)
+	ot2 := s.index.Lookup(s.openingTag2, -1)
 	openingTagIndices := append(ot1, ot2...)
 	if len(openingTagIndices) == 0 {
 		return 0, errOpenTagNotFound
 	}
-	closingTagIndices := index.Lookup(s.closingTag, -1)
+	closingTagIndices := s.index.Lookup(s.closingTag, -1)
 	if len(closingTagIndices) == 0 {
 		return 0, nil
 	}
@@ -203,6 +208,7 @@ func (s *TagSplitter) copyContent(w io.Writer) (n int, err error) {
 	}
 	n, err = w.Write(s.buf[start:last])
 	s.buf = s.buf[last:] // TODO: optimize this, ringbuffer?
+	s.indexDirty = true  // buf change, we need a new index
 	return
 }
 
