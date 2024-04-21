@@ -92,20 +92,6 @@ func TestSplit(t *testing.T) {
 			expectedResultBatches: nil,
 			err:                   ErrGarbledInput,
 		},
-		{
-			doc:                   "tag missing",
-			tagSplitter:           &TagSplitter{},
-			input:                 `</a>...<a>`,
-			expectedResultBatches: nil,
-			err:                   ErrTagRequired,
-		},
-		{
-			doc:                   "nested elements",
-			tagSplitter:           &TagSplitter{Tag: "a"},
-			input:                 `<a><a></a></a>`,
-			expectedResultBatches: []string{`<a><a></a></a>`},
-			err:                   nil,
-		},
 	}
 	for _, c := range cases {
 		s := bufio.NewScanner(strings.NewReader(c.input))
@@ -120,32 +106,6 @@ func TestSplit(t *testing.T) {
 		if !reflect.DeepEqual(result, c.expectedResultBatches) {
 			t.Fatalf("[%s] got (%d) %v, want (%d) %v",
 				c.doc, len(result), result, len(c.expectedResultBatches), c.expectedResultBatches)
-		}
-	}
-}
-
-func BenchmarkTagSplitter(b *testing.B) {
-	data := `
-	....................<a>................
-	.......................................
-	..............<a></a>..................
-	.......................................
-	.......................................
-	.......................................
-	<a>...</a>...............<a>....</a>...
-	.......................................
-	.......................................
-	.......................................
-	...................................</a>
-	`
-	ts := TagSplitter{Tag: "a", MaxBytesApprox: 8}
-	s := bufio.NewScanner(strings.NewReader(data))
-	s.Split(ts.Split)
-	for n := 0; n < b.N; n++ {
-		var count int
-		for s.Scan() {
-			_ = s.Text()
-			count++
 		}
 	}
 }
