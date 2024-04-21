@@ -17,6 +17,8 @@ fileset = {
     "fatcat": "/var/data/share/fatcat/release_doi.tsv.zst",
 }
 
+dbfile = "/var/data/share/doi.duck"
+
 if __name__ == '__main__':
     con = duckdb.connect(dbfile)
     for name, path in fileset.items():
