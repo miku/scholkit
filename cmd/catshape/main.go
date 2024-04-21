@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/pprof"
 	"strings"
 	"sync"
 
@@ -33,6 +34,7 @@ var (
 	toFormat       = flag.String("t", "fatcat-release", "target format, only fatcat-release for now; and id-table")
 	maxBytesApprox = flag.Uint("x", 1048576, "max bytes per batch for XML processing")
 	batchSize      = flag.Int("b", 10000, "batch size")
+	cpuprofile     = flag.String("cpuprofile", "", "file to write cpu pprof to")
 )
 
 var availableSourceFormats = []string{
@@ -81,6 +83,17 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	if *cpuprofile != "" {
+		f, err := os.Create(*cpuprofile)
+		if err != nil {
+			log.Fatal("could not create CPU profile: ", err)
+		}
+		defer f.Close() // error handling omitted for example
+		if err := pprof.StartCPUProfile(f); err != nil {
+			log.Fatal("could not start CPU profile: ", err)
+		}
+		defer pprof.StopCPUProfile()
+	}
 	br := bufio.NewReader(os.Stdin)
 	bw := bufio.NewWriter(os.Stdout)
 	defer bw.Flush()
