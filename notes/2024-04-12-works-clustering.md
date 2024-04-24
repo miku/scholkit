@@ -508,3 +508,55 @@ D select id, source, doi, ntitle from record where doi in (select * from (select
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+## Fine-grained comparison
+
+* group by all ids and ntitle first
+
+
+## Some more questions
+
+Using: fatcat.duck (62GB)
+
+```
+D select count(*) from record;
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    812130305 │
+└──────────────┘
+
+D select count(*) from record where doi != '';
+100% ▕████████████████████████████████████████████████████████████▏
+┌──────────────┐
+│ count_star() │
+│    int64     │
+├──────────────┤
+│    456560029 │
+└──────────────┘
+```
+
+There are only 309M distinct titles.
+
+```
+D select count(distinct ntitle) from record;
+100% ▕████████████████████████████████████████████████████████████▏
+┌────────────────────────┐
+│ count(DISTINCT ntitle) │
+│         int64          │
+├────────────────────────┤
+│              309071441 │
+└────────────────────────┘
+```
+
+Dumb thing: order by `ntitle` then run over all the lines and verify clusters.
+
+```
+$ time zstdcat -T0 fatcat.tsv.zst | pv -l | \
+    LC_ALL=C sort -S75% -k21,21 -t' ' | \
+    zstd -c -T0 > fatcat-sorted-by-ntitle.tsv.zst
+```
+
+We need a random access metadata store as well or store the metadata as a
+column in the TSV.
+
