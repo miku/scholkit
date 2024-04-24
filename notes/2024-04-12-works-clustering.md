@@ -555,8 +555,31 @@ Dumb thing: order by `ntitle` then run over all the lines and verify clusters.
 $ time zstdcat -T0 fatcat.tsv.zst | pv -l | \
     LC_ALL=C sort -S75% -k21,21 -t' ' | \
     zstd -c -T0 > fatcat-sorted-by-ntitle.tsv.zst
+
+real    35m13.370s
+user    33m3.674s
+sys     7m27.703s
 ```
 
-We need a random access metadata store as well or store the metadata as a
-column in the TSV.
+Note-to-self: Reading and writing from an SATA SSD is slower; use `-T` on the nvme raid.
 
+We need a random access metadata store as well or store the metadata as a
+column in the TSV. Try the latter first, as it will be faster.
+
+
+## Embedding ideas
+
+Another approach would be to index a subset of the data into "annoy" then query for similar docs.
+
+```
+$ time zstdcat -T0 fatcat.ndj.zst | \
+    parallel --pipe -j 28 --block 100M "jq -rc '{"id": .id, \"title\": .title, \"contribs\": .contribs, \"date\": .release_date}'" | \
+    pv -l | \
+    zstd -c -T0 > fatcat.min.ndj.zst
+
+real    34m22.669s
+user    400m26.495s
+sys     40m16.553s
+```
+
+Output is `fatcat.min.ndj.zst` 72GB compressed.

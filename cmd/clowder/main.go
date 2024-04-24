@@ -5,6 +5,7 @@
 package main
 
 import (
+	"encoding/base32"
 	"encoding/json"
 	"flag"
 	"log"
@@ -17,8 +18,9 @@ import (
 )
 
 var (
-	batchSize = flag.Int("b", 20000, "batch size")
-	makeTable = flag.Bool("T", false, "releases to tabular form")
+	batchSize   = flag.Int("b", 20000, "batch size")
+	makeTable   = flag.Bool("T", false, "releases to tabular form")
+	includeBlob = flag.Bool("I", false, "include source document as last column (base32 encoded)")
 )
 
 func main() {
@@ -62,6 +64,10 @@ func main() {
 				C(r.ExtIDs.PMID),
 				C(r.ExtIDs.WikidataQID),
 				C(normalizer.Normalize(r.Title)),
+			}
+			if *includeBlob {
+				encoded := base32.StdEncoding.EncodeToString(p)
+				fields = append(fields, encoded)
 			}
 			b := []byte(strings.Join(fields, "\t"))
 			b = append(b, '\n')
