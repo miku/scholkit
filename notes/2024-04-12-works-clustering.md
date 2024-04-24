@@ -566,6 +566,12 @@ Note-to-self: Reading and writing from an SATA SSD is slower; use `-T` on the nv
 We need a random access metadata store as well or store the metadata as a
 column in the TSV. Try the latter first, as it will be faster.
 
+```
+$ time zstdcat -T0 data/fatcat.ndj.zst | ./clowder -T -I -b 200000 | pv -l | zstd -c -T0 > /var/data/tmp/fatcat-full.tsv.zst
+```
+
+At 34M/min, that's about 25min for the tabularization; 70% CPU.
+
 
 ## Embedding ideas
 
