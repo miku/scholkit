@@ -79,10 +79,11 @@ func main() {
 		if err := pp.Run(); err != nil {
 			log.Fatal(err)
 		}
-	case *runGroupVerify:
+	case *runGroupVerify && *groupFieldIndex > 0:
 		// read line until we find all sharing the given key, then pass off to
 		// verification thread
 		// custom Split function
+		log.Printf("running group verify")
 	default:
 		log.Printf("use -T to create a table")
 	}
