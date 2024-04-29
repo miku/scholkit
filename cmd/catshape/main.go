@@ -231,12 +231,15 @@ func main() {
 		if err := pp.Run(); err != nil {
 			log.Fatal(err)
 		}
-	case "oai": // XML
+	case "oai": // oai records from XML
 		// t: about 20 min
 		//
 		// real    22m41.454s
 		// user    207m46.951s
 		// sys     5m31.498s
+		//
+		// TODO(martin): on k9: 2024/04/29 16:31:09 success: 96579282, skipped: 8311685
+		// processing stops after 242GiB, but the content is actually 885GiB
 		var (
 			skippedCount int64 // total count of skipped records
 			successCount int64 // successful conversions
