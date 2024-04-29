@@ -252,10 +252,10 @@ func main() {
 					release, err := convert.OaiRecordToFatcatRelease(article)
 					switch {
 					case err == convert.ErrOaiDeleted:
-						log.Println("skip: deleted")
+						log.Printf("skip: deleted: %v", article)
 						continue
 					case err == convert.ErrOaiMissingTitle:
-						log.Println("skip: missing title")
+						log.Printf("skip: missing title: %v", article)
 						continue
 					case release == nil:
 						log.Println("skip: other error %v", err)
