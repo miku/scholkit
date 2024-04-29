@@ -564,8 +564,31 @@ sys     7m27.703s
 Note-to-self: Reading and writing from an SATA SSD is slower; use `-T` on the nvme raid.
 
 We need a random access metadata store as well or store the metadata as a
-column in the TSV. Try the latter first, as it will be faster.
+column in the TSV. Try the latter first, as it will be faster. The result is a 230GB compressed file.
 
+```
+$ time zstdcat -T0 data/fatcat.ndj.zst | ./clowder -T -I -b 200000 | pv -l | zstd -c -T0 > /var/data/tmp/fatcat-full.tsv.zst
+
+real    23m29.478s
+user    443m37.330s
+sys     39m29.418s
+
+ $ ll -h /var/data/tmp/fatcat-full.tsv.zst
+-rw-rw-r-- 1 tir tir 230G Apr 24 17:06 /var/data/tmp/fatcat-full.tsv.zst
+```
+
+At 34M/min, that's about 25min for the tabularization; 70% CPU.
+
+How quickly can we iterate over 230GB compressed JSON (about 1TB uncompressed):
+
+```
+$ time zstdcat -T0 /var/data/tmp/fatcat-full.tsv.zst | pv | wc -lc
+812130550 1049752849574
+
+real    15m33.818s
+user    13m10.946s
+sys     6m22.835s
+```
 
 ## Embedding ideas
 

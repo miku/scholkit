@@ -18,9 +18,11 @@ import (
 )
 
 var (
-	batchSize   = flag.Int("b", 20000, "batch size")
-	makeTable   = flag.Bool("T", false, "releases to tabular form")
-	includeBlob = flag.Bool("I", false, "include source document as last column (base32 encoded)")
+	batchSize       = flag.Int("b", 20000, "batch size")
+	makeTable       = flag.Bool("T", false, "releases to tabular form")
+	includeBlob     = flag.Bool("I", false, "include source document as last column (base32 encoded)")
+	runGroupVerify  = flag.Bool("G", false, "group and run verification on a cluster")
+	groupFieldIndex = flag.Int("f", 0, "group by column given by index (starting at 1, like cut) ")
 )
 
 func main() {
@@ -78,6 +80,11 @@ func main() {
 		if err := pp.Run(); err != nil {
 			log.Fatal(err)
 		}
+	case *runGroupVerify && *groupFieldIndex > 0:
+		// read line until we find all sharing the given key, then pass off to
+		// verification thread
+		// custom Split function
+		log.Printf("running group verify")
 	default:
 		log.Printf("use -T to create a table")
 	}

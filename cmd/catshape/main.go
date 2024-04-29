@@ -251,13 +251,14 @@ func main() {
 				if article, ok := tag.(*oaiscrape.Record); ok {
 					release, err := convert.OaiRecordToFatcatRelease(article)
 					switch {
-					case release == nil:
-						continue
 					case err == convert.ErrOaiDeleted:
 						log.Println("skip: deleted")
 						continue
 					case err == convert.ErrOaiMissingTitle:
 						log.Println("skip: missing title")
+						continue
+					case release == nil:
+						log.Println("skip: other error %v", err)
 						continue
 					}
 					if err := enc.Encode(release); err != nil {
