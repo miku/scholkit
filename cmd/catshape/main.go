@@ -256,6 +256,7 @@ func main() {
 						continue
 					case err == convert.ErrOaiMissingTitle:
 						log.Printf("skip: missing title: %v", article)
+						log.Printf("the batch was: %v", string(p))
 						continue
 					case release == nil:
 						log.Println("skip: other error %v", err)
