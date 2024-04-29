@@ -13,6 +13,7 @@ import (
 	"runtime/pprof"
 	"strings"
 	"sync"
+	"sync/atomic"
 
 	"github.com/miku/scholkit/convert"
 	"github.com/miku/scholkit/parallel"
@@ -236,8 +237,16 @@ func main() {
 		// real    22m41.454s
 		// user    207m46.951s
 		// sys     5m31.498s
+		var (
+			skippedCount int64 // total count of skipped records
+			successCount int64 // successful conversions
+		)
 		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
 			// setup new xml streaming scanner
+			var (
+				skipped int64
+				success int64
+			)
 			r := bytes.NewReader(p)
 			scanner := xmlstream.NewScanner(r, new(oaiscrape.Record))
 			scanner.Decoder.Strict = false
@@ -252,24 +261,26 @@ func main() {
 					release, err := convert.OaiRecordToFatcatRelease(article)
 					switch {
 					case err == convert.ErrOaiDeleted:
-						log.Printf("skip: deleted: %v", article)
+						skipped++
 						continue
 					case err == convert.ErrOaiMissingTitle:
-						log.Printf("skip: missing title: %v", article)
-						log.Printf("the batch was: %v", string(p))
+						skipped++
 						continue
 					case release == nil:
-						log.Println("skip: other error %v", err)
+						skipped++
 						continue
 					}
 					if err := enc.Encode(release); err != nil {
 						return nil, err
 					}
+					success++
 				}
 			}
 			if scanner.Err() != nil {
 				return nil, fmt.Errorf("scan: %w", scanner.Err())
 			}
+			atomic.AddInt64(&skippedCount, skipped)
+			atomic.AddInt64(&successCount, success)
 			return buf.Bytes(), nil
 		})
 		// batch XML elements, without expensive XML parsing
@@ -278,6 +289,7 @@ func main() {
 		if err := proc.Run(); err != nil {
 			log.Fatal(err)
 		}
+		log.Printf("success: %v, skipped: %v", successCount, skippedCount)
 	case "openalex": // JSON
 		// t: about 45 min
 		//
