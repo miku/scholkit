@@ -68,7 +68,7 @@ func main() {
 				C(normalizer.Normalize(r.Title)),
 			}
 			if *includeBlob {
-				// Running this took about 25min, result is 1TB uncompressed.
+				// Running this took about 25min, result is 1TB uncompressed; 230GB compressed.
 				encoded := base32.StdEncoding.EncodeToString(p)
 				fields = append(fields, encoded)
 			}
