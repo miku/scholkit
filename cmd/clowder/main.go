@@ -5,6 +5,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/base32"
 	"encoding/json"
 	"flag"
@@ -83,8 +84,14 @@ func main() {
 	case *runGroupVerify && *groupFieldIndex > 0:
 		// read line until we find all sharing the given key, then pass off to
 		// verification thread
-		// custom Split function
-		log.Printf("running group verify")
+		// TODO: custom Split function, a mix of size (e.g. 16MB) and complete
+		// set of keys
+		scanner := bufio.NewScanner(os.Stdin)
+		for scanner.Scan() {
+		}
+		if scanner.Err() != nil {
+			log.Fatal("scan: %v", scanner.Err())
+		}
 	default:
 		log.Printf("use -T to create a table")
 	}
