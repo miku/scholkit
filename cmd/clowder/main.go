@@ -115,7 +115,7 @@ func main() {
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
 			fields := strings.Split(line, "\t")
-			if *groupFieldIndex < len(fields) {
+			if *groupFieldIndex <= len(fields) {
 				return fields[*groupFieldIndex-1]
 			}
 			return ""
