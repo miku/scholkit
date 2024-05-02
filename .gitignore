@@ -37,3 +37,4 @@ go.work
 *.duck
 *.ipynb_checkpoints
 import.sh
+fatcat-full*
