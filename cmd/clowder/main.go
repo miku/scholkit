@@ -127,10 +127,15 @@ func main() {
 			group        []string   // a list of lines sharing a key
 			currentKey   string
 			maxBatchSize = 10000
+			i            int
 		)
 		for scanner.Scan() {
 			line = scanner.Text()
 			key = keyFromLine(line)
+			i++
+			if i%10000 == 0 {
+				log.Printf("@%d", i)
+			}
 			if key == "" {
 				continue
 			}
