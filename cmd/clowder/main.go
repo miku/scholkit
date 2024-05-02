@@ -145,7 +145,9 @@ func main() {
 				continue
 			}
 			if currentKey != "" && key != currentKey {
-				batch = append(batch, group)
+				g := make([]string, len(group))
+				copy(g, group)
+				batch = append(batch, g)
 				group = nil
 			}
 			if len(batch) > maxBatchSize {
