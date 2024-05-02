@@ -6,13 +6,12 @@ package main
 
 import (
 	"bufio"
-	"bytes"
 	"encoding/base32"
 	"encoding/json"
 	"flag"
-	"io"
 	"log"
 	"os"
+	"runtime"
 	"strings"
 	"sync"
 
@@ -99,7 +98,19 @@ func main() {
 		// TODO: for now, just iterate over stdin lines
 
 		// Setup goroutines
-
+		var (
+			queue  chan [][]string
+			result chan GroupResult
+			done   chan bool
+			wg     sync.WaitGroup
+		)
+		// the fan-in goroutine
+		go writeWorker(result, done)
+		// start N worker threads
+		for i := 0; i < runtime.NumCPU(); i++ {
+			wg.Add(1)
+			go verifyWorker(queue, result, wg)
+		}
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
 			fields := strings.Fields(line)
@@ -110,30 +121,57 @@ func main() {
 		}
 		// Read from stdin, linewise; https://gist.github.com/miku/2e1a9509527a547f6ffaf29e0b396de4
 		scanner := bufio.NewScanner(os.Stdin)
-		var line, key string
-		var batch bytes.Buffer // accumulate a batch for parallel processing
-		var currentKey string
-		var maxBatchSize = 32 * 1024 * 1024 // how much data per batch
+		var (
+			line, key    string
+			batch        [][]string // a list of list of lines sharing the same key
+			group        []string   // a list of lines sharing a key
+			currentKey   string
+			maxBatchSize = 10000
+		)
 		for scanner.Scan() {
 			line = scanner.Text()
 			key = keyFromLine(line)
 			if key == "" {
 				continue
 			}
-			if key != currentKey && batch.Len() > maxBatchSize {
-				// key changed, and we are over batch size, so pass to thread
+			if currentKey != "" && key != currentKey {
+				batch = append(batch, group)
+				group = nil
 			}
-			_, _ = io.WriteString(batch, line)
-
+			if len(batch) > maxBatchSize {
+				b := make([][]string, len(batch))
+				copy(b, batch)
+				queue <- b
+				batch = nil
+			}
+			group = append(group, line)
 		}
 		if scanner.Err() != nil {
 			log.Fatal(scanner.Err())
 		}
+		close(queue)
+		wg.Wait()
+		close(result)
+		<-done
+		log.Printf("done")
 	default:
 		log.Printf("use -T to create a table")
 	}
 }
 
-func verifyWorker(queue chan bytes.Buffer, wg sync.WaitGroup) {
-	defer wg.Done()
+type GroupResult struct {
+	// ID is some cluster id, we are not using that downstream just yet, so can
+	// be anything, really.
+	ID string `json:"id"`
+	// Releases are ids of releases which most likely describe the same thing.
+	Releases []string `json:"r"`
 }
+
+func verifyWorker(queue chan [][]string, result chan GroupResult, wg sync.WaitGroup) {
+	defer wg.Done()
+	for batch := range queue {
+		log.Printf("received batch of %d groups", len(batch))
+	}
+}
+
+func writeWorker(result chan GroupResult, done chan bool) {}
