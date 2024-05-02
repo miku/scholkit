@@ -133,7 +133,7 @@ func main() {
 			line = scanner.Text()
 			key = keyFromLine(line)
 			i++
-			if i%10000 == 0 {
+			if i%1000000 == 0 {
 				log.Printf("@%d", i)
 			}
 			if key == "" {
