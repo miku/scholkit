@@ -111,6 +111,7 @@ func main() {
 			wg.Add(1)
 			go verifyWorker(queue, result, wg)
 		}
+		log.Printf("field: %d", *groupFieldIndex)
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
 			fields := strings.Split(line, "\t")
