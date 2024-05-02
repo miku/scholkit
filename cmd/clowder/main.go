@@ -6,12 +6,15 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/base32"
 	"encoding/json"
 	"flag"
+	"io"
 	"log"
 	"os"
 	"strings"
+	"sync"
 
 	"github.com/miku/scholkit/normal"
 	"github.com/miku/scholkit/parallel"
@@ -82,17 +85,55 @@ func main() {
 			log.Fatal(err)
 		}
 	case *runGroupVerify && *groupFieldIndex > 0:
-		// read line until we find all sharing the given key, then pass off to
-		// verification thread
+		// read line until we find all lines sharing the given key, then pass
+		// off to verification thread
 		// TODO: custom Split function, a mix of size (e.g. 16MB) and complete
 		// set of keys
+		// TODO: cannot use mmap, as we have a zstd file most of the time; we
+		// would need to have a "streaming zstd" file "szstd" that would write
+		// out a given number of bytes into a single zstd file and then
+		// concatenate multiple one into one single file; would need to fix
+		// some size upfront, e.g. 64MB chunks; then a 230GB file would contain
+		// about 4000 chunks; we could mmap the whole file and then let threads
+		// work on different parts simultaneously.
+		// TODO: for now, just iterate over stdin lines
+
+		// Setup goroutines
+
+		// TODO: this is an inefficient way to get the key
+		keyFromLine := func(line string) string {
+			fields := strings.Fields(line)
+			if *groupFieldIndex < len(fields) {
+				return fields[*groupFieldIndex]
+			}
+			return ""
+		}
+		// Read from stdin, linewise; https://gist.github.com/miku/2e1a9509527a547f6ffaf29e0b396de4
 		scanner := bufio.NewScanner(os.Stdin)
+		var line, key string
+		var batch bytes.Buffer // accumulate a batch for parallel processing
+		var currentKey string
+		var maxBatchSize = 32 * 1024 * 1024 // how much data per batch
 		for scanner.Scan() {
+			line = scanner.Text()
+			key = keyFromLine(line)
+			if key == "" {
+				continue
+			}
+			if key != currentKey && batch.Len() > maxBatchSize {
+				// key changed, and we are over batch size, so pass to thread
+			}
+			_, _ = io.WriteString(batch, line)
+
 		}
 		if scanner.Err() != nil {
-			log.Fatal("scan: %v", scanner.Err())
+			log.Fatal(scanner.Err())
 		}
 	default:
 		log.Printf("use -T to create a table")
 	}
+}
+
+func verifyWorker(queue chan bytes.Buffer, wg sync.WaitGroup) {
+	defer wg.Done()
 }
