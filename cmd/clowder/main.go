@@ -99,9 +99,9 @@ func main() {
 
 		// Setup goroutines
 		var (
-			queue  chan [][]string
-			result chan GroupResult
-			done   chan bool
+			queue  = make(chan [][]string)
+			result = make(chan []GroupResult)
+			done   = make(chan bool)
 			wg     sync.WaitGroup
 		)
 		// the fan-in goroutine
@@ -111,7 +111,6 @@ func main() {
 			wg.Add(1)
 			go verifyWorker(queue, result, wg)
 		}
-		log.Printf("field: %d", *groupFieldIndex)
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
 			fields := strings.Split(line, "\t")
@@ -131,16 +130,16 @@ func main() {
 			batch        [][]string // a list of list of lines sharing the same key
 			group        []string   // a list of lines sharing a key
 			currentKey   string
-			maxBatchSize = 10000
-			i            int
+			maxBatchSize = 100000
+			// i            int
 		)
 		for scanner.Scan() {
 			line = scanner.Text()
 			key = keyFromLine(line)
-			i++
-			if i%1000000 == 0 {
-				log.Printf("@%d (line=%s, key=%v)", i, strings.TrimSpace(line), key)
-			}
+			// i++
+			// if i%1000000 == 0 {
+			// 	log.Printf("@%d (line=%s, key=%v)", i, strings.TrimSpace(line), key)
+			// }
 			if key == "" {
 				continue
 			}
@@ -150,14 +149,16 @@ func main() {
 				batch = append(batch, g)
 				group = nil
 			}
-			if len(batch) > maxBatchSize {
+			if len(batch) == maxBatchSize {
 				b := make([][]string, len(batch))
 				copy(b, batch)
 				queue <- b
 				batch = nil
 			}
 			group = append(group, line)
+			currentKey = key
 		}
+		// TODO: handle last batch
 		if scanner.Err() != nil {
 			log.Fatal(scanner.Err())
 		}
@@ -177,13 +178,50 @@ type GroupResult struct {
 	ID string `json:"id"`
 	// Releases are ids of releases which most likely describe the same thing.
 	Releases []string `json:"r"`
+	Size     int      `json:"size"`
+	Key      string   `json:"key"`
 }
 
-func verifyWorker(queue chan [][]string, result chan GroupResult, wg sync.WaitGroup) {
+func verifyWorker(queue chan [][]string, resultC chan []GroupResult, wg sync.WaitGroup) {
 	defer wg.Done()
+	// TODO: this is an inefficient way to get the key
+	keyFromLine := func(line string) string {
+		fields := strings.Split(line, "\t")
+		// for i, f := range fields {
+		// 	log.Printf("%d, %s", i, f)
+		// }
+		if *groupFieldIndex <= len(fields) {
+
+			return fields[*groupFieldIndex-1]
+		}
+		return ""
+	}
 	for batch := range queue {
-		log.Printf("received batch of %d groups", len(batch))
+		// log.Printf("received batch of %d groups", len(batch))
+		var result []GroupResult
+		for _, g := range batch {
+			key := keyFromLine(g[0])
+			gr := GroupResult{
+				ID:       "dummy",
+				Releases: []string{"x", "y", "z"},
+				Size:     len(g),
+				Key:      key,
+			}
+			result = append(result, gr)
+			// log.Printf("g: %d", len(g))
+		}
+		resultC <- result
 	}
 }
 
-func writeWorker(result chan GroupResult, done chan bool) {}
+func writeWorker(resultC chan []GroupResult, done chan bool) {
+	bw := bufio.NewWriter(os.Stdout)
+	defer bw.Flush()
+	enc := json.NewEncoder(bw)
+	for grs := range resultC {
+		for _, gr := range grs {
+			_ = enc.Encode(gr)
+		}
+	}
+	done <- true
+}
