@@ -134,7 +134,7 @@ func main() {
 			key = keyFromLine(line)
 			i++
 			if i%1000000 == 0 {
-				log.Printf("@%d", i)
+				log.Printf("@%d (key=%v)", i, key)
 			}
 			if key == "" {
 				continue
