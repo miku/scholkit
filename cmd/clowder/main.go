@@ -99,17 +99,17 @@ func main() {
 
 		// Setup goroutines
 		var (
-			queue  = make(chan [][]string)
-			result = make(chan []GroupResult)
-			done   = make(chan bool)
-			wg     sync.WaitGroup
+			queue   = make(chan [][]string)
+			resultC = make(chan []GroupResult)
+			done    = make(chan bool)
+			wg      sync.WaitGroup
 		)
 		// the fan-in goroutine
-		go writeWorker(result, done)
+		go writeWorker(resultC, done)
 		// start N worker threads
 		for i := 0; i < runtime.NumCPU(); i++ {
 			wg.Add(1)
-			go verifyWorker(queue, result, wg)
+			go verifyWorker(queue, resultC, &wg)
 		}
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
@@ -125,21 +125,19 @@ func main() {
 		}
 		// Read from stdin, linewise; https://gist.github.com/miku/2e1a9509527a547f6ffaf29e0b396de4
 		scanner := bufio.NewScanner(os.Stdin)
+		const bufSize = 512 * 1024
+		var buf = make([]byte, bufSize)
+		scanner.Buffer(buf, bufSize)
 		var (
 			line, key    string
 			batch        [][]string // a list of list of lines sharing the same key
 			group        []string   // a list of lines sharing a key
 			currentKey   string
-			maxBatchSize = 100000
-			// i            int
+			maxBatchSize = 1000000 // may be more lines
 		)
 		for scanner.Scan() {
 			line = scanner.Text()
 			key = keyFromLine(line)
-			// i++
-			// if i%1000000 == 0 {
-			// 	log.Printf("@%d (line=%s, key=%v)", i, strings.TrimSpace(line), key)
-			// }
 			if key == "" {
 				continue
 			}
@@ -164,7 +162,7 @@ func main() {
 		}
 		close(queue)
 		wg.Wait()
-		close(result)
+		close(resultC)
 		<-done
 		log.Printf("done")
 	default:
@@ -182,7 +180,7 @@ type GroupResult struct {
 	Key      string   `json:"key"`
 }
 
-func verifyWorker(queue chan [][]string, resultC chan []GroupResult, wg sync.WaitGroup) {
+func verifyWorker(queue chan [][]string, resultC chan []GroupResult, wg *sync.WaitGroup) {
 	defer wg.Done()
 	// TODO: this is an inefficient way to get the key
 	keyFromLine := func(line string) string {
