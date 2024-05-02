@@ -115,7 +115,7 @@ func main() {
 		keyFromLine := func(line string) string {
 			fields := strings.Fields(line)
 			if *groupFieldIndex < len(fields) {
-				return fields[*groupFieldIndex]
+				return fields[*groupFieldIndex-1]
 			}
 			return ""
 		}
