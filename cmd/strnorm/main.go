@@ -18,16 +18,16 @@ func main() {
 	var normalizer normal.Normalizer
 	switch {
 	case *algo == "simple": // lowercase
-		normalizer = &normal.SimpleNormalizer{}
+		normalizer = &normal.Simple{}
 	case *algo == "nows": // no whitespace
-		normalizer = &normal.RemoveWSNormalizer{}
+		normalizer = &normal.RemoveWhitespace{}
 	case *algo == "lo": // letter only
-		normalizer = &normal.LettersOnlyNormalizer{}
+		normalizer = &normal.LettersOnly{}
 	case *algo == "nowslo": // no ws, letters only
 		normalizer = &normal.Pipeline{Normalizer: []normal.Normalizer{
-			&normal.SimpleNormalizer{},
-			&normal.RemoveWSNormalizer{},
-			&normal.LettersOnlyNormalizer{},
+			&normal.Simple{},
+			&normal.RemoveWhitespace{},
+			&normal.LettersOnly{},
 		}}
 	default:
 		log.Fatalf("invalid normalizer name: %s", *algo)

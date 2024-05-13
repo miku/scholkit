@@ -33,12 +33,11 @@ func main() {
 	switch {
 	case *makeTable:
 		var C = normal.ReplaceNewlineAndTab // cleanup function for ids
-		// normalizer pipeline for title
-		var normalizer = &normal.Pipeline{
+		var nzr = &normal.Pipeline{         // pipeline to clean titles
 			Normalizer: []normal.Normalizer{
-				&normal.SimpleNormalizer{},
-				&normal.RemoveWSNormalizer{},
-				&normal.LettersOnlyNormalizer{},
+				&normal.Simple{},
+				&normal.RemoveWhitespace{},
+				&normal.LettersOnly{},
 			},
 		}
 		pp := parallel.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
@@ -68,10 +67,14 @@ func main() {
 				C(r.ExtIDs.PMCID),
 				C(r.ExtIDs.PMID),
 				C(r.ExtIDs.WikidataQID),
-				C(normalizer.Normalize(r.Title)),
+				C(nzr.Normalize(r.Title)),
 			}
 			if *includeBlob {
-				// Running this took about 25min, result is 1TB uncompressed; 230GB compressed.
+				// Running this took about 25min, result is 1TB uncompressed
+				// data; 230GB compressed. TODO: With base64 we could try to
+				// utility AVX2 with a library like
+				// https://github.com/segmentio/asm/, but base64 is probably
+				// dwarfed by json encoding.
 				encoded := base32.StdEncoding.EncodeToString(p)
 				fields = append(fields, encoded)
 			}
@@ -114,18 +117,14 @@ func main() {
 		// TODO: this is an inefficient way to get the key
 		keyFromLine := func(line string) string {
 			fields := strings.Split(line, "\t")
-			// for i, f := range fields {
-			// 	log.Printf("%d, %s", i, f)
-			// }
 			if *groupFieldIndex <= len(fields) {
-
 				return fields[*groupFieldIndex-1]
 			}
 			return ""
 		}
-		// Read from stdin, linewise; https://gist.github.com/miku/2e1a9509527a547f6ffaf29e0b396de4
+		// Read from stdin, linewise; cf. https://gist.github.com/miku/2e1a9509527a547f6ffaf29e0b396de4
 		scanner := bufio.NewScanner(os.Stdin)
-		const bufSize = 512 * 1024
+		const bufSize = 512 * 1024 // increased, until we did not ran into overflows
 		var buf = make([]byte, bufSize)
 		scanner.Buffer(buf, bufSize)
 		var (
@@ -185,17 +184,12 @@ func verifyWorker(queue chan [][]string, resultC chan []GroupResult, wg *sync.Wa
 	// TODO: this is an inefficient way to get the key
 	keyFromLine := func(line string) string {
 		fields := strings.Split(line, "\t")
-		// for i, f := range fields {
-		// 	log.Printf("%d, %s", i, f)
-		// }
 		if *groupFieldIndex <= len(fields) {
-
 			return fields[*groupFieldIndex-1]
 		}
 		return ""
 	}
 	for batch := range queue {
-		// log.Printf("received batch of %d groups", len(batch))
 		var result []GroupResult
 		for _, g := range batch {
 			key := keyFromLine(g[0])
@@ -206,7 +200,6 @@ func verifyWorker(queue chan [][]string, resultC chan []GroupResult, wg *sync.Wa
 				Key:      key,
 			}
 			result = append(result, gr)
-			// log.Printf("g: %d", len(g))
 		}
 		resultC <- result
 	}

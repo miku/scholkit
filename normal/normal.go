@@ -20,15 +20,15 @@ type Normalizer interface {
 	Normalize(string) string
 }
 
-type SimpleNormalizer struct{}
+type Simple struct{}
 
-func (s *SimpleNormalizer) Normalize(v string) string {
+func (s *Simple) Normalize(v string) string {
 	return strings.ToLower(v)
 }
 
-type RemoveWSNormalizer struct{}
+type RemoveWhitespace struct{}
 
-func (s *RemoveWSNormalizer) Normalize(v string) string {
+func (s *RemoveWhitespace) Normalize(v string) string {
 	var b strings.Builder
 	for _, c := range v {
 		if unicode.IsSpace(c) {
@@ -40,9 +40,9 @@ func (s *RemoveWSNormalizer) Normalize(v string) string {
 	return b.String()
 }
 
-type LettersOnlyNormalizer struct{}
+type LettersOnly struct{}
 
-func (s *LettersOnlyNormalizer) Normalize(v string) string {
+func (s *LettersOnly) Normalize(v string) string {
 	var b strings.Builder
 	for _, c := range v {
 		if !unicode.IsLetter(c) {
