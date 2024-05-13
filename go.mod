@@ -11,6 +11,7 @@ require (
 require (
 	github.com/anush008/fastembed-go v1.0.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/schollz/progressbar/v2 v2.15.0 // indirect
