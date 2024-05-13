@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-TARGETS := urlstream strnorm catshape cdxlookup clowder
+TARGETS := urlstream strnorm catshape cdxlookup clowder fcid
 
 .PHONY: all
 all: $(TARGETS)

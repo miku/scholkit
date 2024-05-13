@@ -29,6 +29,7 @@ go.work
 /strnorm
 /urlstream
 /clowder
+/fcid
 
 # Data
 /data/*zst
@@ -38,3 +39,4 @@ go.work
 *.ipynb_checkpoints
 import.sh
 fatcat-full*
+
