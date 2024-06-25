@@ -1,6 +1,6 @@
-// catshape CLI to convert various metadata formats, mostly to fatcat entities.
+// CLI to convert various metadata formats, mostly to fatcat entities.
 //
-// $ cat file | catshape -f openalex > out.jsonl
+// $ cat file | mdconv -f openalex > out.jsonl
 package main
 
 import (
@@ -59,13 +59,8 @@ var bufPool = sync.Pool{
 }
 
 var help = fmt.Sprintf(`
-░░      ░░░░      ░░░        ░░░      ░░░  ░░░░  ░░░      ░░░       ░░░        ░
-▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒
-▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓  ▓▓▓▓▓  ▓▓▓▓▓▓      ▓▓▓        ▓▓  ▓▓▓▓  ▓▓       ▓▓▓      ▓▓▓
-█  ████  ██        █████  ███████████  ██  ████  ██        ██  ████████  ███████
-██      ███  ████  █████  ██████      ███  ████  ██  ████  ██  ████████        █
 
-catshape reshapes bibliographic data 🗃️
+mdconv reshapes bibliographic data 🗃️
 
 Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 "fatcat-work", "fatcat-contrib" and "fatcat-file" entities.
