@@ -30,6 +30,8 @@ go.work
 /urlstream
 /clowder
 /fcid
+/fifi
+/mdconv
 
 # Data
 /data/*zst

@@ -36,6 +36,14 @@ var availableSourceFormats = []string{
 }
 ```
 
+Example merge (on k9; about 100G compressed), 800M docs; takes 8 min to iterate;
+nvme/raid; can read 150MB/s compressed data off disk, when fed into [cw](https://github.com/Freaky/cw)
+
+```
+$ zstdcat -T0 /var/data/tmp/fatcat.ndj.zst | pv -l > /dev/null
+ 812M 0:07:50 [1.73M/s]
+```
+
 ### work clustering locally
 
 * prototype to cluster release based on ID and slug title (crude, effective, efficient)
@@ -135,13 +143,15 @@ $ ia search 'identifier:*full_crawl_logs'
 {"identifier": "UNPAYWALL-PDF-CRAWL-2022-04-full_crawl_logs"}
 ```
 
-For each crawl log file, we can generate an sqlite3 db with:
+For each crawl log file, we can generate an sqlite3 db with (cf.
+[makta](https://github.com/miku/makta),
+[sqlite-utils](https://sqlite-utils.datasette.io/en/stable/)):
 
 ```
 URL, previous URL
 ```
 
-which then form a trace, e.g. for some PDF, we can get the associated seed back.
+which then forms a trace, e.g. for some PDF, we can get the associated seed back.
 
 * works for landing page crawls, DOI crawls
 * does not work for "journal homepage" crawls, which do broader crawl
@@ -163,4 +173,20 @@ $ time find full_crawl_logs/ -name "*crawl.log.gz" | \
     parallel --lb -I {} -j 8 './clogdb -C 200000 {}'
 ```
 
+Started `2024/06/26 10:36:09` + 15min
+
+But not longer than a few hours.
+
+First, how many HTTP 200 PDFs are in there at all? From some CDX analysis in
+april, we found that we have 117M PDF captures. But since some logs are
+missing, we expect fewer here.
+
+
+
+## outlook
+
+* [ ] consolidate
+* [ ] reduce
+* [ ] rewrite
+* [ ] toolize (better with an exact spec)
 
