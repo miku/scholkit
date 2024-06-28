@@ -1,6 +1,6 @@
 # intermediate report
 
-> 2024-06-25
+> 2024-06-25, 2024-06-27
 
 goal: batch versus real-time; trying to reduce dependency on kafka
 
