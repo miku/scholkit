@@ -1,6 +1,6 @@
 // CLI to convert various metadata formats, mostly to fatcat entities.
 //
-// $ cat file | mdconv -f openalex > out.jsonl
+// $ cat file | bibconv -f openalex > out.jsonl
 package main
 
 import (
@@ -60,14 +60,14 @@ var bufPool = sync.Pool{
 
 var help = fmt.Sprintf(`
 
-mdconv reshapes bibliographic data 🗃️
+bibconv reshapes bibliographic data 🗃️
 
 Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 "fatcat-work", "fatcat-contrib" and "fatcat-file" entities.
 
 Examples:
 
-    $ zstdcat pubmed.xml.zst | catshape -f pubmed
+    $ zstdcat pubmed.xml.zst | bibconv -f pubmed
 
 Usage:
 
