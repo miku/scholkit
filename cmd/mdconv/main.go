@@ -58,16 +58,14 @@ var bufPool = sync.Pool{
 	},
 }
 
-var help = fmt.Sprintf(`
-
-mdconv reshapes bibliographic data 🗃️
+var help = fmt.Sprintf(`mdconv reshapes bibliographic data 🗃️
 
 Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 "fatcat-work", "fatcat-contrib" and "fatcat-file" entities.
 
 Examples:
 
-    $ zstdcat pubmed.xml.zst | catshape -f pubmed
+    $ zstdcat pubmed.xml.zst | mdconv -f pubmed > pubmed_release.json
 
 Usage:
 
