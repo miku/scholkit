@@ -1,5 +1,6 @@
 SHELL := /bin/bash
 TARGETS := urlstream strnorm bibconv cdxlookup clowder fcid fifi
+MAKEFLAGS := --jobs=$(shell nproc)
 
 .PHONY: all
 all: $(TARGETS)
