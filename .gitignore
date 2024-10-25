@@ -42,3 +42,5 @@ go.work
 import.sh
 fatcat-full*
 
+packaging/deb/scholkit/usr/*
+*.deb
