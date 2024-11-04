@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-TARGETS := urlstream strnorm bibconv cdxlookup clowder fcid fifi
+TARGETS := urlstream strnorm bibconv cdxlookup clowder fcid fifi skolfeed
 MAKEFLAGS := --jobs=$(shell nproc)
 PKGNAME := scholkit
 
