@@ -1,2 +1,0 @@
-hello:
-    @echo "please see #867 for why we hesitate to use just: https://github.com/casey/just/issues/867#issuecomment-859178319"
