@@ -11,5 +11,3 @@ few formats: release, work (clustered releases), container, file and contrib.
 
 The goal would be to shrink each operation down to a single command then use
 outside orchestration, scripting or deployment options to automate things.
-
-* format conversions: "catshape"
