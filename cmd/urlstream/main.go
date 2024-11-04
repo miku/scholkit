@@ -34,6 +34,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/url"
 	"os"
 	"os/exec"
 	"strings"
@@ -111,6 +112,9 @@ func main() {
 		line = strings.TrimSpace(line)
 		if len(line) == 0 || strings.HasPrefix(line, "#") {
 			continue
+		}
+		if _, err := url.Parse(line); err != nil {
+			log.Fatal(err)
 		}
 		i++
 		var decomp string
