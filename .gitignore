@@ -44,3 +44,5 @@ fatcat-full*
 
 packaging/deb/scholkit/usr/*
 *.deb
+
+/skol*
