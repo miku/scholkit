@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"regexp"
 	"time"
 
 	"github.com/adrg/xdg"
@@ -42,7 +43,7 @@ var (
 	date        = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
 	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day on")
 	maxRetries  = flag.Int("r", 3, "max retries")
-	timeout     = flag.Duration("t", oneHour, "connectiont timeout")
+	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
 )
 
 func main() {
@@ -76,14 +77,61 @@ func main() {
 			client.MaxRetries = *maxRetries
 			client.RetryOnHTTP429 = true
 			client.Timeout = *timeout
-
+			t, err := time.Parse("2006-01-02", *date)
+			if err != nil {
+				log.Fatal(err)
+			}
+			ch := CrossrefHarvester{
+				Client:              client,
+				ApiEndpoint:         "https://api.crossref.org/works",
+				ApiFilter:           "index",
+				ApiEmail:            "martin.czygan@gmail.com",
+				Rows:                1000,
+				UserAgent:           "scholkit/dev",
+				AcceptableMissRatio: 0.1,
+				MaxRetries:          3,
+			}
+			if err := ch.WriteDaySlice(t, *dir, "sample"); err != nil {
+				log.Fatal(err)
+			}
 		case "datacite":
 			// run dcdump
 		case "pubmed":
 			// fetch a file from URL
+			// https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/
+			client := pester.New()
+			client.Backoff = pester.ExponentialBackoff
+			client.MaxRetries = *maxRetries
+			client.RetryOnHTTP429 = true
+			client.Timeout = *timeout
+			t, err := time.Parse("2006-01-02", *date)
+			if err != nil {
+				log.Fatal(err)
+			}
+			req, err := http.NewRequest("GET", "https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", nil)
+			if err != nil {
+				log.Fatal(err)
+			}
+			resp, err := client.Do(req)
+			if err != nil {
+				log.Fatal(err)
+			}
+			b, err := io.ReadAll(resp.Body)
+			if err != nil {
+				log.Fatal(err)
+			}
+			var pat = fmt.Sprintf(`(?mi)(?P<Filename>pubmed[^"]*gz).*%s`, t.Format("2006-01-02"))
+			var re = regexp.MustCompile(pat)
+			matches := re.FindStringSubmatch(string(b))
+			filenameIndex := re.SubexpIndex("Filename")
+			filename := matches[filenameIndex]
+			link, err := url.JoinPath("https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", filename)
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.Printf(link)
 		case "oai":
 			// use metha
-
 		}
 	}
 }
@@ -102,6 +150,7 @@ type CrossrefHarvester struct {
 	ApiEmail            string
 	Rows                int
 	UserAgent           string
+	MaxRetries          int
 	AcceptableMissRatio float64 // recommended: 0.1
 }
 
@@ -127,12 +176,12 @@ type WorksResponse struct {
 
 // IsLast returns true, if there are no more records to fetch.
 func (wr *WorksResponse) IsLast() bool {
-	return wr.message.NextCursor == ""
+	return wr.Message.NextCursor == ""
 }
 
 // WriteDaySlice is a helper function to atomically write crossref data for a
 // single day to file on disk under dir. Idempotent, once the data has been
-// captured.
+// captured. TODO: add compression.
 func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string) error {
 	start := now.With(t).BeginningOfDay()
 	end := now.With(t).EndOfDay()
@@ -150,15 +199,14 @@ func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string
 		if err := c.WriteSlice(f, start, end); err != nil {
 			return err
 		}
-	} else {
-		return nil
 	}
+	return nil
 }
 
 // addOptionalEmail appends mailto parameter.
 func (c *CrossrefHarvester) addOptionalEmail(vs url.Values) {
 	if c.ApiEmail != "" {
-		vs.Add("mailto", s.ApiEmail)
+		vs.Add("mailto", c.ApiEmail)
 	}
 }
 
@@ -180,25 +228,25 @@ func (c *CrossrefHarvester) logSeenRatio(seen int, wr *WorksResponse) {
 // WriteSlice writes a slice of data from the API into a writer.
 func (c *CrossrefHarvester) WriteSlice(w io.Writer, from, until time.Time) error {
 	filter := fmt.Sprintf("from-%s-date:%s,until-%s-date:%s",
-		s.ApiFilter,
-		f.Format("2006-01-02"),
-		s.ApiFilter,
-		u.Format("2006-01-02"))
+		c.ApiFilter,
+		from.Format("2006-01-02"),
+		c.ApiFilter,
+		until.Format("2006-01-02"))
 	vs := url.Values{}
 	vs.Add("filter", filter)
 	vs.Add("cursor", "*")
-	vs.Add("rows", fmt.Sprintf("%d", s.Rows))
+	vs.Add("rows", fmt.Sprintf("%d", c.Rows))
 	c.addOptionalEmail(vs)
 	var seen int
 	var i int // for retries
 	for {
-		link := fmt.Sprintf("%s?%s", s.ApiEndpoint, vs.Encode())
+		link := fmt.Sprintf("%s?%s", c.ApiEndpoint, vs.Encode())
 		log.Printf("crossref: attempting to fetch: %s", link)
 		req, err := http.NewRequest("GET", link, nil)
 		if err != nil {
 			return err
 		}
-		req.Header.Add("User-Agent", s.UserAgent)
+		req.Header.Add("User-Agent", c.UserAgent)
 		resp, err := c.Client.Do(req)
 		if err != nil {
 			return err
@@ -209,9 +257,9 @@ func (c *CrossrefHarvester) WriteSlice(w io.Writer, from, until time.Time) error
 		}
 		var wr WorksResponse
 		if err := json.NewDecoder(resp.Body).Decode(&wr); err != nil {
-			if i < s.MaxRetries {
+			if i < c.MaxRetries {
 				i++
-				log.Printf("crossref: decode failed with %v, retrying [%d/%d]", err, i, s.MaxRetries)
+				log.Printf("crossref: decode failed with %v, retrying [%d/%d]", err, i, c.MaxRetries)
 				continue
 			} else {
 				return fmt.Errorf("crossref: decode failed with %v", err)
@@ -228,11 +276,15 @@ func (c *CrossrefHarvester) WriteSlice(w io.Writer, from, until time.Time) error
 		}
 		seen += len(wr.Message.Items)
 		c.logSeenRatio(seen, &wr)
-		if wr.IsLast() || seen >= wr.Message.TotalResults {
+		if wr.IsLast() || seen >= int(wr.Message.TotalResults) {
 			log.Printf("crossref slice done: seen=%d, total=%d", seen, wr.Message.TotalResults)
 			return nil
 		}
 		vs = url.Values{}
+		cursor := wr.Message.NextCursor
+		if cursor == "" {
+			return nil
+		}
 		vs.Add("cursor", cursor)
 		c.addOptionalEmail(vs)
 		// status: ok, total: 55818, seen: 47818 (85.67%)
@@ -241,7 +293,7 @@ func (c *CrossrefHarvester) WriteSlice(w io.Writer, from, until time.Time) error
 		// move on. Note: this may be a temporary glitch; rather retry.
 		if len(wr.Message.Items) == 0 {
 			numMissOk := int(c.AcceptableMissRatio * float64(wr.Message.TotalResults))
-			if wr.Message.TotalResults-seen < numMissOk {
+			if int(wr.Message.TotalResults)-seen < numMissOk {
 				log.Printf("crossref: assuming ok to skip, seen=%d, total=%d", seen, wr.Message.TotalResults)
 				break
 			} else {
