@@ -64,6 +64,7 @@ func main() {
 				log.Fatal(err)
 			}
 			cmd := exec.Command("rclone", "sync", "--transfers=8", "--checkers=16", "-P", "aws:/openalex", dst)
+			log.Println(cmd)
 			b, err := cmd.CombinedOutput()
 			if _, err := os.Stderr.Write(b); err != nil {
 				log.Fatal(err)
@@ -95,7 +96,17 @@ func main() {
 				log.Fatal(err)
 			}
 		case "datacite":
-			// run dcdump
+			t, err := time.Parse("2006-01-02", *date)
+			if err != nil {
+				log.Fatal(err)
+			}
+			dstDir := path.Join(*dir, "datacite")
+			cmd := exec.Command("dcdump", "-s", t.Format("2006-01-02"), "-e", t.Format("2006-01-02"), "-i", "d", "-d", dstDir)
+			log.Println(cmd)
+			_, err = cmd.CombinedOutput()
+			if err != nil {
+				log.Fatal(err)
+			}
 		case "pubmed":
 			// fetch a file from URL
 			// https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/
@@ -131,7 +142,17 @@ func main() {
 			}
 			log.Printf(link)
 		case "oai":
-			// use metha
+			t, err := time.Parse("2006-01-02", *date)
+			if err != nil {
+				log.Fatal(err)
+			}
+			baseDir := path.Join(*dir, "oai")
+			cmd := exec.Command("metha-sync", "-base-dir", baseDir, "-from", t.Format("2006-01-02"), "-until", t.Format("2006-01-02"), *endpointURL)
+			log.Println(cmd)
+			_, err = cmd.CombinedOutput()
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 }
