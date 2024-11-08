@@ -30,6 +30,7 @@ var (
 		"oai",
 	}
 	yesterday = time.Now().Add(-86400 * time.Second)
+	oneDay    = 86400 * time.Second
 	oneHour   = 3600 * time.Second
 	bNewline  = []byte("\n")
 )
@@ -92,7 +93,11 @@ func main() {
 				AcceptableMissRatio: 0.1,
 				MaxRetries:          3,
 			}
-			if err := ch.WriteDaySlice(t, *dir, "sample"); err != nil {
+			dstDir := path.Join(*dir, "crossref")
+			if err := os.MkdirAll(dstDir, 0755); err != nil {
+				log.Fatal(err)
+			}
+			if err := ch.WriteDaySlice(t, dstDir, "feed-0-"); err != nil {
 				log.Fatal(err)
 			}
 		case "datacite":
@@ -101,9 +106,14 @@ func main() {
 				log.Fatal(err)
 			}
 			dstDir := path.Join(*dir, "datacite")
-			cmd := exec.Command("dcdump", "-s", t.Format("2006-01-02"), "-e", t.Format("2006-01-02"), "-i", "d", "-d", dstDir)
+			if err := os.MkdirAll(dstDir, 0755); err != nil {
+				log.Fatal(err)
+			}
+			cmd := exec.Command("dcdump", "-s", t.Format("2006-01-02"), "-e", t.Add(oneDay).Format("2006-01-02"), "-i", "h", "-d", dstDir)
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
 			log.Println(cmd)
-			_, err = cmd.CombinedOutput()
+			err = cmd.Run()
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -140,7 +150,18 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			log.Printf(link)
+			dstDir := path.Join(*dir, "pubmed")
+			if err := os.MkdirAll(dstDir, 0755); err != nil {
+				log.Fatal(err)
+			}
+			cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
+			log.Println(cmd)
+			err = cmd.Run()
+			if err != nil {
+				log.Fatal(err)
+			}
 		case "oai":
 			t, err := time.Parse("2006-01-02", *date)
 			if err != nil {
