@@ -1,5 +1,5 @@
 // Package xmlstream implements a lightweight XML scanner on top of
-// encoding/xml.  It keeps the flexibility of xml.Unmarshal while allowing the
+// encoding/xml. It keeps the flexibility of xml.Unmarshal while allowing the
 // parsing of huge XML files.
 package xmlstream
 
@@ -59,11 +59,11 @@ func elementName(v reflect.Value) string {
 }
 
 // Scan advances the Scanner to the next XML element matching one of the struct
-// passed to NewReader.  This element will then be available through the
-// Element method.  It returns false when the scan stops, either by reaching
-// the end of the input or an error.  After Scan returns false, the Err method
-// will return any error that occurred during scanning, except that if it was
-// io.EOF, Err will return nil.
+// passed to NewReader. his element will then be available through the Element
+// method. It returns false when the scan stops, either by reaching the end of
+// the input or an error. After Scan returns false, the Err method will return
+// any error that occurred during scanning, except that if it was io.EOF, Err
+// will return nil.
 func (s *Scanner) Scan() bool {
 	if (*s).err != nil {
 		return false
