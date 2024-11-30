@@ -31,7 +31,7 @@ go.work
 /clowder
 /fcid
 /fifi
-/mdconv
+/bibconv
 
 # Data
 /data/*zst
@@ -42,3 +42,7 @@ go.work
 import.sh
 fatcat-full*
 
+packaging/deb/scholkit/usr/*
+*.deb
+
+/skol*

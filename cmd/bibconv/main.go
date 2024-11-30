@@ -1,6 +1,6 @@
 // CLI to convert various metadata formats, mostly to fatcat entities.
 //
-// $ cat file | mdconv -f openalex > out.jsonl
+// $ cat file | bibconv -f openalex > out.jsonl
 package main
 
 import (
@@ -32,7 +32,7 @@ import (
 
 var (
 	fromFormat     = flag.String("f", "", fmt.Sprintf("source format (one of: %s)", strings.Join(availableSourceFormats, ", ")))
-	toFormat       = flag.String("t", "fatcat-release", "target format, only fatcat-release for now; and id-table")
+	toFormat       = flag.String("t", "fatcat-release", "target format, only fatcat-release for now")
 	maxBytesApprox = flag.Uint("x", 1048576, "max bytes per batch for XML processing")
 	batchSize      = flag.Int("b", 10000, "batch size")
 	cpuprofile     = flag.String("cpuprofile", "", "file to write cpu pprof to")
@@ -58,16 +58,14 @@ var bufPool = sync.Pool{
 	},
 }
 
-var help = fmt.Sprintf(`
-
-mdconv reshapes bibliographic data 🗃️
+var help = fmt.Sprintf(`bibconv reshapes bibliographic data 🗃️
 
 Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 "fatcat-work", "fatcat-contrib" and "fatcat-file" entities.
 
 Examples:
 
-    $ zstdcat pubmed.xml.zst | catshape -f pubmed
+    $ zstdcat pubmed.xml.zst | bibconv -f pubmed
 
 Usage:
 
@@ -95,9 +93,7 @@ func main() {
 	defer bw.Flush()
 	switch *fromFormat {
 	case "fatcat-release":
-		if *toFormat != "id-tables" {
-			log.Fatal("only id-tables supported")
-		}
+		log.Fatal("todo")
 		// TODO: turn release combined release entitiy into tables
 	case "arxiv": // XML
 		// t: 02:18 min single threaded, 8s with threads :)
