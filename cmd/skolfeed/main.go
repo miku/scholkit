@@ -47,7 +47,53 @@ var (
 	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
 )
 
+var docs = `skolfeed - data feed sketch
+
+uses external tools to fetch raw data from the internet: rclone, metha, dcdump
+
+## note!
+
+not all flags may work, e.g. -B backfill is not fully implemented yet
+
+## external tools
+
+$ sudo apt install rclone
+$ go install -v github.com/miku/metha/cmd/...@latest
+$ go install -v github.com/miku/dcdump/cmd/...@latest
+
+## openalex
+
+Hardcoded "aws" prefix, please add it to rclone.conf, cf.
+https://docs.openalex.org/download-all-data/download-to-your-machine
+
+	$ cat ~/.config/rclone/rclone.conf
+
+	[aws]
+	type = s3
+
+## list feeds
+
+$ skolfeed -l
+openalex
+crossref
+datacite
+pubmed
+oai
+
+## fetch feed
+
+$ skolfeed -s openalex
+$ skolfeed -s crossref
+
+Flags
+
+`
+
 func main() {
+	flag.Usage = func() {
+		io.WriteString(os.Stderr, docs)
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 	switch {
 	case *showStatus:
