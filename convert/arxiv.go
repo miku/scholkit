@@ -2,6 +2,7 @@ package convert
 
 import (
 	"fmt"
+	"log"
 	"strings"
 	"time"
 
@@ -9,48 +10,70 @@ import (
 	"github.com/miku/scholkit/schema/fatcat"
 )
 
-func ArxivRecordToFatcatRelease(record *arxiv.Record) (*fatcat.Release, error) {
-	var rel fatcat.Release
-	rel.ID = fmt.Sprintf("arxiv-%s", hashString(record.ID())) // arxiv-sha1(id)
-	// Setting contributors
-	var contribs []fatcat.Contrib
-	for _, creator := range record.Metadata.Dc.Creator {
+// Consider moving abstract processing to a separate function
+func processAbstracts(descriptions []string) []fatcat.Abstract {
+	abstracts := make([]fatcat.Abstract, 0, len(descriptions))
+	for _, desc := range descriptions {
+		if desc = strings.TrimSpace(desc); desc != "" {
+			abstracts = append(abstracts, fatcat.Abstract{
+				Content:  desc,
+				Mimetype: mimeType,
+				SHA1:     hashString(desc),
+			})
+		}
+	}
+	return abstracts
+}
+
+func processReleaseDate(dateStamp string) string {
+	if dateStamp == "" {
+		return ""
+	}
+	t, err := time.Parse("2006-01-02", dateStamp)
+	if err != nil {
+		log.Printf("arxiv: could not parse date: %v", dateStamp)
+	}
+	return t.Format("2006-01-02")
+}
+
+func processContributors(creators []string) []fatcat.Contrib {
+	contribs := make([]fatcat.Contrib, 0, len(creators))
+	for _, creator := range creators {
 		contribs = append(contribs, fatcat.Contrib{
 			RawName: creator,
 			Role:    "author",
 		})
 	}
-	rel.Contribs = contribs
-	// Setting DOI
-	rel.ExtIDs.DOI = record.DOI()
-	rel.ExtIDs.OAI = record.Header.Identifier
-	rel.ExtIDs.Arxiv = record.ID()
-	rel.Source = "arxiv"
-	// Setting title
-	rel.Title = record.Metadata.Dc.Title
-	// Setting release date
-	dateStamp := record.Header.Datestamp
-	if dateStamp != "" {
-		t, err := time.Parse("2006-01-02", dateStamp)
-		if err == nil {
-			rel.ReleaseDate = t.Format("2006-01-02")
-		}
+	return contribs
+}
+
+// ArxivRecordToFatcatRelease converts an arXiv record to a Fatcat release.  It
+// preserves essential metadata including contributors, identifiers, and
+// abstracts.  Returns an error if the input record is nil or if required
+// fields are missing.
+func ArxivRecordToFatcatRelease(record *arxiv.Record) (*fatcat.Release, error) {
+	if record == nil {
+		return nil, fmt.Errorf("arxiv record cannot be nil")
 	}
-	rel.Language = record.Metadata.Dc.Language
-	for _, desc := range record.Metadata.Dc.Description {
-		desc = strings.TrimSpace(desc)
-		abstract := fatcat.Abstract{
-			Content:  desc,
-			Mimetype: "text/plain",
-			SHA1:     hashString(desc),
-		}
-		rel.Abstracts = append(rel.Abstracts, abstract)
+	if record.Metadata == nil || record.Metadata.Dc == nil {
+		return nil, fmt.Errorf("invalid record structure: missing metadata")
 	}
-	var subjects []string
-	for _, s := range record.Metadata.Dc.Subject {
-		subjects = append(subjects, s)
+	// Release metadata
+	rel := fatcat.Release{
+		ID: fmt.Sprintf("arxiv-%s", hashString(record.ID())),
+		ExtIDs: fatcat.ExtIDs{
+			DOI:   record.DOI(),
+			OAI:   record.Header.Identifier,
+			Arxiv: record.ID(),
+		},
+		Source:   "arxiv",
+		Title:    record.Metadata.Dc.Title,
+		Language: record.Metadata.Dc.Language,
 	}
-	rel.Extra.Arxiv.Subjects = subjects
+	rel.Contribs = processContributors(record.Metadata.Dc.Creator)
+	rel.ReleaseDate = processReleaseDate(record.Header.Datestamp)
+	rel.Abstracts = processAbstracts(record.Metadata.Dc.Description)
+	rel.Extra.Arxiv.Subjects = record.Metadata.Dc.Subject
 	rel.Extra.OAI.SetSpec = record.Header.SetSpec
 	return &rel, nil
 }
