@@ -13,7 +13,7 @@
 '---'
 ```
 
-Sketch project, assorted utitlies around scholarly metadata.
+Scratch project, assorted utilities around scholarly metadata formats and tasks.
 
 status: unstable, wip
 
