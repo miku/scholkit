@@ -90,6 +90,14 @@ $ urlstream < top100.txt > top100books.txt
 
 ## TODO
 
+* [ ] implement schema conversions and tests
+* [ ] add layer for daily harvests and capturing data on disk
+* [ ] cli to interact with the current files on dist
+* [ ] cli for basic stats
+* [ ] some simplistic index/query structure, e.g. to quickly find a record by id or the like
+
+More:
+
 * [x] map basic fields to fatcat release entities
 * [ ] map all fields to fatcat release entities
 * [ ] basic clustering algorithm
