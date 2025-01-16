@@ -9,14 +9,7 @@ import (
 	"github.com/jinzhu/now"
 )
 
-// MustParse will panic on an unparsable date string.
-func MustParse(value string) time.Time {
-	t, err := dateparse.ParseStrict(value)
-	if err != nil {
-		panic(err)
-	}
-	return t
-}
+const biweeklyHours = 168 + 24 // (7 days * 24 hours) + 24 hours
 
 // Interval groups start and end.
 type Interval struct {
@@ -27,6 +20,14 @@ type Interval struct {
 // String renders an interval.
 func (iv Interval) String() string {
 	return fmt.Sprintf("%s %s", iv.Start.Format(time.RFC3339), iv.End.Format(time.RFC3339))
+}
+
+// Validate checks if the interval is valid (end after start)
+func (iv Interval) Validate() error {
+	if iv.End.Before(iv.Start) {
+		return fmt.Errorf("invalid interval: end %v before start %v", iv.End, iv.Start)
+	}
+	return nil
 }
 
 type (
@@ -56,10 +57,23 @@ var (
 	padLWeek   = func(t time.Time) time.Time { return now.With(t).BeginningOfWeek() }
 	padRWeek   = func(t time.Time) time.Time { return now.With(t).EndOfWeek() }
 	padLBiweek = func(t time.Time) time.Time { return now.With(t).BeginningOfWeek() }
-	padRBiweek = func(t time.Time) time.Time { return now.With(t.Add((168 + 24) * time.Hour)).EndOfWeek() }
+	padRBiweek = func(t time.Time) time.Time { return now.With(t.Add(biweeklyHours * time.Hour)).EndOfWeek() }
 	padLMonth  = func(t time.Time) time.Time { return now.With(t).BeginningOfMonth() }
 	padRMonth  = func(t time.Time) time.Time { return now.With(t).EndOfMonth() }
 )
+
+func Parse(value string) (time.Time, error) {
+	return dateparse.ParseStrict(value)
+}
+
+// MustParse is like Parse but panics on error
+func MustParse(value string) time.Time {
+	t, err := dateparse.ParseStrict(value)
+	if err != nil {
+		panic(err)
+	}
+	return t
+}
 
 // makeIntervalFunc is a helper to create daily, weekly and other intervals.
 // Given two shiftFuncs (to mark the beginning of an interval and the end), we
