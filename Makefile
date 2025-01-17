@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-TARGETS := sk-cat sk-norm sk-convert cdxlookup sk-cluster sk-id sk-feed
+TARGETS := sk-cat sk-norm sk-convert sk-cluster sk-id sk-feed
 MAKEFLAGS := --jobs=$(shell nproc)
 PKGNAME := scholkit
 

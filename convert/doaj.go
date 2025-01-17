@@ -54,7 +54,7 @@ func DOAJRecordToFatcatRelease(record *doaj.Record) (*fatcat.Release, error) {
 		Title:       record.Metadata.Dc.Title,
 		ReleaseDate: record.Metadata.Dc.Date,
 		Ident:       id,
-		ExtIDs: fatcat.ExtIDs{
+		ExtIDs: fatcat.ExtID{
 			OAI:  record.Header.Identifier,
 			DOI:  record.DOI(),
 			DOAJ: id,

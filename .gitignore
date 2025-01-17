@@ -24,14 +24,12 @@ go.work
 /.venv
 
 # Binaries
-/catshape
-/cdxlookup
-/strnorm
-/urlstream
-/clowder
-/fcid
-/fifi
-/bibconv
+/sk-cat
+/sk-cluster
+/sk-convert
+/sk-feed
+/sk-id
+/sk-norm
 
 # Data
 /data/*zst

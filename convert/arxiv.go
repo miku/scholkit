@@ -17,7 +17,7 @@ func processAbstracts(descriptions []string) []fatcat.Abstract {
 		if desc = strings.TrimSpace(desc); desc != "" {
 			abstracts = append(abstracts, fatcat.Abstract{
 				Content:  desc,
-				Mimetype: mimeType,
+				Mimetype: "text/plain",
 				SHA1:     hashString(desc),
 			})
 		}
@@ -55,13 +55,10 @@ func ArxivRecordToFatcatRelease(record *arxiv.Record) (*fatcat.Release, error) {
 	if record == nil {
 		return nil, fmt.Errorf("arxiv record cannot be nil")
 	}
-	if record.Metadata == nil || record.Metadata.Dc == nil {
-		return nil, fmt.Errorf("invalid record structure: missing metadata")
-	}
 	// Release metadata
 	rel := fatcat.Release{
 		ID: fmt.Sprintf("arxiv-%s", hashString(record.ID())),
-		ExtIDs: fatcat.ExtIDs{
+		ExtIDs: fatcat.ExtID{
 			DOI:   record.DOI(),
 			OAI:   record.Header.Identifier,
 			Arxiv: record.ID(),
