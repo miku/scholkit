@@ -1,3 +1,4 @@
+// sk-id converts fatcat ids to uuids and back, cf. fcid.py
 package main
 
 import (
@@ -8,8 +9,6 @@ import (
 
 	"github.com/google/uuid"
 )
-
-// fcid converts fatcat ids to uuids and back, cf. fcid.py
 
 var (
 	fromFatcat = flag.String("f", "", "from fatcat id, e.g. container_2ujzwjsay5aohfmwlpyiyhmb7a")

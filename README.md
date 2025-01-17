@@ -27,17 +27,17 @@ $ make
 
 This builds a couple of executables:
 
-* catshape (data format conversions)
-* urlstream (stream data from many urls)
-* cdxlookup (ad-hoc cdx api lookup)
-* strnorm (quick string normalization)
+* sk-convert (data format conversions)
+* sk-cat (stream data from many urls)
+* sk-cdx (ad-hoc cdx api lookup)
+* sk-norm (quick string normalization)
 
 Example dataset to work with, e.g. convert arxiv to fatcat release:
 
 ```sh
 $ curl -sL https://archive.org/download/arxiv-2024-02-15/arxiv-2024-02-15.xml.zst | \
     zstd -dc | \
-    catshape -f arxiv
+    sk-convert -f arxiv
 ```
 
 ## Tools
@@ -71,7 +71,7 @@ Create a "works" view from releases.
 
 ### Misc
 
-The `urlstream` utility streams content from multiple URLs to stdout. Can help
+The `sk-cat` utility streams content from multiple URLs to stdout. Can help
 to create single file versions of larger datasets like pubmed, openalex, etc.
 
 ```
@@ -79,7 +79,7 @@ $ curl -s "https://www.gutenberg.org/browse/scores/top" | \
     grep -Eo "/ebooks/[0-9]+" | \
     awk '{print "https://gutenberg.org"$0".txt.utf-8"}' > top100.txt
 
-$ urlstream < top100.txt > top100books.txt
+$ sk-cat < top100.txt > top100books.txt
 ```
 
 ## Notes

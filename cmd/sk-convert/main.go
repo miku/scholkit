@@ -1,6 +1,6 @@
 // CLI to convert various metadata formats, mostly to fatcat entities.
 //
-// $ cat file | bibconv -f openalex > out.jsonl
+// $ cat file | sk-convert -f openalex > out.jsonl
 package main
 
 import (
