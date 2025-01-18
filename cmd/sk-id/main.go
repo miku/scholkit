@@ -1,10 +1,22 @@
-// sk-id converts fatcat ids to uuids and back, cf. fcid.py
+// sk-id converts fatcat ids to uuids and back, ported from fcid.py
+//
+// $ ./sk-id -f container_2ujzwjsay5aohfmwlpyiyhmb7a
+// d5139b26-40c7-40e3-9596-5bf08c1d81f8
+//
+// $ ./sk-id -f container_2ujzwjsay5aohfmwlpyiyhmb7a
+// d5139b26-40c7-40e3-9596-5bf08c1d81f8
+//
+// $ ./sk-id -u d5139b26-40c7-40e3-9596-5bf08c1d81f8
+// 2ujzwjsay5aohfmwlpyiyhmb7a
+
 package main
 
 import (
 	"encoding/base32"
+	"errors"
 	"flag"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/google/uuid"
@@ -15,46 +27,57 @@ var (
 	fromUUID   = flag.String("u", "", "from uuid, e.g. d5139b26-40c7-40e3-9596-5bf08c1d81f8")
 )
 
+var ErrInvalidLength = errors.New("invalid length")
+
 func main() {
 	flag.Parse()
+	var (
+		result string
+		err    error
+	)
+
 	switch {
 	case *fromFatcat != "":
-		fmt.Println(fcid2uuid(*fromFatcat))
+		result, err = fcid2uuid(*fromFatcat)
 	case *fromUUID != "":
-		fmt.Println(uuid2fcid(*fromUUID))
+		result, err = uuid2fcid(*fromUUID)
 	}
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(result)
 }
 
-func fcid2uuid(fcid string) string {
+func fcid2uuid(fcid string) (string, error) {
 	var (
 		parts = strings.Split(fcid, "_")
 		last  = parts[len(parts)-1]
 	)
 	if len(last) != 26 {
-		return ""
+		return "", ErrInvalidLength
 	}
 	last = strings.ToUpper(last) + "======"
 	b, err := base32.StdEncoding.DecodeString(last)
 	if err != nil {
-		return ""
+		return "", err
 	}
 	u, err := uuid.FromBytes(b)
 	if err != nil {
-		return ""
+		return "", err
 	}
-	return u.String()
-
+	return u.String(), nil
 }
-func uuid2fcid(id string) string {
+
+func uuid2fcid(id string) (string, error) {
 	u, err := uuid.Parse(id)
 	if err != nil {
-		return ""
+		return "", err
 	}
 	b, err := u.MarshalBinary()
 	if err != nil {
-		return ""
+		return "", err
 	}
-	return strings.ToLower(base32.StdEncoding.EncodeToString(b))[:26]
+	return strings.ToLower(base32.StdEncoding.EncodeToString(b))[:26], nil
 }
 
 // Some failed attempts with a few LLMs, latest gemini and ChatGPT fail too.
