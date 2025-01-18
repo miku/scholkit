@@ -25,6 +25,7 @@ go.work
 
 # Binaries
 /sk-cat
+/sk-cdx
 /sk-cluster
 /sk-convert
 /sk-feed

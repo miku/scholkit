@@ -1,6 +1,5 @@
-// Lookup CDX records at the Internet Archive.
-//
-// Additional docs: https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md
+// sk-cdx looks up CDX records at the Internet Archive. Additional docs:
+// https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md
 package main
 
 import (

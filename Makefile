@@ -1,7 +1,15 @@
 SHELL := /bin/bash
-TARGETS := sk-cat sk-norm sk-convert sk-cluster sk-id sk-feed
 MAKEFLAGS := --jobs=$(shell nproc)
 PKGNAME := scholkit
+
+# the "sk" toolkit binaries to build
+TARGETS := sk-cat \
+		   sk-cdx \
+		   sk-cluster \
+		   sk-convert \
+		   sk-feed \
+		   sk-id \
+		   sk-norm
 
 .PHONY: all
 all: $(TARGETS)
@@ -16,7 +24,7 @@ test:
 .PHONY: clean
 clean:
 	rm -f $(TARGETS)
-	rm -f scholkit_*deb
+	rm -f $(PKGNAME)_*deb
 
 .PHONY: update-all-deps
 update-all-deps:
