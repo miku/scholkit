@@ -1,4 +1,4 @@
-// urlstream takes one or more links to (compressed) files and will stream
+// sk-cat takes one or more links to (compressed) files and will stream
 // their content to stdout. Uses curl and external compression programs.
 // Nothing bash and curl could not do, but a bit shorter to type.
 //
@@ -11,7 +11,7 @@
 // https://archive.org/download/openalex_snapshot_2023-07-11/data/works/updated_date=2023-04-16/part_000.gz
 // ...
 //
-// $ cat urls.txt | urlstream | zstd -c > data.zst
+// $ cat urls.txt | sk-cat | zstd -c > data.zst
 //
 // Another example:
 //
@@ -21,7 +21,7 @@
 //				pup 'a[href] text{}' | \
 //		        grep -o 'pubmed.*[.]xml[.]gz' | \
 //		        awk '{print "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/"$0}' | \
-//				urlstream -v | \
+//				sk-cat -v | \
 //	            zstd -c > pubmed.xml.zst
 //
 // Other datasets that come scattered across many files are wikipedia, openalex, ...
@@ -78,7 +78,7 @@ the fly:
     	grep -o 'pubmed.*[.]xml[.]gz' | \
     	awk '{print "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/"$0}' > links.txt
 
-    $ cat links.txt | urlstream | zstd -c > pubmed.zst
+    $ cat links.txt | sk-cat | zstd -c > pubmed.zst
 
 Note: Not all file formats will be suitable for concatenation.
 `

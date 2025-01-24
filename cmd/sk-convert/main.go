@@ -1,4 +1,4 @@
-// CLI to convert various metadata formats, mostly to fatcat entities.
+// CLI to convert various metadata formats, mostly to fatcat entities. WIP.
 //
 // $ cat file | sk-convert -f openalex > out.jsonl
 package main

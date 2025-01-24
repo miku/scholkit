@@ -1,7 +1,7 @@
-// clowder is a release entity clusterer. It takes release
+// sk-cluster is a release entity clusterer. It takes release
 // entities and will group similar items together. WIP.
 //
-// $ cat releases.ndj | clowder
+// $ cat releases.ndj | sk-cluster
 package main
 
 import (

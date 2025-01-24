@@ -11,7 +11,7 @@
 // $ ./sk-id -u d5139b26-40c7-40e3-9596-5bf08c1d81f8
 // 2ujzwjsay5aohfmwlpyiyhmb7a
 //
-// TODO: allow to pipe lines of ids in
+// TODO(martin): allow to pipe lines of ids in
 
 package main
 

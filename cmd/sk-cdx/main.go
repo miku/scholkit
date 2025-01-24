@@ -1,5 +1,19 @@
 // sk-cdx looks up CDX records at the Internet Archive. Additional docs:
 // https://github.com/internetarchive/wayback/blob/master/wayback-cdx-server/README.md
+//
+// (formerly known as cdxlookup)
+//
+// $ echo 'https://heise.de' | sk-cdx | jq .
+// {
+//   "surt": "de,heise)/",
+//   "date": "19961222042120",
+//   "link": "http://www.heise.de:80/",
+//   "type": "text/html",
+//   "code": "200",
+//   "checksum": "47YA6M7IS6JL3T5PKGOOBNO7K2DDGIOV",
+//   "size": "2465"
+// }
+
 package main
 
 import (
