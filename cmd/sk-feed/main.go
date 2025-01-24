@@ -192,7 +192,11 @@ func main() {
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
-			cmd := exec.Command("dcdump", "-s", date.Format("2006-01-02"), "-e", date.Add(oneDay).Format("2006-01-02"), "-i", "h", "-d", dstDir)
+			cmd := exec.Command("dcdump",
+				"-s", date.Format("2006-01-02"),
+				"-e", date.Add(oneDay).Format("2006-01-02"),
+				"-i", "h",
+				"-d", dstDir)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			log.Println(cmd)
