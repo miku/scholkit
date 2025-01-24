@@ -141,7 +141,7 @@ func main() {
 		for _, s := range availableSources {
 			fmt.Println(s)
 		}
-	case *fetchSource != "":
+	case config.Source != "":
 		log.Printf("fetching %v [...]", config.Source)
 		switch config.Source {
 		case "openalex":
@@ -157,7 +157,7 @@ func main() {
 				"aws:/openalex",
 				dst)
 			log.Println(cmd)
-			b, err := cmd.CombinedOutput()
+			b, err := cmd.CombinedOutput() // TODO(martin): show live update w/ pipe
 			if _, err := os.Stderr.Write(b); err != nil {
 				log.Fatal(err)
 			}
