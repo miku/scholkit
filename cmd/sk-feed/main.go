@@ -1,3 +1,5 @@
+// sk-feed retrieves various upstream data sources. We start with using
+// external programs, but aim towards less shelling out in the future.
 package main
 
 import (
@@ -12,6 +14,7 @@ import (
 	"os/exec"
 	"path"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/adrg/xdg"
@@ -20,40 +23,12 @@ import (
 	"github.com/sethgrid/pester"
 )
 
-var (
-	defaultDataDir   = path.Join(xdg.DataHome, "skol")
-	availableSources = []string{
-		"openalex",
-		"crossref",
-		"datacite",
-		"pubmed",
-		"oai",
-	}
-	yesterday = time.Now().Add(-86400 * time.Second)
-	oneDay    = 86400 * time.Second
-	oneHour   = 3600 * time.Second
-	bNewline  = []byte("\n")
-)
+var docs = strings.TrimLeft(`
+>> skfeed - fetch data feeds
 
-var (
-	dir         = flag.String("d", defaultDataDir, "the main cache directory to put all data under")
-	fetchSource = flag.String("s", "", "name of the the source to update")
-	listSources = flag.Bool("l", false, "list available source names")
-	endpointURL = flag.String("u", "", "endpoint URL for OAI")
-	showStatus  = flag.Bool("a", false, "show status and path")
-	date        = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
-	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day on")
-	maxRetries  = flag.Int("r", 3, "max retries")
-	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
-)
-
-var docs = `skolfeed - data feed sketch
-
-uses external tools to fetch raw data from the internet: rclone, metha, dcdump
-
-## note!
-
-not all flags may work, e.g. -B backfill is not fully implemented yet
+Uses external tools to fetch raw bibliographic data from the web: rclone,
+metha, dcdump.  NOTE: not all flags may work, e.g. -B backfill is not fully
+implemented yet
 
 ## external tools
 
@@ -73,7 +48,7 @@ https://docs.openalex.org/download-all-data/download-to-your-machine
 
 ## list feeds
 
-$ skolfeed -l
+$ sk-feed -l
 openalex
 crossref
 datacite
@@ -82,12 +57,59 @@ oai
 
 ## fetch feed
 
-$ skolfeed -s openalex
-$ skolfeed -s crossref
+$ sk-feed -s openalex
+$ sk-feed -s crossref
 
 Flags
 
-`
+`, "\n")
+
+var (
+	defaultDataDir   = path.Join(xdg.DataHome, "schol")
+	availableSources = []string{
+		"openalex",
+		"crossref",
+		"datacite",
+		"pubmed",
+		"oai",
+	}
+	yesterday = time.Now().Add(-86400 * time.Second)
+	oneDay    = 86400 * time.Second
+	oneHour   = 3600 * time.Second
+	bNewline  = []byte("\n")
+)
+
+// Config for feeds, TODO(martin): move to config file and environment variables.
+type Config struct {
+	DataDir            string
+	Source             string
+	EndpointURL        string
+	Date               time.Time
+	MaxRetries         int
+	Timeout            time.Duration
+	CrossrefApiEmail   string
+	CrossrefUserAgent  string
+	CrossrefFeedPrefix string
+	RcloneTransfers    int
+	RcloneCheckers     int
+}
+
+var (
+	dir                = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
+	fetchSource        = flag.String("s", "", "name of the the source to update")
+	listSources        = flag.Bool("l", false, "list available source names")
+	endpointURL        = flag.String("u", "", "endpoint URL for OAI")
+	showStatus         = flag.Bool("a", false, "show status and path")
+	dateStr            = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
+	runBackfill        = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
+	maxRetries         = flag.Int("r", 3, "max retries")
+	timeout            = flag.Duration("T", oneHour, "connectiont timeout")
+	crossrefApiEmail   = flag.String("crossref-api-email", "martin.czygan@gmail.com", "crossref api email")
+	crossrefUserAgent  = flag.String("crossref-user-agent", "scholkit/dev", "crossref user agent")
+	crossrefFeedPrefix = flag.String("crossref-feed-prefix", "feed-0-", "prefix for filename to distinguish different runs")
+	rcloneTransfers    = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
+	rcloneCheckers     = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
+)
 
 func main() {
 	flag.Usage = func() {
@@ -95,22 +117,45 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	date, err := time.Parse("2006-01-02", *dateStr)
+	if err != nil {
+		log.Fatalf("invalid date: %v", err)
+	}
+	config := &Config{
+		DataDir:            *dir,
+		Source:             *fetchSource,
+		EndpointURL:        *endpointURL,
+		Date:               date,
+		MaxRetries:         *maxRetries,
+		Timeout:            *timeout,
+		CrossrefApiEmail:   *crossrefApiEmail,
+		CrossrefUserAgent:  *crossrefUserAgent,
+		CrossrefFeedPrefix: *crossrefFeedPrefix,
+		RcloneTransfers:    *rcloneTransfers,
+		RcloneCheckers:     *rcloneCheckers,
+	}
 	switch {
 	case *showStatus:
-		fmt.Println(*dir)
+		fmt.Println(config.DataDir)
 	case *listSources:
 		for _, s := range availableSources {
 			fmt.Println(s)
 		}
 	case *fetchSource != "":
-		log.Printf("fetching %v [...]", *fetchSource)
-		switch *fetchSource {
+		log.Printf("fetching %v [...]", config.Source)
+		switch config.Source {
 		case "openalex":
-			dst := path.Join(*dir, "openalex")
+			dst := path.Join(config.DataDir, "openalex")
 			if err := os.MkdirAll(dst, 0755); err != nil {
 				log.Fatal(err)
 			}
-			cmd := exec.Command("rclone", "sync", "--transfers=8", "--checkers=16", "-P", "aws:/openalex", dst)
+			cmd := exec.Command("rclone",
+				"sync",
+				fmt.Sprintf("--transfers=%d", config.RcloneTransfers),
+				fmt.Sprintf("--checkers=%d", config.RcloneCheckers),
+				"-P",
+				"aws:/openalex",
+				dst)
 			log.Println(cmd)
 			b, err := cmd.CombinedOutput()
 			if _, err := os.Stderr.Write(b); err != nil {
@@ -125,42 +170,33 @@ func main() {
 			client.MaxRetries = *maxRetries
 			client.RetryOnHTTP429 = true
 			client.Timeout = *timeout
-			t, err := time.Parse("2006-01-02", *date)
-			if err != nil {
-				log.Fatal(err)
-			}
 			ch := CrossrefHarvester{
 				Client:              client,
 				ApiEndpoint:         "https://api.crossref.org/works",
 				ApiFilter:           "index",
-				ApiEmail:            "martin.czygan@gmail.com",
+				ApiEmail:            config.CrossrefApiEmail,
 				Rows:                1000,
-				UserAgent:           "scholkit/dev",
+				UserAgent:           config.CrossrefUserAgent,
 				AcceptableMissRatio: 0.1,
 				MaxRetries:          3,
 			}
-			dstDir := path.Join(*dir, "crossref")
+			dstDir := path.Join(config.DataDir, "crossref")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
-			if err := ch.WriteDaySlice(t, dstDir, "feed-0-"); err != nil {
+			if err := ch.WriteDaySlice(date, dstDir, config.CrossrefFeedPrefix); err != nil {
 				log.Fatal(err)
 			}
 		case "datacite":
-			t, err := time.Parse("2006-01-02", *date)
-			if err != nil {
-				log.Fatal(err)
-			}
-			dstDir := path.Join(*dir, "datacite")
+			dstDir := path.Join(config.DataDir, "datacite")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
-			cmd := exec.Command("dcdump", "-s", t.Format("2006-01-02"), "-e", t.Add(oneDay).Format("2006-01-02"), "-i", "h", "-d", dstDir)
+			cmd := exec.Command("dcdump", "-s", date.Format("2006-01-02"), "-e", date.Add(oneDay).Format("2006-01-02"), "-i", "h", "-d", dstDir)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			log.Println(cmd)
-			err = cmd.Run()
-			if err != nil {
+			if err = cmd.Run(); err != nil {
 				log.Fatal(err)
 			}
 		case "pubmed":
@@ -171,10 +207,6 @@ func main() {
 			client.MaxRetries = *maxRetries
 			client.RetryOnHTTP429 = true
 			client.Timeout = *timeout
-			t, err := time.Parse("2006-01-02", *date)
-			if err != nil {
-				log.Fatal(err)
-			}
 			req, err := http.NewRequest("GET", "https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", nil)
 			if err != nil {
 				log.Fatal(err)
@@ -187,7 +219,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			var pat = fmt.Sprintf(`(?mi)(?P<Filename>pubmed[^"]*gz).*%s`, t.Format("2006-01-02"))
+			var pat = fmt.Sprintf(`(?mi)(?P<Filename>pubmed[^"]*gz).*%s`, date.Format("2006-01-02"))
 			var re = regexp.MustCompile(pat)
 			matches := re.FindStringSubmatch(string(b))
 			filenameIndex := re.SubexpIndex("Filename")
@@ -196,7 +228,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			dstDir := path.Join(*dir, "pubmed")
+			dstDir := path.Join(config.DataDir, "pubmed")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
@@ -204,20 +236,18 @@ func main() {
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
 			log.Println(cmd)
-			err = cmd.Run()
-			if err != nil {
+			if err = cmd.Run(); err != nil {
 				log.Fatal(err)
 			}
 		case "oai":
-			t, err := time.Parse("2006-01-02", *date)
-			if err != nil {
-				log.Fatal(err)
-			}
-			baseDir := path.Join(*dir, "oai")
-			cmd := exec.Command("metha-sync", "-base-dir", baseDir, "-from", t.Format("2006-01-02"), "-until", t.Format("2006-01-02"), *endpointURL)
+			baseDir := path.Join(config.DataDir, "metha")
+			cmd := exec.Command("metha-sync",
+				"-base-dir", baseDir,
+				"-from", date.Format("2006-01-02"),
+				"-until", date.Format("2006-01-02"),
+				*endpointURL)
 			log.Println(cmd)
-			_, err = cmd.CombinedOutput()
-			if err != nil {
+			if _, err = cmd.CombinedOutput(); err != nil {
 				log.Fatal(err)
 			}
 		}
