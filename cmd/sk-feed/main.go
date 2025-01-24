@@ -19,7 +19,10 @@ import (
 
 	"github.com/adrg/xdg"
 	"github.com/jinzhu/now"
+	"github.com/klauspost/compress/zstd"
 	"github.com/miku/scholkit/atomic"
+	"github.com/miku/scholkit/dateutil"
+	"github.com/miku/scholkit/xflag"
 	"github.com/sethgrid/pester"
 )
 
@@ -90,28 +93,36 @@ type Config struct {
 	CrossrefApiEmail   string
 	CrossrefUserAgent  string
 	CrossrefFeedPrefix string
+	CrossrefApiFilter  string
 	RcloneTransfers    int
 	RcloneCheckers     int
 }
 
 var (
-	dir                = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
-	fetchSource        = flag.String("s", "", "name of the the source to update")
-	listSources        = flag.Bool("l", false, "list available source names")
-	endpointURL        = flag.String("u", "", "endpoint URL for OAI")
-	showStatus         = flag.Bool("a", false, "show status and path")
-	dateStr            = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
-	runBackfill        = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
-	maxRetries         = flag.Int("r", 3, "max retries")
-	timeout            = flag.Duration("T", oneHour, "connectiont timeout")
-	crossrefApiEmail   = flag.String("crossref-api-email", "martin.czygan@gmail.com", "crossref api email")
-	crossrefUserAgent  = flag.String("crossref-user-agent", "scholkit/dev", "crossref user agent")
-	crossrefFeedPrefix = flag.String("crossref-feed-prefix", "feed-0-", "prefix for filename to distinguish different runs")
-	rcloneTransfers    = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
-	rcloneCheckers     = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
+	dir         = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
+	fetchSource = flag.String("s", "", "name of the the source to update")
+	listSources = flag.Bool("l", false, "list available source names")
+	endpointURL = flag.String("u", "", "endpoint URL for OAI")
+	showStatus  = flag.Bool("a", false, "show status and path")
+	dateStr     = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
+	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
+	maxRetries  = flag.Int("r", 3, "max retries")
+	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
+	// Rclone is used for openalex
+	rcloneTransfers = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
+	rcloneCheckers  = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
+	// Crossref specific options
+	crossrefApiEmail              = flag.String("crossref-api-email", "martin.czygan@gmail.com", "crossref api email")
+	crossrefApiFilter             = flag.String("crossref-api-filter", "index", "api filter to use with crossref")
+	crossrefUserAgent             = flag.String("crossref-user-agent", "scholkit/dev", "crossref user agent")
+	crossrefFeedPrefix            = flag.String("crossref-feed-prefix", "crossref-feed-0-", "prefix for filename to distinguish different runs")
+	crossrefSyncStart  xflag.Date = xflag.Date{Time: dateutil.MustParse("2021-01-01")}
+	crossrefSyncEnd    xflag.Date = xflag.Date{Time: yesterday}
 )
 
 func main() {
+	flag.Var(&crossrefSyncStart, "crossref-sync-start", "start date for crossref harvest")
+	flag.Var(&crossrefSyncEnd, "crossref-sync-end", "end date for crossref harvest")
 	flag.Usage = func() {
 		io.WriteString(os.Stderr, docs)
 		flag.PrintDefaults()
@@ -129,11 +140,18 @@ func main() {
 		MaxRetries:         *maxRetries,
 		Timeout:            *timeout,
 		CrossrefApiEmail:   *crossrefApiEmail,
+		CrossrefApiFilter:  *crossrefApiFilter,
 		CrossrefUserAgent:  *crossrefUserAgent,
 		CrossrefFeedPrefix: *crossrefFeedPrefix,
 		RcloneTransfers:    *rcloneTransfers,
 		RcloneCheckers:     *rcloneCheckers,
 	}
+	// HTTP client
+	client := pester.New()
+	client.Backoff = pester.ExponentialBackoff
+	client.MaxRetries = *maxRetries
+	client.RetryOnHTTP429 = true
+	client.Timeout = *timeout
 	switch {
 	case *showStatus:
 		fmt.Println(config.DataDir)
@@ -145,6 +163,9 @@ func main() {
 		log.Printf("fetching %v [...]", config.Source)
 		switch config.Source {
 		case "openalex":
+			// openalex is updated in roughly monthly intervals; after an
+			// update an rclone sync may take a few hours to fetch data from
+			// AWS bucket
 			dst := path.Join(config.DataDir, "openalex")
 			if err := os.MkdirAll(dst, 0755); err != nil {
 				log.Fatal(err)
@@ -165,15 +186,10 @@ func main() {
 				log.Fatal(err)
 			}
 		case "crossref":
-			client := pester.New()
-			client.Backoff = pester.ExponentialBackoff
-			client.MaxRetries = *maxRetries
-			client.RetryOnHTTP429 = true
-			client.Timeout = *timeout
 			ch := CrossrefHarvester{
 				Client:              client,
 				ApiEndpoint:         "https://api.crossref.org/works",
-				ApiFilter:           "index",
+				ApiFilter:           config.CrossrefApiFilter,
 				ApiEmail:            config.CrossrefApiEmail,
 				Rows:                1000,
 				UserAgent:           config.CrossrefUserAgent,
@@ -184,8 +200,14 @@ func main() {
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
-			if err := ch.WriteDaySlice(date, dstDir, config.CrossrefFeedPrefix); err != nil {
-				log.Fatal(err)
+			log.Println(ch)
+			ivs := dateutil.Daily(crossrefSyncStart.Time, crossrefSyncEnd.Time)
+			for _, iv := range ivs {
+				// TODO: we only need the start date, because we limit
+				// ourselves to day slices
+				if err := ch.WriteDaySlice(iv.Start, dstDir, config.CrossrefFeedPrefix); err != nil {
+					log.Fatalf("crossref day slice: %v", err)
+				}
 			}
 		case "datacite":
 			dstDir := path.Join(config.DataDir, "datacite")
@@ -206,11 +228,6 @@ func main() {
 		case "pubmed":
 			// fetch a file from URL
 			// https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/
-			client := pester.New()
-			client.Backoff = pester.ExponentialBackoff
-			client.MaxRetries = *maxRetries
-			client.RetryOnHTTP429 = true
-			client.Timeout = *timeout
 			req, err := http.NewRequest("GET", "https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", nil)
 			if err != nil {
 				log.Fatal(err)
@@ -318,7 +335,17 @@ func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string
 		if err != nil {
 			return err
 		}
-		if err := c.WriteSlice(f, start, end); err != nil {
+		enc, err := zstd.NewWriter(f)
+		if err != nil {
+			return err
+		}
+		if err := c.WriteSlice(enc, start, end); err != nil {
+			return err
+		}
+		if err := enc.Close(); err != nil {
+			return err
+		}
+		if err := f.Close(); err != nil {
 			return err
 		}
 	}
