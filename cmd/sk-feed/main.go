@@ -96,6 +96,7 @@ type Config struct {
 	CrossrefApiFilter  string
 	RcloneTransfers    int
 	RcloneCheckers     int
+	DataciteSyncStart  string
 }
 
 var (
@@ -118,6 +119,8 @@ var (
 	crossrefFeedPrefix            = flag.String("crossref-feed-prefix", "crossref-feed-0-", "prefix for filename to distinguish different runs")
 	crossrefSyncStart  xflag.Date = xflag.Date{Time: dateutil.MustParse("2021-01-01")}
 	crossrefSyncEnd    xflag.Date = xflag.Date{Time: yesterday}
+	// Datacite specific options
+	dataciteSyncStart = flag.String("datacite-sync-start", "2020-01-01", "when to start datacite fetch")
 )
 
 func main() {
@@ -145,6 +148,7 @@ func main() {
 		CrossrefFeedPrefix: *crossrefFeedPrefix,
 		RcloneTransfers:    *rcloneTransfers,
 		RcloneCheckers:     *rcloneCheckers,
+		DataciteSyncStart:  *dataciteSyncStart,
 	}
 	// HTTP client
 	client := pester.New()
@@ -215,9 +219,9 @@ func main() {
 				log.Fatal(err)
 			}
 			cmd := exec.Command("dcdump",
-				"-s", date.Format("2006-01-02"),
+				"-s", config.DataciteSyncStart,
 				"-e", date.Add(oneDay).Format("2006-01-02"),
-				"-i", "h",
+				"-i", "e", // most fine granular, takes a while to backfill
 				"-d", dstDir)
 			cmd.Stdout = os.Stdout
 			cmd.Stderr = os.Stderr
@@ -253,19 +257,22 @@ func main() {
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
-			cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
-			cmd.Stdout = os.Stdout
-			cmd.Stderr = os.Stderr
-			log.Println(cmd)
-			if err = cmd.Run(); err != nil {
-				log.Fatal(err)
+			dstFile := path.Join(dstDir, filename)
+			if _, err := os.Stat(dstFile); os.IsNotExist(err) {
+				cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
+				cmd.Stdout = os.Stdout
+				cmd.Stderr = os.Stderr
+				log.Println(cmd)
+				if err = cmd.Run(); err != nil {
+					log.Fatal(err)
+				}
+			} else {
+				log.Printf("already synced: %v", dstFile)
 			}
 		case "oai":
 			baseDir := path.Join(config.DataDir, "metha")
 			cmd := exec.Command("metha-sync",
 				"-base-dir", baseDir,
-				"-from", date.Format("2006-01-02"),
-				"-until", date.Format("2006-01-02"),
 				*endpointURL)
 			log.Println(cmd)
 			if _, err = cmd.CombinedOutput(); err != nil {
