@@ -25,6 +25,7 @@ test:
 clean:
 	rm -f $(TARGETS)
 	rm -f $(PKGNAME)_*deb
+	rm -rf packaging/deb/$(PKGNAME)/usr/*
 
 .PHONY: update-all-deps
 update-all-deps:
