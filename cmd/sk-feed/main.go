@@ -20,6 +20,7 @@ import (
 	"github.com/adrg/xdg"
 	"github.com/jinzhu/now"
 	"github.com/klauspost/compress/zstd"
+	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/atomic"
 	"github.com/miku/scholkit/dateutil"
 	"github.com/miku/scholkit/xflag"
@@ -109,6 +110,7 @@ var (
 	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
 	maxRetries  = flag.Int("r", 3, "max retries")
 	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
+	showVersion = flag.Bool("version", false, "show version")
 	// Rclone is used for openalex
 	rcloneTransfers = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
 	rcloneCheckers  = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
@@ -131,6 +133,10 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	date, err := time.Parse("2006-01-02", *dateStr)
 	if err != nil {
 		log.Fatalf("invalid date: %v", err)

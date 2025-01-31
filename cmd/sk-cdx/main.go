@@ -31,12 +31,14 @@ import (
 	"strings"
 
 	"github.com/adrg/xdg"
+	"github.com/miku/scholkit"
 	"github.com/sethgrid/pester"
 )
 
 var (
-	limit     = flag.Int("l", 1, "limit")
-	countOnly = flag.Bool("C", false, "count only query")
+	limit       = flag.Int("l", 1, "limit")
+	countOnly   = flag.Bool("C", false, "count only query")
+	showVersion = flag.Bool("version", false, "show version")
 )
 
 // CDX line, might add more fields later.
@@ -52,6 +54,10 @@ type CDX struct {
 
 func main() {
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	br := bufio.NewReader(os.Stdin)
 	bw := bufio.NewWriter(os.Stdout)
 	defer bw.Flush()

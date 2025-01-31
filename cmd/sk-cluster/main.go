@@ -9,12 +9,14 @@ import (
 	"encoding/base32"
 	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"runtime"
 	"strings"
 	"sync"
 
+	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/normal"
 	"github.com/miku/scholkit/parallel"
 	"github.com/miku/scholkit/schema/fatcat"
@@ -26,10 +28,15 @@ var (
 	includeBlob     = flag.Bool("I", false, "include source document as last column (base32 encoded)")
 	runGroupVerify  = flag.Bool("G", false, "group and run verification on a cluster")
 	groupFieldIndex = flag.Int("f", 0, "group by column given by index (starting at 1, like cut) ")
+	showVersion     = flag.Bool("version", false, "show version")
 )
 
 func main() {
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	switch {
 	case *makeTable:
 		var C = normal.ReplaceNewlineAndTab // cleanup function for ids

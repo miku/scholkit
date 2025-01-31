@@ -15,7 +15,7 @@
 
 Scratch project, assorted utilities around scholarly metadata formats and tasks.
 
-status: unstable, wip
+status: wip, api and cli not stable yet
 
 ## Try
 

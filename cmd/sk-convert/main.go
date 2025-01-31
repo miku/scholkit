@@ -15,6 +15,7 @@ import (
 	"sync"
 	"sync/atomic"
 
+	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/convert"
 	"github.com/miku/scholkit/parallel"
 	"github.com/miku/scholkit/parallel/record"
@@ -36,6 +37,7 @@ var (
 	maxBytesApprox = flag.Uint("x", 1048576, "max bytes per batch for XML processing")
 	batchSize      = flag.Int("b", 10000, "batch size")
 	cpuprofile     = flag.String("cpuprofile", "", "file to write cpu pprof to")
+	showVersion    = flag.Bool("version", false, "show version")
 )
 
 var availableSourceFormats = []string{
@@ -77,6 +79,10 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	if *cpuprofile != "" {
 		f, err := os.Create(*cpuprofile)
 		if err != nil {

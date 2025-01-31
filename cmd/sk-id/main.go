@@ -21,20 +21,27 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/miku/scholkit"
 )
 
 var (
-	fromFatcat = flag.String("f", "", "from fatcat id, e.g. container_2ujzwjsay5aohfmwlpyiyhmb7a")
-	fromUUID   = flag.String("u", "", "from uuid, e.g. d5139b26-40c7-40e3-9596-5bf08c1d81f8")
+	fromFatcat  = flag.String("f", "", "from fatcat id, e.g. container_2ujzwjsay5aohfmwlpyiyhmb7a")
+	fromUUID    = flag.String("u", "", "from uuid, e.g. d5139b26-40c7-40e3-9596-5bf08c1d81f8")
+	showVersion = flag.Bool("version", false, "show version")
 )
 
 var ErrInvalidLength = errors.New("invalid length")
 
 func main() {
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	var (
 		result string
 		err    error

@@ -39,6 +39,8 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/miku/scholkit"
 )
 
 var decompMap = map[string]string{
@@ -59,6 +61,7 @@ var (
 	forceDecomp  = flag.String("d", "", "force a decompression tool: 7z, bz2, gz, rar, zst")
 	autoMode     = flag.Bool("a", false, "determine compression tool by extension")
 	sleep        = flag.Duration("s", 2*time.Second, "sleep duration between requests")
+	showVersion  = flag.Bool("version", false, "show version")
 
 	externalDependencies = []string{"curl", "bash"}
 
@@ -97,6 +100,10 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	if *showVersion {
+		fmt.Println(scholkit.Version)
+		os.Exit(0)
+	}
 	br := bufio.NewReader(os.Stdin)
 	bw := bufio.NewWriter(os.Stdout)
 	defer bw.Flush()
