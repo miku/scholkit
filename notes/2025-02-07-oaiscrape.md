@@ -18,3 +18,9 @@ We retry with a byte counter to identify the data issue.
 $ time zstdcat -T0 2025-01-16-metha-oai-dump-record.xml.zst | pv | ./oaijson | \
     zstd -c -T0 > 2025-01-16-metha-oai-dump-record-update-1.ndjson.zst
 ```
+
+30G in, 4.5G out and 10M lines out. Estimating to be 400GB read (of 1.25TB)
+when the issue appears.
+
+Another option would be to split the output of `dumprecords.go` into groups of
+1M records and then work on them individually.
