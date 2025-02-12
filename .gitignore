@@ -31,6 +31,7 @@ go.work
 /sk-feed
 /sk-id
 /sk-norm
+/sk-oai-*
 
 # Data
 /data/*zst

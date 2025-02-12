@@ -9,7 +9,9 @@ TARGETS := sk-cat \
 		   sk-convert \
 		   sk-feed \
 		   sk-id \
-		   sk-norm
+		   sk-norm \
+		   sk-oai-records \
+		   sk-oai-dctojsonl
 
 .PHONY: all
 all: $(TARGETS)
