@@ -24,3 +24,32 @@ when the issue appears.
 
 Another option would be to split the output of `dumprecords.go` into groups of
 1M records and then work on them individually.
+
+## Debugging
+
+* discrepancy in start and end record tags:
+
+start: 477370502
+end:   477368052
+
+```
+$ time justrecords < 2025-01-16-metha-oai.xml | pv > xxxx
+1.25TiB 0:45:27 [ 481MiB/s] [
+
+real    45m28.411s
+user    28m16.767s
+sys     43m41.496s
+```
+
+## Rough numbers
+
+* 477M json records
+* it takes about 20min to iterate over the 1.3T, 477M json lines
+* extracted ids, then found unique: 196204847
+
+```
+$ time zstdcat -T0 2025-01-16-metha-oai-sep-1e-oai-identifier.tsv.zst | \
+    LC_ALL=C sort -S80% -u | wc -l
+196204847
+```
+
