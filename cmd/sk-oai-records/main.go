@@ -7,6 +7,9 @@
 // This script finds a record and writes it out, and adding "RECORD SEPARATOR"
 // (https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) in
 // between.
+//
+// In 02/2025 the raw input was 1.3TB of XML and this script could run at about
+// 1GB/s, so conversion of the whole file takes about 30min.
 package main
 
 import (
@@ -30,6 +33,7 @@ func main() {
 		buf       []byte
 		insideTag = false
 		bw        = bufio.NewWriter(os.Stdout)
+		i         int
 	)
 	defer bw.Flush()
 LOOP:
@@ -44,22 +48,22 @@ LOOP:
 		buf = append(buf, readBuf[:n]...)
 		for len(buf) > 0 {
 			if !insideTag {
-				idx := bytes.Index(buf, start)
-				if idx == -1 {
+				i = bytes.Index(buf, start)
+				if i == -1 {
 					buf = buf[0:0]
 					continue LOOP
 				}
 				insideTag = true
-				buf = buf[idx:]
+				buf = buf[i:]
 			} else {
-				idx := bytes.Index(buf, end)
-				if idx == -1 {
+				i = bytes.Index(buf, end)
+				if i == -1 {
 					continue LOOP
 				}
-				record := buf[:idx+len(end)]
-				bw.Write(record)
-				bw.Write(sep)
-				buf = buf[idx+len(end):]
+				record := buf[:i+len(end)]
+				_, _ = bw.Write(record)
+				_, _ = bw.Write(sep)
+				buf = buf[i+len(end):]
 				insideTag = false
 			}
 		}
