@@ -16,8 +16,9 @@ TARGETS := sk-cat \
 .PHONY: all
 all: $(TARGETS)
 
+# CGO_ENABLED: libc.so.6: version `GLIBC_2.34' not found
 %: cmd/%/main.go
-	go build -o $@ $<
+	CGO_ENABLED=0 go build -o $@ $<
 
 .PHONY: test
 test:
