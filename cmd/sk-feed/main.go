@@ -162,6 +162,10 @@ func main() {
 		RcloneCheckers:     *rcloneCheckers,
 		DataciteSyncStart:  *dataciteSyncStart,
 	}
+	// Ensure feeds directory exists
+	if err := os.MkdirAll(config.FeedDir, 0755); err != nil {
+		log.Fatal(err)
+	}
 	// HTTP client
 	client := pester.New()
 	client.Backoff = pester.ExponentialBackoff
