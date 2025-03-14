@@ -85,7 +85,11 @@ var (
 
 // Config for feeds, TODO(martin): move to config file and environment variables.
 type Config struct {
-	DataDir            string
+	// DataDir is the generic data dir for all scholkit tools.
+	DataDir string
+	// FeedDir is the directory specifically for raw data feeds only. A subdir
+	// of DataDir.
+	FeedDir            string
 	Source             string
 	EndpointURL        string
 	Date               time.Time
@@ -144,6 +148,7 @@ func main() {
 	}
 	config := &Config{
 		DataDir:            *dir,
+		FeedDir:            path.Join(*dir, "feeds"),
 		Source:             *fetchSource,
 		EndpointURL:        *endpointURL,
 		Date:               date,
@@ -165,7 +170,7 @@ func main() {
 	client.Timeout = *timeout
 	switch {
 	case *showStatus:
-		fmt.Println(config.DataDir)
+		fmt.Printf("feeds: \n", config.FeedDir)
 	case *listSources:
 		for _, s := range availableSources {
 			fmt.Println(s)
@@ -177,7 +182,7 @@ func main() {
 			// openalex is updated in roughly monthly intervals; after an
 			// update an rclone sync may take a few hours to fetch data from
 			// AWS bucket
-			dst := path.Join(config.DataDir, "openalex")
+			dst := path.Join(config.FeedDir, "openalex")
 			if err := os.MkdirAll(dst, 0755); err != nil {
 				log.Fatal(err)
 			}
@@ -207,7 +212,7 @@ func main() {
 				AcceptableMissRatio: 0.1,
 				MaxRetries:          3,
 			}
-			dstDir := path.Join(config.DataDir, "crossref")
+			dstDir := path.Join(config.FeedDir, "crossref")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
@@ -221,7 +226,7 @@ func main() {
 				}
 			}
 		case "datacite":
-			dstDir := path.Join(config.DataDir, "datacite")
+			dstDir := path.Join(config.FeedDir, "datacite")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
@@ -260,7 +265,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			dstDir := path.Join(config.DataDir, "pubmed")
+			dstDir := path.Join(config.FeedDir, "pubmed")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
 			}
@@ -277,7 +282,7 @@ func main() {
 				log.Printf("already synced: %v", dstFile)
 			}
 		case "oai":
-			baseDir := path.Join(config.DataDir, "metha")
+			baseDir := path.Join(config.FeedDir, "metha")
 			cmd := exec.Command("metha-sync",
 				"-base-dir", baseDir,
 				*endpointURL)
