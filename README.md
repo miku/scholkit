@@ -27,6 +27,7 @@ $ make
 
 This builds a couple of executables:
 
+* sk-feed (download raw data, mostly with external tools)
 * sk-convert (data format conversions)
 * sk-cat (stream data from many urls)
 * sk-cdx (ad-hoc cdx api lookup)
