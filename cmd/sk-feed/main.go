@@ -265,7 +265,13 @@ func main() {
 			}
 			dstFile := path.Join(dstDir, filename)
 			if _, err := os.Stat(dstFile); os.IsNotExist(err) {
-				cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
+				// TODO: target does not have curl 7.73.0, only 7.68.0, cf.
+				// https://stackoverflow.com/a/63843412/89391
+				if err := os.MkdirAll(dstDir, 0755); err != nil {
+					log.Fatal(err)
+				}
+				cmd := exec.Command("curl", "-sL", "-O", link)
+				cmd.Dir = dstDir
 				cmd.Stdout = os.Stdout
 				cmd.Stderr = os.Stderr
 				log.Println(cmd)
