@@ -28,11 +28,11 @@ import (
 )
 
 var docs = strings.TrimLeft(`
->> skfeed - fetch data feeds
+# skfeed - fetch data feeds
 
-Uses external tools to fetch raw bibliographic data from the web: rclone,
-metha, dcdump.  NOTE: not all flags may work, e.g. -B backfill is not fully
-implemented yet
+Uses mostly external tools to fetch raw bibliographic data from the web:
+rclone, metha, dcdump.  NOTE: not all flags may work, e.g. -B backfill is not
+fully implemented yet.
 
 ## external tools
 
@@ -64,7 +64,7 @@ oai
 $ sk-feed -s openalex
 $ sk-feed -s crossref
 
-Flags
+## flags
 
 `, "\n")
 
