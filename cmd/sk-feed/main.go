@@ -104,25 +104,26 @@ var (
 	dir         = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
 	fetchSource = flag.String("s", "", "name of the the source to update")
 	listSources = flag.Bool("l", false, "list available source names")
-	endpointURL = flag.String("u", "", "endpoint URL for OAI")
 	showStatus  = flag.Bool("a", false, "show status and path")
 	dateStr     = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
 	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
 	maxRetries  = flag.Int("r", 3, "max retries")
 	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
 	showVersion = flag.Bool("version", false, "show version")
-	// Rclone is used for openalex
+	// rclone is used for openalex
 	rcloneTransfers = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
 	rcloneCheckers  = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
-	// Crossref specific options
+	// crossref specific options
 	crossrefApiEmail              = flag.String("crossref-api-email", "martin.czygan@gmail.com", "crossref api email")
 	crossrefApiFilter             = flag.String("crossref-api-filter", "index", "api filter to use with crossref")
 	crossrefUserAgent             = flag.String("crossref-user-agent", "scholkit/dev", "crossref user agent")
 	crossrefFeedPrefix            = flag.String("crossref-feed-prefix", "crossref-feed-0-", "prefix for filename to distinguish different runs")
 	crossrefSyncStart  xflag.Date = xflag.Date{Time: dateutil.MustParse("2021-01-01")}
 	crossrefSyncEnd    xflag.Date = xflag.Date{Time: yesterday}
-	// Datacite specific options
+	// datacite specific options
 	dataciteSyncStart = flag.String("datacite-sync-start", "2020-01-01", "when to start datacite fetch")
+	// oai specific options
+	endpointURL = flag.String("u", "", "endpoint URL for OAI")
 )
 
 func main() {
@@ -265,13 +266,7 @@ func main() {
 			}
 			dstFile := path.Join(dstDir, filename)
 			if _, err := os.Stat(dstFile); os.IsNotExist(err) {
-				// TODO: target does not have curl 7.73.0, only 7.68.0, cf.
-				// https://stackoverflow.com/a/63843412/89391
-				if err := os.MkdirAll(dstDir, 0755); err != nil {
-					log.Fatal(err)
-				}
-				cmd := exec.Command("curl", "-sL", "-O", link)
-				cmd.Dir = dstDir
+				cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
 				cmd.Stdout = os.Stdout
 				cmd.Stderr = os.Stderr
 				log.Println(cmd)
