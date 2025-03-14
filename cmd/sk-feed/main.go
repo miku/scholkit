@@ -174,7 +174,7 @@ func main() {
 	client.Timeout = *timeout
 	switch {
 	case *showStatus:
-		fmt.Printf("feeds: \n", config.FeedDir)
+		fmt.Printf("feeds: %s\n", config.FeedDir)
 	case *listSources:
 		for _, s := range availableSources {
 			fmt.Println(s)
