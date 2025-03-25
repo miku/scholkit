@@ -230,6 +230,18 @@ func main() {
 				}
 			}
 		case "datacite":
+			// TODO: fix GOAWAY
+			//
+			// Mar 25 08:31:53 sk-feed[3837740]: time="2025-03-25T08:31:53Z" level=info msg="batch done: https://api.datacite.org/dois?affiliation=true&page%5Bcursor%5D=1&page%5Bsize%5D=100&query=updated%3A%5B2022-05-02T18%3A>
+			// Mar 25 08:31:54 sk-feed[3837740]: time="2025-03-25T08:31:54Z" level=info msg="requests=1, pages=1, total=47"
+			// Mar 25 08:31:54 sk-feed[3837740]: time="2025-03-25T08:31:54Z" level=info msg="batch done: https://api.datacite.org/dois?affiliation=true&page%5Bcursor%5D=1&page%5Bsize%5D=100&query=updated%3A%5B2022-05-02T18%3A>
+			// Mar 25 08:31:54 sk-feed[3837740]: time="2025-03-25T08:31:54Z" level=info msg="failed to create file for https://api.datacite.org/dois?affiliation=true&page%5Bcursor%5D=1&page%5Bsize%5D=100&query=updated%3A%5B20>
+			// Mar 25 08:31:54 sk-feed[3837740]: time="2025-03-25T08:31:54Z" level=warning msg="incomplete harvest - maybe rm -f /var/data/schol/feeds/datacite/dcdump-*.ndjson"
+			// Mar 25 08:31:54 sk-feed[3837740]: time="2025-03-25T08:31:54Z" level=fatal msg="http2: server sent GOAWAY and closed the connection; LastStreamID=18849, ErrCode=NO_ERROR, debug=\"\""
+			// Mar 25 08:31:54 sk-feed[3837724]: 2025/03/25 08:31:54 exit status 1
+			// Mar 25 08:31:54 systemd[1]: sk-feed-datacite.service: Main process exited, code=exited, status=1/FAILURE
+			// Mar 25 08:31:54 systemd[1]: sk-feed-datacite.service: Failed with result 'exit-code'.
+			// Mar 25 08:31:54 systemd[1]: Failed to start Harvest metadata from api.datacite.org.
 			dstDir := path.Join(config.FeedDir, "datacite")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
