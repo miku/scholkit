@@ -1,3 +1,6 @@
 package scholkit
 
-var Version = "0.2.3"
+var (
+	AppName = "scholkit"
+	Version = "0.2.3"
+)

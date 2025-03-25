@@ -12,12 +12,10 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/adrg/xdg"
+	"github.com/miku/scholkit"
 )
 
-const (
-	DefaultCacheTTL = 24 * time.Hour
-	AppName         = "scholkit" // TODO: move cache into separate package
-)
+const DefaultCacheTTL = 24 * time.Hour // TODO: move to a cache pkg
 
 // PubMedFile represents metadata for a PubMed update file, cf.
 // https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/.
@@ -37,7 +35,7 @@ type PubMedFetcher struct {
 
 // NewPubMedFetcher creates a new fetcher with default settings
 func NewPubMedFetcher(baseURL string) (*PubMedFetcher, error) {
-	cacheDir, err := xdg.CacheFile(filepath.Join(AppName, "pubmed"))
+	cacheDir, err := xdg.CacheFile(filepath.Join(scholkit.AppName, "pubmed"))
 	if err != nil {
 		return nil, err
 	}

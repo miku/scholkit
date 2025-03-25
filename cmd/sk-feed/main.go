@@ -13,7 +13,6 @@ import (
 	"os"
 	"os/exec"
 	"path"
-	"regexp"
 	"strings"
 	"time"
 
@@ -23,6 +22,7 @@ import (
 	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/atomic"
 	"github.com/miku/scholkit/dateutil"
+	"github.com/miku/scholkit/feeds"
 	"github.com/miku/scholkit/xflag"
 	"github.com/sethgrid/pester"
 )
@@ -246,44 +246,50 @@ func main() {
 				log.Fatal(err)
 			}
 		case "pubmed":
-			// fetch a file from URL
-			// https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/
-			req, err := http.NewRequest("GET", "https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", nil)
-			if err != nil {
-				log.Fatal(err)
-			}
-			resp, err := client.Do(req)
-			if err != nil {
-				log.Fatal(err)
-			}
-			b, err := io.ReadAll(resp.Body)
-			if err != nil {
-				log.Fatal(err)
-			}
-			var pat = fmt.Sprintf(`(?mi)(?P<Filename>pubmed[^"]*gz).*%s`, date.Format("2006-01-02"))
-			var re = regexp.MustCompile(pat)
-			matches := re.FindStringSubmatch(string(b))
-			filenameIndex := re.SubexpIndex("Filename")
-			filename := matches[filenameIndex]
-			link, err := url.JoinPath("https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/", filename)
-			if err != nil {
-				log.Fatal(err)
-			}
-			dstDir := path.Join(config.FeedDir, "pubmed")
-			if err := os.MkdirAll(dstDir, 0755); err != nil {
-				log.Fatal(err)
-			}
-			dstFile := path.Join(dstDir, filename)
-			if _, err := os.Stat(dstFile); os.IsNotExist(err) {
-				cmd := exec.Command("curl", "-sL", "-O", "--output-dir", dstDir, link)
-				cmd.Stdout = os.Stdout
-				cmd.Stderr = os.Stderr
-				log.Println(cmd)
-				if err = cmd.Run(); err != nil {
+			// Define a default filter func or use backfill date.
+			var filterFunc func(f feeds.PubMedFile) bool
+			switch *runBackfill {
+			case "":
+				filterFunc = func(f feeds.PubMedFile) bool {
+					return f.LastModified.Format("2005-01-02") == date.Format("2006-01-02")
+				}
+
+			default:
+				startFrom, err := time.Parse("2006-01-02", *runBackfill)
+				if err != nil {
 					log.Fatal(err)
 				}
-			} else {
-				log.Printf("already synced: %v", dstFile)
+				filterFunc = func(f feeds.PubMedFile) bool {
+					return f.LastModified.After(startFrom)
+				}
+			}
+			if *runBackfill != "" {
+				fetcher, err := feeds.NewPubMedFetcher("https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/")
+				if err != nil {
+					log.Fatal(err)
+				}
+				pmfs, err := fetcher.FetchFiles()
+				if err != nil {
+					log.Fatal(err)
+				}
+				filtered := feeds.FilterPubmedFiles(pmfs, filterFunc)
+				dstDir := path.Join(config.FeedDir, "pubmed")
+				for _, pmf := range filtered {
+					dstFile := path.Join(dstDir, pmf.Filename)
+					if _, err := os.Stat(dstFile); os.IsNotExist(err) {
+						cmd := exec.Command("curl", "-sL", "-O", "--retry", "10",
+							"--max-time", "600", "--output-dir", dstDir, pmf.URL)
+						cmd.Stdout = os.Stdout
+						cmd.Stderr = os.Stderr
+						log.Println(cmd)
+						if err = cmd.Run(); err != nil {
+							log.Fatal(err)
+						}
+					} else {
+						log.Printf("already synced: %v", dstFile)
+					}
+				}
+				os.Exit(0)
 			}
 		case "oai":
 			baseDir := path.Join(config.FeedDir, "metha")
