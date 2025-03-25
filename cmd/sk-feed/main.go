@@ -286,22 +286,27 @@ func main() {
 				}
 				filtered := feeds.FilterPubmedFiles(pmfs, filterFunc)
 				dstDir := path.Join(config.FeedDir, "pubmed")
+				if err := os.MkdirAll(dstDir, 0755); err != nil {
+					log.Fatal(err)
+				}
 				for _, pmf := range filtered {
 					dstFile := path.Join(dstDir, pmf.Filename)
+					wip := dstFile + ".wip"
 					if _, err := os.Stat(dstFile); os.IsNotExist(err) {
-						cmd := exec.Command("curl", "-sL", "-O", "--retry", "10",
-							"--max-time", "600", "--output-dir", dstDir, pmf.URL)
+						cmd := exec.Command("curl", "-sL", "--retry", "10", "--max-time", "600", "-o", wip, pmf.URL)
 						cmd.Stdout = os.Stdout
 						cmd.Stderr = os.Stderr
 						log.Println(cmd)
 						if err = cmd.Run(); err != nil {
 							log.Fatal(err)
 						}
+						if err := os.Rename(wip, dstFile); err != nil {
+							log.Fatal(err)
+						}
 					} else {
 						log.Printf("already synced: %v", dstFile)
 					}
 				}
-				os.Exit(0)
 			}
 		case "oai":
 			baseDir := path.Join(config.FeedDir, "metha")
