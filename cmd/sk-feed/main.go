@@ -125,14 +125,15 @@ var (
 	crossrefSyncStart  xflag.Date = xflag.Date{Time: dateutil.MustParse("2021-01-01")}
 	crossrefSyncEnd    xflag.Date = xflag.Date{Time: yesterday}
 	// datacite specific options
-	dataciteSyncStart = flag.String("datacite-sync-start", "2020-01-01", "when to start datacite fetch")
+	dataciteSyncStart xflag.Date = xflag.Date{Time: dateutil.MustParse("2020-01-01")}
 	// oai specific options
-	endpointURL = flag.String("u", "", "endpoint URL for OAI")
+	endpointURL = flag.String("oai-endpoint", "", "endpoint URL for OAI")
 )
 
 func main() {
 	flag.Var(&crossrefSyncStart, "crossref-sync-start", "start date for crossref harvest")
 	flag.Var(&crossrefSyncEnd, "crossref-sync-end", "end date for crossref harvest")
+	flag.Var(&dataciteSyncStart, "datacite-sync-start", "start date for datacite harvest")
 	flag.Usage = func() {
 		io.WriteString(os.Stderr, docs)
 		flag.PrintDefaults()
@@ -160,7 +161,7 @@ func main() {
 		CrossrefFeedPrefix: *crossrefFeedPrefix,
 		RcloneTransfers:    *rcloneTransfers,
 		RcloneCheckers:     *rcloneCheckers,
-		DataciteSyncStart:  *dataciteSyncStart,
+		DataciteSyncStart:  dataciteSyncStart.Format("2006-01-02"),
 	}
 	// Ensure feeds directory exists
 	if err := os.MkdirAll(config.FeedDir, 0755); err != nil {
