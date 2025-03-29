@@ -8,6 +8,10 @@ import (
 
 // SnapshotOaiScrape compacts all files from oai harvests. This will need to
 // expand all data once, which may take 1TB or more.
+//
+// Data point, expanded 1.4TB uncompressed, collecting and writing all data
+// takes about 16h; parallel reads from gzip files, fast write storage.  No
+// real need to keep all data uncompressed.
 func SnapshotOaiScrape(dir string) {
 	tmpf, err := os.CreateTemp("", "sk-oai-snapshot-*.txt")
 	if err != nil {
