@@ -1,8 +1,9 @@
 // sk-oai-records was used as a first step to go from concatenated metha OAI
-// XML file to more valid XML. The issue was that there was an imbalance of
+// XML file (invalid, hard to parse) to properly separated XML documents (using
+// ASCII record separator). The issue was that there was an imbalance of
 // opening and closing record tags in the raw concatenated data; ultimalely
-// conversions failed after 128M record, while the there were about 477M
-// opening/closing tags in the data.
+// conversions failed after 128M record, while the there were actually about
+// 495M records in the dataset.
 //
 // This script finds a record and writes it out, and adding "RECORD SEPARATOR"
 // (https://en.wikipedia.org/wiki/C0_and_C1_control_codes#Field_separators) in
@@ -23,7 +24,7 @@ import (
 var (
 	start = []byte("<record ")
 	end   = []byte("</record>")
-	sep   = []byte{'\n', 30, '\n'}
+	sep   = []byte{'\n', 30, '\n'} // RECORD SEPARATOR
 )
 
 func main() {

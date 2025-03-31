@@ -106,7 +106,6 @@ func convertRecord(record *Record) *FlatRecord {
 
 func batchWorker(queue chan []byte, resultC chan []byte, wg *sync.WaitGroup) {
 	defer wg.Done()
-
 	for batch := range queue {
 		var i, j int
 		var buf bytes.Buffer
@@ -177,7 +176,6 @@ func main() {
 			queue <- buf
 			break
 		}
-
 		_, err = f.Seek(j, io.SeekStart)
 		if err != nil {
 			log.Fatal(err)
@@ -193,7 +191,6 @@ func main() {
 			j++
 		}
 		L = j - i
-
 		_, err := f.Seek(i, io.SeekStart)
 		if err != nil {
 			log.Fatal(err)

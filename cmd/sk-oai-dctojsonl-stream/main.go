@@ -1,12 +1,11 @@
-// sk-oai-dctojsonl-streaming converts a stream of XML records, where each
-// record is separated by a record separator "1E". This version supports
-// streaming data from stdin or directly from compressed files.
+// sk-oai-dctojsonl converts a stream of XML records, where each record is
+// separated by a record separator "1E". This version supports streaming data
+// from stdin.
 package main
 
 import (
 	"bufio"
 	"bytes"
-	"compress/gzip"
 	"encoding/xml"
 	"flag"
 	"fmt"
@@ -14,15 +13,12 @@ import (
 	"log"
 	"os"
 	"runtime"
-	"strings"
 	"sync"
 
 	"github.com/segmentio/encoding/json"
 )
 
 var (
-	input      = flag.String("i", "-", "input file (use - for stdin, supports .gz files)")
-	output     = flag.String("o", "-", "output file (use - for stdout, will compress if ends with .gz)")
 	bufferSize = flag.Int("b", 8*1024*1024, "buffer size for reading chunks")
 	numWorkers = flag.Int("w", runtime.NumCPU(), "number of worker goroutines")
 	printStats = flag.Bool("stats", false, "print processing statistics")
@@ -198,86 +194,6 @@ func worker(jobs <-chan []byte, results chan<- []byte, wg *sync.WaitGroup, stats
 	}
 }
 
-func createReader(filename string) (io.ReadCloser, error) {
-	if filename == "-" {
-		return os.Stdin, nil
-	}
-
-	file, err := os.Open(filename)
-	if err != nil {
-		return nil, fmt.Errorf("error opening file: %w", err)
-	}
-
-	// If file has .gz extension, use gzip reader
-	if strings.HasSuffix(filename, ".gz") {
-		gzReader, err := gzip.NewReader(file)
-		if err != nil {
-			file.Close()
-			return nil, fmt.Errorf("error creating gzip reader: %w", err)
-		}
-		return &readCloserPair{gzReader, file}, nil
-	}
-
-	return file, nil
-}
-
-func createWriter(filename string) (io.WriteCloser, error) {
-	if filename == "-" {
-		return os.Stdout, nil
-	}
-
-	file, err := os.Create(filename)
-	if err != nil {
-		return nil, fmt.Errorf("error creating file: %w", err)
-	}
-
-	// If file has .gz extension, use gzip writer
-	if strings.HasSuffix(filename, ".gz") {
-		gzWriter := gzip.NewWriter(file)
-		return &writeCloserPair{gzWriter, file}, nil
-	}
-
-	return file, nil
-}
-
-// Helper struct to handle closing both the gzip reader and the underlying file
-type readCloserPair struct {
-	reader io.ReadCloser
-	file   io.Closer
-}
-
-func (rc *readCloserPair) Read(p []byte) (n int, err error) {
-	return rc.reader.Read(p)
-}
-
-func (rc *readCloserPair) Close() error {
-	err1 := rc.reader.Close()
-	err2 := rc.file.Close()
-	if err1 != nil {
-		return err1
-	}
-	return err2
-}
-
-// Helper struct to handle closing both the gzip writer and the underlying file
-type writeCloserPair struct {
-	writer io.WriteCloser
-	file   io.Closer
-}
-
-func (wc *writeCloserPair) Write(p []byte) (n int, err error) {
-	return wc.writer.Write(p)
-}
-
-func (wc *writeCloserPair) Close() error {
-	err1 := wc.writer.Close()
-	err2 := wc.file.Close()
-	if err1 != nil {
-		return err1
-	}
-	return err2
-}
-
 // readChunks reads from the reader and ensures chunks end with a record separator
 func readChunks(r io.Reader, chunkSize int, jobs chan<- []byte, stats *Stats) error {
 	buffer := make([]byte, chunkSize)
@@ -286,7 +202,7 @@ func readChunks(r io.Reader, chunkSize int, jobs chan<- []byte, stats *Stats) er
 	for {
 		n, err := r.Read(buffer)
 		if err != nil && err != io.EOF {
-			return fmt.Errorf("error reading from input: %w", err)
+			return fmt.Errorf("error reading from stdin: %w", err)
 		}
 
 		if n == 0 {
@@ -341,20 +257,6 @@ func main() {
 	flag.Parse()
 	stats := &Stats{}
 
-	// Create reader
-	reader, err := createReader(*input)
-	if err != nil {
-		log.Fatalf("Error creating reader: %v", err)
-	}
-	defer reader.Close()
-
-	// Create writer
-	writer, err := createWriter(*output)
-	if err != nil {
-		log.Fatalf("Error creating writer: %v", err)
-	}
-	defer writer.Close()
-
 	// Create channels for the pipeline
 	jobs := make(chan []byte, *numWorkers)
 	results := make(chan []byte, *numWorkers)
@@ -369,21 +271,24 @@ func main() {
 
 	// Start the writer goroutine
 	go func() {
-		bufWriter := bufio.NewWriter(writer)
+		bufWriter := bufio.NewWriter(os.Stdout)
 		defer bufWriter.Flush()
 
 		for result := range results {
 			_, err := bufWriter.Write(result)
 			if err != nil {
-				log.Printf("Error writing result: %v", err)
+				log.Printf("Error writing to stdout: %v", err)
 			}
 		}
 		close(done)
 	}()
 
 	// Start reading chunks
-	log.Printf("Starting processing with %d workers and %d byte buffer", *numWorkers, *bufferSize)
-	err = readChunks(reader, *bufferSize, jobs, stats)
+	if *printStats {
+		log.Printf("Starting processing with %d workers and %d byte buffer", *numWorkers, *bufferSize)
+	}
+
+	err := readChunks(os.Stdin, *bufferSize, jobs, stats)
 	if err != nil {
 		log.Fatalf("Error reading chunks: %v", err)
 	}
