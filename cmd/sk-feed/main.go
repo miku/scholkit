@@ -20,7 +20,7 @@ import (
 	"github.com/jinzhu/now"
 	"github.com/klauspost/compress/zstd"
 	"github.com/miku/scholkit"
-	"github.com/miku/scholkit/atomic"
+	"github.com/miku/scholkit/atomicfile"
 	"github.com/miku/scholkit/dateutil"
 	"github.com/miku/scholkit/feeds"
 	"github.com/miku/scholkit/xflag"
@@ -378,7 +378,7 @@ func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string
 		end.Format("2006-01-02"))
 	cachePath := path.Join(dir, fn)
 	if _, err := os.Stat(cachePath); os.IsNotExist(err) {
-		f, err := atomic.New(cachePath, 0644)
+		f, err := atomicfile.New(cachePath)
 		if err != nil {
 			return err
 		}
