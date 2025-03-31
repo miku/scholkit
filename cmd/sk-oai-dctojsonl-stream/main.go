@@ -248,12 +248,9 @@ func main() {
 		}
 		done <- struct{}{}
 	}()
-	if *printStats {
-		log.Printf("Starting processing with %d workers and %d byte buffer", *numWorkers, *bufferSize)
-	}
 	err := readChunks(os.Stdin, *bufferSize, jobs, stats)
 	if err != nil {
-		log.Fatalf("Error reading chunks: %v", err)
+		log.Fatalf("error reading chunks: %v", err)
 	}
 	close(jobs)
 	wg.Wait()
