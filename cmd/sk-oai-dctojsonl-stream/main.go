@@ -77,16 +77,14 @@ type FlatRecord struct {
 	Rights       []string `json:"rights"`
 }
 
-const (
-	recordSep = 0x1E // ASCII record separator
-)
+const recordSep = 0x1E // ASCII record separator
 
-// Statistics for reporting
+// Stats for reporting
 type Stats struct {
+	mu             sync.Mutex
 	BytesRead      int64
 	RecordsRead    int64
 	RecordsWritten int64
-	mu             sync.Mutex
 }
 
 func (s *Stats) IncrementBytesRead(n int64) {
@@ -130,64 +128,52 @@ func convertRecord(record *Record) *FlatRecord {
 	return flat
 }
 
-// Split the data into XML records, separated by the record separator
+// splitIntoRecords the data into XML records, separated by the record separator
 func splitIntoRecords(data []byte) [][]byte {
 	var records [][]byte
 	var start int
-
 	for i, b := range data {
 		if b == recordSep {
-			// Only add non-empty records
 			if i > start {
 				records = append(records, data[start:i])
 			}
 			start = i + 1
 		}
 	}
-
-	// Add the last record if it's not empty and doesn't end with a separator
 	if start < len(data) {
 		records = append(records, data[start:])
 	}
-
 	return records
 }
 
 func processRecords(records [][]byte, stats *Stats) ([]byte, error) {
 	var buf bytes.Buffer
 	enc := json.NewEncoder(&buf)
-
 	for _, record := range records {
 		stats.IncrementRecordsRead()
-
 		var r Record
 		err := xml.Unmarshal(record, &r)
 		if err != nil {
-			// Skip malformed records but log the error
-			log.Printf("Error unmarshaling record: %v", err)
+			log.Printf("error unmarshaling record: %v", err)
 			continue
 		}
-
 		flat := convertRecord(&r)
 		err = enc.Encode(flat)
 		if err != nil {
 			return nil, fmt.Errorf("error encoding record: %w", err)
 		}
-
 		stats.IncrementRecordsWritten()
 	}
-
 	return buf.Bytes(), nil
 }
 
 func worker(jobs <-chan []byte, results chan<- []byte, wg *sync.WaitGroup, stats *Stats) {
 	defer wg.Done()
-
 	for data := range jobs {
 		records := splitIntoRecords(data)
 		result, err := processRecords(records, stats)
 		if err != nil {
-			log.Printf("Error processing records: %v", err)
+			log.Printf("error processing records: %v", err)
 			continue
 		}
 		results <- result
@@ -198,25 +184,19 @@ func worker(jobs <-chan []byte, results chan<- []byte, wg *sync.WaitGroup, stats
 func readChunks(r io.Reader, chunkSize int, jobs chan<- []byte, stats *Stats) error {
 	buffer := make([]byte, chunkSize)
 	carryover := make([]byte, 0)
-
 	for {
 		n, err := r.Read(buffer)
 		if err != nil && err != io.EOF {
 			return fmt.Errorf("error reading from stdin: %w", err)
 		}
-
 		if n == 0 {
-			// End of file - send any remaining carryover
 			if len(carryover) > 0 {
 				jobs <- carryover
 				stats.IncrementBytesRead(int64(len(carryover)))
 			}
 			break
 		}
-
 		stats.IncrementBytesRead(int64(n))
-
-		// Find the last record separator in this chunk
 		lastSepIdx := -1
 		for i := n - 1; i >= 0; i-- {
 			if buffer[i] == recordSep {
@@ -224,89 +204,63 @@ func readChunks(r io.Reader, chunkSize int, jobs chan<- []byte, stats *Stats) er
 				break
 			}
 		}
-
 		if lastSepIdx == -1 {
-			// No separator found, carry over the entire chunk
 			carryover = append(carryover, buffer[:n]...)
 			continue
 		}
-
-		// Send the chunk ending with the last separator
 		chunk := make([]byte, len(carryover)+lastSepIdx+1)
 		copy(chunk, carryover)
 		copy(chunk[len(carryover):], buffer[:lastSepIdx+1])
 		jobs <- chunk
-
-		// Save the remainder for the next iteration
 		carryover = make([]byte, n-(lastSepIdx+1))
 		copy(carryover, buffer[lastSepIdx+1:n])
-
 		if err == io.EOF {
-			// End of file - send any remaining carryover
 			if len(carryover) > 0 {
 				jobs <- carryover
 			}
 			break
 		}
 	}
-
 	return nil
 }
 
 func main() {
 	flag.Parse()
-	stats := &Stats{}
-
-	// Create channels for the pipeline
-	jobs := make(chan []byte, *numWorkers)
-	results := make(chan []byte, *numWorkers)
-	done := make(chan struct{})
-
-	// Start the workers
+	var (
+		stats   = &Stats{}
+		jobs    = make(chan []byte, *numWorkers)
+		results = make(chan []byte, *numWorkers)
+		done    = make(chan struct{})
+	)
 	var wg sync.WaitGroup
 	for i := 0; i < *numWorkers; i++ {
 		wg.Add(1)
 		go worker(jobs, results, &wg, stats)
 	}
-
-	// Start the writer goroutine
 	go func() {
 		bufWriter := bufio.NewWriter(os.Stdout)
 		defer bufWriter.Flush()
-
 		for result := range results {
 			_, err := bufWriter.Write(result)
 			if err != nil {
-				log.Printf("Error writing to stdout: %v", err)
+				log.Printf("error writing to stdout: %v", err)
 			}
 		}
-		close(done)
+		done <- struct{}{}
 	}()
-
-	// Start reading chunks
 	if *printStats {
 		log.Printf("Starting processing with %d workers and %d byte buffer", *numWorkers, *bufferSize)
 	}
-
 	err := readChunks(os.Stdin, *bufferSize, jobs, stats)
 	if err != nil {
 		log.Fatalf("Error reading chunks: %v", err)
 	}
-
-	// Close the jobs channel to signal workers we're done
 	close(jobs)
-
-	// Wait for all workers to finish
 	wg.Wait()
-
-	// Close the results channel to signal the writer goroutine
 	close(results)
-
-	// Wait for the writer to finish
 	<-done
-
 	if *printStats {
-		log.Printf("Processing complete - Read: %d bytes, Records read: %d, Records written: %d",
+		log.Printf("read: %d bytes, records read: %d, records written: %d",
 			stats.BytesRead, stats.RecordsRead, stats.RecordsWritten)
 	}
 }
