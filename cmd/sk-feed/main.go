@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"path"
@@ -71,11 +70,11 @@ var (
 		"datacite",
 		"pubmed",
 		"oai",
+		// TODO: add dblp, doaj, wikicite (maybe), JALC
 	}
 	yesterday = time.Now().Add(-86400 * time.Second)
 	oneDay    = 86400 * time.Second
 	oneHour   = 3600 * time.Second
-	bNewline  = []byte("\n")
 )
 
 // Config for feeds, TODO(martin): move to config file and environment variables.
@@ -316,9 +315,4 @@ func main() {
 			}
 		}
 	}
-}
-
-// Doer abstracts https://pkg.go.dev/net/http#Client.Do.
-type Doer interface {
-	Do(*http.Request) (*http.Response, error)
 }
