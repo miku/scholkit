@@ -265,7 +265,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			log.Println("found %d pubmed baseline files", len(pmfs))
+			log.Printf("found %d pubmed baseline files", len(pmfs))
 			dstDir := path.Join(config.FeedDir, "pubmed")
 			if err := os.MkdirAll(dstDir, 0755); err != nil {
 				log.Fatal(err)
@@ -297,7 +297,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			log.Println("found %d pubmed update files", len(pmfs))
+			log.Printf("found %d pubmed update files", len(pmfs))
 			for _, pmf := range pmfs {
 				dstFile := path.Join(dstDir, pmf.Filename)
 				wip := dstFile + ".wip"
