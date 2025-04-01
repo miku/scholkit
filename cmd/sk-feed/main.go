@@ -255,53 +255,63 @@ func main() {
 				log.Fatal(err)
 			}
 		case "pubmed":
-			// Define a default filter func or use backfill date.
-			var filterFunc func(f feeds.PubMedFile) bool
-			switch *runBackfill {
-			case "":
-				filterFunc = func(f feeds.PubMedFile) bool {
-					return f.LastModified.Format("2006-01-02") == date.Format("2006-01-02")
-				}
-			default:
-				startFrom, err := time.Parse("2006-01-02", *runBackfill)
-				if err != nil {
-					log.Fatal(err)
-				}
-				filterFunc = func(f feeds.PubMedFile) bool {
-					return f.LastModified.After(startFrom)
+			// Download baseline files.
+			log.Println("syncing pubmed baseline...")
+			fetcher, err := feeds.NewPubMedFetcher("https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/")
+			if err != nil {
+				log.Fatal(err)
+			}
+			pmfs, err := fetcher.FetchFiles()
+			if err != nil {
+				log.Fatal(err)
+			}
+			dstDir := path.Join(config.FeedDir, "pubmed")
+			if err := os.MkdirAll(dstDir, 0755); err != nil {
+				log.Fatal(err)
+			}
+			for _, pmf := range pmfs {
+				dstFile := path.Join(dstDir, pmf.Filename)
+				wip := dstFile + ".wip"
+				if _, err := os.Stat(dstFile); os.IsNotExist(err) {
+					cmd := exec.Command("curl", "-sL", "--retry", "10", "--max-time", "1800", "-o", wip, pmf.URL)
+					cmd.Stdout = os.Stdout
+					cmd.Stderr = os.Stderr
+					log.Println(cmd)
+					if err = cmd.Run(); err != nil {
+						log.Fatal(err)
+					}
+					if err := os.Rename(wip, dstFile); err != nil {
+						log.Fatal(err)
+					}
+				} else {
+					log.Printf("already synced: %v", dstFile)
 				}
 			}
-			if *runBackfill != "" {
-				fetcher, err := feeds.NewPubMedFetcher("https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/")
-				if err != nil {
-					log.Fatal(err)
-				}
-				pmfs, err := fetcher.FetchFiles()
-				if err != nil {
-					log.Fatal(err)
-				}
-				filtered := feeds.FilterPubmedFiles(pmfs, filterFunc)
-				dstDir := path.Join(config.FeedDir, "pubmed")
-				if err := os.MkdirAll(dstDir, 0755); err != nil {
-					log.Fatal(err)
-				}
-				for _, pmf := range filtered {
-					dstFile := path.Join(dstDir, pmf.Filename)
-					wip := dstFile + ".wip"
-					if _, err := os.Stat(dstFile); os.IsNotExist(err) {
-						cmd := exec.Command("curl", "-sL", "--retry", "10", "--max-time", "600", "-o", wip, pmf.URL)
-						cmd.Stdout = os.Stdout
-						cmd.Stderr = os.Stderr
-						log.Println(cmd)
-						if err = cmd.Run(); err != nil {
-							log.Fatal(err)
-						}
-						if err := os.Rename(wip, dstFile); err != nil {
-							log.Fatal(err)
-						}
-					} else {
-						log.Printf("already synced: %v", dstFile)
+			log.Println("syncing pubmed updates...")
+			fetcher, err = feeds.NewPubMedFetcher("https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/")
+			if err != nil {
+				log.Fatal(err)
+			}
+			pmfs, err = fetcher.FetchFiles()
+			if err != nil {
+				log.Fatal(err)
+			}
+			for _, pmf := range pmfs {
+				dstFile := path.Join(dstDir, pmf.Filename)
+				wip := dstFile + ".wip"
+				if _, err := os.Stat(dstFile); os.IsNotExist(err) {
+					cmd := exec.Command("curl", "-sL", "--retry", "10", "--max-time", "600", "-o", wip, pmf.URL)
+					cmd.Stdout = os.Stdout
+					cmd.Stderr = os.Stderr
+					log.Println(cmd)
+					if err = cmd.Run(); err != nil {
+						log.Fatal(err)
 					}
+					if err := os.Rename(wip, dstFile); err != nil {
+						log.Fatal(err)
+					}
+				} else {
+					log.Printf("already synced: %v", dstFile)
 				}
 			}
 		case "oai":
