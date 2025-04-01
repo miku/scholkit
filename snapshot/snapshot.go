@@ -12,7 +12,7 @@ import (
 // Data point, expanded 1.4TB uncompressed, collecting and writing all data
 // takes about 16h; parallel reads from gzip files, fast write storage.  No
 // real need to keep all data uncompressed.
-func SnapshotOaiScrape(dir string) {
+func SnapshotOaiScrape(dir string) (string, error) {
 	tmpf, err := os.CreateTemp("", "sk-oai-snapshot-*.txt")
 	if err != nil {
 		return "", err
@@ -21,7 +21,7 @@ func SnapshotOaiScrape(dir string) {
 	c := fmt.Sprintf(`
 		find %s -type f -name '*.gz' |
 		parallel -j 32 'unpigz -c' |
-		sk-oai-records > %s`, dir, tmpFile.Name())
+		sk-oai-records > %s`, dir, tmpf.Name())
 	cmd := exec.Command("bash", "-c", c)
 	if output, err := cmd.CombinedOutput(); err != nil {
 		return "", fmt.Errorf("command failed: %s: %w", string(output), err)

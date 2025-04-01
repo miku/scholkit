@@ -9,6 +9,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/miku/scholkit"
 )
 
 // mockHTML is a simple representation of the PubMed files HTML listing
@@ -55,7 +57,7 @@ func TestNewPubMedFetcher(t *testing.T) {
 	if _, err := os.Stat(fetcher.CacheDir); os.IsNotExist(err) {
 		t.Errorf("cache dir not created: %v", err)
 	}
-	if !strings.Contains(fetcher.CacheDir, AppName) {
+	if !strings.Contains(fetcher.CacheDir, scholkit.AppName) {
 		t.Errorf("cache dir does not contain app name, got %s", fetcher.CacheDir)
 	}
 }

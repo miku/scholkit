@@ -5,6 +5,8 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"os/exec"
+	"path"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -97,6 +99,30 @@ func (pf *PubMedFetcher) fetchIndex() ([]byte, error) {
 // parseLastModified parses date strings like "2025-01-10 14:05" into time.Time
 func parseLastModified(dateStr string) (time.Time, error) {
 	return time.Parse("2006-01-02 15:04", dateStr)
+}
+
+// DownloadBaseline fetches and combined the complete baseline data. Requires curl, grep, awk, zstd.
+func (pf *PubMedFetcher) DownloadBaseline() error {
+	dst := path.Join(pf.CacheDir, "baseline.xml.zst")
+	if _, err := os.Stat(dst); err == nil {
+		// TODO: perform some additional checks, like filesize zero, etc.
+		return nil
+	}
+	wip := dst + ".wip"
+	cmd := exec.Command("bash", "-c", `
+   		curl -sL "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/" |
+        grep -o 'href="pubmed.*[.]xml[.]gz"' |
+        sed 's/href="//g' |
+        sed 's/"//g' |
+        awk '{print "https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/"$0}' |
+        xargs -P 4 -n 1 curl -s |
+        zstd -c -l 3 > `+wip)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+	return os.Rename(wip, dst)
 }
 
 // FetchFiles retrieves and parses the PubMed update files.
