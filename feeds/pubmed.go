@@ -1,9 +1,11 @@
 package feeds
 
 import (
+	"crypto/sha256"
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -52,7 +54,12 @@ func NewPubMedFetcher(baseURL string) (*PubMedFetcher, error) {
 // getCachedIndex returns the cached content if it exists and is not expired
 func (pf *PubMedFetcher) getCachedIndex() ([]byte, error) {
 	// TODO: take into account the base url
-	cacheFile := filepath.Join(pf.CacheDir, "pubmed_index.html")
+	u, err := url.JoinPath(pf.BaseURL, "pubmed_index.html")
+	if err != nil {
+		return nil, err
+	}
+	key := getCacheKey(u)
+	cacheFile := filepath.Join(pf.CacheDir, key)
 	info, err := os.Stat(cacheFile)
 	if os.IsNotExist(err) {
 		return nil, nil
@@ -149,4 +156,14 @@ func FilterPubmedFiles(files []PubMedFile, f func(PubMedFile) bool) (result []Pu
 		}
 	}
 	return
+}
+
+// getCacheKey returns a filesystem safe string for an arbitrary string. Panics, if we cannot update the hash.
+func getCacheKey(s string) string {
+	h := sha256.New()
+	_, err := io.WriteString(h, s)
+	if err != nil {
+		panic(err)
+	}
+	return fmt.Sprintf("%x", h.Sum(nil))
 }
