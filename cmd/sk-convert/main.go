@@ -24,6 +24,7 @@ import (
 	"github.com/miku/scholkit/schema/datacite"
 	"github.com/miku/scholkit/schema/dblp"
 	"github.com/miku/scholkit/schema/doaj"
+	"github.com/miku/scholkit/schema/fatcat"
 	"github.com/miku/scholkit/schema/oaiscrape"
 	"github.com/miku/scholkit/schema/openalex"
 	"github.com/miku/scholkit/schema/pubmed"
@@ -302,7 +303,10 @@ func main() {
 			if err := json.Unmarshal(p, &work); err != nil {
 				return nil, err
 			}
-			release, _ := convert.OpenAlexWorkToFatcatRelease(&work)
+			var release fatcat.Release
+			if err := convert.OpenAlexWorkToFatcatRelease(&work, &release); err != nil {
+				return nil, err
+			}
 			b, err := json.Marshal(release)
 			b = append(b, '\n')
 			return b, err

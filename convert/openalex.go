@@ -9,12 +9,17 @@ import (
 	"github.com/miku/scholkit/schema/openalex"
 )
 
-var ErrMissingOpenAlexIdentifier = errors.New("missing openalex identifier")
+var (
+	ErrMissingOpenAlexIdentifier = errors.New("missing openalex identifier")
+	ErrEmptyDoc                  = errors.New("empty doc")
+)
 
-func OpenAlexWorkToFatcatRelease(work *openalex.Work) (*fatcat.Release, error) {
-	var release fatcat.Release
+func OpenAlexWorkToFatcatRelease(work *openalex.Work, release *fatcat.Release) error {
+	if work == nil || release == nil {
+		return ErrEmptyDoc
+	}
 	if work.IDs.Openalex == "" {
-		return nil, ErrMissingOpenAlexIdentifier
+		return ErrMissingOpenAlexIdentifier
 	}
 	release.ID = fmt.Sprintf("openalex-%s", hashString(work.IDs.Openalex))
 	release.Source = "openalex"
@@ -49,5 +54,5 @@ func OpenAlexWorkToFatcatRelease(work *openalex.Work) (*fatcat.Release, error) {
 	release.Extra.OpenAlex.OpenAccess.OaStatus = work.OpenAccess.OaStatus
 	release.Extra.OpenAlex.OpenAccess.OaUrl = work.OpenAccess.OaUrl
 	release.Extra.OpenAlex.PdfUrls = work.PdfUrls()
-	return &release, nil
+	return nil
 }
