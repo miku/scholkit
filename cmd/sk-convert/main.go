@@ -67,7 +67,7 @@ Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 
 Examples:
 
-    $ zstdcat pubmed.xml.zst | bibconv -f pubmed
+    $ zstdcat pubmed.xml.zst | sk-convert -f pubmed
 
 Usage:
 
