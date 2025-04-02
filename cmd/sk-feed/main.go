@@ -15,6 +15,7 @@ import (
 
 	"github.com/adrg/xdg"
 	"github.com/miku/scholkit"
+	"github.com/miku/scholkit/config"
 	"github.com/miku/scholkit/dateutil"
 	"github.com/miku/scholkit/exdep"
 	"github.com/miku/scholkit/feeds"
@@ -78,29 +79,6 @@ var (
 	oneHour   = 3600 * time.Second
 )
 
-// Config for feeds, TODO(martin): move to config file and environment variables.
-type Config struct {
-	// DataDir is the generic data dir for all scholkit tools.
-	DataDir string
-	// FeedDir is the directory specifically for raw data feeds only. Can be
-	// anything, but recommended to be a subdirectory of the DataDir.
-	FeedDir string
-	// Source is the name of the source.
-	Source string
-	// EndpointURL for OAI-PMH (not used currently)
-	EndpointURL        string
-	Date               time.Time
-	MaxRetries         int
-	Timeout            time.Duration
-	CrossrefApiEmail   string
-	CrossrefUserAgent  string
-	CrossrefFeedPrefix string
-	CrossrefApiFilter  string
-	RcloneTransfers    int
-	RcloneCheckers     int
-	DataciteSyncStart  string
-}
-
 var (
 	dir         = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
 	fetchSource = flag.String("s", "", "name of the the source to update")
@@ -152,7 +130,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("invalid date: %v", err)
 	}
-	config := &Config{
+	config := &config.Config{
 		DataDir:            *dir,
 		FeedDir:            path.Join(*dir, "feeds"),
 		Source:             *fetchSource,
