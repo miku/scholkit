@@ -27,9 +27,10 @@ var (
 )
 
 var (
-	dir    = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
-	source = flag.String("s", "", "name of the the source to snapshot")
-	output = flag.String("o", "", "output file, if empty, a sensible output file path will be derived from source and date")
+	dir        = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
+	source     = flag.String("s", "", "name of the the source to snapshot")
+	output     = flag.String("o", "", "output file, if empty, a sensible output file path will be derived from source and date")
+	numWorkers = flag.Int("w", runtime.NumCPU(), "number of workers")
 )
 
 func main() {
@@ -43,14 +44,17 @@ func main() {
 	if err := os.MkdirAll(config.SnapshotDir, 0755); err != nil {
 		log.Fatal(err)
 	}
+	if *output == "" {
+		fn := fmt.Sprintf("snapshot-%s-%s.jsonl.zst", *source, time.Now().Format("2006-01-02"))
+		*output = path.Join(config.SnapshotDir, fn)
+	}
 	switch *source {
 	case "crossref":
+		// this is a bit more involved
 	case "openalex":
 		worksDir := path.Join(config.FeedDir, "openalex/data/works/")
 		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel --block 10M --line-buffer -j %d -I {} unpigz -c {} | pv -l | zstd -c -T0 > %s`,
-			worksDir,
-			runtime.NumCPU(),
-			path.Join(config.SnapshotDir, fmt.Sprintf("openalex-works-%s.ndj.zst", time.Now().Format("2006-01-02"))))
+			worksDir, *numWorkers, *output)
 		cmd := exec.Command("bash", "-c", script)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -58,13 +62,11 @@ func main() {
 			log.Fatal(err)
 		}
 	case "datacite":
+		// concat, sort -u
 	case "oai":
 		dir := path.Join(config.FeedDir, "metha")
-		outputFile := path.Join(config.SnapshotDir, fmt.Sprintf("oai-records-%s.jsonl", time.Now().Format("2006-01-02")))
 		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel -j %d "unpigz -c" | sk-oai-records | sk-oai-dctojsonl-stream > %s`,
-			dir,
-			runtime.NumCPU(),
-			outputFile)
+			dir, *numWorkers, *output)
 		cmd := exec.Command("bash", "-c", script)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -72,6 +74,7 @@ func main() {
 			log.Fatal(err)
 		}
 	case "pubmed":
+		// maybe convert first, then snapshot
 	default:
 		log.Fatal("source not implemented")
 	}
