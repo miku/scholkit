@@ -51,6 +51,57 @@ func NewPubMedFetcher(baseURL string) (*PubMedFetcher, error) {
 	}, nil
 }
 
+// FetchFiles retrieves and parses the PubMed update files.
+func (pf *PubMedFetcher) FetchFiles() ([]PubMedFile, error) {
+	b, err := pf.fetchIndex()
+	if err != nil {
+		return nil, err
+	}
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(string(b)))
+	if err != nil {
+		return nil, err
+	}
+	var files []PubMedFile
+	xmlPattern := regexp.MustCompile(`^pubmed\d+n\d+\.xml\.gz$`)
+	doc.Find("pre a").Each(func(i int, s *goquery.Selection) {
+		href, _ := s.Attr("href")
+		if xmlPattern.MatchString(href) {
+			var (
+				parentText = s.Parent().Text()
+				parts      = strings.Fields(parentText)
+			)
+			for j, part := range parts {
+				if part == href && j+3 < len(parts) {
+					dateStr := parts[j+1] + " " + parts[j+2]
+					size := parts[j+3]
+					lastModified, err := parseLastModified(dateStr)
+					if err != nil {
+						continue
+					}
+					files = append(files, PubMedFile{
+						Filename:     href,
+						URL:          pf.BaseURL + href,
+						LastModified: lastModified,
+						Size:         size,
+					})
+					break
+				}
+			}
+		}
+	})
+	return files, nil
+}
+
+// FilterPubmedFiles returns a list of file filtered by a given filter function.
+func FilterPubmedFiles(files []PubMedFile, f func(PubMedFile) bool) (result []PubMedFile) {
+	for _, fi := range files {
+		if f(fi) {
+			result = append(result, fi)
+		}
+	}
+	return
+}
+
 // getCachedIndex returns the cached content if it exists and is not expired
 func (pf *PubMedFetcher) getCachedIndex() ([]byte, error) {
 	u, err := url.JoinPath(pf.BaseURL, "pubmed_index.html")
@@ -104,57 +155,6 @@ func (pf *PubMedFetcher) fetchIndex() ([]byte, error) {
 // parseLastModified parses date strings like "2025-01-10 14:05" into time.Time
 func parseLastModified(dateStr string) (time.Time, error) {
 	return time.Parse("2006-01-02 15:04", dateStr)
-}
-
-// FetchFiles retrieves and parses the PubMed update files.
-func (pf *PubMedFetcher) FetchFiles() ([]PubMedFile, error) {
-	b, err := pf.fetchIndex()
-	if err != nil {
-		return nil, err
-	}
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(string(b)))
-	if err != nil {
-		return nil, err
-	}
-	var files []PubMedFile
-	xmlPattern := regexp.MustCompile(`^pubmed\d+n\d+\.xml\.gz$`)
-	doc.Find("pre a").Each(func(i int, s *goquery.Selection) {
-		href, _ := s.Attr("href")
-		if xmlPattern.MatchString(href) {
-			var (
-				parentText = s.Parent().Text()
-				parts      = strings.Fields(parentText)
-			)
-			for j, part := range parts {
-				if part == href && j+3 < len(parts) {
-					dateStr := parts[j+1] + " " + parts[j+2]
-					size := parts[j+3]
-					lastModified, err := parseLastModified(dateStr)
-					if err != nil {
-						continue
-					}
-					files = append(files, PubMedFile{
-						Filename:     href,
-						URL:          pf.BaseURL + href,
-						LastModified: lastModified,
-						Size:         size,
-					})
-					break
-				}
-			}
-		}
-	})
-	return files, nil
-}
-
-// FilterPubmedFiles returns a list of file filtered by a given filter function.
-func FilterPubmedFiles(files []PubMedFile, f func(PubMedFile) bool) (result []PubMedFile) {
-	for _, fi := range files {
-		if f(fi) {
-			result = append(result, fi)
-		}
-	}
-	return
 }
 
 // getCacheKey returns a filesystem safe string for an arbitrary string. Panics, if we cannot update the hash.
