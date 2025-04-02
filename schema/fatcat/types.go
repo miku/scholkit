@@ -63,8 +63,8 @@ type Release struct {
 	ExtIDs      ExtID      `json:"ext_ids,omitempty"`
 	Extra       struct {
 		Arxiv struct {
-			Subjects []string `json:"subjects"`
-		} `json:"arxiv"`
+			Subjects []string `json:"subjects,omitempty"`
+		} `json:"arxiv,omitempty"`
 		DBLP struct {
 			EE []struct {
 				Type string `json:"type,omitempty"`
