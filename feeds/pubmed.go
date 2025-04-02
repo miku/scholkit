@@ -53,7 +53,6 @@ func NewPubMedFetcher(baseURL string) (*PubMedFetcher, error) {
 
 // getCachedIndex returns the cached content if it exists and is not expired
 func (pf *PubMedFetcher) getCachedIndex() ([]byte, error) {
-	// TODO: take into account the base url
 	u, err := url.JoinPath(pf.BaseURL, "pubmed_index.html")
 	if err != nil {
 		return nil, err
