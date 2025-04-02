@@ -12,7 +12,8 @@ TARGETS := sk-cat \
 		   sk-norm \
 		   sk-oai-records \
 		   sk-oai-dctojsonl \
-		   sk-oai-dctojsonl-stream
+		   sk-oai-dctojsonl-stream \
+	       sk-snapshot
 
 .PHONY: all
 all: $(TARGETS)
