@@ -71,7 +71,7 @@ var (
 		"datacite",
 		"pubmed",
 		"oai",
-		// TODO: add dblp, doaj, wikicite (maybe), JALC
+		// TODO: add dblp, doaj, wikicite (maybe), JALC, ...
 	}
 	yesterday = time.Now().Add(-86400 * time.Second)
 	oneDay    = 86400 * time.Second
@@ -106,6 +106,8 @@ var (
 	fetchSource = flag.String("s", "", "name of the the source to update")
 	listSources = flag.Bool("l", false, "list available source names")
 	showStatus  = flag.Bool("a", false, "show status and path")
+	// dateStr is deprecated, we should make it so we can always request
+	// everything and skip things we have cached, already
 	dateStr     = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
 	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
 	maxRetries  = flag.Int("r", 3, "max retries")
