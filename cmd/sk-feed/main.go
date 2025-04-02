@@ -16,23 +16,18 @@ import (
 	"github.com/adrg/xdg"
 	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/dateutil"
+	"github.com/miku/scholkit/exdep"
 	"github.com/miku/scholkit/feeds"
 	"github.com/miku/scholkit/xflag"
 	"github.com/sethgrid/pester"
 )
 
 var docs = strings.TrimLeft(`
-# skfeed - fetch data feeds
+# sk-feed - fetch data feeds
 
 Uses mostly external tools to fetch raw bibliographic data from the web:
 rclone, metha, dcdump.  NOTE: not all flags may work, e.g. -B backfill is not
 fully implemented yet.
-
-## external tools
-
-$ sudo apt install rclone
-$ go install -v github.com/miku/metha/cmd/...@latest
-$ go install -v github.com/miku/dcdump/cmd/...@latest
 
 ## openalex
 
@@ -47,11 +42,6 @@ https://docs.openalex.org/download-all-data/download-to-your-machine
 ## list feeds
 
 $ sk-feed -l
-openalex
-crossref
-datacite
-pubmed
-oai
 
 ## fetch feed
 
@@ -61,6 +51,17 @@ $ sk-feed -s crossref
 ## flags
 
 `, "\n")
+
+// deps are external dependencies, which should be made available during deployment.
+var deps = []exdep.Dep{
+	{
+		Name: "metha-sync",
+		Docs: `OAI-PMH cli harvester; download from https://github.com/miku/metha/releases/ or use go install github.com/miku/metha/cmd/...@latest`,
+	}, {
+		Name: "dcdump",
+		Docs: `Datacite API harvester; download from https://github.com/miku/dcdump/releases/ or run go install github.com/miku/dcdump/cmd/...@latest`,
+	},
+}
 
 var (
 	defaultDataDir   = path.Join(xdg.DataHome, "schol")
@@ -135,6 +136,12 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
+	if err := exdep.Check(deps); err != nil {
+		for _, e := range err {
+			log.Println(e)
+		}
+		os.Exit(1)
+	}
 	if *showVersion {
 		fmt.Println(scholkit.Version)
 		os.Exit(0)
