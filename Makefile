@@ -7,6 +7,7 @@ TARGETS := sk-cat \
 		   sk-cdx \
 		   sk-cluster \
 		   sk-convert \
+		   sk-crossref-snapshot \
 		   sk-feed \
 		   sk-id \
 		   sk-norm \

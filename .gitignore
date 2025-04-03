@@ -28,6 +28,7 @@ go.work
 /sk-cdx
 /sk-cluster
 /sk-convert
+/sk-crossref-*
 /sk-feed
 /sk-id
 /sk-norm

@@ -55,6 +55,7 @@ func main() {
 		worksDir := path.Join(config.FeedDir, "openalex/data/works/")
 		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel --block 10M --line-buffer -j %d -I {} unpigz -c {} | pv -l | zstd -c -T0 > %s`,
 			worksDir, *numWorkers, *output)
+		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
@@ -62,11 +63,21 @@ func main() {
 			log.Fatal(err)
 		}
 	case "datacite":
-		// concat, sort -u
+		worksDir := path.Join(config.FeedDir, "datacite/")
+		script := fmt.Sprintf(`fd . %s -x cat | parallel --block 10M --lb --pipe -j %d 'jq -rc .data[]' | zstd -c -T0 > %s`,
+			worksDir, *numWorkers, *output)
+		log.Println(script)
+		cmd := exec.Command("bash", "-c", script)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		if err := cmd.Run(); err != nil {
+			log.Fatal(err)
+		}
 	case "oai":
 		dir := path.Join(config.FeedDir, "metha")
 		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel -j %d "unpigz -c" | sk-oai-records | sk-oai-dctojsonl-stream > %s`,
 			dir, *numWorkers, *output)
+		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
