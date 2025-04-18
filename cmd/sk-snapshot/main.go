@@ -51,6 +51,7 @@ func main() {
 	switch *source {
 	case "crossref":
 		// this is a bit more involved
+
 	case "openalex":
 		worksDir := path.Join(config.FeedDir, "openalex/data/works/")
 		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel --block 10M --line-buffer -j %d -I {} unpigz -c {} | pv -l | zstd -c -T0 > %s`,

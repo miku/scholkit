@@ -237,9 +237,11 @@ func readIndexFile(indexFilePath string) (map[string]IndexEntry, error) {
 		return nil, fmt.Errorf("error opening index file: %v", err)
 	}
 	defer indexFile.Close()
-	decoder := json.NewDecoder(indexFile)
-	latestMap := make(map[string]IndexEntry)
-	recordsRead := 0
+	var (
+		decoder     = json.NewDecoder(indexFile)
+		latestMap   = make(map[string]IndexEntry)
+		recordsRead = 0
+	)
 	for {
 		var entry IndexEntry
 		if err := decoder.Decode(&entry); err != nil {
@@ -350,6 +352,7 @@ func extractLatestRecords(indexFilePath string, inputFiles []string, outputFileP
 		err := processFile(filename, func(line string, record Record, lineNum int64) error {
 			doi, wanted := lineMap[lineNum]
 			if wanted && doi == record.DOI {
+				// Write the raw line directly to preserve original JSON format without re-encoding
 				if _, err := bufWriter.WriteString(line + "\n"); err != nil {
 					return fmt.Errorf("error writing to output file: %v", err)
 				}
