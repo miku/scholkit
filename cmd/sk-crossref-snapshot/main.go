@@ -19,13 +19,12 @@ import (
 )
 
 var (
-	outputFile     = flag.String("o", "latest_records.json", "Output file path")
-	indexFile      = flag.String("i", "temp_index.dat", "Temporary index file path")
-	batchSize      = flag.Int("n", 100000, "Number of records to process in memory before writing to index")
-	workers        = flag.Int("w", runtime.NumCPU(), "Number of worker goroutines for parallel processing")
-	keepIndex      = flag.Bool("k", false, "Keep the index file after processing")
-	verbose        = flag.Bool("v", false, "Verbose output")
-	compressOutput = flag.Bool("C", false, "Compress the output file with gzip")
+	outputFile = flag.String("o", "latest_records.json", "output file path, use .gz or .zst to enable compression")
+	indexFile  = flag.String("i", "temp_index.dat", "temporary index file path")
+	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
+	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
+	keepIndex  = flag.Bool("k", false, "keep the index file after processing")
+	verbose    = flag.Bool("v", false, "verbose output")
 )
 
 // Record represents the JSON structure we're interested in
@@ -55,9 +54,6 @@ func main() {
 		os.Exit(1)
 	}
 	finalOutputFile := *outputFile
-	if *compressOutput && !strings.HasSuffix(*outputFile, ".zst") {
-		finalOutputFile = *outputFile + ".zst"
-	}
 	buildIndex(inputFiles, *indexFile, *batchSize)
 	extractLatestRecords(*indexFile, inputFiles, finalOutputFile)
 	if !*keepIndex {
@@ -289,28 +285,26 @@ func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error creating output file: %v", err)
 	}
-
-	// Check if we should compress the output
-	if strings.HasSuffix(outputFilePath, ".zst") {
-		zstdWriter, err := zstd.NewWriter(outFile)
+	switch {
+	case strings.HasSuffix(outputFilePath, ".zst"):
+		zw, err := zstd.NewWriter(outFile)
 		if err != nil {
-			outFile.Close()
+			_ = outFile.Close()
 			return nil, fmt.Errorf("error creating zstd writer: %v", err)
 		}
 		return &compositeWriteCloser{
-			writer:       zstdWriter,
+			writer:       zw,
 			outFile:      outFile,
 			isCompressed: true,
 		}, nil
-	} else if strings.HasSuffix(outputFilePath, ".gz") {
-		gzipWriter := gzip.NewWriter(outFile)
+	case strings.HasSuffix(outputFilePath, ".gz"):
+		gzw := gzip.NewWriter(outFile)
 		return &compositeWriteCloser{
-			writer:       gzipWriter,
+			writer:       gzw,
 			outFile:      outFile,
 			isCompressed: true,
 		}, nil
 	}
-
 	return outFile, nil
 }
 
