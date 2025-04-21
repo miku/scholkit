@@ -7,10 +7,12 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path"
 	"runtime"
 	"sort"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/klauspost/compress/zstd"
 	gzip "github.com/klauspost/pgzip"
@@ -20,11 +22,13 @@ import (
 
 var (
 	outputFile = flag.String("o", "crossref_latest.json.zst", "output file path, use .gz or .zst to enable compression")
-	indexFile  = flag.String("i", "temp_index.dat", "temporary index file path")
+	indexFile  = flag.String("i", defaultIndexFile, "temporary index file path")
 	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
 	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
 	keepIndex  = flag.Bool("k", false, "keep the index file after processing")
 	verbose    = flag.Bool("v", false, "verbose output")
+
+	defaultIndexFile = path.Join(os.TempDir(), fmt.Sprintf("sk-crossref-snapshot-index-%v.dat", time.Now().Format("2006-01-02")))
 )
 
 // Record represents the JSON structure we're interested in
@@ -35,12 +39,12 @@ type Record struct {
 	} `json:"indexed"`
 }
 
-// IndexEntry stores information about where to find a record
+// IndexEntry uses shorter field names to reduce JSON size
 type IndexEntry struct {
-	DOI        string
-	Timestamp  int64
-	Filename   string
-	LineNumber int64
+	DOI        string `json:"d"` // DOI
+	Timestamp  int64  `json:"t"` // Timestamp
+	Filename   string `json:"f"` // Filename
+	LineNumber int64  `json:"l"` // LineNumber
 }
 
 func main() {
@@ -213,9 +217,14 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 	}
 }
 
-// writeIndexEntries writes a batch of index entries to the index file
+// writeIndexEntries writes index entries with compressed JSON.
 func writeIndexEntries(indexFile *os.File, entries []IndexEntry) error {
-	encoder := json.NewEncoder(indexFile)
+	zw, err := zstd.NewWriter(indexFile)
+	if err != nil {
+		return fmt.Errorf("error creating zstd writer: %v", err)
+	}
+	defer zw.Close()
+	encoder := json.NewEncoder(zw)
 	for _, entry := range entries {
 		if err := encoder.Encode(entry); err != nil {
 			return err
@@ -224,15 +233,20 @@ func writeIndexEntries(indexFile *os.File, entries []IndexEntry) error {
 	return nil
 }
 
-// readIndexFile reads the index file and returns a map with the latest version of each DOI
+// readIndexFile reads a compressed, compact JSON index file.
 func readIndexFile(indexFilePath string) (map[string]IndexEntry, error) {
 	indexFile, err := os.Open(indexFilePath)
 	if err != nil {
 		return nil, fmt.Errorf("error opening index file: %v", err)
 	}
 	defer indexFile.Close()
+	zr, err := zstd.NewReader(indexFile)
+	if err != nil {
+		return nil, fmt.Errorf("error creating zstd reader: %v", err)
+	}
+	defer zr.Close()
 	var (
-		decoder     = json.NewDecoder(indexFile)
+		decoder     = json.NewDecoder(zr)
 		latestMap   = make(map[string]IndexEntry)
 		recordsRead = 0
 	)
@@ -248,6 +262,7 @@ func readIndexFile(indexFilePath string) (map[string]IndexEntry, error) {
 		if *verbose && recordsRead%1000000 == 0 {
 			log.Printf("read %d index entries so far\n", recordsRead)
 		}
+		// Keep only the latest version of each DOI
 		existing, ok := latestMap[entry.DOI]
 		if !ok || entry.Timestamp > existing.Timestamp {
 			latestMap[entry.DOI] = entry
