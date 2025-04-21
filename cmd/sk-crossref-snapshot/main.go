@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	outputFile = flag.String("o", "latest_records.json", "output file path, use .gz or .zst to enable compression")
+	outputFile = flag.String("o", "crossref_latest.json.zst", "output file path, use .gz or .zst to enable compression")
 	indexFile  = flag.String("i", "temp_index.dat", "temporary index file path")
 	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
 	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
@@ -161,7 +161,6 @@ func buildIndex(inputFiles []string, indexFilePath string, batchSize int) {
 				doiMap = make(map[string]IndexEntry, batchSize)
 				entriesProcessed = 0
 			}
-
 			return nil
 		})
 		if err != nil {
