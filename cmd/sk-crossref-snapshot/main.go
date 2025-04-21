@@ -47,9 +47,8 @@ func main() {
 	flag.Parse()
 	inputFiles := flag.Args()
 	if len(inputFiles) == 0 {
-		fmt.Fprintf(os.Stderr, "Error: No input files provided\n")
-		fmt.Fprintf(os.Stderr, "Usage: sk-crossref-snapshot [options] file1.zst file2.zst ...\n")
-		fmt.Fprintf(os.Stderr, "Options:\n")
+		fmt.Fprintf(os.Stderr, "error: no input files provided\n")
+		fmt.Fprintf(os.Stderr, "usage: sk-crossref-snapshot [options] file1.zst file2.zst ...\n\n")
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -57,9 +56,9 @@ func main() {
 	buildIndex(inputFiles, *indexFile, *batchSize)
 	extractLatestRecords(*indexFile, inputFiles, finalOutputFile)
 	if !*keepIndex {
-		os.Remove(*indexFile)
+		_ = os.Remove(*indexFile)
 	} else {
-		fmt.Printf("index file kept at: %s\n", *indexFile)
+		fmt.Fprintf(os.Stderr, "index file kept at: %s\n", *indexFile)
 	}
 }
 
@@ -367,7 +366,7 @@ func extractLatestRecords(indexFilePath string, inputFiles []string, outputFileP
 		}
 	}
 	if err := bufWriter.Flush(); err != nil {
-		log.Fatalf("Error flushing output buffer: %v", err)
+		log.Fatalf("error flushing output buffer: %v", err)
 	}
 	log.Printf("extraction complete. Wrote %d records to %s\n", extractedCount, outputFilePath)
 }
