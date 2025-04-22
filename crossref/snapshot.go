@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path"
 	"runtime"
@@ -16,7 +17,13 @@ import (
 	"github.com/klauspost/compress/zstd"
 	gzip "github.com/klauspost/pgzip"
 	"github.com/segmentio/encoding/json"
-	log "github.com/sirupsen/logrus"
+)
+
+var (
+	DefaultIndexFile = path.Join(os.TempDir(),
+		fmt.Sprintf("crossref-snapshot-index-%v.dat", time.Now().Format("2006-01-02")))
+	DefaultOutputFile = path.Join(os.TempDir(),
+		fmt.Sprintf("crossref-snapshot-%s.json.zst", time.Now().Format("2006-01-02")))
 )
 
 // Record represents the JSON structure we're interested in
@@ -48,11 +55,9 @@ type SnapshotOptions struct {
 
 // DefaultSnapshotOptions returns a SnapshotOptions with sensible defaults
 func DefaultSnapshotOptions() SnapshotOptions {
-	defaultIndexFile := path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-index-%v.dat", time.Now().Format("2006-01-02")))
-
 	return SnapshotOptions{
-		OutputFile: "crossref_latest.json.zst",
-		IndexFile:  defaultIndexFile,
+		OutputFile: DefaultOutputFile,
+		IndexFile:  DefaultIndexFile,
 		BatchSize:  100000,
 		Workers:    runtime.NumCPU(),
 		KeepIndex:  false,
@@ -80,7 +85,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	if !opts.KeepIndex {
 		_ = os.Remove(opts.IndexFile)
 	} else if opts.Verbose {
-		log.Printf("Index file kept at: %s", opts.IndexFile)
+		log.Printf("index file kept at: %s", opts.IndexFile)
 	}
 	return nil
 }
@@ -154,20 +159,18 @@ func buildIndex(inputFiles []string, indexFilePath string, batchSize, numWorkers
 		return fmt.Errorf("error creating index file: %v", err)
 	}
 	defer indexFile.Close()
-
 	var indexMutex sync.Mutex
-
 	if verbose {
 		log.Printf("building index with %d workers...", numWorkers)
 	}
-
 	err = processFilesParallel(inputFiles, numWorkers, func(inputPath string) error {
 		if verbose {
 			log.Printf("processing file: %s", inputPath)
 		}
-
-		doiMap := make(map[string]IndexEntry, batchSize)
-		entriesProcessed := 0
+		var (
+			doiMap           = make(map[string]IndexEntry, batchSize)
+			entriesProcessed = 0
+		)
 		err := processFile(inputPath, func(line string, record Record, lineNum int64) error {
 			existing, ok := doiMap[record.DOI]
 			if !ok || record.Indexed.Timestamp > existing.Timestamp {
@@ -301,7 +304,7 @@ func readIndexFile(indexFilePath string, verbose bool) (map[string]IndexEntry, e
 			return nil, fmt.Errorf("error decoding index entry: %v", err)
 		}
 		recordsRead++
-		if verbose && recordsRead%1000000 == 0 {
+		if verbose && recordsRead%1_000_000 == 0 {
 			log.Printf("read %d index entries so far", recordsRead)
 		}
 		// Keep only the latest version of each DOI
@@ -314,7 +317,6 @@ func readIndexFile(indexFilePath string, verbose bool) (map[string]IndexEntry, e
 	if verbose {
 		log.Printf("index consolidation complete. Found %d unique DOIs.", len(latestMap))
 	}
-
 	return latestMap, nil
 }
 

@@ -6,18 +6,14 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path"
 	"runtime"
-	"time"
 
 	"github.com/miku/scholkit/crossref"
 )
 
-var defaultIndexFile = path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-index-%v.dat", time.Now().Format("2006-01-02")))
-
 var (
-	outputFile = flag.String("o", "crossref_latest.json.zst", "output file path, use .gz or .zst to enable compression")
-	indexFile  = flag.String("i", defaultIndexFile, "temporary index file path")
+	outputFile = flag.String("o", crossref.DefaultOutputFile, "output file path, use .gz or .zst to enable compression")
+	indexFile  = flag.String("i", crossref.DefaultIndexFile, "temporary index file path")
 	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
 	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
 	keepIndex  = flag.Bool("k", false, "keep the index file after processing")
