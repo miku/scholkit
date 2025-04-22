@@ -72,14 +72,14 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	}
 	if opts.Verbose {
 		log.Printf("processing %d files with %d workers", len(opts.InputFiles), opts.Workers)
-		log.Printf("output file: %s", opts.OutputFile)
+		log.Printf("iutput file: %s", opts.OutputFile)
 		log.Printf("index file: %s", opts.IndexFile)
 		log.Printf("batch size: %d records", opts.BatchSize)
 	}
 	if err := buildIndex(opts.InputFiles, opts.IndexFile, opts.BatchSize, opts.Workers, opts.Verbose); err != nil {
 		return fmt.Errorf("error building index: %w", err)
 	}
-	if err := extractLatestRecords(opts.IndexFile, opts.InputFiles, opts.OutputFile, opts.Verbose); err != nil {
+	if err := extractLatestRecords(opts.IndexFile, opts.OutputFile, opts.Verbose); err != nil {
 		return fmt.Errorf("error extracting latest records: %w", err)
 	}
 	if !opts.KeepIndex {
@@ -371,7 +371,7 @@ func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
 }
 
 // extractLatestRecords reads the index file and extracts the latest version of each record
-func extractLatestRecords(indexFilePath string, inputFiles []string, outputFilePath string, verbose bool) error {
+func extractLatestRecords(indexFilePath string, outputFilePath string, verbose bool) error {
 	if verbose {
 		log.Println("extracting latest records...")
 	}
@@ -386,6 +386,7 @@ func extractLatestRecords(indexFilePath string, inputFiles []string, outputFileP
 	defer outWriter.Close()
 	bufWriter := bufio.NewWriter(outWriter)
 	defer bufWriter.Flush()
+	// Group entries by filename for efficient processing
 	fileEntries := make(map[string][]IndexEntry)
 	for _, entry := range latestMap {
 		fileEntries[entry.Filename] = append(fileEntries[entry.Filename], entry)
@@ -411,7 +412,6 @@ func extractLatestRecords(indexFilePath string, inputFiles []string, outputFileP
 		err := processFile(filename, func(line string, record Record, lineNum int64) error {
 			doi, wanted := lineMap[lineNum]
 			if wanted && doi == record.DOI {
-				// Write the raw line directly to preserve original JSON format without re-encoding
 				if _, err := bufWriter.WriteString(line + "\n"); err != nil {
 					return fmt.Errorf("error writing to output file: %v", err)
 				}
@@ -435,7 +435,7 @@ func extractLatestRecords(indexFilePath string, inputFiles []string, outputFileP
 		return fmt.Errorf("error flushing output buffer: %v", err)
 	}
 	if verbose {
-		log.Printf("extraction complete. Wrote %d records to %s", extractedCount, outputFilePath)
+		log.Printf("extraction complete, wrote %d records to %s", extractedCount, outputFilePath)
 	}
 	return nil
 }

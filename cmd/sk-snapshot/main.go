@@ -129,11 +129,10 @@ func createCrossrefSnapshot(config *config.Config, outputFile string) error {
 	if *verbose {
 		log.Printf("found %d crossref files", len(inputFiles))
 	}
-	indexFile := path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-index-%s.dat", time.Now().Format("2006-01-02")))
 	opts := crossref.SnapshotOptions{
 		InputFiles: inputFiles,
 		OutputFile: outputFile,
-		IndexFile:  indexFile,
+		IndexFile:  crossref.DefaultIndexFile,
 		BatchSize:  *batchSize,
 		Workers:    *numWorkers,
 		KeepIndex:  *keepIndex,
