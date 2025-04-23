@@ -21,7 +21,7 @@ import (
 
 var (
 	DefaultIndexFile = path.Join(os.TempDir(),
-		fmt.Sprintf("crossref-snapshot-index-%v.dat", time.Now().Format("2006-01-02")))
+		fmt.Sprintf("crossref-snapshot-index-%v.idx", time.Now().Format("2006-01-02")))
 	DefaultOutputFile = path.Join(os.TempDir(),
 		fmt.Sprintf("crossref-snapshot-%s.json.zst", time.Now().Format("2006-01-02")))
 )
@@ -72,7 +72,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	}
 	if opts.Verbose {
 		log.Printf("processing %d files with %d workers", len(opts.InputFiles), opts.Workers)
-		log.Printf("iutput file: %s", opts.OutputFile)
+		log.Printf("output file: %s", opts.OutputFile)
 		log.Printf("index file: %s", opts.IndexFile)
 		log.Printf("batch size: %d records", opts.BatchSize)
 	}
@@ -118,7 +118,7 @@ func openFile(filename string) (io.ReadCloser, error) {
 }
 
 // processFile reads a file line by line, parsing JSON and calling the provided function
-func processFile(filename string, fn func(string, Record, int64) error) error {
+func processFile(filename string, fn func(line string, record Record, lineNum int64) error) error {
 	r, err := openFile(filename)
 	if err != nil {
 		return fmt.Errorf("error opening file %s: %v", filename, err)
@@ -410,8 +410,8 @@ func extractLatestRecords(indexFilePath string, outputFilePath string, verbose b
 		}
 		fileExtracted := 0
 		err := processFile(filename, func(line string, record Record, lineNum int64) error {
-			doi, wanted := lineMap[lineNum]
-			if wanted && doi == record.DOI {
+			doi, ok := lineMap[lineNum]
+			if ok && doi == record.DOI {
 				if _, err := bufWriter.WriteString(line + "\n"); err != nil {
 					return fmt.Errorf("error writing to output file: %v", err)
 				}
