@@ -476,6 +476,7 @@ func processChunk(chunk map[string]IndexEntry, writer *bufio.Writer, verbose boo
 			doi, shouldExtract := lineMap[lineNum]
 			if shouldExtract {
 				var record Record
+				// XXX: maybe we do not need this expensive extra step.
 				if err := json.Unmarshal([]byte(line), &record); err != nil {
 					log.Printf("warning: invalid JSON at %s:%d, skipping", filename, lineNum)
 				} else if record.DOI == doi {
