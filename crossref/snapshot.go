@@ -382,18 +382,21 @@ func extractLatestRecordsChunked(sortedIndexPath, outputFilePath string, chunkSi
 	// Process the index file one line at a time
 	for scanner.Scan() {
 		var (
-			line  = scanner.Text()
-			parts = strings.Split(line, "\t")
+			line      = scanner.Text()
+			parts     = strings.Split(line, "\t")
+			timestamp int64
+			lineNum   int64
+			err       error
 		)
 		if len(parts) != 4 {
 			return fmt.Errorf("invalid index line format: %s", line)
 		}
 		doi := parts[0]
-		if timestamp, err := strconv.ParseInt(parts[1], 10, 64); err != nil {
+		if timestamp, err = strconv.ParseInt(parts[1], 10, 64); err != nil {
 			return err
 		}
 		filename := parts[2]
-		if lineNum, err := strconv.ParseInt(parts[3], 10, 64); err != nil {
+		if lineNum, err = strconv.ParseInt(parts[3], 10, 64); err != nil {
 			return err
 		}
 		entry := IndexEntry{
