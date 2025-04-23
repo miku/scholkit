@@ -7,9 +7,10 @@ import (
 	"io"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 	"runtime"
-	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -26,7 +27,7 @@ var (
 		fmt.Sprintf("crossref-snapshot-%s.json.zst", time.Now().Format("2006-01-02")))
 )
 
-// Record represents the JSON structure we're interested in
+// Record represents the JSON structure of a crossref record we are interested in.
 type Record struct {
 	DOI     string `json:"DOI"`
 	Indexed struct {
@@ -34,7 +35,7 @@ type Record struct {
 	} `json:"indexed"`
 }
 
-// IndexEntry uses shorter field names to reduce JSON size
+// IndexEntry is an entry in the index.
 type IndexEntry struct {
 	DOI        string `json:"d"` // DOI
 	Timestamp  int64  `json:"t"` // Timestamp
@@ -42,7 +43,7 @@ type IndexEntry struct {
 	LineNumber int64  `json:"l"` // LineNumber
 }
 
-// SnapshotOptions contains configuration for the snapshot process
+// SnapshotOptions contains configuration for the snapshot process.
 type SnapshotOptions struct {
 	InputFiles []string
 	OutputFile string
@@ -58,7 +59,7 @@ func DefaultSnapshotOptions() SnapshotOptions {
 	return SnapshotOptions{
 		OutputFile: DefaultOutputFile,
 		IndexFile:  DefaultIndexFile,
-		BatchSize:  100000,
+		BatchSize:  100_000,
 		Workers:    runtime.NumCPU(),
 		KeepIndex:  false,
 		Verbose:    false,
@@ -262,62 +263,32 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 	return nil
 }
 
-// writeIndexEntries writes index entries with compressed JSON.
+// writeIndexEntries writes out an index extra as TSV.
 func writeIndexEntries(indexFile *os.File, entries []IndexEntry) error {
-	zw, err := zstd.NewWriter(indexFile)
-	if err != nil {
-		return fmt.Errorf("error creating zstd writer: %v", err)
-	}
-	defer zw.Close()
-	encoder := json.NewEncoder(zw)
+	writer := bufio.NewWriter(indexFile)
 	for _, entry := range entries {
-		if err := encoder.Encode(entry); err != nil {
+		line := fmt.Sprintf("%s\t%d\t%s\t%d\n", entry.DOI, entry.Timestamp, entry.Filename, entry.LineNumber)
+		if _, err := writer.WriteString(line); err != nil {
 			return err
 		}
 	}
-	return nil
+	return writer.Flush()
 }
 
-// readIndexFile reads a compressed, compact JSON index file.
-func readIndexFile(indexFilePath string, verbose bool) (map[string]IndexEntry, error) {
-	indexFile, err := os.Open(indexFilePath)
-	if err != nil {
-		return nil, fmt.Errorf("error opening index file: %v", err)
+// sortIndexFile sorts the index file using external sort program.
+func sortIndexFile(indexFilePath string, verbose bool) (string, error) {
+	sortedIndexPath := indexFilePath + ".sorted"
+	if verbose {
+		log.Printf("sorting index file with external sort: %s -> %s", indexFilePath, sortedIndexPath)
 	}
-	defer indexFile.Close()
-	zr, err := zstd.NewReader(indexFile)
-	if err != nil {
-		return nil, fmt.Errorf("error creating zstd reader: %v", err)
-	}
-	defer zr.Close()
-	var (
-		decoder     = json.NewDecoder(zr)
-		latestMap   = make(map[string]IndexEntry)
-		recordsRead = 0
-	)
-	for {
-		var entry IndexEntry
-		if err := decoder.Decode(&entry); err != nil {
-			if err == io.EOF {
-				break
-			}
-			return nil, fmt.Errorf("error decoding index entry: %v", err)
-		}
-		recordsRead++
-		if verbose && recordsRead%1_000_000 == 0 {
-			log.Printf("read %d index entries so far", recordsRead)
-		}
-		// Keep only the latest version of each DOI
-		existing, ok := latestMap[entry.DOI]
-		if !ok || entry.Timestamp > existing.Timestamp {
-			latestMap[entry.DOI] = entry
-		}
+	cmd := exec.Command("sort", "-k1,1", "-S70%", "-o", sortedIndexPath, indexFilePath)
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, "LC_ALL=C")
+	if err := cmd.Run(); err != nil {
+		return "", fmt.Errorf("failed to sort index file: %v", err)
 	}
 
-	if verbose {
-		log.Printf("index consolidation complete. Found %d unique DOIs.", len(latestMap))
-	}
-	return latestMap, nil
+	return sortedIndexPath, nil
 }
 
 // compositeWriteCloser ensures both the compression writer and file are closed properly
@@ -370,15 +341,30 @@ func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
 	return outFile, nil
 }
 
-// extractLatestRecords reads the index file and extracts the latest version of each record
+// extractLatestRecords extracts data via chunked approach.
 func extractLatestRecords(indexFilePath string, outputFilePath string, verbose bool) error {
-	if verbose {
-		log.Println("extracting latest records...")
-	}
-	latestMap, err := readIndexFile(indexFilePath, verbose)
+	// Sort the index file
+	sortedIndexPath, err := sortIndexFile(indexFilePath, verbose)
 	if err != nil {
-		return fmt.Errorf("failed to read index: %v", err)
+		return err
 	}
+	defer os.Remove(sortedIndexPath)
+	chunkSize := 1_000_000 // adjust based on memory constraints
+	return extractLatestRecordsChunked(sortedIndexPath, outputFilePath, chunkSize, verbose)
+}
+
+// New function to process the sorted index in chunks
+func extractLatestRecordsChunked(sortedIndexPath, outputFilePath string, chunkSize int, verbose bool) error {
+	if verbose {
+		log.Printf("processing sorted index in chunks of %d records", chunkSize)
+	}
+	// Open sorted index file
+	indexFile, err := os.Open(sortedIndexPath)
+	if err != nil {
+		return fmt.Errorf("error opening sorted index: %v", err)
+	}
+	defer indexFile.Close()
+	// Create output file
 	outWriter, err := createOutputWriter(outputFilePath)
 	if err != nil {
 		return fmt.Errorf("failed to create output file: %v", err)
@@ -386,49 +372,70 @@ func extractLatestRecords(indexFilePath string, outputFilePath string, verbose b
 	defer outWriter.Close()
 	bufWriter := bufio.NewWriter(outWriter)
 	defer bufWriter.Flush()
-	// Group entries by filename for efficient processing
-	fileEntries := make(map[string][]IndexEntry)
-	for _, entry := range latestMap {
-		fileEntries[entry.Filename] = append(fileEntries[entry.Filename], entry)
-	}
+	scanner := bufio.NewScanner(indexFile)
 	var (
-		extractedCount = 0
-		numFiles       = len(fileEntries)
-		processedFiles = 0
+		currentChunk    = make(map[string]IndexEntry)
+		lastDOI         string
+		extractedCount  = 0
+		processedChunks = 0
 	)
-	for filename, entries := range fileEntries {
-		processedFiles++
-		if verbose {
-			log.Printf("[%d/%d] extracting from file: %s", processedFiles, numFiles, filename)
+	// Process the index file one line at a time
+	for scanner.Scan() {
+		var (
+			line  = scanner.Text()
+			parts = strings.Split(line, "\t")
+		)
+		if len(parts) != 4 {
+			return fmt.Errorf("invalid index line format: %s", line)
 		}
-		sort.Slice(entries, func(i, j int) bool {
-			return entries[i].LineNumber < entries[j].LineNumber
-		})
-		lineMap := make(map[int64]string)
-		for _, entry := range entries {
-			lineMap[entry.LineNumber] = entry.DOI
+		doi := parts[0]
+		if timestamp, err := strconv.ParseInt(parts[1], 10, 64); err != nil {
+			return err
 		}
-		fileExtracted := 0
-		err := processFile(filename, func(line string, record Record, lineNum int64) error {
-			doi, ok := lineMap[lineNum]
-			if ok && doi == record.DOI {
-				if _, err := bufWriter.WriteString(line + "\n"); err != nil {
-					return fmt.Errorf("error writing to output file: %v", err)
+		filename := parts[2]
+		if lineNum, err := strconv.ParseInt(parts[3], 10, 64); err != nil {
+			return err
+		}
+		entry := IndexEntry{
+			DOI:        doi,
+			Timestamp:  timestamp,
+			Filename:   filename,
+			LineNumber: lineNum,
+		}
+
+		// If we've moved to a new DOI and current DOI is different from last DOI we processed
+		if lastDOI != "" && doi != lastDOI {
+			// Process the current chunk if it's full or we've encountered a new DOI
+			if len(currentChunk) >= chunkSize {
+				if err := processChunk(currentChunk, bufWriter, verbose); err != nil {
+					return err
 				}
-				extractedCount++
-				fileExtracted++
-				if verbose && fileExtracted > 0 && fileExtracted%100000 == 0 {
-					log.Printf("extracted %d records from current file so far", fileExtracted)
-					bufWriter.Flush() // Flush periodically to free buffer memory
+				extractedCount += len(currentChunk)
+				processedChunks++
+				if verbose {
+					log.Printf("processed chunk %d with %d records, total: %d",
+						processedChunks, len(currentChunk), extractedCount)
 				}
+				currentChunk = make(map[string]IndexEntry)
 			}
-			return nil
-		})
-		if err != nil {
-			return fmt.Errorf("error extracting from file %s: %v", filename, err)
 		}
+		lastDOI = doi
+		// For each DOI, keep only the entry with the latest timestamp
+		existingEntry, ok := currentChunk[doi]
+		if !ok || entry.Timestamp > existingEntry.Timestamp {
+			currentChunk[doi] = entry
+		}
+	}
+	// Process the last chunk
+	if len(currentChunk) > 0 {
+		if err := processChunk(currentChunk, bufWriter, verbose); err != nil {
+			return err
+		}
+		extractedCount += len(currentChunk)
+		processedChunks++
 		if verbose {
-			log.Printf("extracted %d records from this file", fileExtracted)
+			log.Printf("processed final chunk %d with %d records, total: %d",
+				processedChunks, len(currentChunk), extractedCount)
 		}
 	}
 	if err := bufWriter.Flush(); err != nil {
@@ -436,6 +443,50 @@ func extractLatestRecords(indexFilePath string, outputFilePath string, verbose b
 	}
 	if verbose {
 		log.Printf("extraction complete, wrote %d records to %s", extractedCount, outputFilePath)
+	}
+	return nil
+}
+
+// processChunk works on a chunk of index entries.
+func processChunk(chunk map[string]IndexEntry, writer *bufio.Writer, verbose bool) error {
+	fileEntries := make(map[string][]IndexEntry)
+	for _, entry := range chunk {
+		fileEntries[entry.Filename] = append(fileEntries[entry.Filename], entry)
+	}
+	for filename, entries := range fileEntries {
+		if verbose {
+			log.Printf("extracting %d records from %s", len(entries), filename)
+		}
+		lineMap := make(map[int64]string)
+		for _, entry := range entries {
+			lineMap[entry.LineNumber] = entry.DOI
+		}
+		r, err := openFile(filename)
+		if err != nil {
+			return fmt.Errorf("error opening file %s: %v", filename, err)
+		}
+		scanner := bufio.NewScanner(r)
+		var lineNum int64 = 0
+		for scanner.Scan() {
+			line := scanner.Text()
+			doi, shouldExtract := lineMap[lineNum]
+			if shouldExtract {
+				var record Record
+				if err := json.Unmarshal([]byte(line), &record); err != nil {
+					log.Printf("warning: invalid JSON at %s:%d, skipping", filename, lineNum)
+				} else if record.DOI == doi {
+					if _, err := writer.WriteString(line + "\n"); err != nil {
+						r.Close()
+						return fmt.Errorf("error writing to output: %v", err)
+					}
+				}
+			}
+			lineNum++
+		}
+		r.Close()
+		if err := scanner.Err(); err != nil {
+			return fmt.Errorf("error reading file %s: %v", filename, err)
+		}
 	}
 	return nil
 }
