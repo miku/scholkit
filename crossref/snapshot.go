@@ -194,12 +194,11 @@ func buildIndex(inputFiles []string, indexFilePath string, batchSize, numWorkers
 				if err != nil {
 					return fmt.Errorf("error writing to index file: %v", err)
 				}
-				doiMap = make(map[string]IndexEntry, batchSize)
-				entriesProcessed = 0
-
 				if verbose {
 					log.Printf("processed %d records from %s", entriesProcessed, inputPath)
 				}
+				doiMap = make(map[string]IndexEntry, batchSize)
+				entriesProcessed = 0
 			}
 			return nil
 		})
