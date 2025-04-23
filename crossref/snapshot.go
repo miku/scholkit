@@ -467,7 +467,9 @@ func processChunk(chunk map[string]IndexEntry, writer *bufio.Writer, verbose boo
 		if err != nil {
 			return fmt.Errorf("error opening file %s: %v", filename, err)
 		}
+		buf := make([]byte, 16_777_216)
 		scanner := bufio.NewScanner(r)
+		scanner.Buffer(buf, 134_217_728)
 		var lineNum int64 = 0
 		for scanner.Scan() {
 			line := scanner.Text()
