@@ -132,10 +132,8 @@ func createCrossrefSnapshot(config *config.Config, outputFile string) error {
 	opts := crossref.SnapshotOptions{
 		InputFiles: inputFiles,
 		OutputFile: outputFile,
-		IndexFile:  crossref.DefaultIndexFile,
 		BatchSize:  *batchSize,
 		Workers:    *numWorkers,
-		KeepIndex:  *keepIndex,
 		Verbose:    *verbose,
 	}
 	return crossref.CreateSnapshot(opts)

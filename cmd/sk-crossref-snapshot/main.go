@@ -13,10 +13,8 @@ import (
 
 var (
 	outputFile = flag.String("o", crossref.DefaultOutputFile, "output file path, use .gz or .zst to enable compression")
-	indexFile  = flag.String("i", crossref.DefaultIndexFile, "temporary index file path")
 	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
 	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
-	keepIndex  = flag.Bool("k", false, "keep the index file after processing")
 	verbose    = flag.Bool("v", false, "verbose output")
 )
 
@@ -32,10 +30,8 @@ func main() {
 	opts := crossref.SnapshotOptions{
 		InputFiles: inputFiles,
 		OutputFile: *outputFile,
-		IndexFile:  *indexFile,
 		BatchSize:  *batchSize,
 		Workers:    *workers,
-		KeepIndex:  *keepIndex,
 		Verbose:    *verbose,
 	}
 	if err := crossref.CreateSnapshot(opts); err != nil {

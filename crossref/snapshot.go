@@ -1,15 +1,15 @@
-// Package crossref provides tools for processing Crossref metadata.
 package crossref
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"os/exec"
 	"path"
 	"runtime"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -21,13 +21,12 @@ import (
 )
 
 var (
-	DefaultIndexFile = path.Join(os.TempDir(),
-		fmt.Sprintf("crossref-snapshot-index-%v.idx", time.Now().Format("2006-01-02")))
-	DefaultOutputFile = path.Join(os.TempDir(),
-		fmt.Sprintf("crossref-snapshot-%s.json.zst", time.Now().Format("2006-01-02")))
+	Today             = time.Now().Format("2006-01-02")
+	DefaultIndexFile  = path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-index-%v.idx", Today))
+	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-%s.json.zst", Today))
 )
 
-// Record represents the JSON structure of a crossref record we are interested in.
+// Record represents the JSON structure we're interested in
 type Record struct {
 	DOI     string `json:"DOI"`
 	Indexed struct {
@@ -35,64 +34,105 @@ type Record struct {
 	} `json:"indexed"`
 }
 
-// IndexEntry is an entry in the index.
-type IndexEntry struct {
-	DOI        string `json:"d"` // DOI
-	Timestamp  int64  `json:"t"` // Timestamp
-	Filename   string `json:"f"` // Filename
-	LineNumber int64  `json:"l"` // LineNumber
-}
-
-// SnapshotOptions contains configuration for the snapshot process.
+// SnapshotOptions contains configuration for the snapshot process
 type SnapshotOptions struct {
-	InputFiles []string
-	OutputFile string
-	IndexFile  string
-	BatchSize  int
-	Workers    int
-	KeepIndex  bool
-	Verbose    bool
+	InputFiles     []string
+	OutputFile     string
+	TempDir        string // Directory for temporary files
+	BatchSize      int
+	Workers        int
+	SortBufferSize string // For sort -S parameter (e.g. "25%")
+	KeepTempFiles  bool
+	Verbose        bool
 }
 
-// DefaultSnapshotOptions returns a SnapshotOptions with sensible defaults
+// DefaultSnapshotOptions returns updated defaults
 func DefaultSnapshotOptions() SnapshotOptions {
 	return SnapshotOptions{
-		OutputFile: DefaultOutputFile,
-		IndexFile:  DefaultIndexFile,
-		BatchSize:  100_000,
-		Workers:    runtime.NumCPU(),
-		KeepIndex:  false,
-		Verbose:    false,
+		OutputFile:     DefaultOutputFile,
+		TempDir:        os.TempDir(),
+		BatchSize:      100000,
+		Workers:        runtime.NumCPU(),
+		SortBufferSize: "25%",
+		KeepTempFiles:  false,
+		Verbose:        false,
 	}
 }
 
-// CreateSnapshot processes crossref records and creates a snapshot with the latest version of each
+// CreateSnapshot implements the three-stage approach
 func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
 	}
+	indexTempFile, err := os.CreateTemp(opts.TempDir, "crossref-snapshot-index-*.tsv")
+	if err != nil {
+		return fmt.Errorf("error creating temporary index file: %v", err)
+	}
+	defer func() {
+		indexTempFile.Close()
+		if !opts.KeepTempFiles {
+			_ = os.Remove(indexTempFile.Name())
+		}
+	}()
+	lineNumsTempFile, err := os.CreateTemp(opts.TempDir, "crossref-snapshot-lines-*.txt")
+	if err != nil {
+		return fmt.Errorf("error creating temporary line numbers file: %v", err)
+	}
+	defer func() {
+		lineNumsTempFile.Close()
+		if !opts.KeepTempFiles {
+			_ = os.Remove(lineNumsTempFile.Name())
+		}
+	}()
 	if opts.Verbose {
-		log.Printf("processing %d files with %d workers", len(opts.InputFiles), opts.Workers)
-		log.Printf("output file: %s", opts.OutputFile)
-		log.Printf("index file: %s", opts.IndexFile)
-		log.Printf("batch size: %d records", opts.BatchSize)
+		fmt.Printf("processing %d files with %d workers\n", len(opts.InputFiles), opts.Workers)
+		fmt.Printf("output file: %s\n", opts.OutputFile)
+		fmt.Printf("temporary index file: %s\n", indexTempFile.Name())
+		fmt.Printf("temporary line numbers file: %s\n", lineNumsTempFile.Name())
+		fmt.Printf("batch size: %d records\n", opts.BatchSize)
+		fmt.Printf("sort buffer size: %s\n", opts.SortBufferSize)
 	}
-	if err := buildIndex(opts.InputFiles, opts.IndexFile, opts.BatchSize, opts.Workers, opts.Verbose); err != nil {
-		return fmt.Errorf("error building index: %w", err)
+	// Stage 1: Extract DOI, timestamp, filename, and line number to temp file
+	if opts.Verbose {
+		fmt.Println("stage 1: extracting minimal information from input files")
 	}
-	if err := extractLatestRecords(opts.IndexFile, opts.OutputFile, opts.Verbose); err != nil {
-		return fmt.Errorf("error extracting latest records: %w", err)
+	started := time.Now()
+	if err := extractMinimalInfo(opts.InputFiles, indexTempFile, opts.Workers, opts.BatchSize, opts.Verbose); err != nil {
+		return fmt.Errorf("error in stage 1: %v", err)
 	}
-	if !opts.KeepIndex {
-		_ = os.Remove(opts.IndexFile)
-	} else if opts.Verbose {
-		log.Printf("index file kept at: %s", opts.IndexFile)
+	// Close the index file to ensure all data is flushed
+	if err := indexTempFile.Close(); err != nil {
+		return fmt.Errorf("error closing index temp file: %v", err)
+	}
+	if opts.Verbose {
+		fmt.Printf("stage 1 completed in %s\n", time.Since(started))
+	}
+	// Stage 2: Sort and find latest version of each DOI
+	if opts.Verbose {
+		fmt.Println("stage 2: identifying latest versions of each DOI")
+	}
+	started = time.Now()
+	if err := identifyLatestVersions(indexTempFile.Name(), lineNumsTempFile.Name(), opts.SortBufferSize, opts.Verbose); err != nil {
+		return fmt.Errorf("error in stage 2: %v", err)
+	}
+	if opts.Verbose {
+		fmt.Printf("stage 2 completed in %s\n", time.Since(started))
+	}
+	// Stage 3: Extract identified lines to create final output
+	if opts.Verbose {
+		fmt.Println("stage 3: extracting relevant records to output file")
+	}
+	started = time.Now()
+	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.Verbose); err != nil {
+		return fmt.Errorf("error in Stage 3: %v", err)
+	}
+	if opts.Verbose {
+		fmt.Printf("stage 3 completed in %s\n", time.Since(started))
 	}
 	return nil
 }
 
-// openFile opens a file and returns a reader, detecting if the file is
-// compressed.
+// openFile opens a file and returns a reader, detecting if the file is compressed
 func openFile(filename string) (io.ReadCloser, error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -125,109 +165,53 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 		return fmt.Errorf("error opening file %s: %v", filename, err)
 	}
 	defer r.Close()
+
 	scanner := bufio.NewScanner(r)
 	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
 	buf := make([]byte, maxScanTokenSize)
 	scanner.Buffer(buf, maxScanTokenSize)
-	var lineNum int64 = 0
+
+	var (
+		lineNum          int64 = 0
+		startTime              = time.Now()
+		lastProgressTime       = startTime
+		progressInterval       = 30 * time.Second // Log progress every 30 seconds
+	)
+
 	for scanner.Scan() {
 		line := scanner.Text()
+
+		// Progress reporting for long-running files
+		if time.Since(lastProgressTime) > progressInterval {
+			fmt.Printf("still processing %s: at line %d after %.1f minutes (%.1f lines/sec)\n",
+				filename, lineNum, time.Since(startTime).Minutes(),
+				float64(lineNum)/time.Since(startTime).Seconds())
+			lastProgressTime = time.Now()
+		}
+
 		var record Record
 		if err := json.Unmarshal([]byte(line), &record); err != nil {
-			log.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
+			fmt.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
 			lineNum++
 			continue
 		}
+
 		if record.DOI == "" {
 			lineNum++
 			continue
 		}
+
 		if err := fn(line, record, lineNum); err != nil {
 			return err
 		}
+
 		lineNum++
 	}
+
 	if err := scanner.Err(); err != nil {
 		return fmt.Errorf("error reading file %s: %v", filename, err)
 	}
-	return nil
-}
 
-// buildIndex processes all input files and creates an index of DOIs and their latest versions
-func buildIndex(inputFiles []string, indexFilePath string, batchSize, numWorkers int, verbose bool) error {
-	indexFile, err := os.Create(indexFilePath)
-	if err != nil {
-		return fmt.Errorf("error creating index file: %v", err)
-	}
-	defer indexFile.Close()
-	var indexMutex sync.Mutex
-	if verbose {
-		log.Printf("building index with %d workers...", numWorkers)
-	}
-	err = processFilesParallel(inputFiles, numWorkers, func(inputPath string) error {
-		if verbose {
-			log.Printf("processing file: %s", inputPath)
-		}
-		var (
-			doiMap           = make(map[string]IndexEntry, batchSize)
-			entriesProcessed = 0
-		)
-		err := processFile(inputPath, func(line string, record Record, lineNum int64) error {
-			existing, ok := doiMap[record.DOI]
-			if !ok || record.Indexed.Timestamp > existing.Timestamp {
-				doiMap[record.DOI] = IndexEntry{
-					DOI:        record.DOI,
-					Timestamp:  record.Indexed.Timestamp,
-					Filename:   inputPath,
-					LineNumber: lineNum,
-				}
-			}
-			entriesProcessed++
-			if entriesProcessed >= batchSize {
-				entries := make([]IndexEntry, 0, len(doiMap))
-				for _, entry := range doiMap {
-					entries = append(entries, entry)
-				}
-				indexMutex.Lock()
-				err := writeIndexEntries(indexFile, entries)
-				indexMutex.Unlock()
-				if err != nil {
-					return fmt.Errorf("error writing to index file: %v", err)
-				}
-				if verbose {
-					log.Printf("processed %d records from %s", entriesProcessed, inputPath)
-				}
-				doiMap = make(map[string]IndexEntry, batchSize)
-				entriesProcessed = 0
-			}
-			return nil
-		})
-		if err != nil {
-			return fmt.Errorf("error processing file %s: %v", inputPath, err)
-		}
-		if len(doiMap) > 0 {
-			entries := make([]IndexEntry, 0, len(doiMap))
-			for _, entry := range doiMap {
-				entries = append(entries, entry)
-			}
-			indexMutex.Lock()
-			err := writeIndexEntries(indexFile, entries)
-			indexMutex.Unlock()
-			if err != nil {
-				return fmt.Errorf("error writing to index file: %v", err)
-			}
-			if verbose {
-				log.Printf("processed final %d records from %s", len(doiMap), inputPath)
-			}
-		}
-		return nil
-	})
-	if err != nil {
-		return err
-	}
-	if verbose {
-		log.Print("index building complete")
-	}
 	return nil
 }
 
@@ -238,11 +222,14 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 		filesCh <- file
 	}
 	close(filesCh)
+
 	var wg sync.WaitGroup
 	wg.Add(numWorkers)
+
 	errCh := make(chan error, numWorkers)
+
 	for i := 0; i < numWorkers; i++ {
-		go func(workerID int) {
+		go func() {
 			defer wg.Done()
 			for filename := range filesCh {
 				if err := processor(filename); err != nil {
@@ -250,44 +237,290 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 					return
 				}
 			}
-		}(i)
+		}()
 	}
+
 	wg.Wait()
 	close(errCh)
+
 	for err := range errCh {
 		if err != nil {
-			return fmt.Errorf("error during processing: %v", err)
+			return err
 		}
+	}
+
+	return nil
+}
+
+// extractMinimalInfo processes all input files and extracts DOI, timestamp, filename, and line number
+func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, batchSize int, verbose bool) error {
+	var indexMutex sync.Mutex
+	if verbose {
+		fmt.Printf("extracting minimal information with %d workers\n", numWorkers)
+	}
+	return processFilesParallel(inputFiles, numWorkers, func(inputPath string) error {
+		if verbose {
+			fmt.Printf("processing file: %s\n", inputPath)
+		}
+		var (
+			buffer           bytes.Buffer
+			entriesProcessed = 0
+		)
+		err := processFile(inputPath, func(line string, record Record, lineNum int64) error {
+			// Format: filename \t lineNumber \t timestamp \t DOI
+			_, _ = fmt.Fprintf(&buffer, "%s\t%d\t%d\t%s\n",
+				inputPath, lineNum, record.Indexed.Timestamp, record.DOI)
+			entriesProcessed++
+			// Batch write to reduce lock contention
+			if entriesProcessed >= batchSize {
+				indexMutex.Lock()
+				_, err := indexFile.Write(buffer.Bytes())
+				indexMutex.Unlock()
+				if err != nil {
+					return err
+				}
+				buffer.Reset()
+				entriesProcessed = 0
+				if verbose {
+					fmt.Printf("processed batch from %s\n", inputPath)
+				}
+			}
+			return nil
+		})
+		if err != nil {
+			return fmt.Errorf("error processing file %s: %v", inputPath, err)
+		}
+		// Write any remaining entries
+		if buffer.Len() > 0 {
+			indexMutex.Lock()
+			_, err := indexFile.Write(buffer.Bytes())
+			indexMutex.Unlock()
+			if err != nil {
+				return err
+			}
+			if verbose {
+				fmt.Printf("processed final batch from %s\n", inputPath)
+			}
+		}
+		return nil
+	})
+}
+
+// identifyLatestVersions sorts the index and identifies the latest version of each DOI
+func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize string, verbose bool) error {
+	if verbose {
+		fmt.Println("sorting and identifying latest versions")
+	}
+	// Create the pipeline as a single bash command
+	// Sort by DOI (field 4), then by timestamp (field 3) in reverse order
+	// Take the first occurrence of each DOI (which will be the latest due to reverse sort by timestamp)
+	// Extract the filename and line number fields
+	pipeline := fmt.Sprintf(
+		"sort -S %s -t $'\\t' -k4,4 -rk3,3 %s | sort -S %s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
+		sortBufferSize, indexFilePath, sortBufferSize, lineNumsFilePath)
+	if verbose {
+		fmt.Printf("executing sort pipeline: %s\n", pipeline)
+	}
+	cmd := exec.Command("bash", "-c", pipeline)
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, "LC_ALL=C")
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("error executing sort pipeline: %v\nOutput: %s", err, string(output))
+	}
+	if verbose {
+		fmt.Println("sorting and filtering complete")
 	}
 	return nil
 }
 
-// writeIndexEntries writes out an index extra as TSV.
-func writeIndexEntries(indexFile *os.File, entries []IndexEntry) error {
-	writer := bufio.NewWriter(indexFile)
-	for _, entry := range entries {
-		line := fmt.Sprintf("%s\t%d\t%s\t%d\n", entry.DOI, entry.Timestamp, entry.Filename, entry.LineNumber)
-		if _, err := writer.WriteString(line); err != nil {
+// extractRelevantRecords extracts the identified lines from the original files
+func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, verbose bool) error {
+	if verbose {
+		fmt.Println("extracting relevant records")
+	}
+	// Group line numbers by filename
+	fileLineMap, err := groupLineNumbersByFile(lineNumsFilePath, verbose)
+	if err != nil {
+		return err
+	}
+	// Create output file with appropriate compression
+	outWriter, err := createOutputWriter(outputFilePath)
+	if err != nil {
+		return fmt.Errorf("error creating output file: %v", err)
+	}
+	defer outWriter.Close()
+	bufWriter := bufio.NewWriter(outWriter)
+	defer bufWriter.Flush()
+	// Process each file
+	totalExtracted := 0
+	for _, inputFile := range inputFiles {
+		lineNumbers, ok := fileLineMap[inputFile]
+		if !ok {
+			if verbose {
+				fmt.Printf("no records to extract from %s\n", inputFile)
+			}
+			continue
+		}
+		if verbose {
+			fmt.Printf("extracting %d records from %s\n", len(lineNumbers.numbers), inputFile)
+		}
+		// Sort line numbers for efficient reading
+		lineNumbers.sort()
+		// Extract the lines
+		extracted, err := extractLinesFromFile(inputFile, lineNumbers, bufWriter, verbose)
+		if err != nil {
 			return err
 		}
+		totalExtracted += extracted
+		if verbose {
+			fmt.Printf("extracted %d records from %s\n", extracted, inputFile)
+		}
+		// Flush after each file to avoid excessive memory usage
+		bufWriter.Flush()
 	}
-	return writer.Flush()
+	if verbose {
+		fmt.Printf("total records extracted: %d\n", totalExtracted)
+	}
+	return nil
 }
 
-// sortIndexFile sorts the index file using external sort program.
-func sortIndexFile(indexFilePath string, verbose bool) (string, error) {
-	sortedIndexPath := indexFilePath + ".sorted"
-	if verbose {
-		log.Printf("sorting index file with external sort: %s -> %s", indexFilePath, sortedIndexPath)
+// LineNumbers represents a collection of line numbers to extract from a file
+type LineNumbers struct {
+	numbers []int64
+}
+
+func (ln *LineNumbers) add(num int64) {
+	ln.numbers = append(ln.numbers, num)
+}
+
+func (ln *LineNumbers) sort() {
+	sort.Slice(ln.numbers, func(i, j int) bool {
+		return ln.numbers[i] < ln.numbers[j]
+	})
+}
+
+// groupLineNumbersByFile reads the line numbers file and groups by filename
+func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*LineNumbers, error) {
+	file, err := os.Open(lineNumsFilePath)
+	if err != nil {
+		return nil, fmt.Errorf("error opening line numbers file: %v", err)
 	}
-	cmd := exec.Command("sort", "-k1,1", "-S70%", "-o", sortedIndexPath, indexFilePath)
-	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, "LC_ALL=C")
-	if err := cmd.Run(); err != nil {
-		return "", fmt.Errorf("failed to sort index file: %v", err)
+	defer file.Close()
+	var (
+		fileLineMap = make(map[string]*LineNumbers)
+		scanner     = bufio.NewScanner(file)
+		linesRead   = 0
+	)
+	for scanner.Scan() {
+		line := scanner.Text()
+		parts := strings.Split(line, "\t")
+		if len(parts) != 2 {
+			return nil, fmt.Errorf("invalid line format: %s", line)
+		}
+		filename := parts[0]
+		lineNum, err := strconv.ParseInt(parts[1], 10, 64)
+		if err != nil {
+			return nil, fmt.Errorf("invalid line number: %s", parts[1])
+		}
+		if _, ok := fileLineMap[filename]; !ok {
+			fileLineMap[filename] = &LineNumbers{numbers: make([]int64, 0)}
+		}
+		fileLineMap[filename].add(lineNum)
+		linesRead++
+		if verbose && linesRead%1000000 == 0 {
+			fmt.Printf("read %d lines from line numbers file\n", linesRead)
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		return nil, fmt.Errorf("error reading line numbers file: %v", err)
+	}
+	if verbose {
+		fmt.Printf("read total of %d lines from line numbers file\n", linesRead)
+		fmt.Printf("found lines for %d files\n", len(fileLineMap))
 	}
 
-	return sortedIndexPath, nil
+	return fileLineMap, nil
+}
+
+// extractLinesFromFile extracts specific lines from a file
+func extractLinesFromFile(filename string, lineNumbers *LineNumbers, writer *bufio.Writer, verbose bool) (int, error) {
+	r, err := openFile(filename)
+	if err != nil {
+		return 0, fmt.Errorf("error opening file %s: %v", filename, err)
+	}
+	defer r.Close()
+	scanner := bufio.NewScanner(r)
+	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
+	buf := make([]byte, maxScanTokenSize)
+	scanner.Buffer(buf, maxScanTokenSize)
+	var (
+		lineNum          int64 = 0
+		extractedCount         = 0
+		nextLineIdx            = 0
+		startTime              = time.Now()
+		lastProgressTime       = startTime
+		progressInterval       = 30 * time.Second
+	)
+	// Read the file line by line
+	for scanner.Scan() {
+		// Report progress periodically for large files
+		if verbose && time.Since(lastProgressTime) > progressInterval {
+			elapsedSecs := time.Since(startTime).Seconds()
+			fmt.Printf("still extracting from %s: at line %d after %.1f seconds (%.1f lines/sec)\n",
+				filename, lineNum, elapsedSecs, float64(lineNum)/elapsedSecs)
+			lastProgressTime = time.Now()
+		}
+		// Check if we need this line
+		if nextLineIdx < len(lineNumbers.numbers) && lineNum == lineNumbers.numbers[nextLineIdx] {
+			// Write this line to the output
+			if _, err := writer.Write(append(scanner.Bytes(), '\n')); err != nil {
+				return extractedCount, fmt.Errorf("error writing to output: %v", err)
+			}
+			extractedCount++
+			nextLineIdx++
+		}
+		lineNum++
+		// If we've extracted all the lines we need, we can stop reading
+		if nextLineIdx >= len(lineNumbers.numbers) {
+			break
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		return extractedCount, fmt.Errorf("error reading file %s: %v", filename, err)
+	}
+	return extractedCount, nil
+}
+
+// createOutputWriter creates a writer for the output file, with appropriate compression
+func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
+	outFile, err := os.Create(outputFilePath)
+	if err != nil {
+		return nil, fmt.Errorf("error creating output file: %v", err)
+	}
+
+	switch {
+	case strings.HasSuffix(outputFilePath, ".gz"):
+		gzw := gzip.NewWriter(outFile)
+		return &compositeWriteCloser{
+			writer:       gzw,
+			outFile:      outFile,
+			isCompressed: true,
+		}, nil
+	case strings.HasSuffix(outputFilePath, ".zst"):
+		zw, err := zstd.NewWriter(outFile)
+		if err != nil {
+			outFile.Close()
+			return nil, fmt.Errorf("error creating zstd writer: %v", err)
+		}
+		return &compositeWriteCloser{
+			writer:       zw,
+			outFile:      outFile,
+			isCompressed: true,
+		}, nil
+	default:
+		return outFile, nil
+	}
 }
 
 // compositeWriteCloser ensures both the compression writer and file are closed properly
@@ -309,189 +542,4 @@ func (c *compositeWriteCloser) Close() error {
 		}
 	}
 	return c.outFile.Close()
-}
-
-// createOutputWriter creates a writer for the output file, with optional compression
-func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
-	outFile, err := os.Create(outputFilePath)
-	if err != nil {
-		return nil, fmt.Errorf("error creating output file: %v", err)
-	}
-	switch {
-	case strings.HasSuffix(outputFilePath, ".zst"):
-		zw, err := zstd.NewWriter(outFile)
-		if err != nil {
-			_ = outFile.Close()
-			return nil, fmt.Errorf("error creating zstd writer: %v", err)
-		}
-		return &compositeWriteCloser{
-			writer:       zw,
-			outFile:      outFile,
-			isCompressed: true,
-		}, nil
-	case strings.HasSuffix(outputFilePath, ".gz"):
-		gzw := gzip.NewWriter(outFile)
-		return &compositeWriteCloser{
-			writer:       gzw,
-			outFile:      outFile,
-			isCompressed: true,
-		}, nil
-	}
-	return outFile, nil
-}
-
-// extractLatestRecords extracts data via chunked approach.
-func extractLatestRecords(indexFilePath string, outputFilePath string, verbose bool) error {
-	// Sort the index file
-	sortedIndexPath, err := sortIndexFile(indexFilePath, verbose)
-	if err != nil {
-		return err
-	}
-	defer os.Remove(sortedIndexPath)
-	chunkSize := 1_000_000 // adjust based on memory constraints
-	return extractLatestRecordsChunked(sortedIndexPath, outputFilePath, chunkSize, verbose)
-}
-
-// New function to process the sorted index in chunks
-func extractLatestRecordsChunked(sortedIndexPath, outputFilePath string, chunkSize int, verbose bool) error {
-	if verbose {
-		log.Printf("processing sorted index in chunks of %d records", chunkSize)
-	}
-	// Open sorted index file
-	indexFile, err := os.Open(sortedIndexPath)
-	if err != nil {
-		return fmt.Errorf("error opening sorted index: %v", err)
-	}
-	defer indexFile.Close()
-	// Create output file
-	outWriter, err := createOutputWriter(outputFilePath)
-	if err != nil {
-		return fmt.Errorf("failed to create output file: %v", err)
-	}
-	defer outWriter.Close()
-	bufWriter := bufio.NewWriter(outWriter)
-	defer bufWriter.Flush()
-	scanner := bufio.NewScanner(indexFile)
-	var (
-		currentChunk    = make(map[string]IndexEntry)
-		lastDOI         string
-		extractedCount  = 0
-		processedChunks = 0
-	)
-	// Process the index file one line at a time
-	for scanner.Scan() {
-		var (
-			line      = scanner.Text()
-			parts     = strings.Split(line, "\t")
-			timestamp int64
-			lineNum   int64
-			err       error
-		)
-		if len(parts) != 4 {
-			return fmt.Errorf("invalid index line format: %s", line)
-		}
-		doi := parts[0]
-		if timestamp, err = strconv.ParseInt(parts[1], 10, 64); err != nil {
-			return err
-		}
-		filename := parts[2]
-		if lineNum, err = strconv.ParseInt(parts[3], 10, 64); err != nil {
-			return err
-		}
-		entry := IndexEntry{
-			DOI:        doi,
-			Timestamp:  timestamp,
-			Filename:   filename,
-			LineNumber: lineNum,
-		}
-
-		// If we've moved to a new DOI and current DOI is different from last DOI we processed
-		if lastDOI != "" && doi != lastDOI {
-			// Process the current chunk if it's full or we've encountered a new DOI
-			if len(currentChunk) >= chunkSize {
-				if err := processChunk(currentChunk, bufWriter, verbose); err != nil {
-					return err
-				}
-				extractedCount += len(currentChunk)
-				processedChunks++
-				if verbose {
-					log.Printf("processed chunk %d with %d records, total: %d",
-						processedChunks, len(currentChunk), extractedCount)
-				}
-				currentChunk = make(map[string]IndexEntry)
-			}
-		}
-		lastDOI = doi
-		// For each DOI, keep only the entry with the latest timestamp
-		existingEntry, ok := currentChunk[doi]
-		if !ok || entry.Timestamp > existingEntry.Timestamp {
-			currentChunk[doi] = entry
-		}
-	}
-	// Process the last chunk
-	if len(currentChunk) > 0 {
-		if err := processChunk(currentChunk, bufWriter, verbose); err != nil {
-			return err
-		}
-		extractedCount += len(currentChunk)
-		processedChunks++
-		if verbose {
-			log.Printf("processed final chunk %d with %d records, total: %d",
-				processedChunks, len(currentChunk), extractedCount)
-		}
-	}
-	if err := bufWriter.Flush(); err != nil {
-		return fmt.Errorf("error flushing output buffer: %v", err)
-	}
-	if verbose {
-		log.Printf("extraction complete, wrote %d records to %s", extractedCount, outputFilePath)
-	}
-	return nil
-}
-
-// processChunk works on a chunk of index entries.
-func processChunk(chunk map[string]IndexEntry, writer *bufio.Writer, verbose bool) error {
-	fileEntries := make(map[string][]IndexEntry)
-	for _, entry := range chunk {
-		fileEntries[entry.Filename] = append(fileEntries[entry.Filename], entry)
-	}
-	for filename, entries := range fileEntries {
-		if verbose {
-			log.Printf("extracting %d records from %s", len(entries), filename)
-		}
-		lineMap := make(map[int64]string)
-		for _, entry := range entries {
-			lineMap[entry.LineNumber] = entry.DOI
-		}
-		r, err := openFile(filename)
-		if err != nil {
-			return fmt.Errorf("error opening file %s: %v", filename, err)
-		}
-		buf := make([]byte, 16_777_216)
-		scanner := bufio.NewScanner(r)
-		scanner.Buffer(buf, 134_217_728)
-		var lineNum int64 = 0
-		for scanner.Scan() {
-			line := scanner.Text()
-			doi, shouldExtract := lineMap[lineNum]
-			if shouldExtract {
-				var record Record
-				// XXX: maybe we do not need this expensive extra step.
-				if err := json.Unmarshal([]byte(line), &record); err != nil {
-					log.Printf("warning: invalid JSON at %s:%d, skipping", filename, lineNum)
-				} else if record.DOI == doi {
-					if _, err := writer.WriteString(line + "\n"); err != nil {
-						r.Close()
-						return fmt.Errorf("error writing to output: %v", err)
-					}
-				}
-			}
-			lineNum++
-		}
-		r.Close()
-		if err := scanner.Err(); err != nil {
-			return fmt.Errorf("error reading file %s: %v", filename, err)
-		}
-	}
-	return nil
 }
