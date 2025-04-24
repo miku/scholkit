@@ -105,6 +105,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error closing index temp file: %v", err)
 	}
 	if opts.Verbose {
+		// stage 1 completed in 1h12m12.758863036s
 		fmt.Printf("stage 1 completed in %s\n", time.Since(started))
 	}
 	// Stage 2: Sort and find latest version of each DOI
@@ -116,6 +117,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error in stage 2: %v", err)
 	}
 	if opts.Verbose {
+		// stage 2 completed in 15m31.046214959s
 		fmt.Printf("stage 2 completed in %s\n", time.Since(started))
 	}
 	// Stage 3: Extract identified lines to create final output
@@ -123,6 +125,8 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		fmt.Println("stage 3: extracting relevant records to output file")
 	}
 	started = time.Now()
+	// XXX: This currently takes longer that it needs to be; zstd -T0 seems to
+	// be faster than the Go version; or filterline; https://github.com/miku/filterline
 	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.Verbose); err != nil {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
@@ -165,53 +169,43 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 		return fmt.Errorf("error opening file %s: %v", filename, err)
 	}
 	defer r.Close()
-
 	scanner := bufio.NewScanner(r)
 	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
 	buf := make([]byte, maxScanTokenSize)
 	scanner.Buffer(buf, maxScanTokenSize)
-
 	var (
 		lineNum          int64 = 0
 		startTime              = time.Now()
 		lastProgressTime       = startTime
 		progressInterval       = 30 * time.Second // Log progress every 30 seconds
 	)
-
 	for scanner.Scan() {
 		line := scanner.Text()
-
-		// Progress reporting for long-running files
+		// Progress reporting for long-running files; XXX: drop this from this hotter loop
 		if time.Since(lastProgressTime) > progressInterval {
 			fmt.Printf("still processing %s: at line %d after %.1f minutes (%.1f lines/sec)\n",
 				filename, lineNum, time.Since(startTime).Minutes(),
 				float64(lineNum)/time.Since(startTime).Seconds())
 			lastProgressTime = time.Now()
 		}
-
 		var record Record
 		if err := json.Unmarshal([]byte(line), &record); err != nil {
 			fmt.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
 			lineNum++
 			continue
 		}
-
 		if record.DOI == "" {
 			lineNum++
 			continue
 		}
-
 		if err := fn(line, record, lineNum); err != nil {
 			return err
 		}
-
 		lineNum++
 	}
-
 	if err := scanner.Err(); err != nil {
 		return fmt.Errorf("error reading file %s: %v", filename, err)
 	}
-
 	return nil
 }
 
@@ -222,12 +216,9 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 		filesCh <- file
 	}
 	close(filesCh)
-
 	var wg sync.WaitGroup
 	wg.Add(numWorkers)
-
 	errCh := make(chan error, numWorkers)
-
 	for i := 0; i < numWorkers; i++ {
 		go func() {
 			defer wg.Done()
@@ -239,20 +230,20 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 			}
 		}()
 	}
-
 	wg.Wait()
 	close(errCh)
-
 	for err := range errCh {
 		if err != nil {
 			return err
 		}
 	}
-
 	return nil
 }
 
-// extractMinimalInfo processes all input files and extracts DOI, timestamp, filename, and line number
+// extractMinimalInfo processes all input files and extracts DOI, timestamp,
+// filename, and line number; this data will go into an indexFile;
+// uncompressed, this file is about 70GB in size, but could probably compressed
+// as well
 func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, batchSize int, verbose bool) error {
 	var indexMutex sync.Mutex
 	if verbose {
@@ -351,7 +342,8 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 	return nil
 }
 
-// extractRelevantRecords extracts the identified lines from the original files
+// extractRelevantRecords extracts the identified lines from the original
+// files; XXX: this is slower than a filterline/zstd (external) approach.
 func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, verbose bool) error {
 	if verbose {
 		fmt.Println("extracting relevant records")
