@@ -34,7 +34,6 @@ var (
 	source     = flag.String("s", "", "name of the the source to snapshot")
 	output     = flag.String("o", "", "output file, if empty, a sensible output file path will be derived from source and date")
 	numWorkers = flag.Int("w", runtime.NumCPU(), "number of workers")
-	keepIndex  = flag.Bool("k", false, "keep the index file when creating crossref snapshots")
 	verbose    = flag.Bool("v", false, "verbose output")
 	batchSize  = flag.Int("n", 100000, "batch size for crossref processing")
 )

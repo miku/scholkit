@@ -28,11 +28,13 @@ func main() {
 		os.Exit(1)
 	}
 	opts := crossref.SnapshotOptions{
-		InputFiles: inputFiles,
-		OutputFile: *outputFile,
-		BatchSize:  *batchSize,
-		Workers:    *workers,
-		Verbose:    *verbose,
+		InputFiles:     inputFiles,
+		OutputFile:     *outputFile,
+		BatchSize:      *batchSize,
+		Workers:        *workers,
+		Verbose:        *verbose,
+		KeepTempFiles:  true,
+		SortBufferSize: "25%",
 	}
 	if err := crossref.CreateSnapshot(opts); err != nil {
 		log.Fatalf("error creating snapshot: %v", err)

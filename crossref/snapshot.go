@@ -53,8 +53,8 @@ func DefaultSnapshotOptions() SnapshotOptions {
 		TempDir:        os.TempDir(),
 		BatchSize:      100000,
 		Workers:        runtime.NumCPU(),
-		SortBufferSize: "25%",
-		KeepTempFiles:  false,
+		SortBufferSize: "25", // XXX: do the automatically
+		KeepTempFiles:  true,
 		Verbose:        false,
 	}
 }
@@ -311,26 +311,43 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 	if verbose {
 		fmt.Println("sorting and identifying latest versions")
 	}
+
+	// Ensure sort buffer size has a value
+	if sortBufferSize == "" {
+		sortBufferSize = "25%"
+	}
+
 	// Create the pipeline as a single bash command
-	// Sort by DOI (field 4), then by timestamp (field 3) in reverse order
-	// Take the first occurrence of each DOI (which will be the latest due to reverse sort by timestamp)
-	// Extract the filename and line number fields
+	// Note: Added -n to -k3,3 to sort the timestamp field numerically
 	pipeline := fmt.Sprintf(
-		"sort -S %s -t $'\\t' -k4,4 -rk3,3 %s | sort -S %s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
+		"LC_ALL=C sort -S%s -t $'\\t' -k4,4 -k3,3nr %s | LC_ALL=C sort -S%s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
 		sortBufferSize, indexFilePath, sortBufferSize, lineNumsFilePath)
+
 	if verbose {
 		fmt.Printf("executing sort pipeline: %s\n", pipeline)
 	}
+
+	// Run the command through bash
 	cmd := exec.Command("bash", "-c", pipeline)
-	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, "LC_ALL=C")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return fmt.Errorf("error executing sort pipeline: %v\nOutput: %s", err, string(output))
 	}
-	if verbose {
-		fmt.Println("sorting and filtering complete")
+
+	// Verify that the output file has content
+	fileInfo, err := os.Stat(lineNumsFilePath)
+	if err != nil {
+		return fmt.Errorf("error checking line numbers file: %v", err)
 	}
+
+	if fileInfo.Size() == 0 {
+		return fmt.Errorf("error: line numbers file is empty after sorting")
+	}
+
+	if verbose {
+		fmt.Printf("sorting and filtering complete, output file size: %d bytes\n", fileInfo.Size())
+	}
+
 	return nil
 }
 
