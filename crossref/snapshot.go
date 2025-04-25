@@ -163,7 +163,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
 	if opts.Verbose {
-		// stage 3 completed in 5h29m47.206642707s
+		// stage 3 completed in 1h40m0.654023657s (previously, with pure Go zstd and filtering it took 5h29m)
 		fmt.Printf("stage 3 completed in %s\n", time.Since(started))
 	}
 	return nil
