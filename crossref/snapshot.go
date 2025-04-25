@@ -21,10 +21,24 @@ import (
 	"github.com/segmentio/encoding/json"
 )
 
+// Some optimization ideas: If an input file is large, we could split it up into
+// smaller chunks; albeit we would have to split at line boundaries.
+//
+// Extract relevant info from JSON w/o parsing JSON.
+//
+// The final extraction stage could run also in parallel, albeit i/o may also
+// be a bottleneck, depending. But could try to run extraction over say 8 files
+// in parallel and do a final concatenation of all zstd files; as zstd allows streaming.
+//
+// Line numbers are kept in memory; this should work up to the 10M line numbers
+// range for a single file, but we can circumvent this by just writing line
+// numbers to a file directly.
+
 var (
+	MaxScanTokenSize  = 104857600 // 100MB, note each thread will allocate a buffer of this size
 	Today             = time.Now().Format("2006-01-02")
-	DefaultIndexFile  = path.Join(os.TempDir(), fmt.Sprintf("sk-crossref-snapshot-index-%v.idx", Today))
-	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("sk-crossref-snapshot-%s.json.zst", Today))
+	TempfilePrefix    = "sk-crossref-snapshot"
+	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
 )
 
 // Record represents the JSON structure we're interested in
@@ -65,7 +79,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
 	}
-	indexTempFile, err := os.CreateTemp("", "sk-crossref-snapshot-index-*.txt")
+	indexTempFile, err := os.CreateTemp("", fmt.Sprintf("%s-index-*.txt", TempfilePrefix))
 	if err != nil {
 		return fmt.Errorf("error creating temporary index file: %v", err)
 	}
@@ -75,7 +89,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 			_ = os.Remove(indexTempFile.Name())
 		}
 	}()
-	lineNumsTempFile, err := os.CreateTemp(opts.TempDir, "sk-crossref-snapshot-lines-*.txt")
+	lineNumsTempFile, err := os.CreateTemp(opts.TempDir, fmt.Sprintf("%s-lines-*.txt", TempfilePrefix))
 	if err != nil {
 		return fmt.Errorf("error creating temporary line numbers file: %v", err)
 	}
@@ -170,9 +184,8 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 	}
 	defer r.Close()
 	scanner := bufio.NewScanner(r)
-	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
-	buf := make([]byte, maxScanTokenSize)
-	scanner.Buffer(buf, maxScanTokenSize)
+	buf := make([]byte, MaxScanTokenSize)
+	scanner.Buffer(buf, MaxScanTokenSize)
 	var lineNum int64 = 1
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -286,14 +299,9 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 	if verbose {
 		fmt.Println("sorting and identifying latest versions")
 	}
-
-	// Ensure sort buffer size has a value
 	if sortBufferSize == "" {
 		sortBufferSize = "25%"
 	}
-
-	// Create the pipeline as a single bash command
-	// Note: Added -n to -k3,3 to sort the timestamp field numerically
 	pipeline := fmt.Sprintf(
 		"LC_ALL=C sort -S%s -t $'\\t' -k4,4 -k3,3nr %s | LC_ALL=C sort -S%s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
 		sortBufferSize, indexFilePath, sortBufferSize, lineNumsFilePath)
@@ -301,28 +309,21 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 	if verbose {
 		fmt.Printf("executing sort pipeline: %s\n", pipeline)
 	}
-
-	// Run the command through bash
 	cmd := exec.Command("bash", "-c", pipeline)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return fmt.Errorf("error executing sort pipeline: %v\nOutput: %s", err, string(output))
 	}
-
-	// Verify that the output file has content
 	fileInfo, err := os.Stat(lineNumsFilePath)
 	if err != nil {
 		return fmt.Errorf("error checking line numbers file: %v", err)
 	}
-
 	if fileInfo.Size() == 0 {
 		return fmt.Errorf("error: line numbers file is empty after sorting")
 	}
-
 	if verbose {
 		fmt.Printf("sorting and filtering complete, output file size: %d bytes\n", fileInfo.Size())
 	}
-
 	return nil
 }
 
@@ -332,12 +333,10 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 	if verbose {
 		fmt.Println("extracting relevant records")
 	}
-	// Group line numbers by filename
 	fileLineMap, err := groupLineNumbersByFile(lineNumsFilePath, verbose)
 	if err != nil {
 		return err
 	}
-	// Process each file
 	totalExtracted := 0
 	for _, inputFile := range inputFiles {
 		lineNumbers, ok := fileLineMap[inputFile]
@@ -350,9 +349,7 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		if verbose {
 			fmt.Printf("extracting %d records from %s\n", len(lineNumbers.numbers), inputFile)
 		}
-		// Sort line numbers for efficient reading
 		lineNumbers.sort()
-		// Extract the lines
 		extracted, err := extractLinesFromFile(inputFile, lineNumbers, outputFilePath, verbose)
 		if err != nil {
 			return err
@@ -428,7 +425,7 @@ func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*
 
 // extractLinesFromFile uses external tools to perform the slicing.
 func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile string, verbose bool) (int, error) {
-	lineNumTempFile, err := os.CreateTemp("", "crossref-snapshot-line-numbers-*.txt")
+	lineNumTempFile, err := os.CreateTemp("", fmt.Sprintf("%s-line-numbers-*.txt", TempfilePrefix))
 	if err != nil {
 		return 0, fmt.Errorf("error creating temp file: %w", err)
 	}
