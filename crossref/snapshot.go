@@ -276,7 +276,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 				return err
 			}
 			if verbose {
-				fmt.Printf("processed final batch from %s\n", inputPath)
+				fmt.Printf("done %s\n", inputPath)
 			}
 		}
 		return nil
@@ -339,14 +339,6 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 	if err != nil {
 		return err
 	}
-	// Create output file with appropriate compression; XXX: we may get rid of this
-	outWriter, err := createOutputWriter(outputFilePath)
-	if err != nil {
-		return fmt.Errorf("error creating output file: %v", err)
-	}
-	defer outWriter.Close()
-	bufWriter := bufio.NewWriter(outWriter)
-	defer bufWriter.Flush()
 	// Process each file
 	totalExtracted := 0
 	for _, inputFile := range inputFiles {
@@ -363,8 +355,7 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		// Sort line numbers for efficient reading
 		lineNumbers.sort()
 		// Extract the lines
-		// extracted, err := extractLinesFromFile(inputFile, lineNumbers, bufWriter, verbose)
-		extracted, err := extractLinesFromFileExt(inputFile, lineNumbers, outputFilePath, verbose)
+		extracted, err := extractLinesFromFile(inputFile, lineNumbers, outputFilePath, verbose)
 		if err != nil {
 			return err
 		}
@@ -372,8 +363,6 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		if verbose {
 			fmt.Printf("extracted %d records from %s\n", extracted, inputFile)
 		}
-		// Flush after each file to avoid excessive memory usage
-		bufWriter.Flush()
 	}
 	if verbose {
 		fmt.Printf("total records extracted: %d\n", totalExtracted)
@@ -439,8 +428,8 @@ func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*
 	return fileLineMap, nil
 }
 
-// extractLinesFromFileExt uses external tools to perform the slicing.
-func extractLinesFromFileExt(filename string, lineNumbers *LineNumbers, outputFile string, verbose bool) (int, error) {
+// extractLinesFromFile uses external tools to perform the slicing.
+func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile string, verbose bool) (int, error) {
 	lineNumTempFile, err := os.CreateTemp("", "crossref-snapshot-line-numbers-*.txt")
 	if err != nil {
 		return 0, fmt.Errorf("error creating temp file: %w", err)
@@ -468,95 +457,4 @@ func extractLinesFromFileExt(filename string, lineNumbers *LineNumbers, outputFi
 		log.Printf("extracting lines with: %v", cmd)
 	}
 	return len(lineNumbers.numbers), cmd.Run()
-}
-
-// extractLinesFromFile extracts specific lines from a file
-func extractLinesFromFile(filename string, lineNumbers *LineNumbers, writer *bufio.Writer, verbose bool) (int, error) {
-	r, err := openFile(filename)
-	if err != nil {
-		return 0, fmt.Errorf("error opening file %s: %w", filename, err)
-	}
-	defer r.Close()
-	scanner := bufio.NewScanner(r)
-	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
-	buf := make([]byte, maxScanTokenSize)
-	scanner.Buffer(buf, maxScanTokenSize)
-	var (
-		lineNum        int64 = 1
-		extractedCount       = 0
-		nextLineIdx          = 0
-	)
-	// Read the file line by line
-	for scanner.Scan() {
-		// Check if we need this line
-		if nextLineIdx < len(lineNumbers.numbers) && lineNum == lineNumbers.numbers[nextLineIdx] {
-			// Write this line to the output
-			if _, err := writer.Write(append(scanner.Bytes(), '\n')); err != nil {
-				return extractedCount, fmt.Errorf("error writing to output: %v", err)
-			}
-			extractedCount++
-			nextLineIdx++
-		}
-		lineNum++
-		// If we've extracted all the lines we need, we can stop reading
-		if nextLineIdx >= len(lineNumbers.numbers) {
-			break
-		}
-	}
-	if err := scanner.Err(); err != nil {
-		return extractedCount, fmt.Errorf("error reading file %s: %v", filename, err)
-	}
-	return extractedCount, nil
-}
-
-// createOutputWriter creates a writer for the output file, with appropriate compression
-func createOutputWriter(outputFilePath string) (io.WriteCloser, error) {
-	outFile, err := os.Create(outputFilePath)
-	if err != nil {
-		return nil, fmt.Errorf("error creating output file: %v", err)
-	}
-
-	switch {
-	case strings.HasSuffix(outputFilePath, ".gz"):
-		gzw := gzip.NewWriter(outFile)
-		return &compositeWriteCloser{
-			writer:       gzw,
-			outFile:      outFile,
-			isCompressed: true,
-		}, nil
-	case strings.HasSuffix(outputFilePath, ".zst"):
-		zw, err := zstd.NewWriter(outFile)
-		if err != nil {
-			outFile.Close()
-			return nil, fmt.Errorf("error creating zstd writer: %v", err)
-		}
-		return &compositeWriteCloser{
-			writer:       zw,
-			outFile:      outFile,
-			isCompressed: true,
-		}, nil
-	default:
-		return outFile, nil
-	}
-}
-
-// compositeWriteCloser ensures both the compression writer and file are closed properly
-type compositeWriteCloser struct {
-	writer       io.WriteCloser
-	outFile      *os.File
-	isCompressed bool
-}
-
-func (c *compositeWriteCloser) Write(p []byte) (n int, err error) {
-	return c.writer.Write(p)
-}
-
-func (c *compositeWriteCloser) Close() error {
-	if c.isCompressed {
-		if err := c.writer.Close(); err != nil {
-			c.outFile.Close()
-			return err
-		}
-	}
-	return c.outFile.Close()
 }
