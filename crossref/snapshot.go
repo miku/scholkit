@@ -23,8 +23,8 @@ import (
 
 var (
 	Today             = time.Now().Format("2006-01-02")
-	DefaultIndexFile  = path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-index-%v.idx", Today))
-	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("crossref-snapshot-%s.json.zst", Today))
+	DefaultIndexFile  = path.Join(os.TempDir(), fmt.Sprintf("sk-crossref-snapshot-index-%v.idx", Today))
+	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("sk-crossref-snapshot-%s.json.zst", Today))
 )
 
 // Record represents the JSON structure we're interested in
@@ -47,25 +47,25 @@ type SnapshotOptions struct {
 	Verbose        bool
 }
 
-// DefaultSnapshotOptions returns updated defaults
+// DefaultSnapshotOptions returns default options.
 func DefaultSnapshotOptions() SnapshotOptions {
 	return SnapshotOptions{
 		OutputFile:     DefaultOutputFile,
 		TempDir:        os.TempDir(),
 		BatchSize:      100000,
 		Workers:        runtime.NumCPU(),
-		SortBufferSize: "25",
-		KeepTempFiles:  true,
+		SortBufferSize: "25%",
+		KeepTempFiles:  false,
 		Verbose:        false,
 	}
 }
 
-// CreateSnapshot implements the three-stage approach
+// CreateSnapshot implements a three-stage metadata snapshot approach.
 func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
 	}
-	indexTempFile, err := os.CreateTemp(opts.TempDir, "crossref-snapshot-index-*.tsv")
+	indexTempFile, err := os.CreateTemp("", "sk-crossref-snapshot-index-*.txt")
 	if err != nil {
 		return fmt.Errorf("error creating temporary index file: %v", err)
 	}
@@ -75,7 +75,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 			_ = os.Remove(indexTempFile.Name())
 		}
 	}()
-	lineNumsTempFile, err := os.CreateTemp(opts.TempDir, "crossref-snapshot-lines-*.txt")
+	lineNumsTempFile, err := os.CreateTemp(opts.TempDir, "sk-crossref-snapshot-lines-*.txt")
 	if err != nil {
 		return fmt.Errorf("error creating temporary line numbers file: %v", err)
 	}
@@ -126,8 +126,6 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		fmt.Println("stage 3: extracting relevant records to output file")
 	}
 	started = time.Now()
-	// XXX: This currently takes longer that it needs to be; zstd -T0 seems to
-	// be faster than the Go version; or filterline; https://github.com/miku/filterline
 	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.Verbose); err != nil {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
@@ -451,10 +449,14 @@ func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile 
 	case strings.HasSuffix(filename, ".gz"):
 		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s <(gzip -cd %s) | gzip -c9 >> %s", lineNumTempFile.Name(), filename, outputFile))
 	default:
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s %s >> outputFile"), lineNumTempFile.Name(), filename)
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s %s >> %s", lineNumTempFile.Name(), filename, outputFile))
 	}
 	if verbose {
 		log.Printf("extracting lines with: %v", cmd)
 	}
-	return len(lineNumbers.numbers), cmd.Run()
+	b, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Printf("command failed: %v", string(b))
+	}
+	return len(lineNumbers.numbers), err
 }

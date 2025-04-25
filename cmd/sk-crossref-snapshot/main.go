@@ -12,10 +12,12 @@ import (
 )
 
 var (
-	outputFile = flag.String("o", crossref.DefaultOutputFile, "output file path, use .gz or .zst to enable compression")
-	batchSize  = flag.Int("n", 100000, "number of records to process in memory before writing to index")
-	workers    = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
-	verbose    = flag.Bool("v", false, "verbose output")
+	outputFile     = flag.String("o", crossref.DefaultOutputFile, "output file path, use .gz or .zst to enable compression")
+	batchSize      = flag.Int("n", 100000, "number of records to process in memory before writing to index")
+	workers        = flag.Int("w", runtime.NumCPU(), "number of worker goroutines for parallel processing")
+	keepTempFiles  = flag.Bool("k", false, "keep temporary files (for debugging)")
+	verbose        = flag.Bool("v", false, "verbose output")
+	sortBufferSize = flag.String("S", "25%", "sort buffer size")
 )
 
 func main() {
@@ -33,8 +35,8 @@ func main() {
 		BatchSize:      *batchSize,
 		Workers:        *workers,
 		Verbose:        *verbose,
-		KeepTempFiles:  true,
-		SortBufferSize: "25%",
+		KeepTempFiles:  *keepTempFiles,
+		SortBufferSize: *sortBufferSize,
 	}
 	if err := crossref.CreateSnapshot(opts); err != nil {
 		log.Fatalf("error creating snapshot: %v", err)
