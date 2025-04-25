@@ -131,6 +131,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
 	if opts.Verbose {
+		// stage 3 completed in 5h29m47.206642707s
 		fmt.Printf("stage 3 completed in %s\n", time.Since(started))
 	}
 	return nil
