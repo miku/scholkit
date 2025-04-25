@@ -139,7 +139,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error closing index temp file: %v", err)
 	}
 	if opts.Verbose {
-		// stage 1 completed in 1h12m12.758863036s
+		// stage 1 completed in 1h9m26.202802464s
 		fmt.Printf("stage 1 completed in %s\n", time.Since(started))
 	}
 	// Stage 2: Sort and find latest version of each DOI
@@ -151,7 +151,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error in stage 2: %v", err)
 	}
 	if opts.Verbose {
-		// stage 2 completed in 15m31.046214959s
+		// stage 2 completed in 14m53.753035045s
 		fmt.Printf("stage 2 completed in %s\n", time.Since(started))
 	}
 	// Stage 3: Extract identified lines to create final output
