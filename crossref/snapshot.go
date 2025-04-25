@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"os/exec"
 	"path"
@@ -354,7 +355,7 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 	if err != nil {
 		return err
 	}
-	// Create output file with appropriate compression
+	// Create output file with appropriate compression; XXX: we may get rid of this
 	outWriter, err := createOutputWriter(outputFilePath)
 	if err != nil {
 		return fmt.Errorf("error creating output file: %v", err)
@@ -378,7 +379,8 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		// Sort line numbers for efficient reading
 		lineNumbers.sort()
 		// Extract the lines
-		extracted, err := extractLinesFromFile(inputFile, lineNumbers, bufWriter, verbose)
+		// extracted, err := extractLinesFromFile(inputFile, lineNumbers, bufWriter, verbose)
+		extracted, err := extractLinesFromFileExt(inputFile, lineNumbers, outputFilePath, verbose)
 		if err != nil {
 			return err
 		}
@@ -453,11 +455,42 @@ func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*
 	return fileLineMap, nil
 }
 
+// extractLinesFromFileExt uses external tools to perform the slicing.
+func extractLinesFromFileExt(filename string, lineNumbers *LineNumbers, outputFile string, verbose bool) (int, error) {
+	lineNumTempFile, err := os.CreateTemp("", "crossref-snapshot-line-numbers-*.txt")
+	if err != nil {
+		return 0, fmt.Errorf("error creating temp file: %w", err)
+	}
+	defer os.Remove(lineNumTempFile.Name())
+	for _, num := range lineNumbers.numbers {
+		_, err := fmt.Fprintf(lineNumTempFile, "%d\n", num)
+		if err != nil {
+			return 0, err
+		}
+	}
+	if err := lineNumTempFile.Close(); err != nil {
+		return 0, err
+	}
+	var cmd *exec.Cmd
+	switch {
+	case strings.HasSuffix(filename, ".zst"):
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s <(zstd -cd -T0 %s) | zstd -c9 -T0 >> %s", lineNumTempFile.Name(), filename, outputFile))
+	case strings.HasSuffix(filename, ".gz"):
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s <(gzip -cd %s) | gzip -c9 >> %s", lineNumTempFile.Name(), filename, outputFile))
+	default:
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s %s >> outputFile"), lineNumTempFile.Name(), filename)
+	}
+	if verbose {
+		log.Printf("extractLinesFromFileExt: %v", cmd)
+	}
+	return len(lineNumbers.numbers), cmd.Run()
+}
+
 // extractLinesFromFile extracts specific lines from a file
 func extractLinesFromFile(filename string, lineNumbers *LineNumbers, writer *bufio.Writer, verbose bool) (int, error) {
 	r, err := openFile(filename)
 	if err != nil {
-		return 0, fmt.Errorf("error opening file %s: %v", filename, err)
+		return 0, fmt.Errorf("error opening file %s: %w", filename, err)
 	}
 	defer r.Close()
 	scanner := bufio.NewScanner(r)
