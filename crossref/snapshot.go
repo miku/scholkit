@@ -54,7 +54,7 @@ func DefaultSnapshotOptions() SnapshotOptions {
 		TempDir:        os.TempDir(),
 		BatchSize:      100000,
 		Workers:        runtime.NumCPU(),
-		SortBufferSize: "25", // XXX: do the automatically
+		SortBufferSize: "25",
 		KeepTempFiles:  true,
 		Verbose:        false,
 	}
@@ -175,21 +175,9 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 	const maxScanTokenSize = 100 * 1024 * 1024 // 100MB
 	buf := make([]byte, maxScanTokenSize)
 	scanner.Buffer(buf, maxScanTokenSize)
-	var (
-		lineNum          int64 = 0
-		startTime              = time.Now()
-		lastProgressTime       = startTime
-		progressInterval       = 30 * time.Second // Log progress every 30 seconds
-	)
+	var lineNum int64 = 1
 	for scanner.Scan() {
 		line := scanner.Text()
-		// Progress reporting for long-running files; XXX: drop this from this hotter loop
-		if time.Since(lastProgressTime) > progressInterval {
-			fmt.Printf("still processing %s: at line %d after %.1f minutes (%.1f lines/sec)\n",
-				filename, lineNum, time.Since(startTime).Minutes(),
-				float64(lineNum)/time.Since(startTime).Seconds())
-			lastProgressTime = time.Now()
-		}
 		var record Record
 		if err := json.Unmarshal([]byte(line), &record); err != nil {
 			fmt.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
@@ -498,22 +486,12 @@ func extractLinesFromFile(filename string, lineNumbers *LineNumbers, writer *buf
 	buf := make([]byte, maxScanTokenSize)
 	scanner.Buffer(buf, maxScanTokenSize)
 	var (
-		lineNum          int64 = 0
-		extractedCount         = 0
-		nextLineIdx            = 0
-		startTime              = time.Now()
-		lastProgressTime       = startTime
-		progressInterval       = 30 * time.Second
+		lineNum        int64 = 1
+		extractedCount       = 0
+		nextLineIdx          = 0
 	)
 	// Read the file line by line
 	for scanner.Scan() {
-		// Report progress periodically for large files
-		if verbose && time.Since(lastProgressTime) > progressInterval {
-			elapsedSecs := time.Since(startTime).Seconds()
-			fmt.Printf("still extracting from %s: at line %d after %.1f seconds (%.1f lines/sec)\n",
-				filename, lineNum, elapsedSecs, float64(lineNum)/elapsedSecs)
-			lastProgressTime = time.Now()
-		}
 		// Check if we need this line
 		if nextLineIdx < len(lineNumbers.numbers) && lineNum == lineNumbers.numbers[nextLineIdx] {
 			// Write this line to the output
