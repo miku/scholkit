@@ -252,7 +252,6 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 			_, _ = fmt.Fprintf(&buffer, "%s\t%d\t%d\t%s\n",
 				inputPath, lineNum, record.Indexed.Timestamp, record.DOI)
 			entriesProcessed++
-			// Batch write to reduce lock contention
 			if entriesProcessed >= batchSize {
 				indexMutex.Lock()
 				_, err := indexFile.Write(buffer.Bytes())
@@ -262,9 +261,6 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 				}
 				buffer.Reset()
 				entriesProcessed = 0
-				if verbose {
-					fmt.Printf("processed batch from %s\n", inputPath)
-				}
 			}
 			return nil
 		})
@@ -469,7 +465,7 @@ func extractLinesFromFileExt(filename string, lineNumbers *LineNumbers, outputFi
 		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s %s >> outputFile"), lineNumTempFile.Name(), filename)
 	}
 	if verbose {
-		log.Printf("extractLinesFromFileExt: %v", cmd)
+		log.Printf("extracting lines with: %v", cmd)
 	}
 	return len(lineNumbers.numbers), cmd.Run()
 }
