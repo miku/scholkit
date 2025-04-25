@@ -33,12 +33,31 @@ import (
 // Line numbers are kept in memory; this should work up to the 10M line numbers
 // range for a single file, but we can circumvent this by just writing line
 // numbers to a file directly.
+//
+// Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
 var (
 	MaxScanTokenSize  = 104857600 // 100MB, note each thread will allocate a buffer of this size
 	Today             = time.Now().Format("2006-01-02")
 	TempfilePrefix    = "sk-crossref-snapshot"
 	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
+
+	// fallback awk script is used if the filterline executable is not found;
+	// compiled filterline is about 3x faster.
+	fallbackFilterlineScript = `#!/bin/bash
+    LIST="$1" LC_ALL=C awk '
+      function nextline() {
+        if ((getline n < list) <=0) exit
+      }
+      BEGIN{
+        list = ENVIRON["LIST"]
+        nextline()
+      }
+      NR == n {
+        print
+        nextline()
+      }' < "$2"
+    `
 )
 
 // Record represents the JSON structure we're interested in
@@ -439,14 +458,21 @@ func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile 
 	if err := lineNumTempFile.Close(); err != nil {
 		return 0, err
 	}
+	filterlineExe := `filterline`
+	if !isCommandAvailable(filterlineExe) {
+		filterlineExe, err = createFallbackScript()
+		if err != nil {
+			return 0, err
+		}
+	}
 	var cmd *exec.Cmd
 	switch {
 	case strings.HasSuffix(filename, ".zst"):
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s <(zstd -cd -T0 %s) | zstd -c9 -T0 >> %s", lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(zstd -cd -T0 %s) | zstd -c9 -T0 >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
 	case strings.HasSuffix(filename, ".gz"):
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s <(gzip -cd %s) | gzip -c9 >> %s", lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(gzip -cd %s) | gzip -c9 >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
 	default:
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("filterline %s %s >> %s", lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s %s >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
 	}
 	if verbose {
 		log.Printf("extracting lines with: %v", cmd)
@@ -456,4 +482,29 @@ func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile 
 		log.Printf("command failed: %v", string(b))
 	}
 	return len(lineNumbers.numbers), err
+}
+
+// isCommandAvailable checks if a command is available in the system PATH
+func isCommandAvailable(command string) bool {
+	_, err := exec.LookPath(command)
+	return err == nil
+}
+
+// createFallbackScript creates a temporary script file with the fallback awk script
+func createFallbackScript() (string, error) {
+	scriptFile, err := os.CreateTemp("", fmt.Sprintf("%s-fallback-*.sh", TempfilePrefix))
+	if err != nil {
+		return "", fmt.Errorf("error creating fallback script: %v", err)
+	}
+	if _, err := scriptFile.WriteString(fallbackFilterlineScript); err != nil {
+		_ = scriptFile.Close()
+		_ = os.Remove(scriptFile.Name())
+		return "", fmt.Errorf("error writing fallback script: %v", err)
+	}
+	_ = scriptFile.Close()
+	if err := os.Chmod(scriptFile.Name(), 0755); err != nil {
+		_ = os.Remove(scriptFile.Name())
+		return "", fmt.Errorf("error making fallback script executable: %v", err)
+	}
+	return scriptFile.Name(), nil
 }
