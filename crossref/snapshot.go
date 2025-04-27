@@ -416,9 +416,6 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 			}
 			continue
 		}
-		if verbose {
-			log.Printf("extracting %d lines from %s", entry.NumLines, inputFile)
-		}
 		err := extractLinesFromFile(inputFile, entry.LineNumbersFilename, outputFilePath, verbose)
 		if err != nil {
 			return err
@@ -561,7 +558,7 @@ func extractLinesFromFile(filename string, lineNumbersFile string, outputFile st
 		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s %s >> %s", filterlineExe, lineNumbersFile, filename, outputFile))
 	}
 	if verbose {
-		log.Printf("extracting lines with: %v", cmd)
+		log.Println(cmd)
 	}
 	b, err := cmd.CombinedOutput()
 	if err != nil {
