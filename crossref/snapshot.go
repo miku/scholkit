@@ -494,7 +494,7 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 				NumLines:            0,
 			}
 		}
-		_, err := fmt.Fprintf(tempFileMap[filename], lineNum)
+		_, err := fmt.Fprintln(tempFileMap[filename], lineNum)
 		if err != nil {
 			return nil, err
 		}
