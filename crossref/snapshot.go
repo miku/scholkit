@@ -10,7 +10,6 @@ import (
 	"os/exec"
 	"path"
 	"runtime"
-	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -130,12 +129,12 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		}
 	}()
 	if opts.Verbose {
-		fmt.Printf("processing %d files with %d workers\n", len(opts.InputFiles), opts.NumWorkers)
-		fmt.Printf("output file: %s\n", opts.OutputFile)
-		fmt.Printf("temporary index file: %s\n", indexTempFile.Name())
-		fmt.Printf("temporary line numbers file: %s\n", lineNumsTempFile.Name())
-		fmt.Printf("batch size: %d records\n", opts.BatchSize)
-		fmt.Printf("sort buffer size: %s\n", opts.SortBufferSize)
+		log.Printf("processing %d files with %d workers\n", len(opts.InputFiles), opts.NumWorkers)
+		log.Printf("output file: %s\n", opts.OutputFile)
+		log.Printf("temporary index file: %s\n", indexTempFile.Name())
+		log.Printf("temporary line numbers file: %s\n", lineNumsTempFile.Name())
+		log.Printf("batch size: %d records\n", opts.BatchSize)
+		log.Printf("sort buffer size: %s\n", opts.SortBufferSize)
 	}
 	// Stage 1: Extract DOI, timestamp, filename, and line number to temp file
 	if opts.Verbose {
@@ -151,11 +150,11 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	}
 	if opts.Verbose {
 		// stage 1 completed in 1h9m26.202802464s
-		fmt.Printf("stage 1 completed in %s\n", time.Since(started))
+		log.Printf("stage 1 completed in %s", time.Since(started))
 	}
 	// Stage 2: Sort and find latest version of each DOI
 	if opts.Verbose {
-		fmt.Println("stage 2: identifying latest versions of each DOI")
+		log.Println("stage 2: identifying latest versions of each DOI")
 	}
 	started = time.Now()
 	if err := identifyLatestVersions(indexTempFile.Name(), lineNumsTempFile.Name(), opts.SortBufferSize, opts.Verbose); err != nil {
@@ -163,11 +162,11 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	}
 	if opts.Verbose {
 		// stage 2 completed in 14m53.753035045s
-		fmt.Printf("stage 2 completed in %s\n", time.Since(started))
+		log.Printf("stage 2 completed in %s", time.Since(started))
 	}
 	// Stage 3: Extract identified lines to create final output
 	if opts.Verbose {
-		fmt.Println("stage 3: extracting relevant records to output file")
+		log.Println("stage 3: extracting relevant records to output file")
 	}
 	started = time.Now()
 	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.SortBufferSize, opts.Verbose); err != nil {
@@ -175,7 +174,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	}
 	if opts.Verbose {
 		// stage 3 completed in 1h40m0.654023657s (previously, with pure Go zstd and filtering it took 5h29m)
-		fmt.Printf("stage 3 completed in %s\n", time.Since(started))
+		log.Printf("stage 3 completed in %s", time.Since(started))
 	}
 	return nil
 }
@@ -221,7 +220,7 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 		line := scanner.Text()
 		var record Record
 		if err := json.Unmarshal([]byte(line), &record); err != nil {
-			fmt.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
+			log.Printf("skipping invalid JSON at %s:%d: %v\n", filename, lineNum, err)
 			lineNum++
 			continue
 		}
@@ -278,7 +277,7 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, batchSize int, verbose bool) error {
 	var indexMutex sync.Mutex
 	if verbose {
-		fmt.Printf("extracting minimal information with %d workers\n", numWorkers)
+		log.Printf("extracting minimal information with %d workers", numWorkers)
 	}
 	zw, err := zstd.NewWriter(indexFile)
 	if err != nil {
@@ -290,7 +289,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 	}()
 	return processFilesParallel(inputFiles, numWorkers, func(inputPath string) error {
 		if verbose {
-			fmt.Printf("processing file: %s\n", inputPath)
+			log.Printf("processing file: %s", inputPath)
 		}
 		var (
 			buffer           bytes.Buffer
@@ -325,7 +324,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 				return err
 			}
 			if verbose {
-				fmt.Printf("done %s\n", inputPath)
+				log.Printf("done %s", inputPath)
 			}
 		}
 		return nil
@@ -335,7 +334,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 // identifyLatestVersions sorts the index and identifies the latest version of each DOI
 func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize string, verbose bool) error {
 	if verbose {
-		fmt.Println("sorting and identifying latest versions")
+		log.Println("sorting and identifying latest versions")
 	}
 	if sortBufferSize == "" {
 		// Initial buffer size, as percentage of RAM.
@@ -355,7 +354,7 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 			runtime.NumCPU(), sortBufferSize, indexFilePath, runtime.NumCPU(), sortBufferSize, lineNumsFilePath)
 	}
 	if verbose {
-		fmt.Printf("executing sort pipeline: %s\n", pipeline)
+		log.Printf("executing sort pipeline: %s", pipeline)
 	}
 	cmd := exec.Command("bash", "-c", pipeline)
 	b, err := cmd.CombinedOutput()
@@ -370,7 +369,7 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 		return fmt.Errorf("error: line numbers file is empty after sorting")
 	}
 	if verbose {
-		fmt.Printf("sorting and filtering complete, output file size: %d bytes\n", fileInfo.Size())
+		log.Printf("sorting and filtering complete, output file size: %d bytes", fileInfo.Size())
 	}
 	return nil
 }
@@ -408,7 +407,7 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		entry, ok := fileLineMap[inputFile]
 		if !ok {
 			if verbose {
-				fmt.Printf("no records to extract from %s\n", inputFile)
+				log.Printf("no records to extract from %s", inputFile)
 			}
 			continue
 		}
@@ -421,32 +420,17 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 		}
 		totalExtracted += entry.NumLines
 		if verbose {
-			fmt.Printf("extracted %d records from %s\n", entry.NumLines, inputFile)
+			log.Printf("extracted %d records from %s", entry.NumLines, inputFile)
 		}
 	}
 	if verbose {
-		fmt.Printf("total records extracted: %d\n", totalExtracted)
+		log.Printf("total records extracted: %d", totalExtracted)
 	}
 	// Cleanup temporary line number files.
 	for _, entry := range fileLineMap {
 		_ = os.Remove(entry.LineNumbersFilename)
 	}
 	return nil
-}
-
-// LineNumbers represents a collection of line numbers to extract from a file
-type LineNumbers struct {
-	numbers []int64
-}
-
-func (ln *LineNumbers) add(num int64) {
-	ln.numbers = append(ln.numbers, num)
-}
-
-func (ln *LineNumbers) sort() {
-	sort.Slice(ln.numbers, func(i, j int) bool {
-		return ln.numbers[i] < ln.numbers[j]
-	})
 }
 
 // groupLineNumbersByFile reads the line numbers file and groups by filename
@@ -512,16 +496,12 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 				}
 			}
 			if verbose {
-				fmt.Printf("read %d lines from line numbers file\n", linesRead)
+				log.Printf("read %d lines from line numbers file", linesRead)
 			}
 		}
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("error reading line numbers file: %v", err)
-	}
-	if verbose {
-		fmt.Printf("read total of %d lines from line numbers file\n", linesRead)
-		fmt.Printf("found lines for %d files\n", len(fileLineMap))
 	}
 	for _, tf := range tempFileMap {
 		if err := tf.Flush(); err != nil {
