@@ -318,6 +318,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 		if err != nil {
 			return fmt.Errorf("error processing file %s: %v", inputPath, err)
 		}
+		numProcessed.Add(1)
 		// Write any remaining entries, report progress.
 		if buffer.Len() > 0 {
 			indexMutex.Lock()
@@ -326,7 +327,6 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 			if err != nil {
 				return err
 			}
-			numProcessed.Add(1)
 			if verbose {
 				donePct := float64(numProcessed.Load()) / float64(len(inputFiles)) * 100
 				log.Printf("done [%d/%d][%0.2f%%]: %s", numProcessed.Load(), len(inputFiles), donePct, inputPath)
