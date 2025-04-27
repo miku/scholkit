@@ -82,6 +82,15 @@ type SnapshotOptions struct {
 	Verbose        bool     // Verbose output.
 }
 
+type LineNumberEntry struct {
+	LineNumbersFilename string
+	NumLines            int64
+}
+
+// LineNumbersFileMap maps a filename to the associated filename that contains
+// the line numbers to extract and the number of lines in that file.
+type LineNumbersFileMap map[string]*LineNumberEntry
+
 // DefaultSnapshotOptions returns default options.
 func DefaultSnapshotOptions() SnapshotOptions {
 	return SnapshotOptions{
@@ -161,7 +170,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		fmt.Println("stage 3: extracting relevant records to output file")
 	}
 	started = time.Now()
-	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.Verbose); err != nil {
+	if err := extractRelevantRecords(lineNumsTempFile.Name(), opts.InputFiles, opts.OutputFile, opts.SortBufferSize, opts.Verbose); err != nil {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
 	if opts.Verbose {
@@ -386,15 +395,15 @@ func isZstdCompressed(filename string) bool {
 
 // extractRelevantRecords extracts the identified lines from the original
 // files
-func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, verbose bool) error {
+func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, sortBufferSize string, verbose bool) error {
 	if verbose {
 		fmt.Println("extracting relevant records")
 	}
-	fileLineMap, err := groupLineNumbersByFile(lineNumsFilePath, verbose)
+	fileLineMap, err := groupLineNumbersByFile(lineNumsFilePath, sortBufferSize, verbose)
 	if err != nil {
 		return err
 	}
-	totalExtracted := 0
+	var totalExtracted int64 = 0
 	for _, inputFile := range inputFiles {
 		lineNumbers, ok := fileLineMap[inputFile]
 		if !ok {
@@ -404,16 +413,15 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 			continue
 		}
 		if verbose {
-			fmt.Printf("extracting %d records from %s\n", len(lineNumbers.numbers), inputFile)
+			log.Printf("extracting %d lines from %s", lineNumbers.NumLines, inputFile)
 		}
-		lineNumbers.sort()
-		extracted, err := extractLinesFromFile(inputFile, lineNumbers, outputFilePath, verbose)
+		err := extractLinesFromFile(inputFile, lineNumbers.LineNumbersFilename, outputFilePath, verbose)
 		if err != nil {
 			return err
 		}
-		totalExtracted += extracted
+		totalExtracted += lineNumbers.NumLines
 		if verbose {
-			fmt.Printf("extracted %d records from %s\n", extracted, inputFile)
+			fmt.Printf("extracted %d records from %s\n", lineNumbers.NumLines, inputFile)
 		}
 	}
 	if verbose {
@@ -438,35 +446,70 @@ func (ln *LineNumbers) sort() {
 }
 
 // groupLineNumbersByFile reads the line numbers file and groups by filename
-func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*LineNumbers, error) {
+func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verbose bool) (LineNumbersFileMap, error) {
 	file, err := os.Open(lineNumsFilePath)
 	if err != nil {
 		return nil, fmt.Errorf("error opening line numbers file: %v", err)
 	}
 	defer file.Close()
+	const flushAfterNumLines = 1_000_000 // lines
 	var (
-		fileLineMap = make(map[string]*LineNumbers)
+		fileLineMap = make(LineNumbersFileMap)
+		tempFileMap = make(map[string]*bufio.Writer)
 		scanner     = bufio.NewScanner(file)
 		linesRead   = 0
+		tempFiles   = make([]*os.File, 0) // only for cleanup
 	)
 	for scanner.Scan() {
-		line := scanner.Text()
-		parts := strings.Split(line, "\t")
+		var (
+			line  = scanner.Text()
+			parts = strings.Fields(line)
+		)
 		if len(parts) != 2 {
 			return nil, fmt.Errorf("invalid line format: %s", line)
 		}
-		filename := parts[0]
-		lineNum, err := strconv.ParseInt(parts[1], 10, 64)
-		if err != nil {
-			return nil, fmt.Errorf("invalid line number: %s", parts[1])
-		}
+		var (
+			filename = parts[0]
+			lineNum  = parts[1]
+		)
 		if _, ok := fileLineMap[filename]; !ok {
-			fileLineMap[filename] = &LineNumbers{numbers: make([]int64, 0)}
+			safeName := strings.Replace(path.Base(filename), ".", "-", -1)
+			tempFile, err := os.CreateTemp(os.TempDir(), fmt.Sprintf("%s-lines-%s-*.txt", TempfilePrefix, safeName))
+			if err != nil {
+				// We cleanup all previously created temporary files.
+				for _, tf := range tempFiles {
+					_ = tf.Close()
+					_ = os.Remove(tf.Name())
+				}
+				return nil, fmt.Errorf("error creating temp file: %w", err)
+			}
+			tempFiles = append(tempFiles, tempFile)
+			bw := bufio.NewWriter(tempFile)
+			defer func() {
+				_ = tempFile.Close()
+			}()
+			tempFileMap[filename] = bw
+			fileLineMap[filename] = &LineNumberEntry{
+				LineNumbersFilename: tempFile.Name(),
+				NumLines:            0,
+			}
 		}
-		fileLineMap[filename].add(lineNum)
+		_, err := fmt.Fprintf(tempFileMap[filename], lineNum)
+		if err != nil {
+			return nil, err
+		}
 		linesRead++
-		if verbose && linesRead%1000000 == 0 {
-			fmt.Printf("read %d lines from line numbers file\n", linesRead)
+		fileLineMap[filename].NumLines++
+		if linesRead%flushAfterNumLines == 0 {
+			// Regularly flush data, so we detect writing issues early.
+			for _, tf := range tempFileMap {
+				if err := tf.Flush(); err != nil {
+					return fileLineMap, err
+				}
+			}
+			if verbose {
+				fmt.Printf("read %d lines from line numbers file\n", linesRead)
+			}
 		}
 	}
 	if err := scanner.Err(); err != nil {
@@ -476,41 +519,51 @@ func groupLineNumbersByFile(lineNumsFilePath string, verbose bool) (map[string]*
 		fmt.Printf("read total of %d lines from line numbers file\n", linesRead)
 		fmt.Printf("found lines for %d files\n", len(fileLineMap))
 	}
-
+	for _, tf := range tempFileMap {
+		if err := tf.Flush(); err != nil {
+			return fileLineMap, err
+		}
+	}
+	for _, tf := range tempFiles {
+		if err := tf.Close(); err != nil {
+			return fileLineMap, err
+		}
+	}
+	for _, entry := range fileLineMap {
+		cmd := exec.Command("sort", "-n", "-S", sortBufferSize,
+			"--parallel", strconv.Itoa(runtime.NumCPU()),
+			"-o", entry.LineNumbersFilename, entry.LineNumbersFilename)
+		cmd.Env = os.Environ()
+		cmd.Env = append(cmd.Env, "LC_ALL=C")
+		b, err := cmd.CombinedOutput()
+		if err != nil {
+			log.Printf("sorting line numbers file failed: %v", string(b))
+			return nil, err
+		}
+	}
 	return fileLineMap, nil
 }
 
 // extractLinesFromFile uses external tools to perform the slicing.
-func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile string, verbose bool) (int, error) {
-	lineNumTempFile, err := os.CreateTemp("", fmt.Sprintf("%s-line-numbers-*.txt", TempfilePrefix))
-	if err != nil {
-		return 0, fmt.Errorf("error creating temp file: %w", err)
-	}
-	defer os.Remove(lineNumTempFile.Name())
-	for _, num := range lineNumbers.numbers {
-		_, err := fmt.Fprintf(lineNumTempFile, "%d\n", num)
-		if err != nil {
-			return 0, err
-		}
-	}
-	if err := lineNumTempFile.Close(); err != nil {
-		return 0, err
-	}
-	filterlineExe := `filterline`
+func extractLinesFromFile(filename string, lineNumbersFile string, outputFile string, verbose bool) error {
+	var (
+		filterlineExe = `filterline`
+		err           error
+	)
 	if !isCommandAvailable(filterlineExe) {
 		filterlineExe, err = createFallbackScript()
 		if err != nil {
-			return 0, err
+			return err
 		}
 	}
 	var cmd *exec.Cmd
 	switch {
 	case strings.HasSuffix(filename, ".zst"):
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(zstd -cd -T0 %s) | zstd -c9 -T0 >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(zstd -cd -T0 %s) | zstd -c9 -T0 >> %s", filterlineExe, lineNumbersFile, filename, outputFile))
 	case strings.HasSuffix(filename, ".gz"):
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(gzip -cd %s) | gzip -c9 >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s <(gzip -cd %s) | gzip -c9 >> %s", filterlineExe, lineNumbersFile, filename, outputFile))
 	default:
-		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s %s >> %s", filterlineExe, lineNumTempFile.Name(), filename, outputFile))
+		cmd = exec.Command("bash", "-c", fmt.Sprintf("%s %s %s >> %s", filterlineExe, lineNumbersFile, filename, outputFile))
 	}
 	if verbose {
 		log.Printf("extracting lines with: %v", cmd)
@@ -519,7 +572,7 @@ func extractLinesFromFile(filename string, lineNumbers *LineNumbers, outputFile 
 	if err != nil {
 		log.Printf("command failed: %v", string(b))
 	}
-	return len(lineNumbers.numbers), err
+	return err
 }
 
 // isCommandAvailable checks if a command is available in the system PATH
