@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/klauspost/compress/zstd"
@@ -277,6 +278,7 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 // as well
 func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, batchSize int, verbose bool) error {
 	var indexMutex sync.Mutex
+	var numProcessed atomic.Uint64
 	if verbose {
 		log.Printf("extracting minimal information with %d workers", numWorkers)
 	}
@@ -316,7 +318,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 		if err != nil {
 			return fmt.Errorf("error processing file %s: %v", inputPath, err)
 		}
-		// Write any remaining entries
+		// Write any remaining entries, report progress.
 		if buffer.Len() > 0 {
 			indexMutex.Lock()
 			_, err := zw.Write(buffer.Bytes())
@@ -324,8 +326,10 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 			if err != nil {
 				return err
 			}
+			numProcessed.Add(1)
 			if verbose {
-				log.Printf("done %s", inputPath)
+				donePct := float64(numProcessed.Load()) / float64(len(inputFiles)) * 100
+				log.Printf("done [%d/%d][%0.2f%%]: %s", numProcessed.Load(), len(inputFiles), donePct, inputPath)
 			}
 		}
 		return nil
