@@ -132,7 +132,7 @@ func createCrossrefSnapshot(config *config.Config, outputFile string) error {
 		InputFiles: inputFiles,
 		OutputFile: outputFile,
 		BatchSize:  *batchSize,
-		Workers:    *numWorkers,
+		NumWorkers: *numWorkers,
 		Verbose:    *verbose,
 	}
 	return crossref.CreateSnapshot(opts)

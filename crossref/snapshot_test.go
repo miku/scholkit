@@ -31,7 +31,7 @@ func TestCreateSnapshot(t *testing.T) {
 		OutputFile:     outputFile,
 		TempDir:        tempDir,
 		BatchSize:      10,
-		Workers:        2,
+		NumWorkers:     2,
 		SortBufferSize: "10%",
 		KeepTempFiles:  true,
 		Verbose:        true,

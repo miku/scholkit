@@ -33,7 +33,7 @@ func main() {
 		InputFiles:     inputFiles,
 		OutputFile:     *outputFile,
 		BatchSize:      *batchSize,
-		Workers:        *workers,
+		NumWorkers:     *workers,
 		Verbose:        *verbose,
 		KeepTempFiles:  *keepTempFiles,
 		SortBufferSize: *sortBufferSize,

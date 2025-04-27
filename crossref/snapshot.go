@@ -37,13 +37,15 @@ import (
 // Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
 var (
-	MaxScanTokenSize  = 104857600 // 100MB, note each thread will allocate a buffer of this size
+	MaxScanTokenSize  = 104857600 // 100MB, note: each thread will allocate a buffer of this size
 	Today             = time.Now().Format("2006-01-02")
 	TempfilePrefix    = "sk-crossref-snapshot"
 	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
 
 	// fallback awk script is used if the filterline executable is not found;
-	// compiled filterline is about 3x faster.
+	// compiled filterline is about 3x faster;
+	// https://unix.stackexchange.com/q/209404/376, cf.
+	// https://github.com/miku/filterline
 	fallbackFilterlineScript = `#!/bin/bash
     LIST="$1" LC_ALL=C awk '
       function nextline() {
@@ -68,16 +70,16 @@ type Record struct {
 	} `json:"indexed"`
 }
 
-// SnapshotOptions contains configuration for the snapshot process
+// SnapshotOptions contains configuration for the snapshot process.
 type SnapshotOptions struct {
-	InputFiles     []string
-	OutputFile     string
-	TempDir        string // Directory for temporary files
-	BatchSize      int
-	Workers        int
-	SortBufferSize string // For sort -S parameter (e.g. "25%")
-	KeepTempFiles  bool
-	Verbose        bool
+	InputFiles     []string // InputFiles, following a Record structure.
+	OutputFile     string   // OutputFile is the file the snapshot is written to.
+	TempDir        string   // Directory for temporary files.
+	BatchSize      int      // BatchSize is the number records we process at once, affect memory usage.
+	NumWorkers     int      // Number of threads, each thread may allocate buffers.
+	SortBufferSize string   // For sort -S parameter (e.g. "25%"), curcial for faster sort.
+	KeepTempFiles  bool     // For debugging.
+	Verbose        bool     // Verbose output.
 }
 
 // DefaultSnapshotOptions returns default options.
@@ -86,7 +88,7 @@ func DefaultSnapshotOptions() SnapshotOptions {
 		OutputFile:     DefaultOutputFile,
 		TempDir:        os.TempDir(),
 		BatchSize:      100000,
-		Workers:        runtime.NumCPU(),
+		NumWorkers:     runtime.NumCPU(),
 		SortBufferSize: "25%",
 		KeepTempFiles:  false,
 		Verbose:        false,
@@ -98,12 +100,12 @@ func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
 	}
-	indexTempFile, err := os.CreateTemp("", fmt.Sprintf("%s-index-*.txt", TempfilePrefix))
+	indexTempFile, err := os.CreateTemp("", fmt.Sprintf("%s-index-*.txt.zst", TempfilePrefix))
 	if err != nil {
 		return fmt.Errorf("error creating temporary index file: %v", err)
 	}
 	defer func() {
-		indexTempFile.Close()
+		_ = indexTempFile.Close()
 		if !opts.KeepTempFiles {
 			_ = os.Remove(indexTempFile.Name())
 		}
@@ -113,13 +115,13 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error creating temporary line numbers file: %v", err)
 	}
 	defer func() {
-		lineNumsTempFile.Close()
+		_ = lineNumsTempFile.Close()
 		if !opts.KeepTempFiles {
 			_ = os.Remove(lineNumsTempFile.Name())
 		}
 	}()
 	if opts.Verbose {
-		fmt.Printf("processing %d files with %d workers\n", len(opts.InputFiles), opts.Workers)
+		fmt.Printf("processing %d files with %d workers\n", len(opts.InputFiles), opts.NumWorkers)
 		fmt.Printf("output file: %s\n", opts.OutputFile)
 		fmt.Printf("temporary index file: %s\n", indexTempFile.Name())
 		fmt.Printf("temporary line numbers file: %s\n", lineNumsTempFile.Name())
@@ -131,7 +133,7 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		fmt.Println("stage 1: extracting minimal information from input files")
 	}
 	started := time.Now()
-	if err := extractMinimalInfo(opts.InputFiles, indexTempFile, opts.Workers, opts.BatchSize, opts.Verbose); err != nil {
+	if err := extractMinimalInfo(opts.InputFiles, indexTempFile, opts.NumWorkers, opts.BatchSize, opts.Verbose); err != nil {
 		return fmt.Errorf("error in stage 1: %v", err)
 	}
 	// Close the index file to ensure all data is flushed
@@ -269,6 +271,14 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 	if verbose {
 		fmt.Printf("extracting minimal information with %d workers\n", numWorkers)
 	}
+	zw, err := zstd.NewWriter(indexFile)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		_ = zw.Flush()
+		_ = zw.Close()
+	}()
 	return processFilesParallel(inputFiles, numWorkers, func(inputPath string) error {
 		if verbose {
 			fmt.Printf("processing file: %s\n", inputPath)
@@ -284,7 +294,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 			entriesProcessed++
 			if entriesProcessed >= batchSize {
 				indexMutex.Lock()
-				_, err := indexFile.Write(buffer.Bytes())
+				_, err := zw.Write(buffer.Bytes())
 				indexMutex.Unlock()
 				if err != nil {
 					return err
@@ -300,7 +310,7 @@ func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, bat
 		// Write any remaining entries
 		if buffer.Len() > 0 {
 			indexMutex.Lock()
-			_, err := indexFile.Write(buffer.Bytes())
+			_, err := zw.Write(buffer.Bytes())
 			indexMutex.Unlock()
 			if err != nil {
 				return err
@@ -319,11 +329,17 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 		fmt.Println("sorting and identifying latest versions")
 	}
 	if sortBufferSize == "" {
+		// Initial buffer size, as percentage of RAM.
 		sortBufferSize = "25%"
 	}
+	// Takes the index file and sorts it by first ID (4,4) and date (3,3)
+	// reversed; keeps the latest and writes out (filename, linenumber) pairs.
 	pipeline := fmt.Sprintf(
-		"LC_ALL=C sort -S%s -t $'\\t' -k4,4 -k3,3nr %s | LC_ALL=C sort -S%s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
-		sortBufferSize, indexFilePath, sortBufferSize, lineNumsFilePath)
+		`zstd -cd -T0 %s |
+			LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -k3,3nr |
+			LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -u |
+			cut -f1,2 > %s`,
+		indexFilePath, runtime.NumCPU(), sortBufferSize, runtime.NumCPU(), sortBufferSize, lineNumsFilePath)
 
 	if verbose {
 		fmt.Printf("executing sort pipeline: %s\n", pipeline)
