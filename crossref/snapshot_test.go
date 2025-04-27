@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/segmentio/encoding/json"
 )
@@ -193,6 +194,7 @@ func TestSortAndFilter(t *testing.T) {
 
 	// Run the sort and filter
 	if err := identifyLatestVersions(indexFile, lineNumsFile, "10%", true); err != nil {
+		time.Sleep(30 * time.Second)
 		t.Fatalf("identifyLatestVersions failed: %v", err)
 	}
 

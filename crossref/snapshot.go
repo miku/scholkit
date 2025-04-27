@@ -332,22 +332,26 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 		// Initial buffer size, as percentage of RAM.
 		sortBufferSize = "25%"
 	}
+	var pipeline string
 	// Takes the index file and sorts it by first ID (4,4) and date (3,3)
 	// reversed; keeps the latest and writes out (filename, linenumber) pairs.
-	pipeline := fmt.Sprintf(
-		`zstd -cd -T0 %s |
-			LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -k3,3nr |
-			LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -u |
-			cut -f1,2 > %s`,
-		indexFilePath, runtime.NumCPU(), sortBufferSize, runtime.NumCPU(), sortBufferSize, lineNumsFilePath)
-
+	switch {
+	case isZstdCompressed(indexFilePath):
+		pipeline = fmt.Sprintf(
+			"zstd -cd -T0 %s | LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -k3,3nr | LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
+			indexFilePath, runtime.NumCPU(), sortBufferSize, runtime.NumCPU(), sortBufferSize, lineNumsFilePath)
+	default:
+		pipeline = fmt.Sprintf(
+			"LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -k3,3nr %s | LC_ALL=C sort --compress-program=zstd --parallel %d -S%s -t $'\\t' -k4,4 -u | cut -f1,2 > %s",
+			runtime.NumCPU(), sortBufferSize, indexFilePath, runtime.NumCPU(), sortBufferSize, lineNumsFilePath)
+	}
 	if verbose {
 		fmt.Printf("executing sort pipeline: %s\n", pipeline)
 	}
 	cmd := exec.Command("bash", "-c", pipeline)
-	output, err := cmd.CombinedOutput()
+	b, err := cmd.CombinedOutput()
 	if err != nil {
-		return fmt.Errorf("error executing sort pipeline: %v\nOutput: %s", err, string(output))
+		return fmt.Errorf("error executing sort pipeline: %v\nOutput: %s", err, string(b))
 	}
 	fileInfo, err := os.Stat(lineNumsFilePath)
 	if err != nil {
@@ -360,6 +364,24 @@ func identifyLatestVersions(indexFilePath, lineNumsFilePath, sortBufferSize stri
 		fmt.Printf("sorting and filtering complete, output file size: %d bytes\n", fileInfo.Size())
 	}
 	return nil
+}
+
+func isZstdCompressed(filename string) bool {
+	f, err := os.Open(filename)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+	zr, err := zstd.NewReader(f)
+	if err != nil {
+		return false
+	}
+	defer zr.Close()
+	var dummy = make([]byte, 64)
+	if _, err := zr.Read(dummy); err != nil {
+		return false
+	}
+	return true
 }
 
 // extractRelevantRecords extracts the identified lines from the original
