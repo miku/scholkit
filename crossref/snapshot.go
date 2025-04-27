@@ -37,7 +37,7 @@ import (
 // Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
 var (
-	MaxScanTokenSize        = 104857600 // 100MB, note: each thread will allocate a buffer of this size
+	MaxScanTokenSize        = 104_857_600 // 100MB, note: each thread will allocate a buffer of this size
 	FlushIndexAfterNumLines = 1_000_000
 	Today                   = time.Now().Format("2006-01-02")
 	TempfilePrefix          = "sk-crossref-snapshot"
