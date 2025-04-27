@@ -30,9 +30,9 @@ import (
 // be a bottleneck, depending. But could try to run extraction over say 8 files
 // in parallel and do a final concatenation of all zstd files; as zstd allows streaming.
 //
-// Line numbers are kept in memory; this should work up to the 10M line numbers
-// range for a single file, but we can circumvent this by just writing line
-// numbers to a file directly.
+// Currently, we open one temp file for each input file, to write line numebers
+// to extract to. Either write to separate files directly, or be more cautions
+// regarding the number of open files.
 //
 // Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
@@ -105,7 +105,15 @@ func DefaultSnapshotOptions() SnapshotOptions {
 	}
 }
 
-// CreateSnapshot implements a three-stage metadata snapshot approach.
+// CreateSnapshot implements a three-stage metadata snapshot approach, given
+// snapshot options. Tihs allows to create a current view of crossref our of a
+// continously harvested set of files.
+//
+// On a machine with fast i/o, many parts of this process can be cpu bound,
+// whereas on spinning disks, this will likely be i/o bound.
+//
+// An error is returned, if the snapshot options do not contain any files to
+// process.
 func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
