@@ -36,10 +36,11 @@ import (
 // Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
 var (
-	MaxScanTokenSize  = 104857600 // 100MB, note: each thread will allocate a buffer of this size
-	Today             = time.Now().Format("2006-01-02")
-	TempfilePrefix    = "sk-crossref-snapshot"
-	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
+	MaxScanTokenSize        = 104857600 // 100MB, note: each thread will allocate a buffer of this size
+	FlushIndexAfterNumLines = 1_000_000
+	Today                   = time.Now().Format("2006-01-02")
+	TempfilePrefix          = "sk-crossref-snapshot"
+	DefaultOutputFile       = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
 
 	// fallback awk script is used if the filterline executable is not found;
 	// compiled filterline is about 3x faster;
@@ -443,7 +444,6 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 		return nil, fmt.Errorf("error opening line numbers file: %v", err)
 	}
 	defer file.Close()
-	const flushAfterNumLines = 1_000_000 // lines
 	var (
 		fileLineMap = make(LineNumbersFileMap)
 		tempFileMap = make(map[string]*bufio.Writer)
@@ -491,7 +491,7 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 		}
 		linesRead++
 		fileLineMap[filename].NumLines++
-		if linesRead%flushAfterNumLines == 0 {
+		if linesRead%FlushIndexAfterNumLines == 0 {
 			// Regularly flush data, so we detect writing issues early.
 			for _, tf := range tempFileMap {
 				if err := tf.Flush(); err != nil {
