@@ -385,7 +385,7 @@ func isZstdCompressed(filename string) bool {
 }
 
 // extractRelevantRecords extracts the identified lines from the original
-// files; XXX: this is slower than a filterline/zstd (external) approach.
+// files
 func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, verbose bool) error {
 	if verbose {
 		fmt.Println("extracting relevant records")
