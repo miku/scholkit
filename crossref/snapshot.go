@@ -405,7 +405,7 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 	}
 	var totalExtracted int64 = 0
 	for _, inputFile := range inputFiles {
-		lineNumbers, ok := fileLineMap[inputFile]
+		entry, ok := fileLineMap[inputFile]
 		if !ok {
 			if verbose {
 				fmt.Printf("no records to extract from %s\n", inputFile)
@@ -413,19 +413,23 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 			continue
 		}
 		if verbose {
-			log.Printf("extracting %d lines from %s", lineNumbers.NumLines, inputFile)
+			log.Printf("extracting %d lines from %s", entry.NumLines, inputFile)
 		}
-		err := extractLinesFromFile(inputFile, lineNumbers.LineNumbersFilename, outputFilePath, verbose)
+		err := extractLinesFromFile(inputFile, entry.LineNumbersFilename, outputFilePath, verbose)
 		if err != nil {
 			return err
 		}
-		totalExtracted += lineNumbers.NumLines
+		totalExtracted += entry.NumLines
 		if verbose {
-			fmt.Printf("extracted %d records from %s\n", lineNumbers.NumLines, inputFile)
+			fmt.Printf("extracted %d records from %s\n", entry.NumLines, inputFile)
 		}
 	}
 	if verbose {
 		fmt.Printf("total records extracted: %d\n", totalExtracted)
+	}
+	// Cleanup temporary line number files.
+	for _, entry := range fileLineMap {
+		_ = os.Remove(entry.LineNumbersFilename)
 	}
 	return nil
 }
