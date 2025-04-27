@@ -393,7 +393,7 @@ func isZstdCompressed(filename string) bool {
 }
 
 // extractRelevantRecords extracts the identified lines from the original
-// files
+// files. After successful completion, all temporary files will be cleaned up.
 func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, outputFilePath string, sortBufferSize string, verbose bool) error {
 	if verbose {
 		fmt.Println("extracting relevant records")
@@ -433,7 +433,10 @@ func extractRelevantRecords(lineNumsFilePath string, inputFiles []string, output
 	return nil
 }
 
-// groupLineNumbersByFile reads the line numbers file and groups by filename
+// groupLineNumbersByFile reads the line numbers file, groups data by filename
+// and will write out one TSV file with just the line number for each file.
+// XXX: This may fail, if the number of input files gets closer to
+// /proc/sys/fs/file-max.
 func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verbose bool) (LineNumbersFileMap, error) {
 	file, err := os.Open(lineNumsFilePath)
 	if err != nil {
@@ -513,6 +516,8 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 			return fileLineMap, err
 		}
 	}
+	// We need to sort the file with the line numbers for the "filterline"
+	// approach to work.
 	for _, entry := range fileLineMap {
 		cmd := exec.Command("sort", "-n", "-S", sortBufferSize,
 			"--parallel", strconv.Itoa(runtime.NumCPU()),
@@ -528,10 +533,12 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 	return fileLineMap, nil
 }
 
-// extractLinesFromFile uses external tools to perform the slicing.
+// extractLinesFromFile uses external tools to perform the slicing. If the
+// filterline program can be found, it will use that. Otherwise fall back to a
+// small awk snippet (that is a bit slower).
 func extractLinesFromFile(filename string, lineNumbersFile string, outputFile string, verbose bool) error {
 	var (
-		filterlineExe = `filterline`
+		filterlineExe = "filterline"
 		err           error
 	)
 	if !isCommandAvailable(filterlineExe) {
