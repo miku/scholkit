@@ -37,11 +37,10 @@ import (
 // Represent line numbers as a bitset; could keep 1B lines in 16MB.
 
 var (
-	MaxScanTokenSize        = 104_857_600 // 100MB, note: each thread will allocate a buffer of this size
-	FlushIndexAfterNumLines = 10_000_000
-	Today                   = time.Now().Format("2006-01-02")
-	TempfilePrefix          = "sk-crossref-snapshot"
-	DefaultOutputFile       = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
+	MaxScanTokenSize  = 104_857_600 // 100MB, note: each thread will allocate a buffer of this size
+	Today             = time.Now().Format("2006-01-02")
+	TempfilePrefix    = "sk-crossref-snapshot"
+	DefaultOutputFile = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
 
 	// fallback awk script is used if the filterline executable is not found;
 	// compiled filterline is about 3x faster;
@@ -225,7 +224,7 @@ func processFile(filename string, fn func(line string, record Record, lineNum in
 	scanner := bufio.NewScanner(r)
 	buf := make([]byte, MaxScanTokenSize)
 	scanner.Buffer(buf, MaxScanTokenSize)
-	var lineNum int64 = 1
+	var lineNum int64 = 1 // downstream filterline and tools like sed use 1-based line numbers
 	for scanner.Scan() {
 		line := scanner.Text()
 		var record Record
@@ -285,8 +284,10 @@ func processFilesParallel(inputFiles []string, numWorkers int, processor func(st
 // uncompressed, this file is about 70GB in size, but could probably compressed
 // as well
 func extractMinimalInfo(inputFiles []string, indexFile *os.File, numWorkers, batchSize int, verbose bool) error {
-	var indexMutex sync.Mutex
-	var numProcessed atomic.Uint64
+	var (
+		indexMutex   sync.Mutex
+		numProcessed atomic.Uint64
+	)
 	if verbose {
 		log.Printf("extracting minimal information with %d workers", numWorkers)
 	}
@@ -454,11 +455,11 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 	}
 	defer file.Close()
 	var (
-		fileLineMap = make(LineNumbersFileMap)
-		tempFileMap = make(map[string]*bufio.Writer)
-		scanner     = bufio.NewScanner(file)
-		linesRead   = 0
-		tempFiles   = make([]*os.File, 0) // only for cleanup
+		fileLineMap = make(LineNumbersFileMap)       // map input file name to line number filename
+		tempFileMap = make(map[string]*bufio.Writer) // map input file name to the line number file descriptor
+		scanner     = bufio.NewScanner(file)         // the "global" line numbers file
+		linesRead   = 0                              // number of lines read so far
+		tempFiles   = make([]*os.File, 0)            // keep track of all temporary files; only for cleanup
 	)
 	for scanner.Scan() {
 		var (
@@ -500,17 +501,6 @@ func groupLineNumbersByFile(lineNumsFilePath string, sortBufferSize string, verb
 		}
 		linesRead++
 		fileLineMap[filename].NumLines++
-		if linesRead%FlushIndexAfterNumLines == 0 {
-			// Regularly flush data, so we detect writing issues early.
-			for _, tf := range tempFileMap {
-				if err := tf.Flush(); err != nil {
-					return fileLineMap, err
-				}
-			}
-			if verbose {
-				log.Printf("read %d lines from line numbers file", linesRead)
-			}
-		}
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("error reading line numbers file: %v", err)
