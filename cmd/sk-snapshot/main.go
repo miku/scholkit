@@ -100,7 +100,7 @@ func main() {
 		}
 	case "pubmed":
 		worksDir := path.Join(config.FeedDir, "pubmed")
-		script := fmt.Sprintf(`find %s -type f -name "pubmed*.xml.gz" | parallel --block 10M --line-buffer -j %d -I {} unpigz -c {} | pv -l | zstd -c -T0 > %s`,
+		script := fmt.Sprintf(`find %s -type f -name "pubmed*.xml.gz" | parallel --block 10M --line-buffer -j %d -I {} unpigz -c {} | zstd -c -T0 > %s`,
 			worksDir, *numWorkers, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
