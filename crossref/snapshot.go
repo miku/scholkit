@@ -113,6 +113,10 @@ func DefaultSnapshotOptions() SnapshotOptions {
 //
 // An error is returned, if the snapshot options do not contain any files to
 // process.
+//
+// On a 2011 dual-socket Xeon E5645 with spinning disk, the whole process runs
+// in: 78189.57user 6229.72system 7:59:19elapsed 293%CPU -- or about 21 hours.
+// On a 2023 i9-13900T with raid0 nvme disks the process runs in about 3-4 hours.
 func CreateSnapshot(opts SnapshotOptions) error {
 	if len(opts.InputFiles) == 0 {
 		return fmt.Errorf("no input files provided")
@@ -182,7 +186,8 @@ func CreateSnapshot(opts SnapshotOptions) error {
 		return fmt.Errorf("error in Stage 3: %v", err)
 	}
 	if opts.Verbose {
-		// stage 3 completed in 1h40m0.654023657s (previously, with pure Go zstd and filtering it took 5h29m)
+		// [i7-13900T] stage 3 completed in 1h40m0.654023657s (previously, with pure Go zstd and filtering it took 5h29m)
+		// [E5645] 2025/04/28 15:43:46 stage 3 completed in 4h15m39.224463716s
 		log.Printf("stage 3 completed in %s", time.Since(started))
 	}
 	return nil
