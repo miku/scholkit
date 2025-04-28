@@ -38,7 +38,7 @@ import (
 
 var (
 	MaxScanTokenSize        = 104_857_600 // 100MB, note: each thread will allocate a buffer of this size
-	FlushIndexAfterNumLines = 1_000_000
+	FlushIndexAfterNumLines = 10_000_000
 	Today                   = time.Now().Format("2006-01-02")
 	TempfilePrefix          = "sk-crossref-snapshot"
 	DefaultOutputFile       = path.Join(os.TempDir(), fmt.Sprintf("%s-%s.json.zst", TempfilePrefix, Today))
