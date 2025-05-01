@@ -33,6 +33,7 @@ var (
 	dir        = flag.String("d", defaultDataDir, "the main cache directory to put all data under") // TODO: use env var
 	source     = flag.String("s", "", "name of the the source to snapshot")
 	output     = flag.String("o", "", "output file, if empty, a sensible output file path will be derived from source and date")
+	tempDir    = flag.String("T", os.TempDir(), "temporary directory")
 	numWorkers = flag.Int("w", runtime.NumCPU(), "number of workers")
 	verbose    = flag.Bool("v", false, "verbose output")
 	batchSize  = flag.Int("n", 100000, "batch size for crossref processing")
@@ -78,8 +79,8 @@ func main() {
 		}
 	case "datacite":
 		worksDir := path.Join(config.FeedDir, "datacite/")
-		script := fmt.Sprintf(`fd . %s -x cat | parallel --block 10M --lb --pipe -j %d 'jq -rc .data[]' | zstd -c -T0 > %s`,
-			worksDir, *numWorkers, outputFile)
+		script := fmt.Sprintf(`fd . %s -x cat | parallel --block 10M --lb --pipe -j %d 'jq -rc .data[]' | LC_ALL=C sort -S 40%% -u --compress-program zstd -T %s | zstd -c -T0 > %s`,
+			worksDir, *numWorkers, *tempDir, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
 		cmd.Stdout = os.Stdout
