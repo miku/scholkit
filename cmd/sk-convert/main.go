@@ -61,7 +61,7 @@ var bufPool = sync.Pool{
 	},
 }
 
-var help = fmt.Sprintf(`bibconv reshapes bibliographic data 🗃️
+var help = fmt.Sprintf(`sk-convert reshapes bibliographic data 🗃️
 
 Current target only: "fatcat-release" entity. WIP: "fatcat-container",
 "fatcat-work", "fatcat-contrib" and "fatcat-file" entities.
