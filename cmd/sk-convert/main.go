@@ -328,6 +328,7 @@ func main() {
 			scanner.Decoder.Strict = false
 			// get a buffer to write result to
 			buf := bufPool.Get().(bytes.Buffer)
+			buf.Reset()
 			defer bufPool.Put(buf)
 			var enc = json.NewEncoder(&buf)
 			// iterate over batch
