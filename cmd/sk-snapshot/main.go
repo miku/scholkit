@@ -1,3 +1,4 @@
+// sk-snapshot turns feeds into snapshots, for simplicity often with external tools.
 package main
 
 import (
@@ -51,6 +52,7 @@ func main() {
 		FeedDir:     path.Join(*dir, "feeds"),
 		SnapshotDir: path.Join(*dir, "snapshots"),
 		Source:      *source,
+		TempDir:     *tempDir,
 	}
 	if err := os.MkdirAll(config.SnapshotDir, 0755); err != nil {
 		log.Fatal(err)
@@ -72,6 +74,7 @@ func main() {
 			worksDir, *numWorkers, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
+		cmd.Env = append(cmd.Environ(), fmt.Sprintf("TMPDIR=%s", *tempDir))
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
@@ -95,6 +98,7 @@ func main() {
 			dir, *numWorkers, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
+		cmd.Env = append(cmd.Environ(), fmt.Sprintf("TMPDIR=%s", *tempDir))
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
@@ -106,6 +110,7 @@ func main() {
 			worksDir, *numWorkers, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
+		cmd.Env = append(cmd.Environ(), fmt.Sprintf("TMPDIR=%s", *tempDir))
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
@@ -145,6 +150,7 @@ func createCrossrefSnapshot(config *config.Config, outputFile string) error {
 		BatchSize:  *batchSize,
 		NumWorkers: *numWorkers,
 		Verbose:    *verbose,
+		TempDir:    config.TempDir,
 	}
 	return crossref.CreateSnapshot(opts)
 }

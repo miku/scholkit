@@ -14,16 +14,29 @@ type Config struct {
 	SnapshotDir string
 	// Source is the name of the source to process.
 	Source string
-	// EndpointURL for OAI-PMH (not used currently)
-	EndpointURL        string
-	Date               time.Time
-	MaxRetries         int
-	Timeout            time.Duration
-	CrossrefApiEmail   string
-	CrossrefUserAgent  string
+	// TempDir is a temporary directory, set explicitly.
+	TempDir string
+	// EndpointURL for OAI-PMH (currently unused)
+	EndpointURL string
+	// Date to harvest the data for. We may remove this, since we want to have
+	// interruptable streams and backfill, in the best case, automatically.
+	Date time.Time
+	// MaxRetries is a generic retry count.
+	MaxRetries int
+	// Timeout is a generic operation timeout.
+	Timeout time.Duration
+	// CrossrefApiEmail is an email address sent with every request, as suggested by the crossref rest API.
+	CrossrefApiEmail string
+	// CrossrefUserAgent is the user agent sent to the crossref API.
+	CrossrefUserAgent string
+	// CrossrefFeedPrefix is a prefix for each harvested file, to distinguish different runs.
 	CrossrefFeedPrefix string
-	CrossrefApiFilter  string
-	RcloneTransfers    int
-	RcloneCheckers     int
-	DataciteSyncStart  string
+	// CrossrefApiFilter is the search criteria for the crossref API.
+	CrossrefApiFilter string
+	// RcloneTransfers is passed to rclone, for openalex.
+	RcloneTransfers int
+	// RcloneCheckers is passed to rclone, for openalex.
+	RcloneCheckers int
+	// DataciteSyncStart, date string, start date of harvest.
+	DataciteSyncStart string
 }
