@@ -1,7 +1,7 @@
 // sk-cluster is a release entity clusterer. It takes release
-// entities and will group similar items together. WIP.
+// entities and will group similar items together.
 //
-// $ cat releases.ndj | sk-cluster
+// $ zstdcat pile.jsonl.zst | sk-cluster -o catalog.jsonl.zst
 package main
 
 import (
