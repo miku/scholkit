@@ -79,10 +79,11 @@ func main() {
 		}
 	case "datacite":
 		worksDir := path.Join(config.FeedDir, "datacite/")
-		script := fmt.Sprintf(`fd . %s -x cat | parallel --block 10M --lb --pipe -j %d 'jq -rc .data[]' | LC_ALL=C sort -S 40%% -u --compress-program zstd -T %s | zstd -c -T0 > %s`,
+		script := fmt.Sprintf(`fd . %s -x cat | parallel --block 10M --lb --pipe -j %d 'jq -rc .data[]' | LC_ALL=C sort -T %s -S 40%% -u --compress-program=zstd | zstd -c -T0 > %s`,
 			worksDir, *numWorkers, *tempDir, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
+		cmd.Env = append(cmd.Environ(), fmt.Sprintf("TMPDIR=%s", *tempDir))
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		if err := cmd.Run(); err != nil {
