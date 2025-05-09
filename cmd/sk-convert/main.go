@@ -229,6 +229,22 @@ func main() {
 		if err := pp.Run(); err != nil {
 			log.Fatal(err)
 		}
+	case "oaiflat": // JSON, new style; XXX: reduce to raw XML or a single JSON style
+		// t: about 15min
+		pp := parallel.NewProcessor(br, bw, func(p []byte) ([]byte, error) {
+			var doc oaiscrape.FlatRecord
+			if err := json.Unmarshal(p, &doc); err != nil {
+				return nil, err
+			}
+			release, _ := convert.FlatRecordToRelease(&doc)
+			b, err := json.Marshal(release)
+			b = append(b, '\n')
+			return b, err
+		})
+		pp.BatchSize = *batchSize
+		if err := pp.Run(); err != nil {
+			log.Fatal(err)
+		}
 	case "oai": // oai records from XML
 		// t: about 20 min
 		//
