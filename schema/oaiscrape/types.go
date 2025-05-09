@@ -18,6 +18,8 @@ var doiPreceding = []string{
 	"https://dx.doi.org/",
 }
 
+// Record is a the raw XML record, we may want to come back to this and convert
+// directly from XML to fatcat release schema; XXX: pproc
 type Record struct {
 	XMLName xml.Name `xml:"record"`
 	Text    string   `xml:",chardata"`
