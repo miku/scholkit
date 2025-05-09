@@ -125,3 +125,23 @@ func (doc *Document) ISSN() string {
 	}
 	return ""
 }
+
+type FlatRecord struct {
+	Identifier   string   `json:"identifier"`
+	Datestamp    string   `json:"datestamp"`
+	SetSpec      []string `json:"set_spec"`
+	Title        []string `json:"title"`
+	Creator      []string `json:"creator"`
+	Subject      []string `json:"subject"`
+	Description  []string `json:"description"`
+	Publisher    []string `json:"publisher"`
+	Contributor  []string `json:"contributor"`
+	Date         []string `json:"date"`
+	Type         []string `json:"type"`
+	Format       []string `json:"format"`
+	DCIdentifier []string `json:"dc_identifier"`
+	Source       []string `json:"source"`
+	Language     []string `json:"language"`
+	Relation     []string `json:"relation"`
+	Rights       []string `json:"rights"`
+}

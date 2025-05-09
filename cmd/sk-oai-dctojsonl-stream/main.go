@@ -15,6 +15,7 @@ import (
 	"runtime"
 	"sync"
 
+	"github.com/miku/scholkit/schema/oaiscrape"
 	"github.com/segmentio/encoding/json"
 )
 
@@ -57,26 +58,6 @@ type DublinCore struct {
 	Rights      []string `xml:"rights"`
 }
 
-type FlatRecord struct {
-	Identifier   string   `json:"identifier"`
-	Datestamp    string   `json:"datestamp"`
-	SetSpec      []string `json:"set_spec"`
-	Title        []string `json:"title"`
-	Creator      []string `json:"creator"`
-	Subject      []string `json:"subject"`
-	Description  []string `json:"description"`
-	Publisher    []string `json:"publisher"`
-	Contributor  []string `json:"contributor"`
-	Date         []string `json:"date"`
-	Type         []string `json:"type"`
-	Format       []string `json:"format"`
-	DCIdentifier []string `json:"dc_identifier"`
-	Source       []string `json:"source"`
-	Language     []string `json:"language"`
-	Relation     []string `json:"relation"`
-	Rights       []string `json:"rights"`
-}
-
 const recordSep = 0x1E // ASCII record separator
 
 // Stats for reporting
@@ -105,8 +86,8 @@ func (s *Stats) IncrementRecordsWritten() {
 	s.RecordsWritten++
 }
 
-func convertRecord(record *Record) *FlatRecord {
-	flat := &FlatRecord{
+func convertRecord(record *Record) *oaiscrape.FlatRecord {
+	flat := &oaiscrape.FlatRecord{
 		Identifier:   record.Header.Identifier,
 		Datestamp:    record.Header.Datestamp,
 		SetSpec:      record.Header.SetSpec,
