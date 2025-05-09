@@ -21,6 +21,11 @@ var (
 )
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "error: no input files provided\n")
+		fmt.Fprintf(os.Stderr, "usage: sk-crossref-snapshot [options] file1.zst file2.zst ...\n\n")
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 	inputFiles := flag.Args()
 	if len(inputFiles) == 0 {
