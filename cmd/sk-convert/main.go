@@ -6,10 +6,12 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"os"
+	"runtime"
 	"runtime/pprof"
 	"strings"
 	"sync"
@@ -19,6 +21,7 @@ import (
 	"github.com/miku/scholkit/convert"
 	"github.com/miku/scholkit/parallel"
 	"github.com/miku/scholkit/parallel/record"
+	pprecord "github.com/miku/scholkit/pproc/record"
 	"github.com/miku/scholkit/schema/arxiv"
 	"github.com/miku/scholkit/schema/crossref"
 	"github.com/miku/scholkit/schema/datacite"
@@ -39,6 +42,7 @@ var (
 	batchSize      = flag.Int("b", 10000, "batch size")
 	cpuprofile     = flag.String("cpuprofile", "", "file to write cpu pprof to")
 	showVersion    = flag.Bool("version", false, "show version")
+	numWorkers     = flag.Int("w", runtime.NumCPU(), "number of workers")
 )
 
 var availableSourceFormats = []string{
@@ -161,6 +165,7 @@ func main() {
 			log.Fatal(err)
 		}
 	case "datacite": // JSON
+		// TODO: datacite schema is not yet fully contained in struct
 		pp := parallel.NewProcessor(br, bw, func(p []byte) ([]byte, error) {
 			var doc datacite.Document
 			if err := json.Unmarshal(p, &doc); err != nil {
@@ -332,42 +337,76 @@ func main() {
 			log.Fatal(err)
 		}
 	case "pubmed": // XML
-		// t: about 20 min
-		//
-		// real    22m41.454s
-		// user    207m46.951s
-		// sys     5m31.498s
-		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
-			// setup new xml streaming scanner
-			r := bytes.NewReader(p)
-			scanner := xmlstream.NewScanner(r, new(pubmed.Article))
-			scanner.Decoder.Strict = false
-			// get a buffer to write result to
-			buf := bufPool.Get().(bytes.Buffer)
-			buf.Reset()
-			defer bufPool.Put(buf)
-			var enc = json.NewEncoder(&buf)
-			// iterate over batch
-			for scanner.Scan() {
-				tag := scanner.Element()
-				if article, ok := tag.(*pubmed.Article); ok {
-					release, _ := convert.PubmedArticleToFatcatRelease(article)
-					if err := enc.Encode(release); err != nil {
-						return nil, err
+		const (
+			MaxBufferSize = 67108864
+			MaxTokenSize  = 134217728
+		)
+		var (
+			ctx = context.Background()
+			// tagSplitter is a bufio.SplitFunc to split on PubmedArticle tags
+			tagSplitter = pprecord.TagSplitter("PubmedArticle", MaxBufferSize, MaxTokenSize)
+			proc        = pprecord.NewProcessor(func(p []byte) ([]byte, error) {
+				r := bytes.NewReader(p)
+				scanner := xmlstream.NewScanner(r, new(pubmed.Article))
+				scanner.Decoder.Strict = false
+				// get a buffer to write result to
+				buf := bufPool.Get().(bytes.Buffer)
+				buf.Reset()
+				defer bufPool.Put(buf)
+				var enc = json.NewEncoder(&buf)
+				// iterate over batch
+				for scanner.Scan() {
+					tag := scanner.Element()
+					if article, ok := tag.(*pubmed.Article); ok {
+						release, _ := convert.PubmedArticleToFatcatRelease(article)
+						if err := enc.Encode(release); err != nil {
+							return nil, err
+						}
 					}
 				}
-			}
-			if scanner.Err() != nil {
-				return nil, fmt.Errorf("scan: %w", scanner.Err())
-			}
-			return buf.Bytes(), nil
-		})
-		// batch XML elements, without expensive XML parsing
-		ts := &record.TagSplitter{Tag: "PubmedArticle", MaxBytesApprox: *maxBytesApprox}
-		proc.Split(ts.Split)
-		if err := proc.Run(); err != nil {
+				if scanner.Err() != nil {
+					return nil, fmt.Errorf("scan: %w", scanner.Err())
+				}
+				return buf.Bytes(), nil
+
+			},
+				pprecord.WithSplitFunc(tagSplitter),
+				pprecord.WithWorkers(*numWorkers))
+		)
+		if err := proc.Process(ctx, os.Stdin, os.Stdout); err != nil {
 			log.Fatal(err)
 		}
+		// proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
+		// 	// setup new xml streaming scanner
+		// 	r := bytes.NewReader(p)
+		// 	scanner := xmlstream.NewScanner(r, new(pubmed.Article))
+		// 	scanner.Decoder.Strict = false
+		// 	// get a buffer to write result to
+		// 	buf := bufPool.Get().(bytes.Buffer)
+		// 	buf.Reset()
+		// 	defer bufPool.Put(buf)
+		// 	var enc = json.NewEncoder(&buf)
+		// 	// iterate over batch
+		// 	for scanner.Scan() {
+		// 		tag := scanner.Element()
+		// 		if article, ok := tag.(*pubmed.Article); ok {
+		// 			release, _ := convert.PubmedArticleToFatcatRelease(article)
+		// 			if err := enc.Encode(release); err != nil {
+		// 				return nil, err
+		// 			}
+		// 		}
+		// 	}
+		// 	if scanner.Err() != nil {
+		// 		return nil, fmt.Errorf("scan: %w", scanner.Err())
+		// 	}
+		// 	return buf.Bytes(), nil
+		// })
+		// // batch XML elements, without expensive XML parsing
+		// ts := &record.TagSplitter{Tag: "PubmedArticle", MaxBytesApprox: *maxBytesApprox}
+		// proc.Split(ts.Split)
+		// if err := proc.Run(); err != nil {
+		// 	log.Fatal(err)
+		// }
 	case "dblp": // XML
 		// t: about 3 min
 		proc := record.NewProcessor(os.Stdin, os.Stdout, func(p []byte) ([]byte, error) {
