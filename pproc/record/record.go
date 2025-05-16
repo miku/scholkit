@@ -85,25 +85,21 @@ func (s *xmlTagSplitter) split(data []byte, atEOF bool) (advance int, token []by
 		return len(data), token, nil
 	}
 	s.buffer = append(s.buffer, data...)
-	if len(s.buffer) < s.maxBufferSize {
-		return len(data), nil, nil
-	}
+	// if len(s.buffer) < s.maxBufferSize {
+	// 	return len(data), nil, nil
+	// }
 	start, end := findFirstCompleteTag(string(s.buffer), s.tagName)
-	if start == -1 {
-		s.buffer = nil
-		return len(data), nil, nil
+	if start != -1 && end != -1 {
+		token = s.buffer[start:end]
+		s.buffer = s.buffer[end:]
+		return len(data), token, nil
 	}
-	if end == -1 {
-		if len(s.buffer) > s.maxTokenSize {
-			return len(data), nil, ErrMaxTokenSizeExceeded
-		}
-		return len(data), nil, nil
+	// Check if we've exceeded maxTokenSize
+	if len(s.buffer) > s.maxTokenSize {
+		return len(data), nil, ErrMaxTokenSizeExceeded
 	}
-	// Found complete tag
-	token = s.buffer[start:end]
-	s.buffer = s.buffer[end:]
-	// We've processed the accumulated data, advance by the original data length
-	return len(data), token, nil
+
+	return len(data), nil, nil
 }
 
 func isValidTagTerminator(ch byte) bool {

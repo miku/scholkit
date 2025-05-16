@@ -30,7 +30,6 @@ import (
 	"github.com/miku/scholkit/schema/fatcat"
 	"github.com/miku/scholkit/schema/oaiscrape"
 	"github.com/miku/scholkit/schema/openalex"
-	"github.com/miku/scholkit/schema/pubmed"
 	"github.com/miku/scholkit/xmlstream"
 	"github.com/segmentio/encoding/json"
 )
@@ -346,30 +345,33 @@ func main() {
 			// tagSplitter is a bufio.SplitFunc to split on PubmedArticle tags
 			tagSplitter = pprecord.TagSplitter("PubmedArticle", MaxBufferSize, MaxTokenSize)
 			proc        = pprecord.NewProcessor(func(p []byte) ([]byte, error) {
-				r := bytes.NewReader(p)
-				scanner := xmlstream.NewScanner(r, new(pubmed.Article))
-				scanner.Decoder.Strict = false
-				// get a buffer to write result to
-				var buf bytes.Buffer
-				var enc = json.NewEncoder(&buf)
-				// iterate over batch
-				for scanner.Scan() {
-					tag := scanner.Element()
-					if article, ok := tag.(*pubmed.Article); ok {
-						release, _ := convert.PubmedArticleToFatcatRelease(article)
-						if err := enc.Encode(release); err != nil {
-							return nil, err
-						}
-					}
-				}
-				if scanner.Err() != nil {
-					return nil, fmt.Errorf("scan: %w", scanner.Err())
-				}
-				return buf.Bytes(), nil
+				return []byte(fmt.Sprintf("%d\n", len(p))), nil
+				// r := bytes.NewReader(p)
+				// scanner := xmlstream.NewScanner(r, new(pubmed.Article))
+				// scanner.Decoder.Strict = false
+				// // get a buffer to write result to
+				// var buf bytes.Buffer
+				// var enc = json.NewEncoder(&buf)
+				// // iterate over batch
+				// for scanner.Scan() {
+				// 	tag := scanner.Element()
+				// 	if article, ok := tag.(*pubmed.Article); ok {
+				// 		release, _ := convert.PubmedArticleToFatcatRelease(article)
+				// 		if err := enc.Encode(release); err != nil {
+				// 			return nil, err
+				// 		}
+				// 	}
+				// }
+				// if scanner.Err() != nil {
+				// 	return nil, fmt.Errorf("scan: %w", scanner.Err())
+				// }
+				// log.Printf("done batch ... (%d)", len(p))
+				// return buf.Bytes(), nil
 			},
 				pprecord.WithSplitFunc(tagSplitter),
 				pprecord.WithWorkers(*numWorkers))
 		)
+		log.Println("process ...")
 		if err := proc.Process(ctx, os.Stdin, os.Stdout); err != nil {
 			log.Fatal(err)
 		}

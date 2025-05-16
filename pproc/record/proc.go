@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"io"
+	"log"
 	"runtime"
 	"sync"
 
@@ -86,10 +87,9 @@ func (p *Processor) Split(f bufio.SplitFunc) {
 
 // Process reads from the input, processes batches in parallel, and writes results to output
 func (p *Processor) Process(ctx context.Context, r io.Reader, w io.Writer) error {
-	br := bufio.NewReader(r)
 	bw := bufio.NewWriter(w)
 	defer bw.Flush()
-	scanner := bufio.NewScanner(br)
+	scanner := bufio.NewScanner(r)
 	scanner.Split(p.splitFunc)
 	scanner.Buffer(make([]byte, 0, p.maxBufferSize), p.maxTokenSize)
 	workChan := make(chan []byte, p.numWorkers*2)
@@ -111,9 +111,11 @@ func (p *Processor) Process(ctx context.Context, r io.Reader, w io.Writer) error
 			case <-ctx.Done():
 				return ctx.Err()
 			}
+			log.Println("sent")
 		}
 		return scanner.Err()
 	})
+	log.Print("all work put on queue")
 	for i := 0; i < p.numWorkers; i++ {
 		g.Go(func() error {
 			for data := range workChan {
@@ -134,6 +136,7 @@ func (p *Processor) Process(ctx context.Context, r io.Reader, w io.Writer) error
 						return err
 					}
 				}
+				log.Println("processed")
 			}
 			return nil
 		})
