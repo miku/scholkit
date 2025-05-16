@@ -59,17 +59,17 @@ type Document struct {
 			Identifier     string `json:"identifier",omitempty`
 			IdentifierType string `json:"identifierType",omitempty`
 		} `json:"identifiers",omitempty`
-		IsActive           bool   `json:"isActive",omitempty`
-		Language           string `json:"language",omitempty`
-		MetadataVersion    int64  `json:"metadataVersion",omitempty`
-		PartCount          int64  `json:"partCount",omitempty`
-		PartOfCount        int64  `json:"partOfCount",omitempty`
-		PublicationYear    int64  `json:"publicationYear",omitempty`
-		Published          string `json:"published",omitempty`
-		Publisher          string `json:"publisher",omitempty`
-		Reason             string `json:"reason",omitempty`
-		ReferenceCount     int64  `json:"referenceCount",omitempty`
-		Registered         string `json:"registered",omitempty`
+		IsActive           bool        `json:"isActive",omitempty`
+		Language           string      `json:"language",omitempty`
+		MetadataVersion    int64       `json:"metadataVersion",omitempty`
+		PartCount          int64       `json:"partCount",omitempty`
+		PartOfCount        int64       `json:"partOfCount",omitempty`
+		PublicationYear    int64       `json:"publicationYear",omitempty`
+		Published          string      `json:"published",omitempty`
+		Publisher          string      `json:"publisher",omitempty`
+		Reason             interface{} `json:"reason",omitempty`
+		ReferenceCount     int64       `json:"referenceCount",omitempty`
+		Registered         string      `json:"registered",omitempty`
 		RelatedIdentifiers []struct {
 			RelatedIdentifier     string      `json:"relatedIdentifier",omitempty`
 			RelatedIdentifierType string      `json:"relatedIdentifierType",omitempty`
@@ -80,25 +80,27 @@ type Document struct {
 			SchemeUri             interface{} `json:"schemeUri",omitempty`
 		} `json:"relatedIdentifiers",omitempty`
 		RelatedItems []struct {
-			PublicationYear       string `json:"publicationYear",omitempty`
+			PublicationYear       any `json:"publicationYear",omitempty`
 			RelatedItemIdentifier struct {
 				RelatedItemIdentifier     string `json:"relatedItemIdentifier",omitempty`
 				RelatedItemIdentifierType string `json:"relatedItemIdentifierType",omitempty`
 			} `json:"relatedItemIdentifier",omitempty`
 			RelatedItemType string `json:"relatedItemType",omitempty`
 			RelationType    string `json:"relationType",omitempty`
-			Titles          []struct {
-				Title string `json:"title",omitempty`
-			} `json:"titles",omitempty`
+			Titles          any    `json:"title"`
+			// Titles          []struct {
+			// 	Title string `json:"title",omitempty`
+			// } `json:"titles",omitempty`
 		} `json:"relatedItems",omitempty`
 		RightsList []struct {
 			Rights string `json:"rights",omitempty`
 		} `json:"rightsList",omitempty`
-		SchemaVersion string   `json:"schemaVersion",omitempty`
-		Sizes         []string `json:"sizes",omitempty`
-		Source        string   `json:"source",omitempty`
-		State         string   `json:"state",omitempty`
-		Subjects      []struct {
+		SchemaVersion string `json:"schemaVersion",omitempty`
+		Sizes         any    `json:"sizes,omitempty"`
+		// Sizes         []string `json:"sizes",omitempty`
+		Source   string `json:"source",omitempty`
+		State    string `json:"state",omitempty`
+		Subjects []struct {
 			Subject string `json:"subject",omitempty`
 		} `json:"subjects",omitempty`
 		Titles []struct {
