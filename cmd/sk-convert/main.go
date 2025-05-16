@@ -350,9 +350,7 @@ func main() {
 				scanner := xmlstream.NewScanner(r, new(pubmed.Article))
 				scanner.Decoder.Strict = false
 				// get a buffer to write result to
-				buf := bufPool.Get().(bytes.Buffer)
-				buf.Reset()
-				defer bufPool.Put(buf)
+				var buf bytes.Buffer
 				var enc = json.NewEncoder(&buf)
 				// iterate over batch
 				for scanner.Scan() {
@@ -368,7 +366,6 @@ func main() {
 					return nil, fmt.Errorf("scan: %w", scanner.Err())
 				}
 				return buf.Bytes(), nil
-
 			},
 				pprecord.WithSplitFunc(tagSplitter),
 				pprecord.WithWorkers(*numWorkers))
