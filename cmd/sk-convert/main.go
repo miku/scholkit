@@ -241,10 +241,17 @@ func main() {
 			if err := json.Unmarshal(p, &doc); err != nil {
 				return nil, err
 			}
-			release, _ := convert.FlatRecordToRelease(&doc)
-			b, err := json.Marshal(release)
-			b = append(b, '\n')
-			return b, err
+			release, err := convert.FlatRecordToRelease(&doc)
+			switch {
+			case err == convert.ErrOaiMissingTitle:
+				return nil, nil
+			case err == convert.ErrOaiMissingIdentifier:
+				return nil, nil
+			default:
+				b, err := json.Marshal(release)
+				b = append(b, '\n')
+				return b, err
+			}
 		})
 		pp.BatchSize = *batchSize
 		if err := pp.Run(); err != nil {

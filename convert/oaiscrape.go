@@ -13,8 +13,9 @@ import (
 )
 
 var (
-	ErrOaiDeleted      = errors.New("oai deleted record")
-	ErrOaiMissingTitle = errors.New("oai missing title")
+	ErrOaiDeleted           = errors.New("oai deleted record")
+	ErrOaiMissingTitle      = errors.New("oai missing title")
+	ErrOaiMissingIdentifier = errors.New("oai missing identifier")
 )
 
 func OaiRecordToFatcatRelease(record *oaiscrape.Record) (*fatcat.Release, error) {
@@ -86,9 +87,12 @@ func OaiScrapeToFatcatRelease(doc *oaiscrape.Document) (*fatcat.Release, error) 
 
 // FlatRecordToRelease converts a MetadataRecord to a fatcat.Release
 func FlatRecordToRelease(metadata *oaiscrape.FlatRecord) (*fatcat.Release, error) {
+	if metadata.Identifier == "" {
+		return nil, ErrOaiMissingIdentifier
+	}
 	var release fatcat.Release
 	release.Source = "oaiscrape"
-	release.ID = metadata.Identifier
+	release.ID = fmt.Sprintf("oaiscrape-%v", hashString(metadata.Identifier))
 
 	if len(metadata.Title) > 0 {
 		release.Title = metadata.Title[0]
