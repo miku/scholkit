@@ -2,6 +2,7 @@ package convert
 
 import (
 	"encoding/json"
+	"encoding/xml"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,6 +11,7 @@ import (
 	"github.com/miku/scholkit/schema/crossref"
 	"github.com/miku/scholkit/schema/datacite"
 	"github.com/miku/scholkit/schema/fatcat"
+	"github.com/miku/scholkit/schema/oaiscrape"
 	"github.com/miku/scholkit/schema/openalex"
 )
 
@@ -145,8 +147,8 @@ func TestConvertOpenAlexWorkToFatcatRelease(t *testing.T) {
 	}
 }
 
-func ConvertOaiScrapeToFatcatRelease(t *testing.T) {
-	paths, err := filepath.Glob(filepath.Join("testdata", "openalex-*.input"))
+func TestConvertOaiScrapeToFatcatRelease(t *testing.T) {
+	paths, err := filepath.Glob(filepath.Join("testdata", "oaiscrape-xml-*.input"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -158,12 +160,12 @@ func ConvertOaiScrapeToFatcatRelease(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			var work openalex.Work
-			if err := json.Unmarshal(b, &work); err != nil {
+			var doc oaiscrape.Record
+			if err := xml.Unmarshal(b, &doc); err != nil {
 				t.Fatal(err)
 			}
-			var release fatcat.Release
-			if err := OpenAlexWorkToFatcatRelease(&work, &release); err != nil {
+			release, err := OaiRecordToFatcatRelease(&doc)
+			if err != nil {
 				t.Fatal(err)
 			}
 			got, err := json.MarshalIndent(release, "", "    ")
@@ -187,5 +189,4 @@ func ConvertOaiScrapeToFatcatRelease(t *testing.T) {
 			}
 		})
 	}
-	OaiScrapeToFatcatRelease()
 }
