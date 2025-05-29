@@ -1,0 +1,365 @@
+{
+  "id": "https://openalex.org/W4409922449",
+  "doi": "https://doi.org/10.1016/j.jmaa.2025.129623",
+  "doi_registration_agency": null,
+  "display_name": "On the invariance of holomorphic mappings of the Hartogs domain over the minimal ball",
+  "title": "On the invariance of holomorphic mappings of the Hartogs domain over the minimal ball",
+  "publication_year": 2025,
+  "publication_date": "2025-04-01",
+  "language": "en",
+  "language_id": "https://openalex.org/languages/en",
+  "ids": {
+    "openalex": "https://openalex.org/W4409922449",
+    "doi": "https://doi.org/10.1016/j.jmaa.2025.129623"
+  },
+  "primary_location": {
+    "source": {
+      "id": "https://openalex.org/S151579836",
+      "issn_l": "0022-247X",
+      "issn": [
+        "0022-247X",
+        "1096-0813"
+      ],
+      "display_name": "Journal of Mathematical Analysis and Applications",
+      "publisher": "Elsevier BV",
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": true,
+      "is_indexed_in_scopus": true,
+      "type": "journal",
+      "type_id": "https://openalex.org/source-types/journal"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.1016/j.jmaa.2025.129623",
+    "is_oa": false,
+    "version": null,
+    "license": null,
+    "license_id": null,
+    "doi": "https://doi.org/10.1016/j.jmaa.2025.129623",
+    "is_accepted": false,
+    "is_published": false
+  },
+  "best_oa_location": null,
+  "type": "article",
+  "type_crossref": "journal-article",
+  "type_id": "https://openalex.org/work-types/article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5091891732",
+        "display_name": "Enchao Bi",
+        "orcid": "https://orcid.org/0000-0002-2832-9049"
+      },
+      "institutions": [],
+      "countries": [],
+      "country_ids": [],
+      "is_corresponding": false,
+      "raw_author_name": "Enchao Bi",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5081110905",
+        "display_name": "Huan Yang",
+        "orcid": "https://orcid.org/0000-0001-5810-0248"
+      },
+      "institutions": [],
+      "countries": [],
+      "country_ids": [],
+      "is_corresponding": false,
+      "raw_author_name": "Huan Yang",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5101487441",
+        "display_name": "Qiannan Zhang",
+        "orcid": "https://orcid.org/0000-0003-4846-7550"
+      },
+      "institutions": [],
+      "countries": [],
+      "country_ids": [],
+      "is_corresponding": false,
+      "raw_author_name": "Qiannan Zhang",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    }
+  ],
+  "institution_assertions": [],
+  "countries_distinct_count": 0,
+  "institutions_distinct_count": 0,
+  "corresponding_author_ids": [],
+  "corresponding_institution_ids": [],
+  "versions": [],
+  "datasets": [],
+  "cited_by_count": 0,
+  "summary_stats": {
+    "cited_by_count": 0,
+    "2yr_cited_by_count": 0
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": "129623",
+    "last_page": "129623"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "concepts": [
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.8291464
+    },
+    {
+      "id": "https://openalex.org/C204575570",
+      "wikidata": "https://www.wikidata.org/wiki/Q207476",
+      "display_name": "Holomorphic function",
+      "level": 2,
+      "score": 0.80470824
+    },
+    {
+      "id": "https://openalex.org/C122041747",
+      "wikidata": "https://www.wikidata.org/wiki/Q838611",
+      "display_name": "Ball (mathematics)",
+      "level": 2,
+      "score": 0.79633236
+    },
+    {
+      "id": "https://openalex.org/C202444582",
+      "wikidata": "https://www.wikidata.org/wiki/Q837863",
+      "display_name": "Pure mathematics",
+      "level": 1,
+      "score": 0.49035835
+    },
+    {
+      "id": "https://openalex.org/C36503486",
+      "wikidata": "https://www.wikidata.org/wiki/Q11235244",
+      "display_name": "Domain (mathematical analysis)",
+      "level": 2,
+      "score": 0.45693153
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.32027918
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T12351",
+      "display_name": "Geometry and complex manifolds",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2608",
+        "display_name": "Geometry and Topology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      },
+      "score": 0.9997
+    },
+    {
+      "id": "https://openalex.org/T10884",
+      "display_name": "Holomorphic and Operator Theory",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2604",
+        "display_name": "Applied Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      },
+      "score": 0.9994
+    },
+    {
+      "id": "https://openalex.org/T10229",
+      "display_name": "Geometric Analysis and Curvature Flows",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2604",
+        "display_name": "Applied Mathematics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/26",
+        "display_name": "Mathematics"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      },
+      "score": 0.9988
+    }
+  ],
+  "primary_topic": {
+    "id": "https://openalex.org/T12351",
+    "display_name": "Geometry and complex manifolds",
+    "subfield": {
+      "id": "https://openalex.org/subfields/2608",
+      "display_name": "Geometry and Topology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/26",
+      "display_name": "Mathematics"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    },
+    "score": 0.9997
+  },
+  "fwci": null,
+  "citation_normalized_percentile": null,
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "source": {
+        "id": "https://openalex.org/S151579836",
+        "issn_l": "0022-247X",
+        "issn": [
+          "0022-247X",
+          "1096-0813"
+        ],
+        "display_name": "Journal of Mathematical Analysis and Applications",
+        "publisher": "Elsevier BV",
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": true,
+        "is_indexed_in_scopus": true,
+        "type": "journal",
+        "type_id": "https://openalex.org/source-types/journal"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://doi.org/10.1016/j.jmaa.2025.129623",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.1016/j.jmaa.2025.129623",
+      "is_accepted": false,
+      "is_published": false
+    }
+  ],
+  "referenced_works": [
+    "https://openalex.org/W1532632375",
+    "https://openalex.org/W1976436279",
+    "https://openalex.org/W1989022354",
+    "https://openalex.org/W2014872705",
+    "https://openalex.org/W2019320681",
+    "https://openalex.org/W2021287809",
+    "https://openalex.org/W2027795390",
+    "https://openalex.org/W2038034009",
+    "https://openalex.org/W2074744201",
+    "https://openalex.org/W2325970385",
+    "https://openalex.org/W2746658407",
+    "https://openalex.org/W2905022084",
+    "https://openalex.org/W2963286298",
+    "https://openalex.org/W2963853234",
+    "https://openalex.org/W3016691971",
+    "https://openalex.org/W3033210267",
+    "https://openalex.org/W3106582130",
+    "https://openalex.org/W4251938489",
+    "https://openalex.org/W4252192366"
+  ],
+  "referenced_works_count": 19,
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/10",
+      "display_name": "Reduced inequalities",
+      "score": 0.55
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/ball",
+      "display_name": "Ball (mathematics)",
+      "score": 0.79633236
+    }
+  ],
+  "grants": [
+    {
+      "funder": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China",
+      "award_id": "11901327"
+    },
+    {
+      "funder": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China",
+      "award_id": "12271411"
+    }
+  ],
+  "apc_list": {
+    "value": 3070,
+    "currency": "USD",
+    "value_usd": 3070
+  },
+  "apc_paid": null,
+  "cited_by_percentile_year": {
+    "min": 0,
+    "max": 96
+  },
+  "related_works": [
+    "https://openalex.org/W4391375266",
+    "https://openalex.org/W4237698157",
+    "https://openalex.org/W3215356124",
+    "https://openalex.org/W3094515845",
+    "https://openalex.org/W2982338311",
+    "https://openalex.org/W2963885105",
+    "https://openalex.org/W2950101030",
+    "https://openalex.org/W2211201902",
+    "https://openalex.org/W2129672934",
+    "https://openalex.org/W1610978630"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [],
+  "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W4409922449",
+  "updated_date": "2025-05-01T07:21:09.217499",
+  "created_date": "2025-04-30",
+  "updated": "2025-05-01T07:21:09.217499",
+  "authors_count": 3,
+  "concepts_count": 6,
+  "topics_count": 3,
+  "has_fulltext": false
+}

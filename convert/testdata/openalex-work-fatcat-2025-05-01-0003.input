@@ -1,0 +1,275 @@
+{
+  "id": "https://openalex.org/W4409912420",
+  "doi": "https://doi.org/10.2139/ssrn.5187637",
+  "doi_registration_agency": null,
+  "display_name": "We Are Not Born Submissive: How Patriarchy Shapes Women's Lives, by Manon Garcia. Princeton, NJ: Princeton University Press, 2021. 234 pp",
+  "title": "We Are Not Born Submissive: How Patriarchy Shapes Women's Lives, by Manon Garcia. Princeton, NJ: Princeton University Press, 2021. 234 pp",
+  "publication_year": 2025,
+  "publication_date": "2025-01-01",
+  "language": "en",
+  "language_id": "https://openalex.org/languages/en",
+  "ids": {
+    "openalex": "https://openalex.org/W4409912420",
+    "doi": "https://doi.org/10.2139/ssrn.5187637"
+  },
+  "primary_location": {
+    "source": {
+      "id": "https://openalex.org/S4210172589",
+      "issn_l": "1556-5068",
+      "issn": [
+        "1556-5068"
+      ],
+      "display_name": "SSRN Electronic Journal",
+      "publisher": "Social Science Electronic Publishing",
+      "host_organization": "https://openalex.org/I1318003438",
+      "host_organization_name": "RELX Group (Netherlands)",
+      "host_organization_lineage": [
+        "https://openalex.org/I1318003438"
+      ],
+      "host_organization_lineage_names": [
+        "RELX Group (Netherlands)"
+      ],
+      "is_oa": false,
+      "is_in_doaj": false,
+      "is_core": false,
+      "is_indexed_in_scopus": false,
+      "type": "repository",
+      "type_id": "https://openalex.org/source-types/repository"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.2139/ssrn.5187637",
+    "is_oa": false,
+    "version": null,
+    "license": null,
+    "license_id": null,
+    "doi": "https://doi.org/10.2139/ssrn.5187637",
+    "is_accepted": false,
+    "is_published": false
+  },
+  "best_oa_location": null,
+  "type": "article",
+  "type_crossref": "journal-article",
+  "type_id": "https://openalex.org/work-types/article",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5011364071",
+        "display_name": "Lauren Kaufmann",
+        "orcid": "https://orcid.org/0000-0002-4615-8802"
+      },
+      "institutions": [],
+      "countries": [],
+      "country_ids": [],
+      "is_corresponding": true,
+      "raw_author_name": "Lauren Kaufmann",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    }
+  ],
+  "institution_assertions": [],
+  "countries_distinct_count": 0,
+  "institutions_distinct_count": 0,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5011364071"
+  ],
+  "corresponding_institution_ids": [],
+  "versions": [],
+  "datasets": [],
+  "cited_by_count": 0,
+  "summary_stats": {
+    "cited_by_count": 0,
+    "2yr_cited_by_count": 0
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": null,
+    "last_page": null
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2776684731",
+      "wikidata": "https://www.wikidata.org/wiki/Q5522084",
+      "display_name": "Garcia",
+      "level": 2,
+      "score": 0.8175705
+    },
+    {
+      "id": "https://openalex.org/C2776234999",
+      "wikidata": "https://www.wikidata.org/wiki/Q181339",
+      "display_name": "Patriarchy",
+      "level": 2,
+      "score": 0.8067663
+    },
+    {
+      "id": "https://openalex.org/C144024400",
+      "wikidata": "https://www.wikidata.org/wiki/Q21201",
+      "display_name": "Sociology",
+      "level": 0,
+      "score": 0.4261096
+    },
+    {
+      "id": "https://openalex.org/C15708023",
+      "wikidata": "https://www.wikidata.org/wiki/Q80083",
+      "display_name": "Humanities",
+      "level": 1,
+      "score": 0.37248582
+    },
+    {
+      "id": "https://openalex.org/C107993555",
+      "wikidata": "https://www.wikidata.org/wiki/Q1662673",
+      "display_name": "Gender studies",
+      "level": 1,
+      "score": 0.31378603
+    },
+    {
+      "id": "https://openalex.org/C142362112",
+      "wikidata": "https://www.wikidata.org/wiki/Q735",
+      "display_name": "Art",
+      "level": 0,
+      "score": 0.25667822
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T11432",
+      "display_name": "Gender Politics and Representation",
+      "subfield": {
+        "id": "https://openalex.org/subfields/3318",
+        "display_name": "Gender Studies"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"
+      },
+      "score": 0.9341
+    }
+  ],
+  "primary_topic": {
+    "id": "https://openalex.org/T11432",
+    "display_name": "Gender Politics and Representation",
+    "subfield": {
+      "id": "https://openalex.org/subfields/3318",
+      "display_name": "Gender Studies"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/33",
+      "display_name": "Social Sciences"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/2",
+      "display_name": "Social Sciences"
+    },
+    "score": 0.9341
+  },
+  "fwci": null,
+  "citation_normalized_percentile": null,
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "source": {
+        "id": "https://openalex.org/S4210172589",
+        "issn_l": "1556-5068",
+        "issn": [
+          "1556-5068"
+        ],
+        "display_name": "SSRN Electronic Journal",
+        "publisher": "Social Science Electronic Publishing",
+        "host_organization": "https://openalex.org/I1318003438",
+        "host_organization_name": "RELX Group (Netherlands)",
+        "host_organization_lineage": [
+          "https://openalex.org/I1318003438"
+        ],
+        "host_organization_lineage_names": [
+          "RELX Group (Netherlands)"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://doi.org/10.2139/ssrn.5187637",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.2139/ssrn.5187637",
+      "is_accepted": false,
+      "is_published": false
+    }
+  ],
+  "referenced_works": [
+    "https://openalex.org/W2094685945",
+    "https://openalex.org/W2796316469",
+    "https://openalex.org/W3205921439"
+  ],
+  "referenced_works_count": 3,
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/5",
+      "display_name": "Gender equality",
+      "score": 0.77
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/garcia",
+      "display_name": "Garcia",
+      "score": 0.8175705
+    },
+    {
+      "id": "https://openalex.org/keywords/patriarchy",
+      "display_name": "Patriarchy",
+      "score": 0.8067663
+    }
+  ],
+  "grants": [],
+  "apc_list": null,
+  "apc_paid": null,
+  "cited_by_percentile_year": {
+    "min": 0,
+    "max": 96
+  },
+  "related_works": [
+    "https://openalex.org/W656166520",
+    "https://openalex.org/W4391375266",
+    "https://openalex.org/W4285355371",
+    "https://openalex.org/W3137428374",
+    "https://openalex.org/W3015493264",
+    "https://openalex.org/W2918022893",
+    "https://openalex.org/W2748952813",
+    "https://openalex.org/W2340229069",
+    "https://openalex.org/W2324004154",
+    "https://openalex.org/W2114097281"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [],
+  "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W4409912420",
+  "updated_date": "2025-05-01T07:21:27.855674",
+  "created_date": "2025-04-30",
+  "updated": "2025-05-01T07:21:27.855674",
+  "authors_count": 1,
+  "concepts_count": 6,
+  "topics_count": 1,
+  "has_fulltext": false
+}

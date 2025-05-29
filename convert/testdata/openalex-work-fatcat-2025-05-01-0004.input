@@ -1,0 +1,162 @@
+{
+  "id": "https://openalex.org/W4409933046",
+  "doi": "https://doi.org/10.5040/9781978733442.ch-8",
+  "doi_registration_agency": null,
+  "display_name": "Stoking Anger and Weaponizing Untruth",
+  "title": "Stoking Anger and Weaponizing Untruth",
+  "publication_year": 2020,
+  "publication_date": "2020-01-01",
+  "language": "en",
+  "language_id": "https://openalex.org/languages/en",
+  "ids": {
+    "openalex": "https://openalex.org/W4409933046",
+    "doi": "https://doi.org/10.5040/9781978733442.ch-8"
+  },
+  "primary_location": {
+    "source": null,
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.5040/9781978733442.ch-8",
+    "is_oa": false,
+    "version": null,
+    "license": null,
+    "license_id": null,
+    "doi": "https://doi.org/10.5040/9781978733442.ch-8",
+    "is_accepted": false,
+    "is_published": false
+  },
+  "best_oa_location": null,
+  "type": "other",
+  "type_crossref": "other",
+  "type_id": "https://openalex.org/work-types/other",
+  "indexed_in": [
+    "crossref"
+  ],
+  "open_access": {
+    "is_oa": false,
+    "oa_status": "closed",
+    "oa_url": null,
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5117377018",
+        "display_name": "Paula Smithka",
+        "orcid": null
+      },
+      "institutions": [],
+      "countries": [],
+      "country_ids": [],
+      "is_corresponding": true,
+      "raw_author_name": "Paula Smithka",
+      "raw_affiliation_strings": [],
+      "affiliations": []
+    }
+  ],
+  "institution_assertions": [],
+  "countries_distinct_count": 0,
+  "institutions_distinct_count": 0,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5117377018"
+  ],
+  "corresponding_institution_ids": [],
+  "versions": [],
+  "datasets": [],
+  "cited_by_count": 0,
+  "summary_stats": {
+    "cited_by_count": 0,
+    "2yr_cited_by_count": 0
+  },
+  "biblio": {
+    "volume": null,
+    "issue": null,
+    "first_page": "179",
+    "last_page": "198"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2779302386",
+      "wikidata": "https://www.wikidata.org/wiki/Q79871",
+      "display_name": "Anger",
+      "level": 2,
+      "score": 0.5997443
+    },
+    {
+      "id": "https://openalex.org/C17744445",
+      "wikidata": "https://www.wikidata.org/wiki/Q36442",
+      "display_name": "Political science",
+      "level": 0,
+      "score": 0.34340346
+    },
+    {
+      "id": "https://openalex.org/C77805123",
+      "wikidata": "https://www.wikidata.org/wiki/Q161272",
+      "display_name": "Social psychology",
+      "level": 1,
+      "score": 0.21692348
+    },
+    {
+      "id": "https://openalex.org/C15744967",
+      "wikidata": "https://www.wikidata.org/wiki/Q9418",
+      "display_name": "Psychology",
+      "level": 0,
+      "score": 0.19482324
+    }
+  ],
+  "topics": [],
+  "primary_topic": null,
+  "fwci": null,
+  "citation_normalized_percentile": null,
+  "mesh": [],
+  "locations_count": 1,
+  "locations": [
+    {
+      "source": null,
+      "pdf_url": null,
+      "landing_page_url": "https://doi.org/10.5040/9781978733442.ch-8",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.5040/9781978733442.ch-8",
+      "is_accepted": false,
+      "is_published": false
+    }
+  ],
+  "referenced_works": [],
+  "referenced_works_count": 0,
+  "sustainable_development_goals": [],
+  "keywords": [],
+  "grants": [],
+  "apc_list": null,
+  "apc_paid": null,
+  "cited_by_percentile_year": {
+    "min": 0,
+    "max": 60
+  },
+  "related_works": [
+    "https://openalex.org/W4391375266",
+    "https://openalex.org/W2899084033",
+    "https://openalex.org/W2748952813",
+    "https://openalex.org/W2531159956",
+    "https://openalex.org/W2334836877",
+    "https://openalex.org/W2158625435",
+    "https://openalex.org/W2087919909",
+    "https://openalex.org/W2060991067",
+    "https://openalex.org/W2030507284",
+    "https://openalex.org/W1968844886"
+  ],
+  "abstract_inverted_index": null,
+  "counts_by_year": [],
+  "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W4409933046",
+  "updated_date": "2025-05-01T07:21:00.049279",
+  "created_date": "2025-04-30",
+  "updated": "2025-05-01T07:21:00.049279",
+  "authors_count": 1,
+  "concepts_count": 4,
+  "topics_count": 0,
+  "has_fulltext": false
+}

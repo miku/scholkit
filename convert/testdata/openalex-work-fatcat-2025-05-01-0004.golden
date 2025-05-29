@@ -1,0 +1,31 @@
+{
+    "source": "openalex",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Paula Smithka",
+            "role": "first"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.5040/9781978733442.ch-8",
+        "openalex": "W4409933046"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {
+                "oa_status": "closed"
+            }
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "openalex-dfa57f0f74b494adaa1af8320befd31ab60b5ded",
+    "language": "en",
+    "pages": "179-198",
+    "release_date": "2020-01-01",
+    "release_year": 2020,
+    "title": "Stoking Anger and Weaponizing Untruth"
+}

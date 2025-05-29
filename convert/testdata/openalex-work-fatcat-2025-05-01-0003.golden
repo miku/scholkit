@@ -1,0 +1,31 @@
+{
+    "source": "openalex",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Lauren Kaufmann",
+            "role": "first"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.2139/ssrn.5187637",
+        "openalex": "W4409912420"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {
+                "oa_status": "closed"
+            }
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "openalex-ac05b61e22e4a76f900d3b6481346544c027c354",
+    "language": "en",
+    "publisher": "Social Science Electronic Publishing",
+    "release_date": "2025-01-01",
+    "release_year": 2025,
+    "title": "We Are Not Born Submissive: How Patriarchy Shapes Women's Lives, by Manon Garcia. Princeton, NJ: Princeton University Press, 2021. 234 pp"
+}

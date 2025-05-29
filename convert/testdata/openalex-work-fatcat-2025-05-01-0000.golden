@@ -1,0 +1,77 @@
+{
+    "source": "openalex",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Jing Guo",
+            "role": "first"
+        },
+        {
+            "extra": {},
+            "given_name": "Li Li",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Feiyi Chen",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Minhan Fu",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Cheng Cheng",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Meizi Wang",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Jun Hu",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Lixia Pei",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Jianhua Sun",
+            "role": "last"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.3390/biom14070804",
+        "openalex": "W4400406361",
+        "pmid": "39062518"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {
+                "is_oa": true,
+                "oa_status": "gold",
+                "oa_url": "https://doi.org/10.3390/biom14070804"
+            }
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "openalex-bfc158be4e1f212574bcc7fe13a970310108ed44",
+    "issue": "7",
+    "language": "en",
+    "pages": "804-804",
+    "publisher": "Multidisciplinary Digital Publishing Institute",
+    "release_date": "2024-07-07",
+    "release_year": 2024,
+    "title": "Forces Bless You: Mechanosensitive Piezo Channels in Gastrointestinal Physiology and Pathology",
+    "volume": "14"
+}

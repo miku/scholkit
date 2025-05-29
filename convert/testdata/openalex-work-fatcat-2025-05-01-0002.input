@@ -1,0 +1,2426 @@
+{
+  "id": "https://openalex.org/W1989807854",
+  "doi": "https://doi.org/10.4103/0974-2069.84632",
+  "doi_registration_agency": "Crossref",
+  "display_name": "How do we define success in pediatric cardiac care?",
+  "title": "How do we define success in pediatric cardiac care?",
+  "publication_year": 2011,
+  "publication_date": "2011-01-01",
+  "language": "en",
+  "language_id": "https://openalex.org/languages/en",
+  "ids": {
+    "openalex": "https://openalex.org/W1989807854",
+    "doi": "https://doi.org/10.4103/0974-2069.84632",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/21976865",
+    "mag": 1989807854,
+    "pmcid": "https://www.ncbi.nlm.nih.gov/pmc/articles/3180963"
+  },
+  "primary_location": {
+    "source": {
+      "id": "https://openalex.org/S97567770",
+      "issn_l": "0974-5149",
+      "issn": [
+        "0974-5149",
+        "0974-2069"
+      ],
+      "display_name": "Annals of Pediatric Cardiology",
+      "publisher": "Medknow",
+      "host_organization": "https://openalex.org/P4310320448",
+      "host_organization_name": "Medknow",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310318547",
+        "https://openalex.org/P4310320448"
+      ],
+      "host_organization_lineage_names": [
+        "Wolters Kluwer",
+        "Medknow"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "is_indexed_in_scopus": true,
+      "type": "journal",
+      "type_id": "https://openalex.org/source-types/journal"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.4103/0974-2069.84632",
+    "is_oa": true,
+    "version": "publishedVersion",
+    "license": "cc-by-nc-sa",
+    "license_id": "https://openalex.org/licenses/cc-by-nc-sa",
+    "doi": "https://doi.org/10.4103/0974-2069.84632",
+    "is_accepted": true,
+    "is_published": true
+  },
+  "best_oa_location": {
+    "source": {
+      "id": "https://openalex.org/S97567770",
+      "issn_l": "0974-5149",
+      "issn": [
+        "0974-5149",
+        "0974-2069"
+      ],
+      "display_name": "Annals of Pediatric Cardiology",
+      "publisher": "Medknow",
+      "host_organization": "https://openalex.org/P4310320448",
+      "host_organization_name": "Medknow",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310318547",
+        "https://openalex.org/P4310320448"
+      ],
+      "host_organization_lineage_names": [
+        "Wolters Kluwer",
+        "Medknow"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "is_indexed_in_scopus": true,
+      "type": "journal",
+      "type_id": "https://openalex.org/source-types/journal"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.4103/0974-2069.84632",
+    "is_oa": true,
+    "version": "publishedVersion",
+    "license": "cc-by-nc-sa",
+    "license_id": "https://openalex.org/licenses/cc-by-nc-sa",
+    "doi": "https://doi.org/10.4103/0974-2069.84632",
+    "is_accepted": true,
+    "is_published": true
+  },
+  "type": "article",
+  "type_crossref": "journal-article",
+  "type_id": "https://openalex.org/work-types/article",
+  "indexed_in": [
+    "crossref",
+    "doaj",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "diamond",
+    "oa_url": "https://doi.org/10.4103/0974-2069.84632",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5109360879",
+        "display_name": "ShyamS Kothari",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63739035",
+          "display_name": "All India Institute of Medical Sciences",
+          "ror": "https://ror.org/02dwcqs71",
+          "country_code": "IN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/IN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I2799351866",
+            "https://openalex.org/I4210148677",
+            "https://openalex.org/I63739035"
+          ]
+        }
+      ],
+      "countries": [
+        "IN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/IN"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "ShyamS Kothari",
+      "raw_affiliation_strings": [
+        "Department of Cardiology, All India Institute of Medical Sciences, Ansari nagar, New Delhi 110 029, India"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Cardiology, All India Institute of Medical Sciences, Ansari nagar, New Delhi 110 029, India",
+          "institution_ids": [
+            "https://openalex.org/I63739035"
+          ]
+        }
+      ]
+    }
+  ],
+  "institution_assertions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5109360879"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I63739035"
+  ],
+  "versions": [],
+  "datasets": [],
+  "cited_by_count": 0,
+  "summary_stats": {
+    "cited_by_count": 0,
+    "2yr_cited_by_count": 0
+  },
+  "biblio": {
+    "volume": "4",
+    "issue": "2",
+    "first_page": "101",
+    "last_page": "101"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "concepts": [
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.7607857
+    },
+    {
+      "id": "https://openalex.org/C2780074459",
+      "wikidata": "https://www.wikidata.org/wiki/Q389735",
+      "display_name": "Heart disease",
+      "level": 2,
+      "score": 0.536288
+    },
+    {
+      "id": "https://openalex.org/C177713679",
+      "wikidata": "https://www.wikidata.org/wiki/Q679690",
+      "display_name": "Intensive care medicine",
+      "level": 1,
+      "score": 0.42040998
+    },
+    {
+      "id": "https://openalex.org/C545542383",
+      "wikidata": "https://www.wikidata.org/wiki/Q2751242",
+      "display_name": "Medical emergency",
+      "level": 1,
+      "score": 0.33719885
+    },
+    {
+      "id": "https://openalex.org/C187212893",
+      "wikidata": "https://www.wikidata.org/wiki/Q123028",
+      "display_name": "Pediatrics",
+      "level": 1,
+      "score": 0.3281551
+    },
+    {
+      "id": "https://openalex.org/C126322002",
+      "wikidata": "https://www.wikidata.org/wiki/Q11180",
+      "display_name": "Internal medicine",
+      "level": 1,
+      "score": 0.18169004
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T10300",
+      "display_name": "Congenital Heart Disease Studies",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2713",
+        "display_name": "Epidemiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      },
+      "score": 0.9945
+    },
+    {
+      "id": "https://openalex.org/T11930",
+      "display_name": "Cardiac, Anesthesia and Surgical Outcomes",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2705",
+        "display_name": "Cardiology and Cardiovascular Medicine"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      },
+      "score": 0.9425
+    }
+  ],
+  "primary_topic": {
+    "id": "https://openalex.org/T10300",
+    "display_name": "Congenital Heart Disease Studies",
+    "subfield": {
+      "id": "https://openalex.org/subfields/2713",
+      "display_name": "Epidemiology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    },
+    "score": 0.9945
+  },
+  "fwci": 0.0,
+  "citation_normalized_percentile": {
+    "value": 0.0,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "mesh": [],
+  "locations_count": 6,
+  "locations": [
+    {
+      "source": {
+        "id": "https://openalex.org/S97567770",
+        "issn_l": "0974-5149",
+        "issn": [
+          "0974-5149",
+          "0974-2069"
+        ],
+        "display_name": "Annals of Pediatric Cardiology",
+        "publisher": "Medknow",
+        "host_organization": "https://openalex.org/P4310320448",
+        "host_organization_name": "Medknow",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310318547",
+          "https://openalex.org/P4310320448"
+        ],
+        "host_organization_lineage_names": [
+          "Wolters Kluwer",
+          "Medknow"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "is_indexed_in_scopus": true,
+        "type": "journal",
+        "type_id": "https://openalex.org/source-types/journal"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://doi.org/10.4103/0974-2069.84632",
+      "is_oa": true,
+      "version": "publishedVersion",
+      "license": "cc-by-nc-sa",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-sa",
+      "doi": "https://doi.org/10.4103/0974-2069.84632",
+      "is_accepted": true,
+      "is_published": true
+    },
+    {
+      "source": {
+        "id": "https://openalex.org/S4306401280",
+        "issn_l": null,
+        "issn": null,
+        "display_name": "DOAJ (DOAJ: Directory of Open Access Journals)",
+        "publisher": "DOAJ: Directory of Open Access Journals",
+        "host_organization": null,
+        "host_organization_name": null,
+        "host_organization_lineage": [],
+        "host_organization_lineage_names": [],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://doaj.org/article/a0cb06cc9a484b72a762435657fabe80",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.4103/0974-2069.84632",
+      "is_accepted": false,
+      "is_published": false
+    },
+    {
+      "source": null,
+      "pdf_url": null,
+      "landing_page_url": "https://journals.lww.com/aopc/Fulltext/2011/04020/How_do_we_define_success_in_pediatric_cardiac.1.aspx",
+      "is_oa": true,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "license": "cc-by-nc-sa",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-sa",
+      "doi": null
+    },
+    {
+      "source": {
+        "id": "https://openalex.org/S4306400806",
+        "issn_l": null,
+        "issn": null,
+        "display_name": "Europe PMC (PubMed Central)",
+        "publisher": "PubMed Central",
+        "host_organization": "https://openalex.org/I1303153112",
+        "host_organization_name": "European Bioinformatics Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/I1303153112"
+        ],
+        "host_organization_lineage_names": [
+          "European Bioinformatics Institute"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://europepmc.org/articles/pmc3180963",
+      "is_oa": true,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "license": "cc-by-nc-sa",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-sa",
+      "doi": null
+    },
+    {
+      "source": {
+        "id": "https://openalex.org/S2764455111",
+        "issn_l": null,
+        "issn": null,
+        "display_name": "PubMed Central",
+        "publisher": null,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [
+          "National Institutes of Health"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3180963",
+      "is_oa": true,
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "license": null,
+      "license_id": null,
+      "doi": null
+    },
+    {
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "issn_l": null,
+        "issn": null,
+        "display_name": "PubMed",
+        "publisher": null,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [
+          "National Institutes of Health"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/21976865",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.4103/0974-2069.84632",
+      "is_accepted": false,
+      "is_published": false
+    }
+  ],
+  "referenced_works": [],
+  "referenced_works_count": 0,
+  "sustainable_development_goals": [],
+  "keywords": [],
+  "grants": [],
+  "apc_list": {
+    "value": 0,
+    "currency": "USD",
+    "value_usd": 0
+  },
+  "apc_paid": null,
+  "cited_by_percentile_year": {
+    "min": 0,
+    "max": 65
+  },
+  "related_works": [
+    "https://openalex.org/W4389568370",
+    "https://openalex.org/W3108674512",
+    "https://openalex.org/W3032375762",
+    "https://openalex.org/W3031052312",
+    "https://openalex.org/W2899084033",
+    "https://openalex.org/W2748952813",
+    "https://openalex.org/W2148669585",
+    "https://openalex.org/W2080531066",
+    "https://openalex.org/W1995515455",
+    "https://openalex.org/W1506200166"
+  ],
+  "abstract_inverted_index": {
+    "Do": [
+      0,
+      6
+    ],
+    "you": [
+      1,
+      7
+    ],
+    "put": [
+      2
+    ],
+    "perimembranous": [
+      3
+    ],
+    "VSD": [
+      4,
+      413,
+      423
+    ],
+    "devices?,": [
+      5
+    ],
+    "have": [
+      8
+    ],
+    "ECMO?,": [
+      9
+    ],
+    "How": [
+      10
+    ],
+    "many": [
+      11,
+      499,
+      646,
+      719
+    ],
+    "ASOs": [
+      12
+    ],
+    "are": [
+      13,
+      18,
+      72,
+      90,
+      150,
+      152,
+      162,
+      172,
+      194,
+      247,
+      262,
+      627,
+      736,
+      807
+    ],
+    "done": [
+      14
+    ],
+    "at": [
+      15
+    ],
+    "your": [
+      16,
+      448
+    ],
+    "center?-such": [
+      17
+    ],
+    "the": [
+      19,
+      83,
+      86,
+      93,
+      98,
+      142,
+      183,
+      187,
+      198,
+      224,
+      253,
+      272,
+      286,
+      295,
+      313,
+      326,
+      329,
+      337,
+      342,
+      360,
+      363,
+      371,
+      409,
+      422,
+      459,
+      470,
+      473,
+      478,
+      484,
+      502,
+      534,
+      547,
+      550,
+      576,
+      599,
+      603,
+      609,
+      632,
+      641,
+      700,
+      709,
+      712,
+      734,
+      750,
+      763,
+      778,
+      795,
+      833,
+      844,
+      868
+    ],
+    "familiar": [
+      20
+    ],
+    "refrains": [
+      21
+    ],
+    "in": [
+      22,
+      133,
+      180,
+      285,
+      469,
+      481,
+      498,
+      531,
+      556,
+      578,
+      617,
+      640,
+      730,
+      749,
+      788,
+      843,
+      876
+    ],
+    "pediatric": [
+      23,
+      35,
+      853
+    ],
+    "cardiology": [
+      24,
+      399
+    ],
+    "conferences": [
+      25
+    ],
+    "and": [
+      26,
+      43,
+      58,
+      67,
+      79,
+      120,
+      137,
+      161,
+      191,
+      215,
+      243,
+      257,
+      260,
+      266,
+      348,
+      353,
+      380,
+      385,
+      390,
+      401,
+      517,
+      569,
+      587,
+      620,
+      625,
+      679,
+      695,
+      738,
+      766,
+      824,
+      827,
+      881,
+      887,
+      894,
+      906,
+      908
+    ],
+    "perhaps": [
+      27,
+      354
+    ],
+    "one": [
+      28,
+      103,
+      594,
+      672,
+      689,
+      704
+    ],
+    "is": [
+      29,
+      38,
+      56,
+      77,
+      104,
+      206,
+      219,
+      237,
+      270,
+      282,
+      322,
+      339,
+      356,
+      382,
+      393,
+      433,
+      450,
+      543,
+      554,
+      653,
+      663,
+      667,
+      746,
+      783,
+      840,
+      858
+    ],
+    "valued": [
+      30
+    ],
+    "accordingly.": [
+      31
+    ],
+    "The": [
+      32,
+      52,
+      75,
+      109,
+      129,
+      168,
+      268,
+      316,
+      495,
+      583,
+      726,
+      889
+    ],
+    "practice": [
+      33,
+      564
+    ],
+    "of": [
+      34,
+      54,
+      88,
+      95,
+      97,
+      113,
+      115,
+      145,
+      156,
+      166,
+      177,
+      212,
+      226,
+      255,
+      274,
+      318,
+      362,
+      370,
+      377,
+      412,
+      439,
+      472,
+      477,
+      483,
+      493,
+      501,
+      528,
+      537,
+      549,
+      585,
+      605,
+      607,
+      615,
+      634,
+      677,
+      684,
+      693,
+      699,
+      711,
+      733,
+      742,
+      815,
+      819,
+      830,
+      838,
+      847,
+      871,
+      879,
+      883
+    ],
+    "cardiac": [
+      36
+    ],
+    "care": [
+      37,
+      404,
+      553,
+      728,
+      820
+    ],
+    "labor": [
+      39
+    ],
+    "intensive,": [
+      40
+    ],
+    "technology": [
+      41,
+      831,
+      839,
+      872
+    ],
+    "driven,": [
+      42
+    ],
+    "highly": [
+      44
+    ],
+    "effective": [
+      45
+    ],
+    "therapy": [
+      46
+    ],
+    "for": [
+      47,
+      82,
+      278,
+      332,
+      402,
+      491,
+      645,
+      812
+    ],
+    "children": [
+      48,
+      538
+    ],
+    "with": [
+      49,
+      426,
+      441,
+      455,
+      465,
+      486,
+      510,
+      559,
+      567,
+      602,
+      673,
+      690,
+      794
+    ],
+    "heart": [
+      50,
+      170,
+      442,
+      541
+    ],
+    "disease.": [
+      51,
+      199,
+      474
+    ],
+    "success": [
+      53,
+      324,
+      338
+    ],
+    "treatment": [
+      55,
+      492
+    ],
+    "obvious": [
+      57
+    ],
+    "steadily": [
+      59
+    ],
+    "improving.": [
+      60
+    ],
+    "In": [
+      61,
+      182,
+      768
+    ],
+    "a": [
+      62,
+      209,
+      216,
+      233,
+      275,
+      279,
+      323,
+      383,
+      416,
+      427,
+      613,
+      638,
+      664,
+      674,
+      682,
+      691,
+      715,
+      850
+    ],
+    "bid": [
+      63
+    ],
+    "to": [
+      64,
+      80,
+      197,
+      239,
+      251,
+      397,
+      447,
+      488,
+      522,
+      574,
+      597,
+      681,
+      697,
+      761,
+      797,
+      863
+    ],
+    "standardize": [
+      65
+    ],
+    "results": [
+      66,
+      87
+    ],
+    "facilitate": [
+      68
+    ],
+    "comparisons,": [
+      69
+    ],
+    "several": [
+      70,
+      808
+    ],
+    "methods": [
+      71
+    ],
+    "being": [
+      73,
+      263,
+      395
+    ],
+    "envisaged.": [
+      74
+    ],
+    "nomenclature": [
+      76
+    ],
+    "standardized,[1]": [
+      78
+    ],
+    "account": [
+      81
+    ],
+    "case": [
+      84
+    ],
+    "mix,": [
+      85
+    ],
+    "surgery": [
+      89
+    ],
+    "constructed": [
+      91
+    ],
+    "on": [
+      92,
+      223,
+      351
+    ],
+    "basis": [
+      94
+    ],
+    "complexity": [
+      96,
+      179,
+      235,
+      273
+    ],
+    "procedures": [
+      99
+    ],
+    "such": [
+      100,
+      157,
+      288,
+      308,
+      714
+    ],
+    "that": [
+      101,
+      271,
+      289,
+      648
+    ],
+    "no": [
+      102,
+      593,
+      703
+    ],
+    "unfairly": [
+      105
+    ],
+    "criticized": [
+      106
+    ],
+    "or": [
+      107,
+      368,
+      463,
+      688,
+      856
+    ],
+    "praised.": [
+      108
+    ],
+    "international": [
+      110,
+      619
+    ],
+    "data": [
+      111,
+      149
+    ],
+    "base": [
+      112
+    ],
+    "thousands": [
+      114
+    ],
+    "patients,": [
+      116
+    ],
+    "mostly": [
+      117
+    ],
+    "from": [
+      118,
+      540
+    ],
+    "Europe": [
+      119
+    ],
+    "North": [
+      121
+    ],
+    "America,": [
+      122
+    ],
+    "has": [
+      123,
+      344,
+      444
+    ],
+    "been": [
+      124
+    ],
+    "analyzed": [
+      125,
+      265
+    ],
+    "utilizing": [
+      126
+    ],
+    "various": [
+      127
+    ],
+    "yardsticks.": [
+      128
+    ],
+    "RACHS-1": [
+      130
+    ],
+    "(Risk": [
+      131
+    ],
+    "Adjustments": [
+      132
+    ],
+    "Congenital": [
+      134
+    ],
+    "Heart": [
+      135
+    ],
+    "surgery-1)": [
+      136
+    ],
+    "Aristotle": [
+      138,
+      184
+    ],
+    "score": [
+      139
+    ],
+    "(named": [
+      140
+    ],
+    "after": [
+      141
+    ],
+    "Aristotelian": [
+      143
+    ],
+    "principle": [
+      144
+    ],
+    "expert": [
+      146
+    ],
+    "consensus": [
+      147,
+      225
+    ],
+    "when": [
+      148
+    ],
+    "lacking)": [
+      151
+    ],
+    "well": [
+      153
+    ],
+    "known": [
+      154
+    ],
+    "examples": [
+      155
+    ],
+    "performance": [
+      158,
+      290
+    ],
+    "measure": [
+      159
+    ],
+    "scores,[23]": [
+      160
+    ],
+    "increasingly": [
+      163
+    ],
+    "accepted": [
+      164
+    ],
+    "modes": [
+      165
+    ],
+    "comparisons.": [
+      167,
+      622
+    ],
+    "congenital": [
+      169
+    ],
+    "diseases": [
+      171
+    ],
+    "stratified": [
+      173
+    ],
+    "into": [
+      174
+    ],
+    "six": [
+      175
+    ],
+    "groups": [
+      176
+    ],
+    "increasing": [
+      178
+    ],
+    "RACHS-1.": [
+      181
+    ],
+    "basic": [
+      185
+    ],
+    "score,": [
+      186
+    ],
+    "anticipated": [
+      188
+    ],
+    "mortality,": [
+      189
+    ],
+    "morbidity,": [
+      190
+    ],
+    "technical": [
+      192,
+      417
+    ],
+    "difficulty": [
+      193
+    ],
+    "scored": [
+      195,
+      207,
+      220
+    ],
+    "according": [
+      196
+    ],
+    "For": [
+      200
+    ],
+    "example,": [
+      201
+    ],
+    "an": [
+      202,
+      445,
+      874,
+      902
+    ],
+    "atrial": [
+      203
+    ],
+    "septal": [
+      204
+    ],
+    "defect": [
+      205
+    ],
+    "3,": [
+      208
+    ],
+    "transatrial": [
+      210
+    ],
+    "repair": [
+      211
+    ],
+    "TOF": [
+      213,
+      678
+    ],
+    "8": [
+      214
+    ],
+    "Norwood": [
+      217
+    ],
+    "procedure": [
+      218,
+      277,
+      331
+    ],
+    "14.5": [
+      221
+    ],
+    "based": [
+      222
+    ],
+    "experts.": [
+      227
+    ],
+    "Further,": [
+      228
+    ],
+    "recognizing": [
+      229
+    ],
+    "other": [
+      230,
+      241
+    ],
+    "patient-related": [
+      231
+    ],
+    "factors,": [
+      232
+    ],
+    "comprehensive": [
+      234
+    ],
+    "score[3]": [
+      236
+    ],
+    "extended": [
+      238
+    ],
+    "include": [
+      240
+    ],
+    "procedure-dependent": [
+      242
+    ],
+    "independent": [
+      244
+    ],
+    "variables.": [
+      245
+    ],
+    "These": [
+      246
+    ],
+    "thoughtful": [
+      248
+    ],
+    "pragmatic": [
+      249
+    ],
+    "attempts": [
+      250
+    ],
+    "improve": [
+      252
+    ],
+    "quality": [
+      254,
+      378,
+      600
+    ],
+    "care,": [
+      256
+    ],
+    "their": [
+      258,
+      579,
+      743
+    ],
+    "strengths": [
+      259
+    ],
+    "limitations": [
+      261
+    ],
+    "critically": [
+      264
+    ],
+    "debated.[45]": [
+      267
+    ],
+    "assertion": [
+      269
+    ],
+    "particular": [
+      276
+    ],
+    "given": [
+      280
+    ],
+    "patient": [
+      281
+    ],
+    "constant": [
+      283
+    ],
+    "anywhere": [
+      284
+    ],
+    "world,": [
+      287
+    ],
+    "may": [
+      291,
+      303,
+      775
+    ],
+    "be": [
+      292,
+      304,
+      415,
+      523,
+      864,
+      901
+    ],
+    "evaluated": [
+      293
+    ],
+    "by": [
+      294
+    ],
+    "equation:": [
+      296
+    ],
+    "Performance": [
+      297
+    ],
+    "=": [
+      298
+    ],
+    "Complexity": [
+      299
+    ],
+    "×": [
+      300
+    ],
+    "Outcome.": [
+      301
+    ],
+    "This": [
+      302
+    ],
+    "true": [
+      305
+    ],
+    "technically,": [
+      306
+    ],
+    "but": [
+      307,
+      419,
+      631,
+      655,
+      758,
+      801
+    ],
+    "comparisons": [
+      309,
+      381,
+      588
+    ],
+    "do": [
+      310
+    ],
+    "not": [
+      311,
+      628,
+      747,
+      776,
+      859,
+      900,
+      909
+    ],
+    "reflect": [
+      312
+    ],
+    "complete": [
+      314
+    ],
+    "picture.": [
+      315
+    ],
+    "result": [
+      317
+    ],
+    "arterial": [
+      319
+    ],
+    "switch": [
+      320
+    ],
+    "operation": [
+      321
+    ],
+    "if": [
+      325,
+      341,
+      359,
+      421,
+      722,
+      785
+    ],
+    "child": [
+      327,
+      343
+    ],
+    "survives": [
+      328
+    ],
+    "operative": [
+      330
+    ],
+    "this": [
+      333,
+      375,
+      813
+    ],
+    "very": [
+      334,
+      660,
+      841
+    ],
+    "threatening": [
+      335
+    ],
+    "disease;": [
+      336
+    ],
+    "less": [
+      340,
+      685
+    ],
+    "ADHD": [
+      345
+    ],
+    "(attention": [
+      346
+    ],
+    "deficit": [
+      347
+    ],
+    "hyperactivity": [
+      349
+    ],
+    "disorder)": [
+      350
+    ],
+    "follow-up,": [
+      352
+    ],
+    "it": [
+      355
+    ],
+    "even": [
+      357,
+      721
+    ],
+    "muted": [
+      358
+    ],
+    "stress": [
+      361
+    ],
+    "entire": [
+      364,
+      845
+    ],
+    "process": [
+      365
+    ],
+    "caused": [
+      366
+    ],
+    "bankruptcy": [
+      367
+    ],
+    "divorce": [
+      369
+    ],
+    "parents.": [
+      372
+    ],
+    "Of": [
+      373
+    ],
+    "course,": [
+      374
+    ],
+    "issue": [
+      376
+    ],
+    "considerations": [
+      379
+    ],
+    "nascent": [
+      384
+    ],
+    "evolving": [
+      386
+    ],
+    "field.": [
+      387
+    ],
+    "Similar": [
+      388
+    ],
+    "database": [
+      389
+    ],
+    "outcome": [
+      391
+    ],
+    "analysis": [
+      392
+    ],
+    "also": [
+      394
+    ],
+    "applied": [
+      396
+    ],
+    "interventional": [
+      398
+    ],
+    "procedures,": [
+      400
+    ],
+    "critical": [
+      403
+    ],
+    "units": [
+      405
+    ],
+    "as": [
+      406,
+      784
+    ],
+    "well.[67]": [
+      407
+    ],
+    "Again,": [
+      408
+    ],
+    "device": [
+      410
+    ],
+    "closure": [
+      411
+    ],
+    "could": [
+      414
+    ],
+    "success,": [
+      418
+    ],
+    "what": [
+      420
+    ],
+    "was": [
+      424
+    ],
+    "compatible": [
+      425
+    ],
+    "normal": [
+      428
+    ],
+    "life": [
+      429
+    ],
+    "anyway.": [
+      430
+    ],
+    "But": [
+      431
+    ],
+    "there": [
+      432
+    ],
+    "another": [
+      434
+    ],
+    "blind": [
+      435
+    ],
+    "spot.": [
+      436
+    ],
+    "What": [
+      437
+    ],
+    "proportion": [
+      438
+    ],
+    "patients": [
+      440
+    ],
+    "disease": [
+      443,
+      542
+    ],
+    "access": [
+      446,
+      586,
+      624,
+      658,
+      823
+    ],
+    "center": [
+      449,
+      670,
+      705,
+      754
+    ],
+    "never": [
+      451
+    ],
+    "asked.": [
+      452
+    ],
+    "CHD": [
+      453
+    ],
+    "occurs": [
+      454
+    ],
+    "regular": [
+      456
+    ],
+    "impunity": [
+      457
+    ],
+    "across": [
+      458
+    ],
+    "globe": [
+      460
+    ],
+    "@": [
+      461
+    ],
+    "8/1000": [
+      462
+    ],
+    "so,": [
+      464,
+      770
+    ],
+    "some": [
+      466
+    ],
+    "regional": [
+      467
+    ],
+    "variations": [
+      468
+    ],
+    "pattern": [
+      471
+    ],
+    "Eighty": [
+      475
+    ],
+    "percent": [
+      476
+    ],
+    "births": [
+      479
+    ],
+    "occur": [
+      480
+    ],
+    "areas": [
+      482
+    ],
+    "world": [
+      485,
+      503,
+      643,
+      735
+    ],
+    "nil": [
+      487
+    ],
+    "scarce": [
+      489
+    ],
+    "facilities": [
+      490
+    ],
+    "CHD.": [
+      494
+    ],
+    "oft-quoted": [
+      496
+    ],
+    "situation": [
+      497
+    ],
+    "parts": [
+      500,
+      732
+    ],
+    "like": [
+      504
+    ],
+    "Africa,": [
+      505
+    ],
+    "Bangladesh,": [
+      506
+    ],
+    "India,": [
+      507
+    ],
+    "Pakistan,": [
+      508
+    ],
+    "Indonesia": [
+      509
+    ],
+    "high": [
+      511,
+      514
+    ],
+    "birth": [
+      512
+    ],
+    "rates,": [
+      513
+    ],
+    "infant": [
+      515
+    ],
+    "mortality": [
+      516,
+      530,
+      676,
+      692
+    ],
+    "poor": [
+      518
+    ],
+    "resources": [
+      519
+    ],
+    "hardly": [
+      520
+    ],
+    "needs": [
+      521,
+      612
+    ],
+    "reiterated.": [
+      524
+    ],
+    "Despite": [
+      525
+    ],
+    "competing": [
+      526
+    ],
+    "causes": [
+      527
+    ],
+    "neonatal": [
+      529
+    ],
+    "these": [
+      532,
+      557
+    ],
+    "countries,": [
+      533
+    ],
+    "absolute": [
+      535
+    ],
+    "number": [
+      536
+    ],
+    "dying": [
+      539
+    ],
+    "much": [
+      544
+    ],
+    "more": [
+      545,
+      668,
+      861
+    ],
+    "than": [
+      546,
+      686
+    ],
+    "rest": [
+      548
+    ],
+    "world.": [
+      551
+    ],
+    "Medical": [
+      552
+    ],
+    "fractionated": [
+      555
+    ],
+    "countries": [
+      558
+    ],
+    "little": [
+      560
+    ],
+    "overall": [
+      561
+    ],
+    "regulations.": [
+      562
+    ],
+    "Diverse": [
+      563
+    ],
+    "patterns": [
+      565
+    ],
+    "prevail": [
+      566
+    ],
+    "public": [
+      568
+    ],
+    "private": [
+      570
+    ],
+    "hospitals": [
+      571
+    ],
+    "each": [
+      572,
+      799
+    ],
+    "trying": [
+      573
+    ],
+    "serve": [
+      575
+    ],
+    "population": [
+      577,
+      683,
+      886
+    ],
+    "best": [
+      580
+    ],
+    "possible": [
+      581
+    ],
+    "ways.": [
+      582
+    ],
+    "question": [
+      584,
+      717
+    ],
+    "becomes": [
+      589,
+      873
+    ],
+    "relevant": [
+      590
+    ],
+    "then.": [
+      591
+    ],
+    "While": [
+      592,
+      623,
+      702,
+      849
+    ],
+    "would": [
+      595
+    ],
+    "wish": [
+      596
+    ],
+    "lower": [
+      598
+    ],
+    "bar": [
+      601
+    ],
+    "excuse": [
+      604
+    ],
+    "lack": [
+      606
+    ],
+    "infrastructure,": [
+      608
+    ],
+    "comparative": [
+      610
+    ],
+    "statistic": [
+      611
+    ],
+    "dose": [
+      614
+    ],
+    "realism,": [
+      616
+    ],
+    "both": [
+      618
+    ],
+    "local": [
+      621
+    ],
+    "excellence": [
+      626,
+      652,
+      656,
+      907
+    ],
+    "inversely": [
+      629
+    ],
+    "related,": [
+      630
+    ],
+    "force": [
+      633
+    ],
+    "sheer": [
+      635
+    ],
+    "logistics": [
+      636
+    ],
+    "play": [
+      637
+    ],
+    "part": [
+      639
+    ],
+    "real": [
+      642
+    ],
+    "settings": [
+      644
+    ],
+    "things": [
+      647
+    ],
+    "matters.": [
+      649
+    ],
+    "Access": [
+      650
+    ],
+    "without": [
+      651,
+      657
+    ],
+    "void,": [
+      654
+    ],
+    "(or": [
+      659,
+      790
+    ],
+    "limited": [
+      661,
+      822
+    ],
+    "access)": [
+      662
+    ],
+    "pretense.": [
+      665
+    ],
+    "Which": [
+      666
+    ],
+    "successful": [
+      669
+    ],
+    "–": [
+      671
+    ],
+    "2%": [
+      675
+    ],
+    "catering": [
+      680
+    ],
+    "2%,": [
+      687
+    ],
+    "4%": [
+      694
+    ],
+    "accessible": [
+      696
+    ],
+    "30%": [
+      698
+    ],
+    "population?": [
+      701
+    ],
+    "alone": [
+      706
+    ],
+    "can": [
+      707
+    ],
+    "solve": [
+      708,
+      762
+    ],
+    "problem": [
+      710
+    ],
+    "population,": [
+      713
+    ],
+    "hypothetical": [
+      716
+    ],
+    "raises": [
+      718
+    ],
+    "important,": [
+      720
+    ],
+    "somewhat": [
+      723
+    ],
+    "unsolvable": [
+      724
+    ],
+    "issues.": [
+      725,
+      848
+    ],
+    "tertiary": [
+      727
+    ],
+    "centers": [
+      729
+    ],
+    "large": [
+      731
+    ],
+    "overburdened": [
+      737
+    ],
+    "face": [
+      739
+    ],
+    "unique": [
+      740
+    ],
+    "problems": [
+      741
+    ],
+    "own": [
+      744,
+      885
+    ],
+    "which": [
+      745,
+      774
+    ],
+    "translatable": [
+      748
+    ],
+    "standard": [
+      751,
+      779
+    ],
+    "scores.": [
+      752
+    ],
+    "Each": [
+      753
+    ],
+    "must": [
+      755,
+      899
+    ],
+    "think": [
+      756
+    ],
+    "globally,": [
+      757
+    ],
+    "act": [
+      759
+    ],
+    "locally": [
+      760
+    ],
+    "immediate": [
+      764
+    ],
+    "concerns": [
+      765
+    ],
+    "priorities.": [
+      767
+    ],
+    "doing": [
+      769
+    ],
+    "they": [
+      771
+    ],
+    "need": [
+      772
+    ],
+    "algorithms": [
+      773
+    ],
+    "fit": [
+      777
+    ],
+    "beaten": [
+      780
+    ],
+    "track.": [
+      781
+    ],
+    "It": [
+      782
+    ],
+    "we": [
+      786
+    ],
+    "live": [
+      787
+    ],
+    "two": [
+      789
+    ],
+    "many)": [
+      791
+    ],
+    "parallel": [
+      792
+    ],
+    "worlds": [
+      793
+    ],
+    "ability": [
+      796
+    ],
+    "see": [
+      798
+    ],
+    "other,": [
+      800
+    ],
+    "only": [
+      802
+    ],
+    "occasionally": [
+      803
+    ],
+    "shake": [
+      804
+    ],
+    "hands.": [
+      805
+    ],
+    "There": [
+      806
+    ],
+    "related": [
+      809
+    ],
+    "issues": [
+      810
+    ],
+    "responsible": [
+      811
+    ],
+    "state": [
+      814
+    ],
+    "affairs.": [
+      816
+    ],
+    "High": [
+      817
+    ],
+    "cost": [
+      818
+    ],
+    "encourage": [
+      821
+    ],
+    "“Boutique": [
+      825
+    ],
+    "medicine,”[8]": [
+      826
+    ],
+    "inappropriate": [
+      828
+    ],
+    "use": [
+      829
+    ],
+    "hikes": [
+      832
+    ],
+    "cost.[9]": [
+      834
+    ],
+    "A": [
+      835
+    ],
+    "right": [
+      836
+    ],
+    "choice": [
+      837
+    ],
+    "important": [
+      842
+    ],
+    "gamut": [
+      846
+    ],
+    "technically": [
+      851
+    ],
+    "competent": [
+      852,
+      893
+    ],
+    "cardiologist,": [
+      854
+    ],
+    "surgeon,": [
+      855
+    ],
+    "anesthetist": [
+      857
+    ],
+    "any": [
+      860
+    ],
+    "likely": [
+      862
+    ],
+    "socially": [
+      865,
+      895
+    ],
+    "insensitive,": [
+      866
+    ],
+    "sometimes": [
+      867
+    ],
+    "primary": [
+      869
+    ],
+    "pursuit": [
+      870
+    ],
+    "end": [
+      875
+    ],
+    "itself,": [
+      877
+    ],
+    "bereft": [
+      878
+    ],
+    "relevance": [
+      880
+    ],
+    "perspective": [
+      882
+    ],
+    "one's": [
+      884
+    ],
+    "priority.": [
+      888
+    ],
+    "term": [
+      890
+    ],
+    "“a": [
+      891
+    ],
+    "technologically": [
+      892
+    ],
+    "sensitive": [
+      896
+    ],
+    "medical": [
+      897
+    ],
+    "professional”": [
+      898
+    ],
+    "oxymoron.": [
+      903
+    ],
+    "Access,": [
+      904
+    ],
+    "equity,": [
+      905
+    ],
+    "mere": [
+      910
+    ],
+    "“technical": [
+      911
+    ],
+    "excellence”": [
+      912
+    ],
+    "should": [
+      913
+    ],
+    "define": [
+      914
+    ],
+    "success.": [
+      915
+    ]
+  },
+  "counts_by_year": [],
+  "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W1989807854",
+  "updated_date": "2025-05-01T01:00:22.232350",
+  "created_date": "2016-06-24",
+  "updated": "2025-05-01T01:00:22.232350",
+  "authors_count": 1,
+  "concepts_count": 6,
+  "topics_count": 2,
+  "has_fulltext": true,
+  "fulltext_origin": "ngrams"
+}

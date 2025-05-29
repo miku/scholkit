@@ -1,0 +1,42 @@
+{
+    "source": "openalex",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Enchao Bi",
+            "role": "first"
+        },
+        {
+            "extra": {},
+            "given_name": "Huan Yang",
+            "role": "middle"
+        },
+        {
+            "extra": {},
+            "given_name": "Qiannan Zhang",
+            "role": "last"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1016/j.jmaa.2025.129623",
+        "openalex": "W4409922449"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {
+                "oa_status": "closed"
+            }
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "openalex-693299f35903b5e95d52fb81fb3028ae7f2bb6bf",
+    "language": "en",
+    "pages": "129623-129623",
+    "publisher": "Elsevier BV",
+    "release_date": "2025-04-01",
+    "release_year": 2025,
+    "title": "On the invariance of holomorphic mappings of the Hartogs domain over the minimal ball"
+}

@@ -1,0 +1,1344 @@
+{
+  "id": "https://openalex.org/W4400406361",
+  "doi": "https://doi.org/10.3390/biom14070804",
+  "doi_registration_agency": null,
+  "display_name": "Forces Bless You: Mechanosensitive Piezo Channels in Gastrointestinal Physiology and Pathology",
+  "title": "Forces Bless You: Mechanosensitive Piezo Channels in Gastrointestinal Physiology and Pathology",
+  "publication_year": 2024,
+  "publication_date": "2024-07-07",
+  "language": "en",
+  "language_id": "https://openalex.org/languages/en",
+  "ids": {
+    "openalex": "https://openalex.org/W4400406361",
+    "doi": "https://doi.org/10.3390/biom14070804",
+    "pmid": "https://pubmed.ncbi.nlm.nih.gov/39062518"
+  },
+  "primary_location": {
+    "source": {
+      "id": "https://openalex.org/S4210236520",
+      "issn_l": "2218-273X",
+      "issn": [
+        "2218-273X"
+      ],
+      "display_name": "Biomolecules",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "host_organization": "https://openalex.org/P4310310987",
+      "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310310987"
+      ],
+      "host_organization_lineage_names": [
+        "Multidisciplinary Digital Publishing Institute"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "is_indexed_in_scopus": true,
+      "type": "journal",
+      "type_id": "https://openalex.org/source-types/journal"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.3390/biom14070804",
+    "is_oa": true,
+    "version": "publishedVersion",
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "doi": "https://doi.org/10.3390/biom14070804",
+    "is_accepted": true,
+    "is_published": true
+  },
+  "best_oa_location": {
+    "source": {
+      "id": "https://openalex.org/S4210236520",
+      "issn_l": "2218-273X",
+      "issn": [
+        "2218-273X"
+      ],
+      "display_name": "Biomolecules",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "host_organization": "https://openalex.org/P4310310987",
+      "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310310987"
+      ],
+      "host_organization_lineage_names": [
+        "Multidisciplinary Digital Publishing Institute"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "is_indexed_in_scopus": true,
+      "type": "journal",
+      "type_id": "https://openalex.org/source-types/journal"
+    },
+    "pdf_url": null,
+    "landing_page_url": "https://doi.org/10.3390/biom14070804",
+    "is_oa": true,
+    "version": "publishedVersion",
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "doi": "https://doi.org/10.3390/biom14070804",
+    "is_accepted": true,
+    "is_published": true
+  },
+  "type": "review",
+  "type_crossref": "journal-article",
+  "type_id": "https://openalex.org/work-types/review",
+  "indexed_in": [
+    "crossref",
+    "pubmed"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://doi.org/10.3390/biom14070804",
+    "any_repository_has_fulltext": false
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5102362960",
+        "display_name": "Jing Guo",
+        "orcid": "https://orcid.org/0009-0002-9728-2915"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jing Guo",
+      "raw_affiliation_strings": [
+        "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5100361348",
+        "display_name": "Li Li",
+        "orcid": "https://orcid.org/0000-0003-2342-3658"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Li Li",
+      "raw_affiliation_strings": [
+        "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5054641881",
+        "display_name": "F. G. Chen",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Feiyi Chen",
+      "raw_affiliation_strings": [
+        "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5080183472",
+        "display_name": "Minhan Fu",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Minhan Fu",
+      "raw_affiliation_strings": [
+        "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5100349408",
+        "display_name": "Cheng Cheng",
+        "orcid": "https://orcid.org/0000-0002-5947-3414"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Cheng Cheng",
+      "raw_affiliation_strings": [
+        "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5048189290",
+        "display_name": "Meizi Wang",
+        "orcid": "https://orcid.org/0000-0001-9591-5753"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Meizi Wang",
+      "raw_affiliation_strings": [
+        "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5029316081",
+        "display_name": "Jun Hu",
+        "orcid": "https://orcid.org/0000-0001-8106-4775"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Jun Hu",
+      "raw_affiliation_strings": [
+        "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Health and Rehabilitation College, Nanjing University of Chinese Medicine, Nanjing 210023, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5015647468",
+        "display_name": "Lixia Pei",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Lixia Pei",
+      "raw_affiliation_strings": [
+        "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5100548208",
+        "display_name": "Jianhua Sun",
+        "orcid": null
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I131434179",
+          "display_name": "Nanjing University of Chinese Medicine",
+          "ror": "https://ror.org/04523zj19",
+          "country_code": "CN",
+          "type": "funder",
+          "country_id": "https://openalex.org/countries/CN",
+          "type_id": "https://openalex.org/institution-types/funder",
+          "lineage": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "country_ids": [
+        "https://openalex.org/countries/CN"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Jianhua Sun",
+      "raw_affiliation_strings": [
+        "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China"
+      ],
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Acupuncture and Rehabilitation, The Affiliated Hospital, Nanjing University of Chinese Medicine, Nanjing 210029, China",
+          "institution_ids": [
+            "https://openalex.org/I131434179"
+          ]
+        }
+      ]
+    }
+  ],
+  "institution_assertions": [],
+  "countries_distinct_count": 1,
+  "institutions_distinct_count": 1,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5015647468",
+    "https://openalex.org/A5100548208"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I131434179",
+    "https://openalex.org/I131434179"
+  ],
+  "versions": [],
+  "datasets": [],
+  "cited_by_count": 0,
+  "summary_stats": {
+    "cited_by_count": 0,
+    "2yr_cited_by_count": 0
+  },
+  "biblio": {
+    "volume": "14",
+    "issue": "7",
+    "first_page": "804",
+    "last_page": "804"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "concepts": [
+    {
+      "id": "https://openalex.org/C4001165",
+      "wikidata": "https://www.wikidata.org/wiki/Q6804689",
+      "display_name": "Mechanosensitive channels",
+      "level": 4,
+      "score": 0.9940084
+    },
+    {
+      "id": "https://openalex.org/C25194021",
+      "wikidata": "https://www.wikidata.org/wiki/Q17157162",
+      "display_name": "Mechanosensation",
+      "level": 4,
+      "score": 0.97847223
+    },
+    {
+      "id": "https://openalex.org/C181104049",
+      "wikidata": "https://www.wikidata.org/wiki/Q11936292",
+      "display_name": "Mechanotransduction",
+      "level": 2,
+      "score": 0.7926231
+    },
+    {
+      "id": "https://openalex.org/C2780785647",
+      "wikidata": "https://www.wikidata.org/wiki/Q18034667",
+      "display_name": "PIEZO1",
+      "level": 5,
+      "score": 0.72049445
+    },
+    {
+      "id": "https://openalex.org/C90423213",
+      "wikidata": "https://www.wikidata.org/wiki/Q568290",
+      "display_name": "Enterochromaffin cell",
+      "level": 4,
+      "score": 0.4912576
+    },
+    {
+      "id": "https://openalex.org/C50254741",
+      "wikidata": "https://www.wikidata.org/wiki/Q62536",
+      "display_name": "Ion channel",
+      "level": 3,
+      "score": 0.45312974
+    },
+    {
+      "id": "https://openalex.org/C95444343",
+      "wikidata": "https://www.wikidata.org/wiki/Q7141",
+      "display_name": "Cell biology",
+      "level": 1,
+      "score": 0.38419914
+    },
+    {
+      "id": "https://openalex.org/C169760540",
+      "wikidata": "https://www.wikidata.org/wiki/Q207011",
+      "display_name": "Neuroscience",
+      "level": 1,
+      "score": 0.36709237
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.3535509
+    },
+    {
+      "id": "https://openalex.org/C86803240",
+      "wikidata": "https://www.wikidata.org/wiki/Q420",
+      "display_name": "Biology",
+      "level": 0,
+      "score": 0.34628415
+    },
+    {
+      "id": "https://openalex.org/C105702510",
+      "wikidata": "https://www.wikidata.org/wiki/Q514",
+      "display_name": "Anatomy",
+      "level": 1,
+      "score": 0.3208263
+    },
+    {
+      "id": "https://openalex.org/C126322002",
+      "wikidata": "https://www.wikidata.org/wiki/Q11180",
+      "display_name": "Internal medicine",
+      "level": 1,
+      "score": 0.12851775
+    },
+    {
+      "id": "https://openalex.org/C170493617",
+      "wikidata": "https://www.wikidata.org/wiki/Q208467",
+      "display_name": "Receptor",
+      "level": 2,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C2775864247",
+      "wikidata": "https://www.wikidata.org/wiki/Q167934",
+      "display_name": "Serotonin",
+      "level": 3,
+      "score": 0.0
+    }
+  ],
+  "topics": [
+    {
+      "id": "https://openalex.org/T12286",
+      "display_name": "Erythrocyte Function and Pathophysiology",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2737",
+        "display_name": "Physiology"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      },
+      "score": 1.0
+    },
+    {
+      "id": "https://openalex.org/T14488",
+      "display_name": "Chemical and Physical Studies",
+      "subfield": {
+        "id": "https://openalex.org/subfields/1304",
+        "display_name": "Biophysics"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"
+      },
+      "score": 0.9509
+    },
+    {
+      "id": "https://openalex.org/T11721",
+      "display_name": "Blood properties and coagulation",
+      "subfield": {
+        "id": "https://openalex.org/subfields/2740",
+        "display_name": "Pulmonary and Respiratory Medicine"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/27",
+        "display_name": "Medicine"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/4",
+        "display_name": "Health Sciences"
+      },
+      "score": 0.9426
+    }
+  ],
+  "primary_topic": {
+    "id": "https://openalex.org/T12286",
+    "display_name": "Erythrocyte Function and Pathophysiology",
+    "subfield": {
+      "id": "https://openalex.org/subfields/2737",
+      "display_name": "Physiology"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/27",
+      "display_name": "Medicine"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/4",
+      "display_name": "Health Sciences"
+    },
+    "score": 1.0
+  },
+  "fwci": 0.0,
+  "citation_normalized_percentile": {
+    "value": 0.0,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "mesh": [
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D000818",
+      "descriptor_name": "Animals",
+      "qualifier_ui": "",
+      "qualifier_name": null
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D005767",
+      "descriptor_name": "Gastrointestinal Diseases",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism"
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D005769",
+      "descriptor_name": "Gastrointestinal Motility",
+      "qualifier_ui": "Q000502",
+      "qualifier_name": "physiology"
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D041981",
+      "descriptor_name": "Gastrointestinal Tract",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism"
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D006801",
+      "descriptor_name": "Humans",
+      "qualifier_ui": "",
+      "qualifier_name": null
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D007473",
+      "descriptor_name": "Ion Channels",
+      "qualifier_ui": "Q000378",
+      "qualifier_name": "metabolism"
+    },
+    {
+      "is_major_topic": false,
+      "descriptor_ui": "D040542",
+      "descriptor_name": "Mechanotransduction, Cellular",
+      "qualifier_ui": "",
+      "qualifier_name": null
+    }
+  ],
+  "locations_count": 2,
+  "locations": [
+    {
+      "source": {
+        "id": "https://openalex.org/S4210236520",
+        "issn_l": "2218-273X",
+        "issn": [
+          "2218-273X"
+        ],
+        "display_name": "Biomolecules",
+        "publisher": "Multidisciplinary Digital Publishing Institute",
+        "host_organization": "https://openalex.org/P4310310987",
+        "host_organization_name": "Multidisciplinary Digital Publishing Institute",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310310987"
+        ],
+        "host_organization_lineage_names": [
+          "Multidisciplinary Digital Publishing Institute"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "is_indexed_in_scopus": true,
+        "type": "journal",
+        "type_id": "https://openalex.org/source-types/journal"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://doi.org/10.3390/biom14070804",
+      "is_oa": true,
+      "version": "publishedVersion",
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "doi": "https://doi.org/10.3390/biom14070804",
+      "is_accepted": true,
+      "is_published": true
+    },
+    {
+      "source": {
+        "id": "https://openalex.org/S4306525036",
+        "issn_l": null,
+        "issn": null,
+        "display_name": "PubMed",
+        "publisher": null,
+        "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health",
+        "host_organization_lineage": [
+          "https://openalex.org/I1299303238"
+        ],
+        "host_organization_lineage_names": [
+          "National Institutes of Health"
+        ],
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "is_indexed_in_scopus": false,
+        "type": "repository",
+        "type_id": "https://openalex.org/source-types/repository"
+      },
+      "pdf_url": null,
+      "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/39062518",
+      "is_oa": false,
+      "version": null,
+      "license": null,
+      "license_id": null,
+      "doi": "https://doi.org/10.3390/biom14070804",
+      "is_accepted": false,
+      "is_published": false
+    }
+  ],
+  "referenced_works": [
+    "https://openalex.org/W1928745964",
+    "https://openalex.org/W1943555183",
+    "https://openalex.org/W1972071814",
+    "https://openalex.org/W1976611079",
+    "https://openalex.org/W1979948289",
+    "https://openalex.org/W1982652247",
+    "https://openalex.org/W1987139248",
+    "https://openalex.org/W1989979419",
+    "https://openalex.org/W1990784939",
+    "https://openalex.org/W1990815583",
+    "https://openalex.org/W1999720993",
+    "https://openalex.org/W2012045650",
+    "https://openalex.org/W2023072510",
+    "https://openalex.org/W2030639826",
+    "https://openalex.org/W2033072655",
+    "https://openalex.org/W2033386838",
+    "https://openalex.org/W2058569154",
+    "https://openalex.org/W2061801043",
+    "https://openalex.org/W2063428082",
+    "https://openalex.org/W2081483344",
+    "https://openalex.org/W2085139899",
+    "https://openalex.org/W2112657305",
+    "https://openalex.org/W2113018006",
+    "https://openalex.org/W2118655588",
+    "https://openalex.org/W2119938514",
+    "https://openalex.org/W2121707980",
+    "https://openalex.org/W2122292170",
+    "https://openalex.org/W2143897453",
+    "https://openalex.org/W2149079172",
+    "https://openalex.org/W2154528580",
+    "https://openalex.org/W2176907467",
+    "https://openalex.org/W2182578492",
+    "https://openalex.org/W2184968222",
+    "https://openalex.org/W2345070902",
+    "https://openalex.org/W2460164747",
+    "https://openalex.org/W2505300434",
+    "https://openalex.org/W2523706394",
+    "https://openalex.org/W2530833951",
+    "https://openalex.org/W2535150227",
+    "https://openalex.org/W2551801949",
+    "https://openalex.org/W2553323458",
+    "https://openalex.org/W2565773508",
+    "https://openalex.org/W2569172190",
+    "https://openalex.org/W2658508676",
+    "https://openalex.org/W2724800544",
+    "https://openalex.org/W2776137356",
+    "https://openalex.org/W2785150634",
+    "https://openalex.org/W2788398310",
+    "https://openalex.org/W2789612147",
+    "https://openalex.org/W2795448946",
+    "https://openalex.org/W2799943205",
+    "https://openalex.org/W2801055205",
+    "https://openalex.org/W2820932019",
+    "https://openalex.org/W2883884554",
+    "https://openalex.org/W2886439639",
+    "https://openalex.org/W2889646458",
+    "https://openalex.org/W2895961874",
+    "https://openalex.org/W2901781005",
+    "https://openalex.org/W2941714973",
+    "https://openalex.org/W2969829558",
+    "https://openalex.org/W2979768997",
+    "https://openalex.org/W2980126326",
+    "https://openalex.org/W3003058300",
+    "https://openalex.org/W3008358504",
+    "https://openalex.org/W3009206285",
+    "https://openalex.org/W3010426223",
+    "https://openalex.org/W3014082444",
+    "https://openalex.org/W3016802365",
+    "https://openalex.org/W3023374562",
+    "https://openalex.org/W3031767666",
+    "https://openalex.org/W3040406231",
+    "https://openalex.org/W3040485407",
+    "https://openalex.org/W3042758557",
+    "https://openalex.org/W3047589481",
+    "https://openalex.org/W3082470619",
+    "https://openalex.org/W3088107990",
+    "https://openalex.org/W3110214683",
+    "https://openalex.org/W3111272930",
+    "https://openalex.org/W3118748032",
+    "https://openalex.org/W3129287313",
+    "https://openalex.org/W3131438833",
+    "https://openalex.org/W3153809483",
+    "https://openalex.org/W3165135090",
+    "https://openalex.org/W3166797325",
+    "https://openalex.org/W3175140089",
+    "https://openalex.org/W3177481689",
+    "https://openalex.org/W3183975923",
+    "https://openalex.org/W3206905653",
+    "https://openalex.org/W3216302389",
+    "https://openalex.org/W4206022116",
+    "https://openalex.org/W4211121451",
+    "https://openalex.org/W4211264697",
+    "https://openalex.org/W4220994293",
+    "https://openalex.org/W4283811672",
+    "https://openalex.org/W4288826400",
+    "https://openalex.org/W4290769898",
+    "https://openalex.org/W4292493761",
+    "https://openalex.org/W4294218767",
+    "https://openalex.org/W4295249536",
+    "https://openalex.org/W4296277377",
+    "https://openalex.org/W4308592610",
+    "https://openalex.org/W4311021145",
+    "https://openalex.org/W4311117172",
+    "https://openalex.org/W4312073710",
+    "https://openalex.org/W4312130035",
+    "https://openalex.org/W4313405852",
+    "https://openalex.org/W4315621800",
+    "https://openalex.org/W4319461147",
+    "https://openalex.org/W4319657133",
+    "https://openalex.org/W4320882425",
+    "https://openalex.org/W4321003570",
+    "https://openalex.org/W4353031812",
+    "https://openalex.org/W4365813882",
+    "https://openalex.org/W4376286549",
+    "https://openalex.org/W4380264648",
+    "https://openalex.org/W4383058732",
+    "https://openalex.org/W4385555659",
+    "https://openalex.org/W4385555803",
+    "https://openalex.org/W4386029254",
+    "https://openalex.org/W4386282550",
+    "https://openalex.org/W4386632077",
+    "https://openalex.org/W4387013707",
+    "https://openalex.org/W4387231541"
+  ],
+  "referenced_works_count": 123,
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/3",
+      "display_name": "Good health and well-being",
+      "score": 0.44
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/mechanosensation",
+      "display_name": "mechanosensation",
+      "score": 0.97847223
+    },
+    {
+      "id": "https://openalex.org/keywords/mechanotransduction",
+      "display_name": "Mechanotransduction",
+      "score": 0.7926231
+    },
+    {
+      "id": "https://openalex.org/keywords/piezo1",
+      "display_name": "Piezo1",
+      "score": 0.72049445
+    },
+    {
+      "id": "https://openalex.org/keywords/enterochromaffin-cell",
+      "display_name": "Enterochromaffin cell",
+      "score": 0.4912576
+    }
+  ],
+  "grants": [
+    {
+      "funder": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China",
+      "award_id": "82174489"
+    },
+    {
+      "funder": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China",
+      "award_id": "82274630"
+    }
+  ],
+  "apc_list": {
+    "value": 2100,
+    "currency": "CHF",
+    "value_usd": 2273
+  },
+  "apc_paid": {
+    "value": 2100,
+    "currency": "CHF",
+    "value_usd": 2273
+  },
+  "cited_by_percentile_year": {
+    "min": 0,
+    "max": 77
+  },
+  "related_works": [
+    "https://openalex.org/W4384263780",
+    "https://openalex.org/W4240365997",
+    "https://openalex.org/W4224044507",
+    "https://openalex.org/W3163172095",
+    "https://openalex.org/W2791311735",
+    "https://openalex.org/W2585976679",
+    "https://openalex.org/W2555705980",
+    "https://openalex.org/W2396861445",
+    "https://openalex.org/W2286255985",
+    "https://openalex.org/W2094331327"
+  ],
+  "abstract_inverted_index": {
+    "The": [
+      0,
+      36
+    ],
+    "gastrointestinal": [
+      1
+    ],
+    "(GI)": [
+      2
+    ],
+    "tract": [
+      3
+    ],
+    "is": [
+      4,
+      129
+    ],
+    "an": [
+      5,
+      108
+    ],
+    "organ": [
+      6
+    ],
+    "actively": [
+      7
+    ],
+    "involved": [
+      8
+    ],
+    "in": [
+      9,
+      44,
+      81,
+      96,
+      113
+    ],
+    "mechanical": [
+      10,
+      29,
+      52
+    ],
+    "processes,": [
+      11
+    ],
+    "where": [
+      12
+    ],
+    "it": [
+      13
+    ],
+    "detects": [
+      14
+    ],
+    "forces": [
+      15,
+      30,
+      53
+    ],
+    "via": [
+      16,
+      34
+    ],
+    "a": [
+      17,
+      139
+    ],
+    "mechanosensation": [
+      18,
+      104
+    ],
+    "mechanism.": [
+      19
+    ],
+    "Mechanosensation": [
+      20
+    ],
+    "relies": [
+      21
+    ],
+    "on": [
+      22,
+      77,
+      90
+    ],
+    "specialized": [
+      23
+    ],
+    "cells": [
+      24,
+      47
+    ],
+    "termed": [
+      25
+    ],
+    "mechanoreceptors,": [
+      26
+    ],
+    "which": [
+      27
+    ],
+    "convert": [
+      28
+    ],
+    "into": [
+      31
+    ],
+    "electrochemical": [
+      32
+    ],
+    "signals": [
+      33
+    ],
+    "mechanosensors.": [
+      35
+    ],
+    "mechanosensitive": [
+      37,
+      46,
+      78,
+      135
+    ],
+    "Piezo1": [
+      38
+    ],
+    "and": [
+      39,
+      65,
+      67,
+      84,
+      102,
+      126
+    ],
+    "Piezo2": [
+      40
+    ],
+    "are": [
+      41,
+      105
+    ],
+    "widely": [
+      42
+    ],
+    "expressed": [
+      43
+    ],
+    "various": [
+      45,
+      147
+    ],
+    "that": [
+      48
+    ],
+    "respond": [
+      49
+    ],
+    "to": [
+      50
+    ],
+    "GI": [
+      51,
+      82,
+      100,
+      117,
+      127,
+      148
+    ],
+    "by": [
+      54
+    ],
+    "altering": [
+      55
+    ],
+    "transmembrane": [
+      56
+    ],
+    "ionic": [
+      57
+    ],
+    "currents,": [
+      58
+    ],
+    "such": [
+      59
+    ],
+    "as": [
+      60
+    ],
+    "epithelial": [
+      61
+    ],
+    "cells,": [
+      62,
+      64
+    ],
+    "enterochromaffin": [
+      63
+    ],
+    "intrinsic": [
+      66
+    ],
+    "extrinsic": [
+      68
+    ],
+    "enteric": [
+      69
+    ],
+    "neurons.": [
+      70
+    ],
+    "This": [
+      71
+    ],
+    "review": [
+      72
+    ],
+    "highlights": [
+      73
+    ],
+    "recent": [
+      74
+    ],
+    "research": [
+      75
+    ],
+    "advances": [
+      76
+    ],
+    "Piezo": [
+      79,
+      94,
+      111,
+      136
+    ],
+    "channels": [
+      80,
+      95,
+      112,
+      137
+    ],
+    "physiology": [
+      83
+    ],
+    "pathology.": [
+      85
+    ],
+    "Specifically,": [
+      86
+    ],
+    "the": [
+      87,
+      91,
+      97,
+      114,
+      132,
+      144
+    ],
+    "latest": [
+      88
+    ],
+    "insights": [
+      89
+    ],
+    "role": [
+      92
+    ],
+    "of": [
+      93,
+      110,
+      116,
+      134,
+      146
+    ],
+    "intestinal": [
+      98,
+      103
+    ],
+    "barrier,": [
+      99
+    ],
+    "motility,": [
+      101
+    ],
+    "summarized.": [
+      106
+    ],
+    "Additionally,": [
+      107
+    ],
+    "overview": [
+      109
+    ],
+    "pathogenesis": [
+      115
+    ],
+    "disorders,": [
+      118
+    ],
+    "including": [
+      119
+    ],
+    "irritable": [
+      120
+    ],
+    "bowel": [
+      121,
+      124
+    ],
+    "syndrome,": [
+      122
+    ],
+    "inflammatory": [
+      123
+    ],
+    "disease,": [
+      125
+    ],
+    "cancers,": [
+      128
+    ],
+    "provided.": [
+      130
+    ],
+    "Overall,": [
+      131
+    ],
+    "presence": [
+      133
+    ],
+    "offers": [
+      138
+    ],
+    "promising": [
+      140
+    ],
+    "new": [
+      141
+    ],
+    "perspective": [
+      142
+    ],
+    "for": [
+      143
+    ],
+    "treatment": [
+      145
+    ],
+    "disorders.": [
+      149
+    ]
+  },
+  "counts_by_year": [],
+  "cited_by_api_url": "https://api.openalex.org/works?filter=cites:W4400406361",
+  "updated_date": "2025-05-01T23:30:50.308281",
+  "created_date": "2024-07-09",
+  "updated": "2025-05-01T23:30:50.308281",
+  "authors_count": 9,
+  "concepts_count": 14,
+  "topics_count": 3,
+  "has_fulltext": false
+}

@@ -1,0 +1,40 @@
+{
+    "source": "openalex",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "ShyamS Kothari",
+            "role": "first"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.4103/0974-2069.84632",
+        "mag": "1989807854",
+        "openalex": "W1989807854",
+        "pmcid": "3180963",
+        "pmid": "21976865"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {
+                "any_repository_has_fulltext": true,
+                "is_oa": true,
+                "oa_status": "diamond",
+                "oa_url": "https://doi.org/10.4103/0974-2069.84632"
+            }
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "openalex-90dc97b6e0c9a8f2207547ce1b93b128c12fd5c9",
+    "issue": "2",
+    "language": "en",
+    "pages": "101-101",
+    "publisher": "Medknow",
+    "release_date": "2011-01-01",
+    "release_year": 2011,
+    "title": "How do we define success in pediatric cardiac care?",
+    "volume": "4"
+}
