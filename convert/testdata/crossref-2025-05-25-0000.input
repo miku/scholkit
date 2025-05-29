@@ -1,1 +1,2339 @@
-{"indexed":{"date-parts":[[2025,5,25]],"date-time":"2025-05-25T14:25:25Z","timestamp":1748183125057,"version":"3.40.3"},"publisher-location":"Cham","reference-count":199,"publisher":"Springer International Publishing","isbn-type":[{"type":"print","value":"9783030417680"},{"type":"electronic","value":"9783030417697"}],"license":[{"start":{"date-parts":[[2020,1,1]],"date-time":"2020-01-01T00:00:00Z","timestamp":1577836800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/www.springer.com\/tdm"}],"content-domain":{"domain":["link.springer.com"],"crossmark-restriction":false},"published-print":{"date-parts":[[2020]]},"DOI":"10.1007\/978-3-030-41769-7_14","type":"book-chapter","created":{"date-parts":[[2020,3,18]],"date-time":"2020-03-18T18:03:26Z","timestamp":1584554606000},"page":"345-382","update-policy":"https:\/\/doi.org\/10.1007\/springer_crossmark_policy","source":"Crossref","is-referenced-by-count":179,"title":["Hemoglobin: Structure, Function and Allostery"],"prefix":"10.1007","author":[{"given":"Mostafa H.","family":"Ahmed","sequence":"first","affiliation":[]},{"given":"Mohini S.","family":"Ghatge","sequence":"additional","affiliation":[]},{"given":"Martin K.","family":"Safo","sequence":"additional","affiliation":[]}],"member":"297","published-online":{"date-parts":[[2020,3,19]]},"reference":[{"key":"14_CR1","doi-asserted-by":"publisher","first-page":"268","DOI":"10.1002\/ajh.20184","volume":"77","author":"O Abdulmalik","year":"2004","unstructured":"Abdulmalik O, Safo MK, Lerner NB et al (2004) Characterization of hemoglobin bassett (alpha94Asp\u00a0\u2192\u00a0Ala), a variant with very low oxygen affinity. Am J Hematol 77:268\u2013276. https:\/\/doi.org\/10.1002\/ajh.20184","journal-title":"Am J Hematol"},{"key":"14_CR2","doi-asserted-by":"publisher","first-page":"552","DOI":"10.1111\/j.1365-2141.2004.05332.x","volume":"128","author":"O Abdulmalik","year":"2005","unstructured":"Abdulmalik O, Safo MK, Chen Q et al (2005) 5-hydroxymethyl-2-furfural modifies intracellular sickle haemoglobin and inhibits sickling of red blood cells. Br J Haematol 128:552\u2013561. https:\/\/doi.org\/10.1111\/j.1365-2141.2004.05332.x","journal-title":"Br J Haematol"},{"key":"14_CR3","doi-asserted-by":"publisher","first-page":"1076","DOI":"10.1107\/S0907444911045860","volume":"67","author":"O Abdulmalik","year":"2011","unstructured":"Abdulmalik O, Ghatge MS, Musayev FN et al (2011) Crystallographic analysis of human hemoglobin elucidates the structural basis of the potent and dual antisickling activity of pyridyl derivatives of vanillin Corrigendum. Acta Crystallogr D Biol Crystallogr 67:1076. https:\/\/doi.org\/10.1107\/S0907444911045860","journal-title":"Acta Crystallogr D Biol Crystallogr"},{"key":"14_CR4","doi-asserted-by":"publisher","first-page":"1015","DOI":"10.1021\/jm00351a002","volume":"25","author":"DJ Abraham","year":"1982","unstructured":"Abraham DJ, Mehanna AS, Williams FL (1982) Design, synthesis, and testing of potential antisickling agents. 1. halogenated benzyloxy and phenoxy acids. J Med Chem 25:1015\u20131017. https:\/\/doi.org\/10.1021\/jm00351a002","journal-title":"J Med Chem"},{"key":"14_CR5","doi-asserted-by":"publisher","first-page":"324","DOI":"10.1073\/pnas.80.2.324","volume":"80","author":"DJ Abraham","year":"1983","unstructured":"Abraham DJ, Perutz MF, Phillips SE (1983a) Physiological and x-ray studies of potential antisickling agents. Proc Natl Acad Sci USA 80:324\u2013328. https:\/\/doi.org\/10.1073\/pnas.80.2.324","journal-title":"Proc Natl Acad Sci USA"},{"key":"14_CR6","doi-asserted-by":"publisher","first-page":"324","DOI":"10.1073\/pnas.80.2.324","volume":"80","author":"DJ Abraham","year":"1983","unstructured":"Abraham DJ, Perutz MF, Phillips SE (1983b) Physiological and x-ray studies of potential antisickling agents. PNAS 80:324\u2013328. https:\/\/doi.org\/10.1073\/pnas.80.2.324","journal-title":"PNAS"},{"key":"14_CR7","doi-asserted-by":"publisher","first-page":"967","DOI":"10.1021\/jm00374a006","volume":"27","author":"DJ Abraham","year":"1984","unstructured":"Abraham DJ, Kennedy PE, Mehanna AS et al (1984) Design, synthesis, and testing of potential antisickling agents. 4. structure-activity relationships of benzyloxy and phenoxy acids. J Med Chem 27:967\u2013978. https:\/\/doi.org\/10.1021\/jm00374a006","journal-title":"J Med Chem"},{"key":"14_CR8","doi-asserted-by":"publisher","first-page":"1334","DOI":"10.1182\/blood.V77.6.1334.1334","volume":"77","author":"DJ Abraham","year":"1991","unstructured":"Abraham DJ, Mehanna AS, Wireko FC et al (1991) Vanillin, a potential agent for the treatment of sickle cell anemia. Blood 77:1334\u20131341","journal-title":"Blood"},{"key":"14_CR9","doi-asserted-by":"publisher","first-page":"480","DOI":"10.1016\/0022-2836(92)90902-V","volume":"227","author":"DJ Abraham","year":"1992","unstructured":"Abraham DJ, Peascoe RA, Randad RS, Panikker J (1992a) X-ray diffraction study of di and tetra-ligated T-state hemoglobin from high salt crystals. J Mol Biol 227:480\u2013492. https:\/\/doi.org\/10.1016\/0022-2836(92)90902-V","journal-title":"J Mol Biol"},{"key":"14_CR10","doi-asserted-by":"publisher","first-page":"9141","DOI":"10.1021\/bi00153a005","volume":"31","author":"DJ Abraham","year":"1992","unstructured":"Abraham DJ, Wireko FC, Randad RS et al (1992b) Allosteric modifiers of hemoglobin: 2-[4-[[(3,5-disubstituted anilino)carbonyl]methyl]phenoxy]-2-methylpropionic acid derivatives that lower the oxygen affinity of hemoglobin in red cell suspensions, in whole blood, and in vivo in rats. Biochemistry 31:9141\u20139149. https:\/\/doi.org\/10.1021\/bi00153a005","journal-title":"Biochemistry"},{"key":"14_CR11","doi-asserted-by":"publisher","first-page":"15006","DOI":"10.1021\/bi00046a007","volume":"34","author":"DJ Abraham","year":"1995","unstructured":"Abraham DJ, Safo MK, Boyiri T et al (1995) How allosteric effectors can bind to the same protein residue and produce opposite shifts in the allosteric equilibrium. Biochemistry 34:15006\u201315020. https:\/\/doi.org\/10.1021\/bi00046a007","journal-title":"Biochemistry"},{"key":"14_CR12","doi-asserted-by":"publisher","first-page":"620","DOI":"10.1002\/jcp.22195","volume":"224","author":"I Akinsheye","year":"2010","unstructured":"Akinsheye I, Klings ES (2010) Sickle cell anemia and vascular dysfunction: the nitric oxide connection. J Cell Physiol 224:620\u2013625. https:\/\/doi.org\/10.1002\/jcp.22195","journal-title":"J Cell Physiol"},{"key":"14_CR13","doi-asserted-by":"publisher","first-page":"485","DOI":"10.1002\/ajh.21162","volume":"83","author":"ZY Aliyu","year":"2008","unstructured":"Aliyu ZY, Gordeuk V, Sachdev V et al (2008) Prevalence and risk factors for pulmonary artery systolic hypertension among sickle cell disease patients in Nigeria. Am J Hematol 83:485\u2013490. https:\/\/doi.org\/10.1002\/ajh.21162","journal-title":"Am J Hematol"},{"key":"14_CR14","doi-asserted-by":"publisher","first-page":"146","DOI":"10.1038\/237146a0","volume":"237","author":"A Arnone","year":"1972","unstructured":"Arnone A (1972) X-ray diffraction study of binding of 2,3-diphosphoglycerate to human deoxyhaemoglobin. Nature 237:146\u2013149. https:\/\/doi.org\/10.1038\/237146a0","journal-title":"Nature"},{"key":"14_CR15","doi-asserted-by":"publisher","first-page":"114","DOI":"10.1016\/0014-5793(81)81046-0","volume":"126","author":"N Arous","year":"1981","unstructured":"Arous N, Braconnier F, Thillet J et al (1981) Hemoglobin Saint Mand\u00e9 beta 102 (G4) asn replaced by tyr: a new low oxygen affinity variant. FEBS Lett 126:114\u2013116. https:\/\/doi.org\/10.1016\/0014-5793(81)81046-0","journal-title":"FEBS Lett"},{"key":"14_CR16","doi-asserted-by":"publisher","first-page":"175","DOI":"10.1016\/0022-2836(79)90277-8","volume":"129","author":"J Baldwin","year":"1979","unstructured":"Baldwin J, Chothia C (1979) Haemoglobin: The structural changes related to ligand binding and its allosteric mechanism. J Mol Biol 129:175\u2013220. https:\/\/doi.org\/10.1016\/0022-2836(79)90277-8","journal-title":"J Mol Biol"},{"key":"14_CR17","doi-asserted-by":"publisher","first-page":"78","DOI":"10.1038\/nsb0197-78","volume":"4","author":"D Barrick","year":"1997","unstructured":"Barrick D, Ho NT, Simplaceanu V et al (1997) A test of the role of the proximal histidines in the Perutz model for cooperativity in haemoglobin. Nat Struct Biol 4:78\u201383","journal-title":"Nat Struct Biol"},{"key":"14_CR18","doi-asserted-by":"publisher","first-page":"397","DOI":"10.1111\/j.1476-5381.1984.tb10775.x","volume":"82","author":"CR Beddell","year":"1984","unstructured":"Beddell CR, Goodford PJ, Kneen G et al (1984) Substituted benzaldehydes designed to increase the oxygen affinity of human haemoglobin and inhibit the sickling of sickle erythrocytes. Br J Pharmacol 82:397\u2013407. https:\/\/doi.org\/10.1111\/j.1476-5381.1984.tb10775.x","journal-title":"Br J Pharmacol"},{"key":"14_CR19","doi-asserted-by":"publisher","first-page":"3953","DOI":"10.1182\/blood-2002-10-3313","volume":"101","author":"JD Belcher","year":"2003","unstructured":"Belcher JD, Bryant CJ, Nguyen J et al (2003) Transgenic sickle mice have vascular inflammation. Blood 101:3953\u20133959. https:\/\/doi.org\/10.1182\/blood-2002-10-3313","journal-title":"Blood"},{"key":"14_CR20","doi-asserted-by":"publisher","first-page":"162","DOI":"10.1016\/0006-291X(67)90228-8","volume":"26","author":"R Benesch","year":"1967","unstructured":"Benesch R, Benesch RE (1967) The effect of organic phosphates from the human erythrocyte on the allosteric properties of hemoglobin. Biochem Biophys Res Commun 26:162\u2013167. https:\/\/doi.org\/10.1016\/0006-291X(67)90228-8","journal-title":"Biochem Biophys Res Commun"},{"key":"14_CR21","doi-asserted-by":"crossref","first-page":"8169","DOI":"10.1016\/S0021-9258(19)86871-0","volume":"254","author":"RE Benesch","year":"1979","unstructured":"Benesch RE, Kwong S, Edalji R, Benesch R (1979) Alpha chain mutations with opposite effects on the gelation of hemoglobin S. J Biol Chem 254:8169\u20138172","journal-title":"J Biol Chem"},{"key":"14_CR22","doi-asserted-by":"publisher","first-page":"165","DOI":"10.1016\/j.resp.2006.01.002","volume":"154","author":"M Berenbrink","year":"2006","unstructured":"Berenbrink M (2006) Evolution of vertebrate haemoglobins: Histidine side chains, specific buffer value and Bohr effect. Respir Physiol Neurobiol 154:165\u2013184. https:\/\/doi.org\/10.1016\/j.resp.2006.01.002","journal-title":"Respir Physiol Neurobiol"},{"key":"14_CR23","doi-asserted-by":"publisher","first-page":"32050","DOI":"10.1074\/jbc.272.51.32050","volume":"272","author":"S Bettati","year":"1997","unstructured":"Bettati S, Mozzarelli A (1997) T state hemoglobin binds oxygen noncooperatively with allosteric effects of protons, inositol hexaphosphate, and chloride. J Biol Chem 272:32050\u201332055. https:\/\/doi.org\/10.1074\/jbc.272.51.32050","journal-title":"J Biol Chem"},{"key":"14_CR24","doi-asserted-by":"publisher","first-page":"581","DOI":"10.1006\/jmbi.1998.1983","volume":"281","author":"S Bettati","year":"1998","unstructured":"Bettati S, Mozzarelli A, Perutz MF (1998) Allosteric mechanism of haemoglobin: rupture of salt-bridges raises the oxygen affinity of the T-structure. J Mol Biol 281:581\u2013585. https:\/\/doi.org\/10.1006\/jmbi.1998.1983","journal-title":"J Mol Biol"},{"key":"14_CR25","doi-asserted-by":"publisher","first-page":"1926","DOI":"10.1073\/pnas.0812381106","volume":"106","author":"A Biolo","year":"2009","unstructured":"Biolo A, Greferath R, Siwik DA et al (2009) Enhanced exercise capacity in mice with severe heart failure treated with an allosteric effector of hemoglobin, myo-inositol trispyrophosphate. PNAS 106:1926\u20131929. https:\/\/doi.org\/10.1073\/pnas.0812381106","journal-title":"PNAS"},{"key":"14_CR26","doi-asserted-by":"publisher","first-page":"10515","DOI":"10.1074\/jbc.M110.176271","volume":"286","author":"I Birukou","year":"2011","unstructured":"Birukou I, Soman J, Olson JS (2011) Blocking the gate to ligand entry in human hemoglobin. J Biol Chem 286:10515\u201310529. https:\/\/doi.org\/10.1074\/jbc.M110.176271","journal-title":"J Biol Chem"},{"key":"14_CR27","doi-asserted-by":"publisher","first-page":"2542","DOI":"10.1074\/jbc.M116.764274","volume":"292","author":"E Biss\u00e9","year":"2017","unstructured":"Biss\u00e9 E, Schaeffer-Reiss C, Van Dorsselaer A et al (2017) Hemoglobin Kirklareli (\u03b1 H58L), a new variant associated with iron deficiency and increased CO binding. J Biol Chem 292:2542\u20132555. https:\/\/doi.org\/10.1074\/jbc.M116.764274","journal-title":"J Biol Chem"},{"key":"14_CR28","doi-asserted-by":"publisher","first-page":"402","DOI":"10.1111\/j.1748-1716.1904.tb01382.x","volume":"16","author":"C Bohr","year":"1904","unstructured":"Bohr C, Hasselbalch K, Krogh A (1904) Ueber einen in biologischer Beziehung wichtigen Einfluss, den die Kohlens\u00e4urespannung des Blutes auf dessen Sauerstoffbindung \u00fcbt1. Skandinavisches Archiv F\u00fcr Physiologie 16:402\u2013412. https:\/\/doi.org\/10.1111\/j.1748-1716.1904.tb01382.x","journal-title":"Skandinavisches Archiv F\u00fcr Physiologie"},{"key":"14_CR29","doi-asserted-by":"crossref","first-page":"980","DOI":"10.1016\/S0021-9258(18)93612-4","volume":"243","author":"J Bonaventura","year":"1968","unstructured":"Bonaventura J, Riggs A (1968) Hemoglobin Kansas, a human hemoglobin with a neutral amino acid substitution and an abnormal oxygen equilibrium. J Biol Chem 243:980\u2013991","journal-title":"J Biol Chem"},{"key":"14_CR30","doi-asserted-by":"publisher","first-page":"561","DOI":"10.1006\/jmbi.1994.1395","volume":"239","author":"C Bonaventura","year":"1994","unstructured":"Bonaventura C, Arumugam M, Cashon R et al (1994) Chloride masks effects of opposing positive charges in Hb A and Hb Hinsdale (\u03b2139 Asn\u2009\u2192\u2009Lys) that can modulate cooperativity as well as oxygen affinity. J Mol Biol 239:561\u2013568. https:\/\/doi.org\/10.1006\/jmbi.1994.1395","journal-title":"J Mol Biol"},{"key":"14_CR31","doi-asserted-by":"publisher","first-page":"91","DOI":"10.3109\/03630269708997513","volume":"21","author":"I Borg","year":"1997","unstructured":"Borg I, Valentino M, Fiorini A, Felice AE (1997) Hb Setif [alpha 94(G1)Asp\u00a0\u2192\u00a0Tyr] in Malta. Hemoglobin 21:91\u201396","journal-title":"Hemoglobin"},{"key":"14_CR32","doi-asserted-by":"publisher","first-page":"792","DOI":"10.1038\/212792a0","volume":"212","author":"MC Botha","year":"1966","unstructured":"Botha MC, Beale D, Isaacs WA, Lehmann H (1966) Hemoglobin J Cape Town-alpha-2 92 arginine replaced by glutamine beta-2. Nature 212:792\u2013795. https:\/\/doi.org\/10.1038\/212792a0","journal-title":"Nature"},{"key":"14_CR33","doi-asserted-by":"publisher","first-page":"15021","DOI":"10.1021\/bi00046a008","volume":"34","author":"T Boyiri","year":"1995","unstructured":"Boyiri T, Safo MK, Danso-Danquah RE et al (1995) Bisaldehyde allosteric effectors as molecular ratchets and probes. Biochemistry 34:15021\u201315036. https:\/\/doi.org\/10.1021\/bi00046a008","journal-title":"Biochemistry"},{"key":"14_CR34","doi-asserted-by":"publisher","first-page":"215","DOI":"10.1016\/0301-4622(86)85006-2","volume":"23","author":"M Brunori","year":"1986","unstructured":"Brunori M, Coletta M, Di Cera E (1986) A cooperative model for ligand binding to biological macromolecules as applied to oxygen carriers. Biophys Chem 23:215\u2013222. https:\/\/doi.org\/10.1016\/0301-4622(86)85006-2","journal-title":"Biophys Chem"},{"key":"14_CR35","doi-asserted-by":"publisher","first-page":"762","DOI":"10.1056\/NEJM199709113371107","volume":"337","author":"HF Bunn","year":"1997","unstructured":"Bunn HF (1997) Pathogenesis and treatment of sickle cell disease. N Engl J Med 337:762\u2013769. https:\/\/doi.org\/10.1056\/NEJM199709113371107","journal-title":"N Engl J Med"},{"key":"14_CR36","doi-asserted-by":"publisher","first-page":"2299","DOI":"10.1172\/JCI107040","volume":"51","author":"HF Bunn","year":"1972","unstructured":"Bunn HF, Bradley TB, Davis WE et al (1972) Structural and functional studies on hemoglobin Bethesda (alpha2beta2 145His), a varient associated with compensatory erythrocytosis. J Clin Invest 51:2299\u20132309. https:\/\/doi.org\/10.1172\/JCI107040","journal-title":"J Clin Invest"},{"key":"14_CR37","doi-asserted-by":"publisher","first-page":"313","DOI":"10.1016\/0301-4622(90)88031-M","volume":"37","author":"MR Busch","year":"1990","unstructured":"Busch MR, Ho C (1990) Effects of anions on the molecular basis of the Bohr effect of hemoglobin. Biophys Chem 37:313\u2013322. https:\/\/doi.org\/10.1016\/0301-4622(90)88031-M","journal-title":"Biophys Chem"},{"key":"14_CR38","doi-asserted-by":"publisher","first-page":"915","DOI":"10.1038\/210915a0","volume":"210","author":"RW Carrell","year":"1966","unstructured":"Carrell RW, Lehmann H, Hutchison HE (1966) Haemoglobin K\u00f6ln (beta-98 valine\u2013methionine): an unstable protein causing inclusion-body anaemia. Nature 210:915\u2013916. https:\/\/doi.org\/10.1038\/210915a0","journal-title":"Nature"},{"key":"14_CR39","doi-asserted-by":"publisher","first-page":"813","DOI":"10.1172\/JCI105397","volume":"45","author":"S Charache","year":"1966","unstructured":"Charache S, Weatherall DJ, Clegg JB (1966) Polycythemia associated with a hemoglobinopathy. J Clin Invest 45:813\u2013822. https:\/\/doi.org\/10.1172\/JCI105397","journal-title":"J Clin Invest"},{"key":"14_CR40","doi-asserted-by":"publisher","first-page":"2057","DOI":"10.1529\/biophysj.104.046136","volume":"88","author":"Q Chen","year":"2005","unstructured":"Chen Q, Lalezari I, Nagel RL, Hirsch RE (2005) Liganded hemoglobin structural perturbations by the allosteric effector L35. Biophys J 88:2057\u20132067. https:\/\/doi.org\/10.1529\/biophysj.104.046136","journal-title":"Biophys J"},{"key":"14_CR41","doi-asserted-by":"publisher","first-page":"53","DOI":"10.3109\/03630269109072484","volume":"15","author":"PF Como","year":"1991","unstructured":"Como PF, Wylie BR, Trent RJ et al (1991) A new unstable and low oxygen affinity hemoglobin variant: Hb Stanmore [beta 111(G13)Val\u2013Ala]. Hemoglobin 15:53\u201365","journal-title":"Hemoglobin"},{"key":"14_CR42","doi-asserted-by":"crossref","first-page":"2399","DOI":"10.1016\/S0021-9258(17)41959-4","volume":"269","author":"J Connor","year":"1994","unstructured":"Connor J, Pak CC, Schroit AJ (1994) Exposure of phosphatidylserine in the outer leaflet of human red blood cells. relationship to cell density, cell age, and clearance by mononuclear cells. J Biol Chem 269:2399\u20132404","journal-title":"J Biol Chem"},{"key":"14_CR43","doi-asserted-by":"publisher","first-page":"70","DOI":"10.1002\/prot.340100107","volume":"10","author":"R Czerminski","year":"1991","unstructured":"Czerminski R, Elber R (1991) Computational studies of ligand diffusion in globins: I. Leghemoglobin. Proteins: Struct Funct Bioinform 10:70\u201380. https:\/\/doi.org\/10.1002\/prot.340100107","journal-title":"Proteins: Struct Funct Bioinform"},{"key":"14_CR44","doi-asserted-by":"publisher","first-page":"663","DOI":"10.1038\/216663a0","volume":"216","author":"JV Dacie","year":"1967","unstructured":"Dacie JV, Shinton NK, Gaffney PJ, Lehmann H (1967) Haemoglobin Hammersmith (beta-42 (CDI) Phe replaced by ser). Nature 216:663\u2013665. https:\/\/doi.org\/10.1038\/216663a0","journal-title":"Nature"},{"key":"14_CR45","doi-asserted-by":"publisher","first-page":"e2009024","DOI":"10.4084\/MJHID.2009.024","volume":"1","author":"L Franceschi De","year":"2009","unstructured":"De Franceschi L (2009) Pathophisiology of sickle cell disease and new drugs for the treatment. Mediterr J Hematol Infect Dis 1:e2009024. https:\/\/doi.org\/10.4084\/MJHID.2009.024","journal-title":"Mediterr J Hematol Infect Dis"},{"key":"14_CR46","doi-asserted-by":"publisher","first-page":"956","DOI":"10.1107\/S2059798318009919","volume":"74","author":"TM Deshpande","year":"2018","unstructured":"Deshpande TM, Pagare PP, Ghatge MS et al (2018) Rational modification of vanillin derivatives to stereospecifically destabilize sickle hemoglobin polymer formation. Acta Crystallogr D Struct Biol 74:956\u2013964. https:\/\/doi.org\/10.1107\/S2059798318009919","journal-title":"Acta Crystallogr D Struct Biol"},{"key":"14_CR47","doi-asserted-by":"publisher","first-page":"57","DOI":"10.3109\/03630269409014146","volume":"18","author":"G Din\u00e7ol","year":"1994","unstructured":"Din\u00e7ol G, Din\u00e7ol K, Erdem S et al (1994) Hb Capa or alpha (2)94(G1)Asp\u00a0\u2192\u00a0Gly beta 2, a mildly unstable variant with an A\u00a0\u2192\u00a0G (GAC\u00a0\u2192\u00a0GGC) mutation in codon 94 of the alpha 1-globin gene. Hemoglobin 18:57\u201360","journal-title":"Hemoglobin"},{"key":"14_CR48","doi-asserted-by":"publisher","first-page":"351","DOI":"10.1002\/prot.340140304","volume":"14","author":"ML Doyle","year":"1992","unstructured":"Doyle ML, Lew G, Turner GJ et al (1992) Regulation of oxygen affinity by quaternary enhancement: does hemoglobin ypsilanti represent an allosteric intermediate? Proteins: Struct Funct Bioinform 14:351\u2013362. https:\/\/doi.org\/10.1002\/prot.340140304","journal-title":"Proteins: Struct Funct Bioinform"},{"key":"14_CR49","doi-asserted-by":"publisher","first-page":"63","DOI":"10.1016\/S0065-3233(08)60287-9","volume":"40","author":"WA Eaton","year":"1990","unstructured":"Eaton WA, Hofrichter J (1990) Sickle cell hemoglobin polymerization. Adv Protein Chem 40:63\u2013279","journal-title":"Adv Protein Chem"},{"key":"14_CR50","doi-asserted-by":"publisher","first-page":"75","DOI":"10.3109\/03630267808999192","volume":"2","author":"GD Efremov","year":"1978","unstructured":"Efremov GD, Stojmirovic E, Lam HL et al (1978) HB Beth Israel (beta 102 [G4] Asn replaced by Ser) observed in a Yugoslavian teenager. Hemoglobin 2:75\u201377. https:\/\/doi.org\/10.3109\/03630267808999192","journal-title":"Hemoglobin"},{"key":"14_CR51","doi-asserted-by":"publisher","first-page":"162","DOI":"10.1016\/j.sbi.2010.01.002","volume":"20","author":"R Elber","year":"2010","unstructured":"Elber R (2010) Ligand diffusion in globins: simulations versus experiment. Curr Opin Struct Biol 20:162\u2013167. https:\/\/doi.org\/10.1016\/j.sbi.2010.01.002","journal-title":"Curr Opin Struct Biol"},{"key":"14_CR52","doi-asserted-by":"publisher","first-page":"5809","DOI":"10.1021\/bi4005683","volume":"52","author":"J-S Fan","year":"2013","unstructured":"Fan J-S, Zheng Y, Choy W-Y et al (2013) Solution structure and dynamics of human hemoglobin in the carbonmonoxy form. Biochemistry 52:5809\u20135820. https:\/\/doi.org\/10.1021\/bi4005683","journal-title":"Biochemistry"},{"key":"14_CR53","doi-asserted-by":"publisher","first-page":"237","DOI":"10.1016\/s0022-2836(75)80037-4","volume":"97","author":"G Fermi","year":"1975","unstructured":"Fermi G (1975) Three-dimensional fourier synthesis of human deoxyhaemoglobin at 2\u20135 a resolution: refinement of the atomic model. J Mol Biol 97:237\u2013256. https:\/\/doi.org\/10.1016\/s0022-2836(75)80037-4","journal-title":"J Mol Biol"},{"key":"14_CR54","doi-asserted-by":"publisher","first-page":"1245","DOI":"10.1006\/jmbi.2000.3525","volume":"296","author":"EJ Fernandez","year":"2000","unstructured":"Fernandez EJ, Abad-Zapatero C, Olsen KW (2000) Crystal structure of Lys\u03b2182-Lys\u03b2282 crosslinked hemoglobin: A possible allosteric intermediate 11 Edited by K. Nagai. J Mol Biol 296:1245\u20131256. https:\/\/doi.org\/10.1006\/jmbi.2000.3525","journal-title":"J Mol Biol"},{"key":"14_CR55","doi-asserted-by":"crossref","first-page":"23965","DOI":"10.1016\/S0021-9258(19)51032-8","volume":"269","author":"C Fronticelli","year":"1994","unstructured":"Fronticelli C, Pechik I, Brinigar WS et al (1994) Chloride ion independence of the Bohr effect in a mutant human hemoglobin beta (V1M\u2009+\u2009H2deleted). J Biol Chem 269:23965\u201323969","journal-title":"J Biol Chem"},{"key":"14_CR56","doi-asserted-by":"publisher","first-page":"13","DOI":"10.1016\/j.bcmd.2017.10.006","volume":"70","author":"DA Gell","year":"2018","unstructured":"Gell DA (2018) Structure and function of haemoglobins. Blood Cells Mol Dis 70:13\u201342. https:\/\/doi.org\/10.1016\/j.bcmd.2017.10.006","journal-title":"Blood Cells Mol Dis"},{"key":"14_CR57","doi-asserted-by":"publisher","first-page":"446","DOI":"10.1016\/j.jsb.2016.04.003","volume":"194","author":"MS Ghatge","year":"2016","unstructured":"Ghatge MS, Ahmed MH, Omar ASM et al (2016) Crystal structure of carbonmonoxy sickle hemoglobin in R-state conformation. J Struct Biol 194:446\u2013450. https:\/\/doi.org\/10.1016\/j.jsb.2016.04.003","journal-title":"J Struct Biol"},{"key":"14_CR58","doi-asserted-by":"publisher","first-page":"714","DOI":"10.1021\/acsmedchemlett.8b00166","volume":"9","author":"SR Goldstein","year":"2018","unstructured":"Goldstein SR, Liu C, Safo MK et al (2018) Design, synthesis, and biological evaluation of allosteric effectors that enhance CO release from carboxyhemoglobin. ACS Med Chem Lett 9:714\u2013718. https:\/\/doi.org\/10.1021\/acsmedchemlett.8b00166","journal-title":"ACS Med Chem Lett"},{"key":"14_CR59","doi-asserted-by":"publisher","first-page":"5140","DOI":"10.1021\/bi052424h","volume":"45","author":"Q Gong","year":"2006","unstructured":"Gong Q, Simplaceanu V, Lukin JA et al (2006) Quaternary structure of carbonmonoxyhemoglobins in solution: structural changes induced by the allosteric effector inositol hexaphosphate. Biochemistry 45:5140\u20135148. https:\/\/doi.org\/10.1021\/bi052424h","journal-title":"Biochemistry"},{"key":"14_CR60","doi-asserted-by":"publisher","first-page":"381","DOI":"10.1111\/j.1365-2141.1975.tb00869.x","volume":"31","author":"JA Grasso","year":"1975","unstructured":"Grasso JA, Sullivan AL, Sullivan LW (1975) Ultrastructural studies of the bone marrow in sickle cell anaemia. II. the morphology of erythropoietic cells and their response to deoxygenation in vitro. Br J Haematol 31:381\u2013389. https:\/\/doi.org\/10.1111\/j.1365-2141.1975.tb00869.x","journal-title":"Br J Haematol"},{"key":"14_CR61","doi-asserted-by":"crossref","first-page":"8250","DOI":"10.1016\/S0021-9258(19)86883-7","volume":"254","author":"RK Gupta","year":"1979","unstructured":"Gupta RK, Benovic JL, Rose ZB (1979) Location of the allosteric site for 2,3-bisphosphoglycerate on human oxy- and deoxyhemoglobin as observed by magnetic resonance spectroscopy. J Biol Chem 254:8250\u20138255","journal-title":"J Biol Chem"},{"key":"14_CR62","doi-asserted-by":"publisher","first-page":"1202","DOI":"10.1096\/fj.06-7433com","volume":"21","author":"P H\u00e4nel","year":"2007","unstructured":"H\u00e4nel P, Andr\u00e9ani P, Gr\u00e4ler MH (2007) Erythrocytes store and release sphingosine 1-phosphate in blood. FASEB J 21:1202\u20131209. https:\/\/doi.org\/10.1096\/fj.06-7433com","journal-title":"FASEB J"},{"key":"14_CR63","doi-asserted-by":"publisher","first-page":"344","DOI":"10.1006\/geno.1994.1275","volume":"21","author":"R Hardison","year":"1994","unstructured":"Hardison R, Chao KM, Schwartz S et al (1994) Globin gene server: a prototype E-mail database server featuring extensive multiple alignments and data compilation for electronic genetic analysis. Genomics 21:344\u2013353. https:\/\/doi.org\/10.1006\/geno.1994.1275","journal-title":"Genomics"},{"key":"14_CR64","doi-asserted-by":"publisher","first-page":"183","DOI":"10.1081\/HEM-100104027","volume":"25","author":"RC Hardison","year":"2001","unstructured":"Hardison RC, Chui DH, Riemer C et al (2001) Databases of human hemoglobin variants and other resources at the globin gene server. Hemoglobin 25:183\u2013193","journal-title":"Hemoglobin"},{"key":"14_CR65","doi-asserted-by":"publisher","first-page":"398","DOI":"10.1006\/jmbi.1997.1253","volume":"272","author":"DJ Harrington","year":"1997","unstructured":"Harrington DJ, Adachi K, Royer WE (1997) The high resolution crystal structure of deoxyhemoglobin S. J Mol Biol 272:398\u2013407. https:\/\/doi.org\/10.1006\/jmbi.1997.1253","journal-title":"J Mol Biol"},{"key":"14_CR66","doi-asserted-by":"publisher","first-page":"1376","DOI":"10.1016\/j.bbrc.2004.10.180","volume":"325","author":"Z He","year":"2004","unstructured":"He Z, Russell JE (2004a) Effect of zeta-globin substitution on the O2-transport properties of Hb S in vitro and in vivo. Biochem Biophys Res Commun 325:1376\u20131382. https:\/\/doi.org\/10.1016\/j.bbrc.2004.10.180","journal-title":"Biochem Biophys Res Commun"},{"key":"14_CR67","doi-asserted-by":"publisher","first-page":"365","DOI":"10.1038\/nm1022","volume":"10","author":"Z He","year":"2004","unstructured":"He Z, Russell JE (2004b) Antisickling effects of an endogenous human alpha-like globin. Nat Med 10:365\u2013367. https:\/\/doi.org\/10.1038\/nm1022","journal-title":"Nat Med"},{"key":"14_CR68","doi-asserted-by":"publisher","first-page":"149","DOI":"10.1016\/S0301-4622(02)00091-1","volume":"98","author":"ER Henry","year":"2002","unstructured":"Henry ER, Bettati S, Hofrichter J, Eaton WA (2002) A tertiary two-state allosteric model for hemoglobin. Biophys Chem 98:149\u2013164. https:\/\/doi.org\/10.1016\/S0301-4622(02)00091-1","journal-title":"Biophys Chem"},{"key":"14_CR69","volume-title":"A syllabus of human hemoglobin variants","author":"THJ Huisman","year":"1996","unstructured":"Huisman THJ, Carver MFH, Efremov G (1996) A syllabus of human hemoglobin variants. The Sickle Cell Anemia Foundation, Augusta, GA, USA"},{"key":"14_CR70","doi-asserted-by":"publisher","first-page":"212","DOI":"10.1016\/j.bbrc.2007.03.123","volume":"357","author":"K Ito","year":"2007","unstructured":"Ito K, Anada Y, Tani M et al (2007) Lack of sphingosine 1-phosphate-degrading enzymes in erythrocytes. Biochem Biophys Res Commun 357:212\u2013217. https:\/\/doi.org\/10.1016\/j.bbrc.2007.03.123","journal-title":"Biochem Biophys Res Commun"},{"key":"14_CR71","doi-asserted-by":"publisher","first-page":"1","DOI":"10.1002\/prot.340150102","volume":"15","author":"J Janin","year":"1993","unstructured":"Janin J, Wodak SJ (1993) The quaternary structure of carbonmonoxy hemoglobin ypsilanti. Proteins: Struct Funct Bioinform 15:1\u20134. https:\/\/doi.org\/10.1002\/prot.340150102","journal-title":"Proteins: Struct Funct Bioinform"},{"key":"14_CR72","doi-asserted-by":"publisher","first-page":"1843","DOI":"10.1126\/science.7569921","volume":"269","author":"V Jayaraman","year":"1995","unstructured":"Jayaraman V, Rodgers KR, Mukerji I, Spiro TG (1995) Hemoglobin allostery: resonance Raman spectroscopy of kinetic intermediates. Science 269:1843\u20131848. https:\/\/doi.org\/10.1126\/science.7569921","journal-title":"Science"},{"key":"14_CR73","doi-asserted-by":"publisher","first-page":"41","DOI":"10.1107\/S0907444908037256","volume":"65","author":"JD Jenkins","year":"2009","unstructured":"Jenkins JD, Musayev FN, Danso-Danquah R et al (2009) Structure of relaxed-state human hemoglobin: insight into ligand uptake, transport and release. Acta Cryst D 65:41\u201348. https:\/\/doi.org\/10.1107\/S0907444908037256","journal-title":"Acta Cryst D"},{"key":"14_CR74","doi-asserted-by":"publisher","first-page":"469","DOI":"10.1172\/JCI107953","volume":"55","author":"M Jensen","year":"1975","unstructured":"Jensen M, Oski FA, Nathan DG, Bunn HF (1975) Hemoglobin Syracuse (alpha2beta2-143(H21)His leads to Pro), a new high-affinity variant detected by special electrophoretic methods. observations on the auto-oxidation of normal and variant hemoglobins. J Clin Invest 55:469\u2013477. https:\/\/doi.org\/10.1172\/JCI107953","journal-title":"J Clin Invest"},{"key":"14_CR75","doi-asserted-by":"publisher","first-page":"1840","DOI":"10.1172\/JCI105674","volume":"46","author":"RT Jones","year":"1967","unstructured":"Jones RT, Osgood EE, Brimhall B, Koler RD (1967) Hemoglobin Yakina. I. clinical and biochemical studies. J Clin Invest 46:1840\u20131847. https:\/\/doi.org\/10.1172\/JCI105674","journal-title":"J Clin Invest"},{"key":"14_CR76","doi-asserted-by":"publisher","first-page":"73","DOI":"10.1016\/j.abb.2017.11.010","volume":"637","author":"SE Jorge","year":"2018","unstructured":"Jorge SE, Bringas M, Petruk AA et al (2018) Understanding the molecular basis of the high oxygen affinity variant human hemoglobin Coimbra. Arch Biochem Biophys 637:73\u201378. https:\/\/doi.org\/10.1016\/j.abb.2017.11.010","journal-title":"Arch Biochem Biophys"},{"key":"14_CR77","doi-asserted-by":"publisher","unstructured":"Kamel K, el-Najjar A, Webber BB et al (1985) Hb Doha or alpha 2 beta 2[X-N-Met-1(NA1)Val\u2013Glu]; a new beta-chain abnormal hemoglobin observed in a Qatari female. Biochim Biophys Acta 831:257\u2013260. https:\/\/doi.org\/10.1016\/0167-4838(85)90043-3","DOI":"10.1016\/0167-4838(85)90043-3"},{"key":"14_CR78","doi-asserted-by":"publisher","first-page":"1009","DOI":"10.1182\/blood.V122.21.1009.1009","volume":"122","author":"GJ Kato","year":"2013","unstructured":"Kato GJ, Lawrence MP, Mendelsohn LG et al (2013) Phase 1 clinical trial of the candidate anti-sickling agent Aes-103 In adults with sickle cell anemia. Blood 122:1009\u20131009","journal-title":"Blood"},{"key":"14_CR79","doi-asserted-by":"publisher","first-page":"4111","DOI":"10.1021\/bi00131a030","volume":"31","author":"JS Kavanaugh","year":"1992","unstructured":"Kavanaugh JS, Rogers PH, Case DA, Arnone A (1992) High-resolution x-ray study of deoxyhemoglobin Rothschild 37.beta. Trp.fwdarw. Arg: a mutation that creates an intersubunit chloride-binding site. Biochemistry 31:4111\u20134121. https:\/\/doi.org\/10.1021\/bi00131a030","journal-title":"Biochemistry"},{"key":"14_CR80","doi-asserted-by":"publisher","first-page":"1847","DOI":"10.1110\/ps.16401","volume":"10","author":"JS Kavanaugh","year":"2001","unstructured":"Kavanaugh JS, Weydert JA, Rogers PH et al (2001) Site-directed mutations of human hemoglobin at residue 35beta: a residue at the intersection of the alpha1beta1, alpha1beta2, and alpha1alpha2 interfaces. Protein Sci 10:1847\u20131855. https:\/\/doi.org\/10.1110\/ps.16401","journal-title":"Protein Sci"},{"key":"14_CR81","doi-asserted-by":"publisher","first-page":"6101","DOI":"10.1021\/bi047813a","volume":"44","author":"JS Kavanaugh","year":"2005","unstructured":"Kavanaugh JS, Rogers PH, Arnone A (2005) Crystallographic evidence for a new ensemble of ligand-induced allosteric transitions in hemoglobin: the T-to-T(high) quaternary transitions. Biochemistry 44:6101\u20136121. https:\/\/doi.org\/10.1021\/bi047813a","journal-title":"Biochemistry"},{"key":"14_CR82","doi-asserted-by":"publisher","first-page":"H1450","DOI":"10.1152\/ajpheart.1993.265.4.H1450","volume":"265","author":"SR Khandelwal","year":"1993","unstructured":"Khandelwal SR, Randad RS, Lin PS et al (1993) Enhanced oxygenation in vivo by allosteric inhibitors of hemoglobin saturation. Am J Physiol 265:H1450\u2013H1453. https:\/\/doi.org\/10.1152\/ajpheart.1993.265.4.H1450","journal-title":"Am J Physiol"},{"key":"14_CR83","doi-asserted-by":"publisher","first-page":"15","DOI":"10.1016\/0005-2795(78)90471-3","volume":"534","author":"JV Kilmartin","year":"1978","unstructured":"Kilmartin JV, Imai K, Jones RT et al (1978) Role of Bohr group salt bridges in cooperativity in hemoglobin. Biochim Biophys Acta 534:15\u201325. https:\/\/doi.org\/10.1016\/0005-2795(78)90471-3","journal-title":"Biochim Biophys Acta"},{"key":"14_CR84","doi-asserted-by":"publisher","first-page":"125","DOI":"10.1111\/j.1365-2141.1972.tb08794.x","volume":"22","author":"MA King","year":"1972","unstructured":"King MA, Wiltshire BG, Lehmann H, Morimoto H (1972) An unstable haemoglobin with reduced oxygen affinity: haemoglobin Peterborough, 3 (GI3) Valine lead to Phenylalanine, its interaction with normal haemoglobin and with haemoglobin Lepore. Br J Haematol 22:125\u2013134. https:\/\/doi.org\/10.1111\/j.1365-2141.1972.tb08794.x","journal-title":"Br J Haematol"},{"key":"14_CR85","doi-asserted-by":"publisher","first-page":"34","DOI":"10.1016\/0167-4838(94)00190-r","volume":"1246","author":"J Kister","year":"1995","unstructured":"Kister J, Kiger L, Francina A et al (1995) Hemoglobin Roanne [alpha 94(G1) Asp\u00a0\u2192\u00a0Glu]: a variant of the alpha 1 beta 2 interface with an unexpected high oxygen affinity. Biochim Biophys Acta 1246:34\u201338. https:\/\/doi.org\/10.1016\/0167-4838(94)00190-r","journal-title":"Biochim Biophys Acta"},{"key":"14_CR86","doi-asserted-by":"publisher","first-page":"2593","DOI":"10.1200\/JCO.1999.17.8.2593","volume":"17","author":"L Kleinberg","year":"1999","unstructured":"Kleinberg L, Grossman SA, Piantadosi S et al (1999) Phase I trial to determine the safety, pharmacodynamics, and pharmacokinetics of RSR13, a novel radioenhancer, in newly diagnosed glioblastoma multiforme. J Clin Oncol 17:2593\u20132603. https:\/\/doi.org\/10.1200\/JCO.1999.17.8.2593","journal-title":"J Clin Oncol"},{"key":"14_CR87","doi-asserted-by":"publisher","first-page":"365","DOI":"10.1021\/bi00865a047","volume":"5","author":"DE Koshland","year":"1966","unstructured":"Koshland DE, N\u00e9methy G, Filmer D (1966) Comparison of experimental binding data and theoretical models in proteins containing subunits. Biochemistry 5:365\u2013385. https:\/\/doi.org\/10.1021\/bi00865a047","journal-title":"Biochemistry"},{"key":"14_CR88","doi-asserted-by":"publisher","first-page":"1575","DOI":"10.1134\/S0006297918120155","volume":"83","author":"OV Kosmachevskaya","year":"2018","unstructured":"Kosmachevskaya OV, Topunov AF (2018) Alternate and additional functions of erythrocyte hemoglobin. Biochem Mosc 83:1575\u20131593. https:\/\/doi.org\/10.1134\/S0006297918120155","journal-title":"Biochem Mosc"},{"key":"14_CR89","doi-asserted-by":"publisher","first-page":"627","DOI":"10.1016\/j.febslet.2004.12.033","volume":"579","author":"M Laberge","year":"2005","unstructured":"Laberge M, K\u00f6vesi I, Yonetani T, Fidy J (2005) R-state hemoglobin bound to heterotropic effectors: models of the DPG, IHP and RSR13 binding sites. FEBS Lett 579:627\u2013632. https:\/\/doi.org\/10.1016\/j.febslet.2004.12.033","journal-title":"FEBS Lett"},{"key":"14_CR90","doi-asserted-by":"publisher","first-page":"385","DOI":"10.1016\/0022-2836(77)90256-x","volume":"114","author":"RC Ladner","year":"1977","unstructured":"Ladner RC, Heidner EJ, Perutz MF (1977) The structure of horse methaemoglobin at 2-0 A resolution. J Mol Biol 114:385\u2013414. https:\/\/doi.org\/10.1016\/0022-2836(77)90256-x","journal-title":"J Mol Biol"},{"key":"14_CR91","doi-asserted-by":"publisher","first-page":"6117","DOI":"10.1073\/pnas.85.16.6117","volume":"85","author":"I Lalezari","year":"1988","unstructured":"Lalezari I, Rahbar S, Lalezari P et al (1988) LR16, a compound with potent effects on the oxygen affinity of hemoglobin, on blood cholesterol, and on low density lipoprotein. PNAS 85:6117\u20136121. https:\/\/doi.org\/10.1073\/pnas.85.16.6117","journal-title":"PNAS"},{"key":"14_CR92","doi-asserted-by":"publisher","first-page":"1515","DOI":"10.1021\/bi00458a024","volume":"29","author":"I Lalezari","year":"1990","unstructured":"Lalezari I, Lalezari P, Poyart C et al (1990) New effectors of human hemoglobin: structure and function. Biochemistry 29:1515\u20131523. https:\/\/doi.org\/10.1021\/bi00458a024","journal-title":"Biochemistry"},{"key":"14_CR93","doi-asserted-by":"publisher","first-page":"2060","DOI":"10.1172\/JCI107390","volume":"52","author":"JJ Lokich","year":"1973","unstructured":"Lokich JJ, Moloney WC, Bunn HF et al (1973) Hemoglobin brigham (alpha2Abeta2100 Pro\u2013Leu). Hemoglobin variant associated with familial erythrocytosis. J Clin Invest 52:2060\u20132067. https:\/\/doi.org\/10.1172\/JCI107390","journal-title":"J Clin Invest"},{"key":"14_CR94","doi-asserted-by":"publisher","first-page":"1219","DOI":"10.1021\/cr940325w","volume":"104","author":"JA Lukin","year":"2004","unstructured":"Lukin JA, Ho C (2004) The structure\u2013function relationship of hemoglobin in solution at atomic resolution. Chem Rev 104:1219\u20131230. https:\/\/doi.org\/10.1021\/cr940325w","journal-title":"Chem Rev"},{"key":"14_CR95","doi-asserted-by":"publisher","first-page":"517","DOI":"10.1073\/pnas.232715799","volume":"100","author":"JA Lukin","year":"2003","unstructured":"Lukin JA, Kontaxis G, Simplaceanu V et al (2003) Quaternary structure of hemoglobin in solution. PNAS 100:517\u2013520. https:\/\/doi.org\/10.1073\/pnas.232715799","journal-title":"PNAS"},{"key":"14_CR96","doi-asserted-by":"publisher","first-page":"203","DOI":"10.1023\/B:JNMR.0000013816.64039.6f","volume":"28","author":"JA Lukin","year":"2004","unstructured":"Lukin JA, Kontaxis G, Simplaceanu V et al (2004) Backbone resonance assignments of human adult hemoglobin in the carbonmonoxy form. J Biomol NMR 28:203\u2013204. https:\/\/doi.org\/10.1023\/B:JNMR.0000013816.64039.6f","journal-title":"J Biomol NMR"},{"key":"14_CR97","doi-asserted-by":"publisher","unstructured":"Mairb\u00e4url H, Weber RE (2012) Oxygen transport by hemoglobin. Compr Physiol 2:1463\u20131489. https:\/\/doi.org\/10.1002\/cphy.c080113","DOI":"10.1002\/cphy.c080113"},{"key":"14_CR98","doi-asserted-by":"publisher","first-page":"909","DOI":"10.1016\/j.jmb.2011.02.062","volume":"408","author":"L Makowski","year":"2011","unstructured":"Makowski L, Bardhan J, Gore D et al (2011) WAXS studies of the structural diversity of hemoglobin in solution. J Mol Biol 408:909\u2013921. https:\/\/doi.org\/10.1016\/j.jmb.2011.02.062","journal-title":"J Mol Biol"},{"key":"14_CR99","doi-asserted-by":"publisher","first-page":"397","DOI":"10.1016\/S0006-3495(90)82556-X","volume":"57","author":"MC Marden","year":"1990","unstructured":"Marden MC, Bohn B, Kister J, Poyart C (1990) Effectors of hemoglobin. separation of allosteric and affinity factors. Biophys J 57:397\u2013403. https:\/\/doi.org\/10.1016\/S0006-3495(90)82556-X","journal-title":"Biophys J"},{"key":"14_CR100","doi-asserted-by":"publisher","unstructured":"Marengo-Rowe AJ (2006) Structure-function relations of human hemoglobins. Proc (Bayl Univ Med Cent) 19:239\u2013245. https:\/\/doi.org\/10.1080\/08998280.2006.11928171","DOI":"10.1080\/08998280.2006.11928171"},{"key":"14_CR101","doi-asserted-by":"publisher","first-page":"3944","DOI":"10.1021\/bi00468a022","volume":"29","author":"AS Mehanna","year":"1990","unstructured":"Mehanna AS, Abraham DJ (1990) Comparison of crystal and solution hemoglobin binding of selected antigelling agents and allosteric modifiers. Biochemistry 29:3944\u20133952. https:\/\/doi.org\/10.1021\/bi00468a022","journal-title":"Biochemistry"},{"key":"14_CR102","doi-asserted-by":"publisher","first-page":"321","DOI":"10.1021\/acsmedchemlett.6b00491","volume":"8","author":"B Metcalf","year":"2017","unstructured":"Metcalf B, Chuang C, Dufu K et al (2017) Discovery of GBT440, an orally bioavailable R-state stabilizer of sickle cell hemoglobin. ACS Med Chem Lett 8:321\u2013326. https:\/\/doi.org\/10.1021\/acsmedchemlett.6b00491","journal-title":"ACS Med Chem Lett"},{"key":"14_CR103","doi-asserted-by":"publisher","first-page":"88","DOI":"10.1016\/s0022-2836(65)80285-6","volume":"12","author":"J Monod","year":"1965","unstructured":"Monod J, Wyman J, Changeux JP (1965) On the nature of allosteric transitions: a plausible model. J Mol Biol 12:88\u2013118. https:\/\/doi.org\/10.1016\/s0022-2836(65)80285-6","journal-title":"J Mol Biol"},{"key":"14_CR104","doi-asserted-by":"publisher","first-page":"416","DOI":"10.1038\/351416a0","volume":"351","author":"A Mozzarelli","year":"1991","unstructured":"Mozzarelli A, Rivetti C, Rossi GL et al (1991) Crystals of haemoglobin with the T quaternary structure bind oxygen noncooperatively with no Bohr effect. Nature 351:416\u2013419. https:\/\/doi.org\/10.1038\/351416a0","journal-title":"Nature"},{"key":"14_CR105","doi-asserted-by":"publisher","first-page":"15353","DOI":"10.1021\/bi0012944","volume":"39","author":"TC Mueser","year":"2000","unstructured":"Mueser TC, Rogers PH, Arnone A (2000) Interface sliding as illustrated by the multiple quaternary structures of liganded hemoglobin. Biochemistry 39:15353\u201315364. https:\/\/doi.org\/10.1021\/bi0012944","journal-title":"Biochemistry"},{"key":"14_CR106","doi-asserted-by":"publisher","first-page":"633","DOI":"10.1038\/199633a0","volume":"199","author":"H Muirhead","year":"1963","unstructured":"Muirhead H, Perutz MF (1963) Structure of h\u00e6emoglobin: a three-dimensional Fourier synthesis of reduced human haemoglobin at 5.5 \u00c5 resolution. Nature 199:633\u2013638. https:\/\/doi.org\/10.1038\/199633a0","journal-title":"Nature"},{"key":"14_CR107","doi-asserted-by":"publisher","first-page":"267","DOI":"10.3109\/03630267709003409","volume":"1","author":"J Murari","year":"1977","unstructured":"Murari J, Smith LL, Wilson JB et al (1977) Some properties of hemoglobin Gun Hill. Hemoglobin 1:267\u2013282","journal-title":"Hemoglobin"},{"key":"14_CR108","doi-asserted-by":"publisher","first-page":"832","DOI":"10.1038\/283832a0","volume":"283","author":"RL Nagel","year":"1980","unstructured":"Nagel RL, Johnson J, Bookchin RM et al (1980) Beta-chain contact sites in the haemoglobin S polymer. Nature 283:832\u2013834. https:\/\/doi.org\/10.1038\/283832a0","journal-title":"Nature"},{"key":"14_CR109","doi-asserted-by":"publisher","first-page":"2318","DOI":"10.1021\/cb500230b","volume":"9","author":"A Nakagawa","year":"2014","unstructured":"Nakagawa A, Lui FE, Wassaf D et al (2014) Identification of a small molecule that increases hemoglobin oxygen affinity and reduces SS erythrocyte sickling. ACS Chem Biol 9:2318\u20132325. https:\/\/doi.org\/10.1021\/cb500230b","journal-title":"ACS Chem Biol"},{"key":"14_CR110","doi-asserted-by":"publisher","first-page":"1954","DOI":"10.1021\/acs.molpharmaceut.8b00108","volume":"15","author":"A Nakagawa","year":"2018","unstructured":"Nakagawa A, Ferrari M, Schleifer G et al (2018) A triazole disulfide compound increases the affinity of hemoglobin for oxygen and reduces the sickling of human sickle cells. Mol Pharm 15:1954\u20131963. https:\/\/doi.org\/10.1021\/acs.molpharmaceut.8b00108","journal-title":"Mol Pharm"},{"key":"14_CR111","doi-asserted-by":"publisher","unstructured":"Nienhuis AW (1987) Hemoglobin: Molecular, genetic and clinical aspects: By H. F. Bunn and B. G. Forget. Philadelphia: W. B. Saunders Company. (1986). 690\u00a0pp. $99.00. Cell 48:731. https:\/\/doi.org\/10.1016\/0092-8674(87)90069-9","DOI":"10.1016\/0092-8674(87)90069-9"},{"key":"14_CR112","doi-asserted-by":"publisher","first-page":"1762","DOI":"10.1002\/cbdv.200890165","volume":"5","author":"IN Nnamani","year":"2008","unstructured":"Nnamani IN, Joshi GS, Danso-Danquah R et al (2008) Pyridyl derivatives of benzaldehyde as potential antisickling agents. Chem Biodivers 5:1762\u20131769. https:\/\/doi.org\/10.1002\/cbdv.200890165","journal-title":"Chem Biodivers"},{"key":"14_CR113","doi-asserted-by":"publisher","first-page":"12357","DOI":"10.1021\/bi010988p","volume":"40","author":"RW Noble","year":"2001","unstructured":"Noble RW, Hui HL, Kwiatkowski LD et al (2001) Mutational effects at the subunit interfaces of human hemoglobin: evidence for a unique sensitivity of the T quaternary state to changes in the hinge region of the alpha 1 beta 2 interface. Biochemistry 40:12357\u201312368. https:\/\/doi.org\/10.1021\/bi010988p","journal-title":"Biochemistry"},{"key":"14_CR114","doi-asserted-by":"crossref","first-page":"12204","DOI":"10.1016\/S0021-9258(19)86450-5","volume":"254","author":"S O\u2019Donnell","year":"1979","unstructured":"O\u2019Donnell S, Mandaro R, Schuster TM, Arnone A (1979) X-ray diffraction and solution studies of specifically carbamylated human hemoglobin A. evidence for the location of a proton- and oxygen-linked chloride binding site at valine 1 alpha. J Biol Chem 254:12204\u201312208","journal-title":"J Biol Chem"},{"key":"14_CR115","doi-asserted-by":"publisher","first-page":"141","DOI":"10.1111\/bjh.14214","volume":"175","author":"D Oksenberg","year":"2016","unstructured":"Oksenberg D, Dufu K, Patel MP et al (2016) GBT440 increases haemoglobin oxygen affinity, reduces sickling and prolongs RBC half-life in a murine model of sickle cell disease. Br J Haematol 175:141\u2013153. https:\/\/doi.org\/10.1111\/bjh.14214","journal-title":"Br J Haematol"},{"key":"14_CR116","doi-asserted-by":"publisher","first-page":"6353","DOI":"10.1039\/c5ob00367a","volume":"13","author":"AM Omar","year":"2015","unstructured":"Omar AM, Mahran MA, Ghatge MS et al (2015) Identification of a novel class of covalent modifiers of hemoglobin as potential antisickling agents. Org Biomol Chem 13:6353\u20136370. https:\/\/doi.org\/10.1039\/c5ob00367a","journal-title":"Org Biomol Chem"},{"key":"14_CR117","doi-asserted-by":"publisher","unstructured":"Omar AM, Mahran MA, Ghatge MS et al (2016) Aryloxyalkanoic acids as non-covalent modifiers of the allosteric properties of hemoglobin. Molecules 21. https:\/\/doi.org\/10.3390\/molecules21081057","DOI":"10.3390\/molecules21081057"},{"key":"14_CR118","doi-asserted-by":"publisher","first-page":"2530","DOI":"10.1016\/j.bmc.2018.04.015","volume":"26","author":"PP Pagare","year":"2018","unstructured":"Pagare PP, Ghatge MS, Musayev FN et al (2018) Rational design of pyridyl derivatives of vanillin for the treatment of sickle cell disease. Bioorg Med Chem 26:2530\u20132538. https:\/\/doi.org\/10.1016\/j.bmc.2018.04.015","journal-title":"Bioorg Med Chem"},{"key":"14_CR119","doi-asserted-by":"publisher","first-page":"527","DOI":"10.1007\/978-1-4615-4863-8_63","volume":"454","author":"PS Pagel","year":"1998","unstructured":"Pagel PS, Hettrick DA, Montgomery MW et al (1998) RSR13, a synthetic allosteric modifier of hemoglobin, enhances recovery of stunned myocardium in dogs. Adv Exp Med Biol 454:527\u2013531. https:\/\/doi.org\/10.1007\/978-1-4615-4863-8_63","journal-title":"Adv Exp Med Biol"},{"key":"14_CR120","doi-asserted-by":"publisher","first-page":"775","DOI":"10.1006\/jmbi.1996.0124","volume":"256","author":"M Paoli","year":"1996","unstructured":"Paoli M, Liddington R, Tame J et al (1996) Crystal structure of T state haemoglobin with oxygen bound at all four haems. J Mol Biol 256:775\u2013792. https:\/\/doi.org\/10.1006\/jmbi.1996.0124","journal-title":"J Mol Biol"},{"key":"14_CR121","first-page":"589","volume":"12","author":"DC Patwa","year":"1987","unstructured":"Patwa DC, Abraham DJ, Hung TC (1987) Design, synthesis, and testing of potential antisickling agents. 6. Rheologic studies with active phenoxy and benzyloxy acids. Blood Cells 12:589\u2013601","journal-title":"Blood Cells"},{"key":"14_CR122","doi-asserted-by":"publisher","first-page":"2605","DOI":"10.1074\/jbc.274.5.2605","volume":"274","author":"M Perrella","year":"1999","unstructured":"Perrella M, Cera ED (1999) CO ligation intermediates and the mechanism of hemoglobin cooperativity. J Biol Chem 274:2605\u20132608. https:\/\/doi.org\/10.1074\/jbc.274.5.2605","journal-title":"J Biol Chem"},{"key":"14_CR123","doi-asserted-by":"publisher","first-page":"587","DOI":"10.1016\/s0300-9084(72)80142-1","volume":"54","author":"MF Perutz","year":"1972","unstructured":"Perutz MF (1972a) Stereochemical mechanism of cooperative effects in haemoglobin. Biochimie 54:587\u2013588. https:\/\/doi.org\/10.1016\/s0300-9084(72)80142-1","journal-title":"Biochimie"},{"key":"14_CR124","doi-asserted-by":"publisher","first-page":"495","DOI":"10.1038\/237495a0","volume":"237","author":"MF Perutz","year":"1972","unstructured":"Perutz MF (1972b) Nature of haem-haem interaction. Nature 237:495\u2013499. https:\/\/doi.org\/10.1038\/237495a0","journal-title":"Nature"},{"key":"14_CR125","doi-asserted-by":"publisher","first-page":"195","DOI":"10.1093\/oxfordjournals.bmb.a071363","volume":"32","author":"MF Perutz","year":"1976","unstructured":"Perutz MF (1976) Structure and mechanism of haemoglobin. Br Med Bull 32:195\u2013208. https:\/\/doi.org\/10.1093\/oxfordjournals.bmb.a071363","journal-title":"Br Med Bull"},{"key":"14_CR126","doi-asserted-by":"publisher","first-page":"1","DOI":"10.1093\/oxfordjournals.molbev.a040299","volume":"1","author":"MF Perutz","year":"1983","unstructured":"Perutz MF (1983) Species adaptation in a protein molecule. Mol Biol Evol 1:1\u201328. https:\/\/doi.org\/10.1093\/oxfordjournals.molbev.a040299","journal-title":"Mol Biol Evol"},{"key":"14_CR127","doi-asserted-by":"publisher","first-page":"42","DOI":"10.1016\/0968-0004(89)90039-X","volume":"14","author":"MF Perutz","year":"1989","unstructured":"Perutz MF (1989) Myoglobin and haemoglobin: role of distal residues in reactions with haem ligands. Trends Biochem Sci 14:42\u201344. https:\/\/doi.org\/10.1016\/0968-0004(89)90039-X","journal-title":"Trends Biochem Sci"},{"key":"14_CR128","doi-asserted-by":"publisher","first-page":"881","DOI":"10.1016\/S0140-6736(83)90870-X","volume":"322","author":"MF Perutz","year":"1983","unstructured":"Perutz MF, Poyart C (1983) Bezafibrate lowers oxygen affinity of haemoglobin. The Lancet 322:881\u2013882. https:\/\/doi.org\/10.1016\/S0140-6736(83)90870-X","journal-title":"The Lancet"},{"key":"14_CR129","doi-asserted-by":"publisher","first-page":"131","DOI":"10.1038\/219131a0","volume":"219","author":"MF Perutz","year":"1968","unstructured":"Perutz MF, Muirhead H, Cox JM, Goaman LC (1968) Three-dimensional Fourier synthesis of horse oxyhaemoglobin at 2.8 A resolution: the atomic model. Nature 219:131\u2013139. https:\/\/doi.org\/10.1038\/219131a0","journal-title":"Nature"},{"key":"14_CR130","doi-asserted-by":"publisher","first-page":"1240","DOI":"10.1038\/2221240a0","volume":"222","author":"MF Perutz","year":"1969","unstructured":"Perutz MF, Muirhead H, Mazzarella L et al (1969) Identification of residues responsible for the alkaline Bohr effect in haemoglobin. Nature 222:1240\u20131243. https:\/\/doi.org\/10.1038\/2221240a0","journal-title":"Nature"},{"key":"14_CR131","doi-asserted-by":"publisher","first-page":"1064","DOI":"10.1021\/ja00265a036","volume":"108","author":"MF Perutz","year":"1986","unstructured":"Perutz MF, Giulio Fermi, Abraham DJ et al (1986) Hemoglobin as a receptor of drugs and peptides: x-ray studies of the stereochemistry of binding. J Am Chem Soc 108:1064\u20131078. https:\/\/doi.org\/10.1021\/ja00265a036","journal-title":"J Am Chem Soc"},{"key":"14_CR132","doi-asserted-by":"publisher","first-page":"536","DOI":"10.1006\/jmbi.1993.1530","volume":"233","author":"MF Perutz","year":"1993","unstructured":"Perutz MF, Fermi G, Poyart C et al (1993) A novel allosteric mechanism in haemoglobin: structure of bovine deoxyhaemoglobin, absence of specific chloride-binding sites and origin of the chloride-linked Bohr effect in bovine and human haemoglobin. J Mol Biol 233:536\u2013545. https:\/\/doi.org\/10.1006\/jmbi.1993.1530","journal-title":"J Mol Biol"},{"key":"14_CR133","doi-asserted-by":"publisher","unstructured":"Perutz MF, Shih DT -b., Williamson D (1994) The chloride effect in human haemoglobin. a new kind of allosteric mechanism. J Mol Biol 239:555\u2013560. https:\/\/doi.org\/10.1006\/jmbi.1994.1394","DOI":"10.1006\/jmbi.1994.1394"},{"key":"14_CR134","doi-asserted-by":"publisher","first-page":"1","DOI":"10.1146\/annurev.biophys.27.1.1","volume":"27","author":"MF Perutz","year":"1998","unstructured":"Perutz MF, Wilkinson AJ, Paoli M, Dodson GG (1998) The stereochemical mechanism of the cooperative effects in hemoglobin revisited. Annu Rev Biophys Biomol Struct 27:1\u201334. https:\/\/doi.org\/10.1146\/annurev.biophys.27.1.1","journal-title":"Annu Rev Biophys Biomol Struct"},{"key":"14_CR135","doi-asserted-by":"publisher","first-page":"4726","DOI":"10.1021\/jm000199q","volume":"43","author":"M Phelps Grella","year":"2000","unstructured":"Phelps Grella M, Danso-Danquah R, Safo MK et al (2000) Synthesis and structure-activity relationships of chiral allosteric modifiers of hemoglobin. J Med Chem 43:4726\u20134737. https:\/\/doi.org\/10.1021\/jm000199q","journal-title":"J Med Chem"},{"key":"14_CR136","doi-asserted-by":"publisher","first-page":"178","DOI":"10.1182\/blood.V77.1.178.178","volume":"77","author":"D Plaseska","year":"1991","unstructured":"Plaseska D, Dimovski AJ, Wilson JB et al (1991) Hemoglobin Montreal: a new variant with an extended beta chain due to a deletion of Asp, Gly, Leu at positions 73, 74, and 75, and an insertion of Ala, Arg, Cys, Gln at the same location. Blood 77:178\u2013181","journal-title":"Blood"},{"key":"14_CR137","doi-asserted-by":"publisher","first-page":"301","DOI":"10.1016\/0003-9861(86)90006-8","volume":"249","author":"WN Poillon","year":"1986","unstructured":"Poillon WN, Kim BC, Welty EV, Walder JA (1986) The effect of 2,3-diphosphoglycerate on the solubility of deoxyhemoglobin S. Arch Biochem Biophys 249:301\u2013305. https:\/\/doi.org\/10.1016\/0003-9861(86)90006-8","journal-title":"Arch Biochem Biophys"},{"key":"14_CR138","doi-asserted-by":"publisher","first-page":"752","DOI":"10.1021\/jm00106a041","volume":"34","author":"RS Randad","year":"1991","unstructured":"Randad RS, Mahran MA, Mehanna AS, Abraham DJ (1991) Allosteric modifiers of hemoglobin. 1. Design, synthesis, testing, and structure-allosteric activity relationship of novel hemoglobin oxygen affinity decreasing agents. J Med Chem 34:752\u2013757. https:\/\/doi.org\/10.1021\/jm00106a041","journal-title":"J Med Chem"},{"key":"14_CR139","doi-asserted-by":"publisher","first-page":"1826","DOI":"10.1172\/JCI104406","volume":"40","author":"KR Reissmann","year":"1961","unstructured":"Reissmann KR, Ruth WE, Nomura T (1961) A human hemoglobin with lowered oxygen affinity and impaired heme-heme interactions. J Clin Invest 40:1826\u20131833. https:\/\/doi.org\/10.1172\/JCI104406","journal-title":"J Clin Invest"},{"key":"14_CR140","doi-asserted-by":"publisher","first-page":"8","DOI":"10.1016\/s0006-291x(83)80109-0","volume":"111","author":"MD Rhoda","year":"1983","unstructured":"Rhoda MD, Martin J, Blouquit Y et al (1983) Sickle cell hemoglobin fiber formation strongly inhibited by the Stanleyville II mutation (alpha 78 Asn leads to Lys). Biochem Biophys Res Commun 111:8\u201313. https:\/\/doi.org\/10.1016\/s0006-291x(83)80109-0","journal-title":"Biochem Biophys Res Commun"},{"key":"14_CR141","doi-asserted-by":"publisher","first-page":"270","DOI":"10.1006\/jmbi.1993.1505","volume":"233","author":"V Richard","year":"1993","unstructured":"Richard V, Dodson GG, Mauguen Y (1993) Human deoxyhaemoglobin-2,3-diphosphoglycerate complex low-salt structure at 2.5 A resolution. J Mol Biol 233:270\u2013274. https:\/\/doi.org\/10.1006\/jmbi.1993.1505","journal-title":"J Mol Biol"},{"key":"14_CR142","doi-asserted-by":"publisher","first-page":"1627","DOI":"10.1172\/JCI106128","volume":"48","author":"RF Rieder","year":"1969","unstructured":"Rieder RF, Oski FA, Clegg JB (1969) Hemoglobin Philly (beta 35 tyrosine phenylalanine): studies in the molecular pathology of hemoglobin. J Clin Invest 48:1627\u20131642. https:\/\/doi.org\/10.1172\/JCI106128","journal-title":"J Clin Invest"},{"key":"14_CR143","doi-asserted-by":"publisher","first-page":"325","DOI":"10.1006\/geno.1998.5524","volume":"53","author":"C Riemer","year":"1998","unstructured":"Riemer C, ElSherbini A, Stojanovic N et al (1998) A database of experimental results on globin gene expression. Genomics 53:325\u2013337. https:\/\/doi.org\/10.1006\/geno.1998.5524","journal-title":"Genomics"},{"key":"14_CR144","doi-asserted-by":"publisher","first-page":"8347","DOI":"10.1021\/bi050412q","volume":"44","author":"MK Safo","year":"2005","unstructured":"Safo MK, Abraham DJ (2005) The enigma of the liganded hemoglobin end state: a novel quaternary structure of human carbonmonoxy hemoglobin. Biochemistry 44:8347\u20138359. https:\/\/doi.org\/10.1021\/bi050412q","journal-title":"Biochemistry"},{"key":"14_CR145","unstructured":"Safo MK, Bruno S (2011) Allosteric effectors of hemoglobin: past, present and future. In: Chemistry and biochemistry of oxygen therapeutics. Wiley, Ltd., pp 285\u2013300"},{"key":"14_CR146","doi-asserted-by":"publisher","first-page":"951","DOI":"10.1110\/ps.50601","volume":"10","author":"MK Safo","year":"2001","unstructured":"Safo MK, Moure CM, Burnett JC et al (2001) High\u2013resolution crystal structure of deoxy hemoglobin complexed with a potent allosteric effector. Protein Sci 10:951\u2013957","journal-title":"Protein Sci"},{"key":"14_CR147","doi-asserted-by":"publisher","first-page":"634","DOI":"10.1107\/s0907444902002627","volume":"58","author":"MK Safo","year":"2002","unstructured":"Safo MK, Boyiri T, Burnett JC et al (2002a) X-ray crystallographic analyses of symmetrical allosteric effectors of hemoglobin: compounds designed to link primary and secondary binding sites. Acta Crystallogr D Biol Crystallogr 58:634\u2013644. https:\/\/doi.org\/10.1107\/s0907444902002627","journal-title":"Acta Crystallogr D Biol Crystallogr"},{"key":"14_CR148","doi-asserted-by":"publisher","first-page":"2031","DOI":"10.1107\/S0907444902015809","volume":"58","author":"MK Safo","year":"2002","unstructured":"Safo MK, Burnett JC, Musayev FN et al (2002b) Structure of human carbonmonoxyhemoglobin at 2.16 \u00c5: a snapshot of the allosteric transition. Acta Crystallographica Section D 58:2031\u20132037. https:\/\/doi.org\/10.1107\/S0907444902015809","journal-title":"Acta Crystallographica Section D"},{"key":"14_CR149","doi-asserted-by":"publisher","first-page":"4665","DOI":"10.1021\/jm0498001","volume":"47","author":"MK Safo","year":"2004","unstructured":"Safo MK, Abdulmalik O, Danso-Danquah R et al (2004) Structural basis for the potent antisickling effect of a novel class of five-membered heterocyclic aldehydic compounds. J Med Chem 47:4665\u20134676. https:\/\/doi.org\/10.1021\/jm0498001","journal-title":"J Med Chem"},{"key":"14_CR150","doi-asserted-by":"publisher","first-page":"156","DOI":"10.1107\/S0907444904030501","volume":"61","author":"MK Safo","year":"2005","unstructured":"Safo MK, Abdulmalik O, Lin HR et al (2005) Structures of R- and T-state hemoglobin Bassett: elucidating the structural basis for the low oxygen affinity of a mutant hemoglobin. Acta Crystallogr D Biol Crystallogr 61:156\u2013162. https:\/\/doi.org\/10.1107\/S0907444904030501","journal-title":"Acta Crystallogr D Biol Crystallogr"},{"key":"14_CR151","doi-asserted-by":"publisher","first-page":"797","DOI":"10.1016\/j.bbapap.2011.02.013","volume":"1814","author":"MK Safo","year":"2011","unstructured":"Safo MK, Ahmed MH, Ghatge MS, Boyiri T (2011) Hemoglobin-ligand binding: understanding Hb function and allostery on atomic level. Biochim Biophys Acta 1814:797\u2013809. https:\/\/doi.org\/10.1016\/j.bbapap.2011.02.013","journal-title":"Biochim Biophys Acta"},{"key":"14_CR152","doi-asserted-by":"publisher","first-page":"2061","DOI":"10.1107\/S0907444913019197","volume":"69","author":"MK Safo","year":"2013","unstructured":"Safo MK, Ko T-P, Abdulmalik O et al (2013) Structure of fully liganded Hb \u03b62\u03b22s trapped in a tense conformation. Acta Crystallogr D Biol Crystallogr 69:2061\u20132071. https:\/\/doi.org\/10.1107\/S0907444913019197","journal-title":"Acta Crystallogr D Biol Crystallogr"},{"key":"14_CR153","doi-asserted-by":"publisher","first-page":"99","DOI":"10.1016\/j.molstruc.2015.06.047","volume":"1099","author":"MK Safo","year":"2015","unstructured":"Safo MK, Ko T-P, Schreiter ER, Russell JE (2015) Structural basis for the antipolymer activity of Hb \u03b62\u03b22s trapped in a tense conformation. J Mol Struct 1099:99\u2013107. https:\/\/doi.org\/10.1016\/j.molstruc.2015.06.047","journal-title":"J Mol Struct"},{"key":"14_CR154","doi-asserted-by":"publisher","first-page":"9973","DOI":"10.1021\/bi700935z","volume":"46","author":"SC Sahu","year":"2007","unstructured":"Sahu SC, Simplaceanu V, Gong Q et al (2007) Insights into the solution structure of human deoxyhemoglobin in the absence and presence of an allosteric effector. Biochemistry 46:9973\u20139980. https:\/\/doi.org\/10.1021\/bi700935z","journal-title":"Biochemistry"},{"key":"14_CR155","first-page":"896","volume":"47","author":"M Sakuragawa","year":"1984","unstructured":"Sakuragawa M, Ohba Y, Miyaji T et al (1984) A Japanese boy with hemolytic anemia due to an unstable hemoglobin (Hb Bristol). Nippon Ketsueki Gakkai Zasshi 47:896\u2013902","journal-title":"Nippon Ketsueki Gakkai Zasshi"},{"key":"14_CR156","doi-asserted-by":"crossref","first-page":"4528","DOI":"10.1016\/S0021-9258(18)61224-4","volume":"262","author":"M Samaja","year":"1987","unstructured":"Samaja M, Rovida E, Niggeler M et al (1987) The dissociation of carbon monoxide from hemoglobin intermediate. J Biol Chem 262:4528\u20134533","journal-title":"J Biol Chem"},{"key":"14_CR157","doi-asserted-by":"publisher","first-page":"13674","DOI":"10.1021\/bi048531d","volume":"43","author":"U Samuni","year":"2004","unstructured":"Samuni U, Dantsker D, Juszczak LJ et al (2004) Spectroscopic and functional characterization of T state hemoglobin conformations encapsulated in silica gels. Biochemistry 43:13674\u201313682. https:\/\/doi.org\/10.1021\/bi048531d","journal-title":"Biochemistry"},{"key":"14_CR158","doi-asserted-by":"crossref","first-page":"1533","DOI":"10.1016\/S0021-9258(17)33681-5","volume":"251","author":"CA Sawicki","year":"1976","unstructured":"Sawicki CA, Gibson QH (1976) Quaternary conformational changes in human hemoglobin studied by laser photolysis of carboxyhemoglobin. J Biol Chem 251:1533\u20131542","journal-title":"J Biol Chem"},{"key":"14_CR159","doi-asserted-by":"publisher","first-page":"21","DOI":"10.1016\/S0006-3495(78)85328-4","volume":"24","author":"CA Sawicki","year":"1978","unstructured":"Sawicki CA, Gibson QH (1978) The relation between carbon monoxide binding and the conformational change of hemoglobin. Biophys J 24:21\u201333. https:\/\/doi.org\/10.1016\/S0006-3495(78)85328-4","journal-title":"Biophys J"},{"key":"14_CR160","doi-asserted-by":"publisher","first-page":"365","DOI":"10.1016\/0005-2795(75)90192-0","volume":"400","author":"RG Schneider","year":"1975","unstructured":"Schneider RG, Atkins RJ, Hosty TS et al (1975) Haemoglobin Titusville: alpha94 Asp replaced by Asn. a new haemoglobin with a lowered affinity for oxygen. Biochim Biophys Acta 400:365\u2013373","journal-title":"Biochim Biophys Acta"},{"key":"14_CR161","doi-asserted-by":"publisher","first-page":"4195","DOI":"10.1073\/pnas.73.11.4195","volume":"73","author":"BP Schoenborn","year":"1976","unstructured":"Schoenborn BP (1976) Dichloromethane as an antisickling agent in sickle cell hemoglobin. Proc Natl Acad Sci USA 73:4195\u20134199. https:\/\/doi.org\/10.1073\/pnas.73.11.4195","journal-title":"Proc Natl Acad Sci USA"},{"key":"14_CR162","doi-asserted-by":"publisher","first-page":"84","DOI":"10.1038\/375084a0","volume":"375","author":"MA Schumacher","year":"1995","unstructured":"Schumacher MA, Dixon MM, Kluger R et al (1995) Allosteric transition intermediates modelled by crosslinked haemoglobins. Nature 375:84\u201387. https:\/\/doi.org\/10.1038\/375084a0","journal-title":"Nature"},{"key":"14_CR163","doi-asserted-by":"publisher","first-page":"7841","DOI":"10.1073\/pnas.94.15.7841","volume":"94","author":"MA Schumacher","year":"1997","unstructured":"Schumacher MA, Zheleznova EE, Poundstone KS et al (1997) Allosteric intermediates indicate R2 is the liganded hemoglobin end state. Proc Natl Acad Sci USA 94:7841\u20137844. https:\/\/doi.org\/10.1073\/pnas.94.15.7841","journal-title":"Proc Natl Acad Sci USA"},{"key":"14_CR164","doi-asserted-by":"publisher","first-page":"267","DOI":"10.1016\/0022-2836(80)90090-x","volume":"144","author":"VS Sharma","year":"1980","unstructured":"Sharma VS, Newton GL, Ranney HM et al (1980) Hemoglobin Rothschild (beta 37(C3)Trp replaced by Arg): a high\/low affinity hemoglobin mutant. J Mol Biol 144:267\u2013280. https:\/\/doi.org\/10.1016\/0022-2836(80)90090-x","journal-title":"J Mol Biol"},{"key":"14_CR165","doi-asserted-by":"publisher","first-page":"2364","DOI":"10.1200\/JCO.2003.08.116","volume":"21","author":"E Shaw","year":"2003","unstructured":"Shaw E, Scott C, Suh J et al (2003) RSR13 plus cranial radiation therapy in patients with brain metastases: comparison with the radiation therapy oncology group recursive partitioning analysis brain metastases database. J Clin Oncol 21:2364\u20132371. https:\/\/doi.org\/10.1200\/JCO.2003.08.116","journal-title":"J Clin Oncol"},{"key":"14_CR166","doi-asserted-by":"publisher","first-page":"50","DOI":"10.1016\/s0014-5793(01)02225-6","volume":"492","author":"N Shibayama","year":"2001","unstructured":"Shibayama N, Saigo S (2001) Direct observation of two distinct affinity conformations in the T state human deoxyhemoglobin. FEBS Lett 492:50\u201353. https:\/\/doi.org\/10.1016\/s0014-5793(01)02225-6","journal-title":"FEBS Lett"},{"key":"14_CR167","doi-asserted-by":"publisher","first-page":"38791","DOI":"10.1074\/jbc.M205461200","volume":"277","author":"N Shibayama","year":"2002","unstructured":"Shibayama N, Miura S, Tame JRH et al (2002) Crystal structure of horse carbonmonoxyhemoglobin-bezafibrate complex at 1.55-A resolution. a novel allosteric binding site in R-state hemoglobin. J Biol Chem 277:38791\u201338796. https:\/\/doi.org\/10.1074\/jbc.M205461200","journal-title":"J Biol Chem"},{"key":"14_CR168","doi-asserted-by":"crossref","first-page":"17248","DOI":"10.1016\/S0021-9258(18)41919-9","volume":"267","author":"MM Silva","year":"1992","unstructured":"Silva MM, Rogers PH, Arnone A (1992) A third quaternary structure of human hemoglobin A at 1.7-A resolution. J Biol Chem 267:17248\u201317256","journal-title":"J Biol Chem"},{"key":"14_CR169","doi-asserted-by":"publisher","first-page":"295","DOI":"10.1002\/prot.340180310","volume":"18","author":"FR Smith","year":"1994","unstructured":"Smith FR, Simmons KC (1994) Cyanomet human hemoglobin crystallized under physiological conditions exhibits the Y quaternary structure. Proteins 18:295\u2013300. https:\/\/doi.org\/10.1002\/prot.340180310","journal-title":"Proteins"},{"key":"14_CR170","doi-asserted-by":"publisher","first-page":"81","DOI":"10.1002\/prot.340100202","volume":"10","author":"FR Smith","year":"1991","unstructured":"Smith FR, Lattman EE, Carter CW (1991) The mutation beta 99 Asp-Tyr stabilizes Y-a new, composite quaternary state of human hemoglobin. Proteins 10:81\u201391. https:\/\/doi.org\/10.1002\/prot.340100202","journal-title":"Proteins"},{"key":"14_CR171","doi-asserted-by":"publisher","first-page":"4907","DOI":"10.1021\/bi7023699","volume":"47","author":"X Song","year":"2008","unstructured":"Song X, Simplaceanu V, Ho NT, Ho C (2008) Effector-induced structural fluctuation regulates the ligand affinity of an allosteric protein: binding of inositol hexaphosphate has distinct dynamic consequences for the T and R states of hemoglobin. Biochemistry 47:4907\u20134915. https:\/\/doi.org\/10.1021\/bi7023699","journal-title":"Biochemistry"},{"key":"14_CR172","doi-asserted-by":"publisher","first-page":"397","DOI":"10.1038\/nrm1103","volume":"4","author":"S Spiegel","year":"2003","unstructured":"Spiegel S, Milstien S (2003) Sphingosine-1-phosphate: an enigmatic signalling lipid. Nat Rev Mol Cell Biol 4:397\u2013407. https:\/\/doi.org\/10.1038\/nrm1103","journal-title":"Nat Rev Mol Cell Biol"},{"key":"14_CR173","doi-asserted-by":"publisher","first-page":"11113","DOI":"10.1073\/pnas.91.23.11113","volume":"91","author":"R Srinivasan","year":"1994","unstructured":"Srinivasan R, Rose GD (1994) The T-to-R transformation in hemoglobin: a reevaluation. PNAS 91:11113\u201311117. https:\/\/doi.org\/10.1073\/pnas.91.23.11113","journal-title":"PNAS"},{"key":"14_CR174","doi-asserted-by":"publisher","first-page":"3210","DOI":"10.1182\/blood.V120.21.3210.3210","volume":"120","author":"W Stern","year":"2012","unstructured":"Stern W, Mathews D, McKew J et al (2012) A phase 1, first-in-man, dose-response study of Aes-103 (5-HMF), an anti-sickling, allosteric modifier of hemoglobin oxygen affinity in healthy norman volunteers. Blood 120:3210\u20133210","journal-title":"Blood"},{"issue":"Suppl 1","key":"14_CR175","first-page":"458","volume":"3","author":"O Stucker","year":"1985","unstructured":"Stucker O, Laurent D, Duvelleroy M et al (1985) Incorporation of inositol hexaphosphate in stored erythrocytes: effect on tissue oxygenation. Life Support Syst 3(Suppl 1):458\u2013461","journal-title":"Life Support Syst"},{"key":"14_CR176","doi-asserted-by":"publisher","first-page":"6663","DOI":"10.1021\/bi963121d","volume":"36","author":"DP Sun","year":"1997","unstructured":"Sun DP, Zou M, Ho NT, Ho C (1997) Contribution of surface histidyl residues in the alpha-chain to the Bohr effect of human normal adult hemoglobin: roles of global electrostatic effects. Biochemistry 36:6663\u20136673. https:\/\/doi.org\/10.1021\/bi963121d","journal-title":"Biochemistry"},{"key":"14_CR177","doi-asserted-by":"publisher","first-page":"15281","DOI":"10.1038\/s41598-017-13667-8","volume":"7","author":"K Sun","year":"2017","unstructured":"Sun K, D\u2019Alessandro A, Ahmed MH et al (2017) Structural and functional insight of sphingosine 1-phosphate-mediated pathogenic metabolic reprogramming in sickle cell disease. Sci Rep 7:15281. https:\/\/doi.org\/10.1038\/s41598-017-13667-8","journal-title":"Sci Rep"},{"key":"14_CR178","doi-asserted-by":"publisher","first-page":"163","DOI":"10.1016\/0022-2836(72)90077-0","volume":"72","author":"A Szabo","year":"1972","unstructured":"Szabo A, Karplus M (1972) A mathematical model for structure-function relations in hemoglobin. J Mol Biol 72:163\u2013197. https:\/\/doi.org\/10.1016\/0022-2836(72)90077-0","journal-title":"J Mol Biol"},{"key":"14_CR179","doi-asserted-by":"publisher","first-page":"a011858","DOI":"10.1101\/cshperspect.a011858","volume":"3","author":"CS Thom","year":"2013","unstructured":"Thom CS, Dickson CF, Gell DA, Weiss MJ (2013) Hemoglobin variants: biochemical properties and clinical correlates. Cold Spring Harb Perspect Med 3:a011858. https:\/\/doi.org\/10.1101\/cshperspect.a011858","journal-title":"Cold Spring Harb Perspect Med"},{"key":"14_CR180","doi-asserted-by":"publisher","first-page":"165","DOI":"10.1056\/NEJM197007232830402","volume":"283","author":"J Torrance","year":"1970","unstructured":"Torrance J, Jacobs P, Restrepo A et al (1970) Intraerythrocytic adaptation to anemia. N Engl J Med 283:165\u2013169. https:\/\/doi.org\/10.1056\/NEJM197007232830402","journal-title":"N Engl J Med"},{"key":"14_CR181","doi-asserted-by":"crossref","first-page":"12147","DOI":"10.1016\/S0021-9258(17)44148-2","volume":"258","author":"TG Traylor","year":"1983","unstructured":"Traylor TG, Deardurff LA, Coletta M et al (1983) Reactivity of ferrous heme proteins at low pH. J Biol Chem 258:12147\u201312148","journal-title":"J Biol Chem"},{"key":"14_CR182","doi-asserted-by":"crossref","first-page":"12682","DOI":"10.1016\/S0021-9258(18)42331-9","volume":"267","author":"C Vasseur","year":"1992","unstructured":"Vasseur C, Blouquit Y, Kister J et al (1992) Hemoglobin Thionville. An alpha-chain variant with a substitution of a glutamate for valine at NA-1 and having an acetylated methionine NH2 terminus. J Biol Chem 267:12682\u201312691","journal-title":"J Biol Chem"},{"key":"14_CR183","doi-asserted-by":"publisher","first-page":"509","DOI":"10.1056\/NEJMoa1903212","volume":"381","author":"E Vichinsky","year":"2019","unstructured":"Vichinsky E, Hoppe CC, Ataga KI et al (2019) A phase 3 randomized trial of Voxelotor in sickle cell disease. N Engl J Med 381:509\u2013519. https:\/\/doi.org\/10.1056\/NEJMoa1903212","journal-title":"N Engl J Med"},{"key":"14_CR184","doi-asserted-by":"publisher","first-page":"743","DOI":"10.1006\/jmbi.1996.0674","volume":"264","author":"J Wilson","year":"1996","unstructured":"Wilson J, Phillips K, Luisi B (1996) The crystal structure of horse deoxyhaemoglobin trapped in the high-affinity (R) state. J Mol Biol 264:743\u2013756. https:\/\/doi.org\/10.1006\/jmbi.1996.0674","journal-title":"J Mol Biol"},{"key":"14_CR185","doi-asserted-by":"crossref","first-page":"6939","DOI":"10.1016\/S0021-9258(19)41022-3","volume":"250","author":"RM Winslow","year":"1975","unstructured":"Winslow RM, Charache S (1975) Hemoglobin Richmond. Subunit dissociation and oxygen equilibrium properties. J Biol Chem 250:6939\u20136942","journal-title":"J Biol Chem"},{"key":"14_CR186","doi-asserted-by":"publisher","first-page":"1502","DOI":"10.1001\/jama.1976.03270140054029","volume":"236","author":"PM Winter","year":"1976","unstructured":"Winter PM, Miller JN (1976) Carbon monoxide poisoning. JAMA 236:1502\u20131504. https:\/\/doi.org\/10.1001\/jama.1976.03270140054029","journal-title":"JAMA"},{"key":"14_CR187","doi-asserted-by":"publisher","first-page":"2209","DOI":"10.1073\/pnas.88.6.2209","volume":"88","author":"FC Wireko","year":"1991","unstructured":"Wireko FC, Abraham DJ (1991) X-ray diffraction study of the binding of the antisickling agent 12C79 to human hemoglobin. Proc Natl Acad Sci USA 88:2209\u20132211. https:\/\/doi.org\/10.1073\/pnas.88.6.2209","journal-title":"Proc Natl Acad Sci USA"},{"key":"14_CR188","doi-asserted-by":"publisher","first-page":"758","DOI":"10.1021\/jm00106a042","volume":"34","author":"FC Wireko","year":"1991","unstructured":"Wireko FC, Kellogg GE, Abraham DJ (1991) Allosteric modifiers of hemoglobin. 2. Crystallographically determined binding sites and hydrophobic binding\/interaction analysis of novel hemoglobin oxygen effectors. J Med Chem 34:758\u2013767. https:\/\/doi.org\/10.1021\/jm00106a042","journal-title":"J Med Chem"},{"key":"14_CR189","doi-asserted-by":"publisher","first-page":"359","DOI":"10.1097\/00005344-199803000-00005","volume":"31","author":"JA Woods","year":"1998","unstructured":"Woods JA, Storey CJ, Babcock EE, Malloy CR (1998) Right-shifting the oxyhemoglobin dissociation curve with RSR13: effects on high-energy phosphates and myocardial recovery after low-flow ischemia. J Cardiovasc Pharmacol 31:359\u2013363. https:\/\/doi.org\/10.1097\/00005344-199803000-00005","journal-title":"J Cardiovasc Pharmacol"},{"key":"14_CR190","doi-asserted-by":"publisher","first-page":"7178","DOI":"10.1021\/acs.biochem.5b01074","volume":"54","author":"GG Xu","year":"2015","unstructured":"Xu GG, Deshpande TM, Ghatge MS et al (2015) Design, synthesis, and investigation of novel nitric oxide (NO)-releasing prodrugs as drug candidates for the treatment of ischemic disorders: insights into NO-releasing prodrug biotransformation and hemoglobin-NO biochemistry. Biochemistry 54:7178\u20137192. https:\/\/doi.org\/10.1021\/acs.biochem.5b01074","journal-title":"Biochemistry"},{"key":"14_CR191","doi-asserted-by":"publisher","first-page":"3499","DOI":"10.1021\/acs.molpharmaceut.7b00553","volume":"14","author":"GG Xu","year":"2017","unstructured":"Xu GG, Pagare PP, Ghatge MS et al (2017) Design, synthesis, and biological evaluation of ester and ether derivatives of antisickling agent 5-HMF for the treatment of sickle cell disease. Mol Pharm 14:3499\u20133511. https:\/\/doi.org\/10.1021\/acs.molpharmaceut.7b00553","journal-title":"Mol Pharm"},{"key":"14_CR192","doi-asserted-by":"publisher","first-page":"790","DOI":"10.1016\/j.jmb.2005.12.018","volume":"356","author":"T Yokoyama","year":"2006","unstructured":"Yokoyama T, Neya S, Tsuneshige A et al (2006) R-state haemoglobin with low oxygen affinity: crystal structures of deoxy human and carbonmonoxy horse haemoglobin bound to the effector molecule L35. J Mol Biol 356:790\u2013801. https:\/\/doi.org\/10.1016\/j.jmb.2005.12.018","journal-title":"J Mol Biol"},{"key":"14_CR193","doi-asserted-by":"publisher","first-page":"1873","DOI":"10.1016\/j.bbapap.2013.04.026","volume":"1834","author":"T Yonetani","year":"2013","unstructured":"Yonetani T, Kanaori K (2013) How does hemoglobin generate such diverse functionality of physiological relevance? Biochim Biophys Acta 1834:1873\u20131884. https:\/\/doi.org\/10.1016\/j.bbapap.2013.04.026","journal-title":"Biochim Biophys Acta"},{"key":"14_CR194","doi-asserted-by":"publisher","first-page":"523","DOI":"10.1016\/S1631-0691(03)00150-1","volume":"326","author":"T Yonetani","year":"2003","unstructured":"Yonetani T, Tsuneshige A (2003) The global allostery model of hemoglobin: an allosteric mechanism involving homotropic and heterotropic interactions. CR Biol 326:523\u2013532. https:\/\/doi.org\/10.1016\/S1631-0691(03)00150-1","journal-title":"CR Biol"},{"key":"14_CR195","doi-asserted-by":"publisher","first-page":"34508","DOI":"10.1074\/jbc.M203135200","volume":"277","author":"T Yonetani","year":"2002","unstructured":"Yonetani T, Park S-I, Tsuneshige A et al (2002) Global allostery model of hemoglobin. Modulation of O(2) affinity, cooperativity, and Bohr effect by heterotropic allosteric effectors. J Biol Chem 277:34508\u201334520. https:\/\/doi.org\/10.1074\/jbc.M203135200","journal-title":"J Biol Chem"},{"key":"14_CR196","doi-asserted-by":"publisher","first-page":"1184","DOI":"10.1021\/jm010358l","volume":"45","author":"AM Youssef","year":"2002","unstructured":"Youssef AM, Safo MK, Danso-Danquah R et al (2002) Synthesis and X-ray studies of chiral allosteric modifiers of hemoglobin. J Med Chem 45:1184\u20131195. https:\/\/doi.org\/10.1021\/jm010358l","journal-title":"J Med Chem"},{"key":"14_CR197","doi-asserted-by":"publisher","first-page":"297","DOI":"10.1042\/cs0650297","volume":"65","author":"MA Zago","year":"1983","unstructured":"Zago MA, Bottura C (1983) Splenic function in sickle-cell diseases. Clin Sci 65:297\u2013302. https:\/\/doi.org\/10.1042\/cs0650297","journal-title":"Clin Sci"},{"key":"14_CR198","doi-asserted-by":"crossref","first-page":"8542","DOI":"10.1016\/S0021-9258(19)75254-5","volume":"252","author":"RH Zaugg","year":"1977","unstructured":"Zaugg RH, Walder JA, Klotz IM (1977) Schiff base adducts of hemoglobin. Modifications that inhibit erythrocyte sickling. J Biol Chem 252:8542\u20138548","journal-title":"J Biol Chem"},{"key":"14_CR199","doi-asserted-by":"publisher","first-page":"2750","DOI":"10.1172\/JCI74604","volume":"124","author":"Y Zhang","year":"2014","unstructured":"Zhang Y, Berka V, Song A et al (2014) Elevated sphingosine-1-phosphate promotes sickling and sickle cell disease progression. J Clin Invest 124:2750\u20132761. https:\/\/doi.org\/10.1172\/JCI74604","journal-title":"J Clin Invest"}],"container-title":["Subcellular Biochemistry","Vertebrate and Invertebrate Respiratory Proteins, Lipoproteins and other Body Fluid Proteins"],"language":"en","link":[{"URL":"http:\/\/link.springer.com\/content\/pdf\/10.1007\/978-3-030-41769-7_14","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2021,3,4]],"date-time":"2021-03-04T23:44:16Z","timestamp":1614901456000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/link.springer.com\/10.1007\/978-3-030-41769-7_14"}},"issued":{"date-parts":[[2020]]},"ISBN":["9783030417680","9783030417697"],"references-count":199,"URL":"https:\/\/doi.org\/10.1007\/978-3-030-41769-7_14","ISSN":["0306-0225","2542-8810"],"issn-type":[{"type":"print","value":"0306-0225"},{"type":"electronic","value":"2542-8810"}],"published":{"date-parts":[[2020]]},"assertion":[{"value":"19 March 2020","order":1,"name":"first_online","label":"First Online","group":{"name":"ChapterHistory","label":"Chapter History"}},{"value":"Virginia Commonwealth University and Martin K. Safo have patents related to several aromatic aldehydes mentioned in the chapter.","order":1,"name":"Ethics","group":{"name":"EthicsHeading","label":"Conflict-of-Interest Disclosure"}}]}
+{
+  "indexed": {
+    "date-parts": [
+      [
+        2025,
+        5,
+        25
+      ]
+    ],
+    "date-time": "2025-05-25T14:25:25Z",
+    "timestamp": 1748183125057,
+    "version": "3.40.3"
+  },
+  "publisher-location": "Cham",
+  "reference-count": 199,
+  "publisher": "Springer International Publishing",
+  "isbn-type": [
+    {
+      "type": "print",
+      "value": "9783030417680"
+    },
+    {
+      "type": "electronic",
+      "value": "9783030417697"
+    }
+  ],
+  "license": [
+    {
+      "start": {
+        "date-parts": [
+          [
+            2020,
+            1,
+            1
+          ]
+        ],
+        "date-time": "2020-01-01T00:00:00Z",
+        "timestamp": 1577836800000
+      },
+      "content-version": "tdm",
+      "delay-in-days": 0,
+      "URL": "http://www.springer.com/tdm"
+    }
+  ],
+  "content-domain": {
+    "domain": [
+      "link.springer.com"
+    ],
+    "crossmark-restriction": false
+  },
+  "published-print": {
+    "date-parts": [
+      [
+        2020
+      ]
+    ]
+  },
+  "DOI": "10.1007/978-3-030-41769-7_14",
+  "type": "book-chapter",
+  "created": {
+    "date-parts": [
+      [
+        2020,
+        3,
+        18
+      ]
+    ],
+    "date-time": "2020-03-18T18:03:26Z",
+    "timestamp": 1584554606000
+  },
+  "page": "345-382",
+  "update-policy": "https://doi.org/10.1007/springer_crossmark_policy",
+  "source": "Crossref",
+  "is-referenced-by-count": 179,
+  "title": [
+    "Hemoglobin: Structure, Function and Allostery"
+  ],
+  "prefix": "10.1007",
+  "author": [
+    {
+      "given": "Mostafa H.",
+      "family": "Ahmed",
+      "sequence": "first",
+      "affiliation": []
+    },
+    {
+      "given": "Mohini S.",
+      "family": "Ghatge",
+      "sequence": "additional",
+      "affiliation": []
+    },
+    {
+      "given": "Martin K.",
+      "family": "Safo",
+      "sequence": "additional",
+      "affiliation": []
+    }
+  ],
+  "member": "297",
+  "published-online": {
+    "date-parts": [
+      [
+        2020,
+        3,
+        19
+      ]
+    ]
+  },
+  "reference": [
+    {
+      "key": "14_CR1",
+      "doi-asserted-by": "publisher",
+      "first-page": "268",
+      "DOI": "10.1002/ajh.20184",
+      "volume": "77",
+      "author": "O Abdulmalik",
+      "year": "2004",
+      "unstructured": "Abdulmalik O, Safo MK, Lerner NB et al (2004) Characterization of hemoglobin bassett (alpha94Asp → Ala), a variant with very low oxygen affinity. Am J Hematol 77:268–276. https://doi.org/10.1002/ajh.20184",
+      "journal-title": "Am J Hematol"
+    },
+    {
+      "key": "14_CR2",
+      "doi-asserted-by": "publisher",
+      "first-page": "552",
+      "DOI": "10.1111/j.1365-2141.2004.05332.x",
+      "volume": "128",
+      "author": "O Abdulmalik",
+      "year": "2005",
+      "unstructured": "Abdulmalik O, Safo MK, Chen Q et al (2005) 5-hydroxymethyl-2-furfural modifies intracellular sickle haemoglobin and inhibits sickling of red blood cells. Br J Haematol 128:552–561. https://doi.org/10.1111/j.1365-2141.2004.05332.x",
+      "journal-title": "Br J Haematol"
+    },
+    {
+      "key": "14_CR3",
+      "doi-asserted-by": "publisher",
+      "first-page": "1076",
+      "DOI": "10.1107/S0907444911045860",
+      "volume": "67",
+      "author": "O Abdulmalik",
+      "year": "2011",
+      "unstructured": "Abdulmalik O, Ghatge MS, Musayev FN et al (2011) Crystallographic analysis of human hemoglobin elucidates the structural basis of the potent and dual antisickling activity of pyridyl derivatives of vanillin Corrigendum. Acta Crystallogr D Biol Crystallogr 67:1076. https://doi.org/10.1107/S0907444911045860",
+      "journal-title": "Acta Crystallogr D Biol Crystallogr"
+    },
+    {
+      "key": "14_CR4",
+      "doi-asserted-by": "publisher",
+      "first-page": "1015",
+      "DOI": "10.1021/jm00351a002",
+      "volume": "25",
+      "author": "DJ Abraham",
+      "year": "1982",
+      "unstructured": "Abraham DJ, Mehanna AS, Williams FL (1982) Design, synthesis, and testing of potential antisickling agents. 1. halogenated benzyloxy and phenoxy acids. J Med Chem 25:1015–1017. https://doi.org/10.1021/jm00351a002",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR5",
+      "doi-asserted-by": "publisher",
+      "first-page": "324",
+      "DOI": "10.1073/pnas.80.2.324",
+      "volume": "80",
+      "author": "DJ Abraham",
+      "year": "1983",
+      "unstructured": "Abraham DJ, Perutz MF, Phillips SE (1983a) Physiological and x-ray studies of potential antisickling agents. Proc Natl Acad Sci USA 80:324–328. https://doi.org/10.1073/pnas.80.2.324",
+      "journal-title": "Proc Natl Acad Sci USA"
+    },
+    {
+      "key": "14_CR6",
+      "doi-asserted-by": "publisher",
+      "first-page": "324",
+      "DOI": "10.1073/pnas.80.2.324",
+      "volume": "80",
+      "author": "DJ Abraham",
+      "year": "1983",
+      "unstructured": "Abraham DJ, Perutz MF, Phillips SE (1983b) Physiological and x-ray studies of potential antisickling agents. PNAS 80:324–328. https://doi.org/10.1073/pnas.80.2.324",
+      "journal-title": "PNAS"
+    },
+    {
+      "key": "14_CR7",
+      "doi-asserted-by": "publisher",
+      "first-page": "967",
+      "DOI": "10.1021/jm00374a006",
+      "volume": "27",
+      "author": "DJ Abraham",
+      "year": "1984",
+      "unstructured": "Abraham DJ, Kennedy PE, Mehanna AS et al (1984) Design, synthesis, and testing of potential antisickling agents. 4. structure-activity relationships of benzyloxy and phenoxy acids. J Med Chem 27:967–978. https://doi.org/10.1021/jm00374a006",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR8",
+      "doi-asserted-by": "publisher",
+      "first-page": "1334",
+      "DOI": "10.1182/blood.V77.6.1334.1334",
+      "volume": "77",
+      "author": "DJ Abraham",
+      "year": "1991",
+      "unstructured": "Abraham DJ, Mehanna AS, Wireko FC et al (1991) Vanillin, a potential agent for the treatment of sickle cell anemia. Blood 77:1334–1341",
+      "journal-title": "Blood"
+    },
+    {
+      "key": "14_CR9",
+      "doi-asserted-by": "publisher",
+      "first-page": "480",
+      "DOI": "10.1016/0022-2836(92)90902-V",
+      "volume": "227",
+      "author": "DJ Abraham",
+      "year": "1992",
+      "unstructured": "Abraham DJ, Peascoe RA, Randad RS, Panikker J (1992a) X-ray diffraction study of di and tetra-ligated T-state hemoglobin from high salt crystals. J Mol Biol 227:480–492. https://doi.org/10.1016/0022-2836(92)90902-V",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR10",
+      "doi-asserted-by": "publisher",
+      "first-page": "9141",
+      "DOI": "10.1021/bi00153a005",
+      "volume": "31",
+      "author": "DJ Abraham",
+      "year": "1992",
+      "unstructured": "Abraham DJ, Wireko FC, Randad RS et al (1992b) Allosteric modifiers of hemoglobin: 2-[4-[[(3,5-disubstituted anilino)carbonyl]methyl]phenoxy]-2-methylpropionic acid derivatives that lower the oxygen affinity of hemoglobin in red cell suspensions, in whole blood, and in vivo in rats. Biochemistry 31:9141–9149. https://doi.org/10.1021/bi00153a005",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR11",
+      "doi-asserted-by": "publisher",
+      "first-page": "15006",
+      "DOI": "10.1021/bi00046a007",
+      "volume": "34",
+      "author": "DJ Abraham",
+      "year": "1995",
+      "unstructured": "Abraham DJ, Safo MK, Boyiri T et al (1995) How allosteric effectors can bind to the same protein residue and produce opposite shifts in the allosteric equilibrium. Biochemistry 34:15006–15020. https://doi.org/10.1021/bi00046a007",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR12",
+      "doi-asserted-by": "publisher",
+      "first-page": "620",
+      "DOI": "10.1002/jcp.22195",
+      "volume": "224",
+      "author": "I Akinsheye",
+      "year": "2010",
+      "unstructured": "Akinsheye I, Klings ES (2010) Sickle cell anemia and vascular dysfunction: the nitric oxide connection. J Cell Physiol 224:620–625. https://doi.org/10.1002/jcp.22195",
+      "journal-title": "J Cell Physiol"
+    },
+    {
+      "key": "14_CR13",
+      "doi-asserted-by": "publisher",
+      "first-page": "485",
+      "DOI": "10.1002/ajh.21162",
+      "volume": "83",
+      "author": "ZY Aliyu",
+      "year": "2008",
+      "unstructured": "Aliyu ZY, Gordeuk V, Sachdev V et al (2008) Prevalence and risk factors for pulmonary artery systolic hypertension among sickle cell disease patients in Nigeria. Am J Hematol 83:485–490. https://doi.org/10.1002/ajh.21162",
+      "journal-title": "Am J Hematol"
+    },
+    {
+      "key": "14_CR14",
+      "doi-asserted-by": "publisher",
+      "first-page": "146",
+      "DOI": "10.1038/237146a0",
+      "volume": "237",
+      "author": "A Arnone",
+      "year": "1972",
+      "unstructured": "Arnone A (1972) X-ray diffraction study of binding of 2,3-diphosphoglycerate to human deoxyhaemoglobin. Nature 237:146–149. https://doi.org/10.1038/237146a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR15",
+      "doi-asserted-by": "publisher",
+      "first-page": "114",
+      "DOI": "10.1016/0014-5793(81)81046-0",
+      "volume": "126",
+      "author": "N Arous",
+      "year": "1981",
+      "unstructured": "Arous N, Braconnier F, Thillet J et al (1981) Hemoglobin Saint Mandé beta 102 (G4) asn replaced by tyr: a new low oxygen affinity variant. FEBS Lett 126:114–116. https://doi.org/10.1016/0014-5793(81)81046-0",
+      "journal-title": "FEBS Lett"
+    },
+    {
+      "key": "14_CR16",
+      "doi-asserted-by": "publisher",
+      "first-page": "175",
+      "DOI": "10.1016/0022-2836(79)90277-8",
+      "volume": "129",
+      "author": "J Baldwin",
+      "year": "1979",
+      "unstructured": "Baldwin J, Chothia C (1979) Haemoglobin: The structural changes related to ligand binding and its allosteric mechanism. J Mol Biol 129:175–220. https://doi.org/10.1016/0022-2836(79)90277-8",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR17",
+      "doi-asserted-by": "publisher",
+      "first-page": "78",
+      "DOI": "10.1038/nsb0197-78",
+      "volume": "4",
+      "author": "D Barrick",
+      "year": "1997",
+      "unstructured": "Barrick D, Ho NT, Simplaceanu V et al (1997) A test of the role of the proximal histidines in the Perutz model for cooperativity in haemoglobin. Nat Struct Biol 4:78–83",
+      "journal-title": "Nat Struct Biol"
+    },
+    {
+      "key": "14_CR18",
+      "doi-asserted-by": "publisher",
+      "first-page": "397",
+      "DOI": "10.1111/j.1476-5381.1984.tb10775.x",
+      "volume": "82",
+      "author": "CR Beddell",
+      "year": "1984",
+      "unstructured": "Beddell CR, Goodford PJ, Kneen G et al (1984) Substituted benzaldehydes designed to increase the oxygen affinity of human haemoglobin and inhibit the sickling of sickle erythrocytes. Br J Pharmacol 82:397–407. https://doi.org/10.1111/j.1476-5381.1984.tb10775.x",
+      "journal-title": "Br J Pharmacol"
+    },
+    {
+      "key": "14_CR19",
+      "doi-asserted-by": "publisher",
+      "first-page": "3953",
+      "DOI": "10.1182/blood-2002-10-3313",
+      "volume": "101",
+      "author": "JD Belcher",
+      "year": "2003",
+      "unstructured": "Belcher JD, Bryant CJ, Nguyen J et al (2003) Transgenic sickle mice have vascular inflammation. Blood 101:3953–3959. https://doi.org/10.1182/blood-2002-10-3313",
+      "journal-title": "Blood"
+    },
+    {
+      "key": "14_CR20",
+      "doi-asserted-by": "publisher",
+      "first-page": "162",
+      "DOI": "10.1016/0006-291X(67)90228-8",
+      "volume": "26",
+      "author": "R Benesch",
+      "year": "1967",
+      "unstructured": "Benesch R, Benesch RE (1967) The effect of organic phosphates from the human erythrocyte on the allosteric properties of hemoglobin. Biochem Biophys Res Commun 26:162–167. https://doi.org/10.1016/0006-291X(67)90228-8",
+      "journal-title": "Biochem Biophys Res Commun"
+    },
+    {
+      "key": "14_CR21",
+      "doi-asserted-by": "crossref",
+      "first-page": "8169",
+      "DOI": "10.1016/S0021-9258(19)86871-0",
+      "volume": "254",
+      "author": "RE Benesch",
+      "year": "1979",
+      "unstructured": "Benesch RE, Kwong S, Edalji R, Benesch R (1979) Alpha chain mutations with opposite effects on the gelation of hemoglobin S. J Biol Chem 254:8169–8172",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR22",
+      "doi-asserted-by": "publisher",
+      "first-page": "165",
+      "DOI": "10.1016/j.resp.2006.01.002",
+      "volume": "154",
+      "author": "M Berenbrink",
+      "year": "2006",
+      "unstructured": "Berenbrink M (2006) Evolution of vertebrate haemoglobins: Histidine side chains, specific buffer value and Bohr effect. Respir Physiol Neurobiol 154:165–184. https://doi.org/10.1016/j.resp.2006.01.002",
+      "journal-title": "Respir Physiol Neurobiol"
+    },
+    {
+      "key": "14_CR23",
+      "doi-asserted-by": "publisher",
+      "first-page": "32050",
+      "DOI": "10.1074/jbc.272.51.32050",
+      "volume": "272",
+      "author": "S Bettati",
+      "year": "1997",
+      "unstructured": "Bettati S, Mozzarelli A (1997) T state hemoglobin binds oxygen noncooperatively with allosteric effects of protons, inositol hexaphosphate, and chloride. J Biol Chem 272:32050–32055. https://doi.org/10.1074/jbc.272.51.32050",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR24",
+      "doi-asserted-by": "publisher",
+      "first-page": "581",
+      "DOI": "10.1006/jmbi.1998.1983",
+      "volume": "281",
+      "author": "S Bettati",
+      "year": "1998",
+      "unstructured": "Bettati S, Mozzarelli A, Perutz MF (1998) Allosteric mechanism of haemoglobin: rupture of salt-bridges raises the oxygen affinity of the T-structure. J Mol Biol 281:581–585. https://doi.org/10.1006/jmbi.1998.1983",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR25",
+      "doi-asserted-by": "publisher",
+      "first-page": "1926",
+      "DOI": "10.1073/pnas.0812381106",
+      "volume": "106",
+      "author": "A Biolo",
+      "year": "2009",
+      "unstructured": "Biolo A, Greferath R, Siwik DA et al (2009) Enhanced exercise capacity in mice with severe heart failure treated with an allosteric effector of hemoglobin, myo-inositol trispyrophosphate. PNAS 106:1926–1929. https://doi.org/10.1073/pnas.0812381106",
+      "journal-title": "PNAS"
+    },
+    {
+      "key": "14_CR26",
+      "doi-asserted-by": "publisher",
+      "first-page": "10515",
+      "DOI": "10.1074/jbc.M110.176271",
+      "volume": "286",
+      "author": "I Birukou",
+      "year": "2011",
+      "unstructured": "Birukou I, Soman J, Olson JS (2011) Blocking the gate to ligand entry in human hemoglobin. J Biol Chem 286:10515–10529. https://doi.org/10.1074/jbc.M110.176271",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR27",
+      "doi-asserted-by": "publisher",
+      "first-page": "2542",
+      "DOI": "10.1074/jbc.M116.764274",
+      "volume": "292",
+      "author": "E Bissé",
+      "year": "2017",
+      "unstructured": "Bissé E, Schaeffer-Reiss C, Van Dorsselaer A et al (2017) Hemoglobin Kirklareli (α H58L), a new variant associated with iron deficiency and increased CO binding. J Biol Chem 292:2542–2555. https://doi.org/10.1074/jbc.M116.764274",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR28",
+      "doi-asserted-by": "publisher",
+      "first-page": "402",
+      "DOI": "10.1111/j.1748-1716.1904.tb01382.x",
+      "volume": "16",
+      "author": "C Bohr",
+      "year": "1904",
+      "unstructured": "Bohr C, Hasselbalch K, Krogh A (1904) Ueber einen in biologischer Beziehung wichtigen Einfluss, den die Kohlensäurespannung des Blutes auf dessen Sauerstoffbindung übt1. Skandinavisches Archiv Für Physiologie 16:402–412. https://doi.org/10.1111/j.1748-1716.1904.tb01382.x",
+      "journal-title": "Skandinavisches Archiv Für Physiologie"
+    },
+    {
+      "key": "14_CR29",
+      "doi-asserted-by": "crossref",
+      "first-page": "980",
+      "DOI": "10.1016/S0021-9258(18)93612-4",
+      "volume": "243",
+      "author": "J Bonaventura",
+      "year": "1968",
+      "unstructured": "Bonaventura J, Riggs A (1968) Hemoglobin Kansas, a human hemoglobin with a neutral amino acid substitution and an abnormal oxygen equilibrium. J Biol Chem 243:980–991",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR30",
+      "doi-asserted-by": "publisher",
+      "first-page": "561",
+      "DOI": "10.1006/jmbi.1994.1395",
+      "volume": "239",
+      "author": "C Bonaventura",
+      "year": "1994",
+      "unstructured": "Bonaventura C, Arumugam M, Cashon R et al (1994) Chloride masks effects of opposing positive charges in Hb A and Hb Hinsdale (β139 Asn → Lys) that can modulate cooperativity as well as oxygen affinity. J Mol Biol 239:561–568. https://doi.org/10.1006/jmbi.1994.1395",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR31",
+      "doi-asserted-by": "publisher",
+      "first-page": "91",
+      "DOI": "10.3109/03630269708997513",
+      "volume": "21",
+      "author": "I Borg",
+      "year": "1997",
+      "unstructured": "Borg I, Valentino M, Fiorini A, Felice AE (1997) Hb Setif [alpha 94(G1)Asp → Tyr] in Malta. Hemoglobin 21:91–96",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR32",
+      "doi-asserted-by": "publisher",
+      "first-page": "792",
+      "DOI": "10.1038/212792a0",
+      "volume": "212",
+      "author": "MC Botha",
+      "year": "1966",
+      "unstructured": "Botha MC, Beale D, Isaacs WA, Lehmann H (1966) Hemoglobin J Cape Town-alpha-2 92 arginine replaced by glutamine beta-2. Nature 212:792–795. https://doi.org/10.1038/212792a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR33",
+      "doi-asserted-by": "publisher",
+      "first-page": "15021",
+      "DOI": "10.1021/bi00046a008",
+      "volume": "34",
+      "author": "T Boyiri",
+      "year": "1995",
+      "unstructured": "Boyiri T, Safo MK, Danso-Danquah RE et al (1995) Bisaldehyde allosteric effectors as molecular ratchets and probes. Biochemistry 34:15021–15036. https://doi.org/10.1021/bi00046a008",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR34",
+      "doi-asserted-by": "publisher",
+      "first-page": "215",
+      "DOI": "10.1016/0301-4622(86)85006-2",
+      "volume": "23",
+      "author": "M Brunori",
+      "year": "1986",
+      "unstructured": "Brunori M, Coletta M, Di Cera E (1986) A cooperative model for ligand binding to biological macromolecules as applied to oxygen carriers. Biophys Chem 23:215–222. https://doi.org/10.1016/0301-4622(86)85006-2",
+      "journal-title": "Biophys Chem"
+    },
+    {
+      "key": "14_CR35",
+      "doi-asserted-by": "publisher",
+      "first-page": "762",
+      "DOI": "10.1056/NEJM199709113371107",
+      "volume": "337",
+      "author": "HF Bunn",
+      "year": "1997",
+      "unstructured": "Bunn HF (1997) Pathogenesis and treatment of sickle cell disease. N Engl J Med 337:762–769. https://doi.org/10.1056/NEJM199709113371107",
+      "journal-title": "N Engl J Med"
+    },
+    {
+      "key": "14_CR36",
+      "doi-asserted-by": "publisher",
+      "first-page": "2299",
+      "DOI": "10.1172/JCI107040",
+      "volume": "51",
+      "author": "HF Bunn",
+      "year": "1972",
+      "unstructured": "Bunn HF, Bradley TB, Davis WE et al (1972) Structural and functional studies on hemoglobin Bethesda (alpha2beta2 145His), a varient associated with compensatory erythrocytosis. J Clin Invest 51:2299–2309. https://doi.org/10.1172/JCI107040",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR37",
+      "doi-asserted-by": "publisher",
+      "first-page": "313",
+      "DOI": "10.1016/0301-4622(90)88031-M",
+      "volume": "37",
+      "author": "MR Busch",
+      "year": "1990",
+      "unstructured": "Busch MR, Ho C (1990) Effects of anions on the molecular basis of the Bohr effect of hemoglobin. Biophys Chem 37:313–322. https://doi.org/10.1016/0301-4622(90)88031-M",
+      "journal-title": "Biophys Chem"
+    },
+    {
+      "key": "14_CR38",
+      "doi-asserted-by": "publisher",
+      "first-page": "915",
+      "DOI": "10.1038/210915a0",
+      "volume": "210",
+      "author": "RW Carrell",
+      "year": "1966",
+      "unstructured": "Carrell RW, Lehmann H, Hutchison HE (1966) Haemoglobin Köln (beta-98 valine–methionine): an unstable protein causing inclusion-body anaemia. Nature 210:915–916. https://doi.org/10.1038/210915a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR39",
+      "doi-asserted-by": "publisher",
+      "first-page": "813",
+      "DOI": "10.1172/JCI105397",
+      "volume": "45",
+      "author": "S Charache",
+      "year": "1966",
+      "unstructured": "Charache S, Weatherall DJ, Clegg JB (1966) Polycythemia associated with a hemoglobinopathy. J Clin Invest 45:813–822. https://doi.org/10.1172/JCI105397",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR40",
+      "doi-asserted-by": "publisher",
+      "first-page": "2057",
+      "DOI": "10.1529/biophysj.104.046136",
+      "volume": "88",
+      "author": "Q Chen",
+      "year": "2005",
+      "unstructured": "Chen Q, Lalezari I, Nagel RL, Hirsch RE (2005) Liganded hemoglobin structural perturbations by the allosteric effector L35. Biophys J 88:2057–2067. https://doi.org/10.1529/biophysj.104.046136",
+      "journal-title": "Biophys J"
+    },
+    {
+      "key": "14_CR41",
+      "doi-asserted-by": "publisher",
+      "first-page": "53",
+      "DOI": "10.3109/03630269109072484",
+      "volume": "15",
+      "author": "PF Como",
+      "year": "1991",
+      "unstructured": "Como PF, Wylie BR, Trent RJ et al (1991) A new unstable and low oxygen affinity hemoglobin variant: Hb Stanmore [beta 111(G13)Val–Ala]. Hemoglobin 15:53–65",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR42",
+      "doi-asserted-by": "crossref",
+      "first-page": "2399",
+      "DOI": "10.1016/S0021-9258(17)41959-4",
+      "volume": "269",
+      "author": "J Connor",
+      "year": "1994",
+      "unstructured": "Connor J, Pak CC, Schroit AJ (1994) Exposure of phosphatidylserine in the outer leaflet of human red blood cells. relationship to cell density, cell age, and clearance by mononuclear cells. J Biol Chem 269:2399–2404",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR43",
+      "doi-asserted-by": "publisher",
+      "first-page": "70",
+      "DOI": "10.1002/prot.340100107",
+      "volume": "10",
+      "author": "R Czerminski",
+      "year": "1991",
+      "unstructured": "Czerminski R, Elber R (1991) Computational studies of ligand diffusion in globins: I. Leghemoglobin. Proteins: Struct Funct Bioinform 10:70–80. https://doi.org/10.1002/prot.340100107",
+      "journal-title": "Proteins: Struct Funct Bioinform"
+    },
+    {
+      "key": "14_CR44",
+      "doi-asserted-by": "publisher",
+      "first-page": "663",
+      "DOI": "10.1038/216663a0",
+      "volume": "216",
+      "author": "JV Dacie",
+      "year": "1967",
+      "unstructured": "Dacie JV, Shinton NK, Gaffney PJ, Lehmann H (1967) Haemoglobin Hammersmith (beta-42 (CDI) Phe replaced by ser). Nature 216:663–665. https://doi.org/10.1038/216663a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR45",
+      "doi-asserted-by": "publisher",
+      "first-page": "e2009024",
+      "DOI": "10.4084/MJHID.2009.024",
+      "volume": "1",
+      "author": "L Franceschi De",
+      "year": "2009",
+      "unstructured": "De Franceschi L (2009) Pathophisiology of sickle cell disease and new drugs for the treatment. Mediterr J Hematol Infect Dis 1:e2009024. https://doi.org/10.4084/MJHID.2009.024",
+      "journal-title": "Mediterr J Hematol Infect Dis"
+    },
+    {
+      "key": "14_CR46",
+      "doi-asserted-by": "publisher",
+      "first-page": "956",
+      "DOI": "10.1107/S2059798318009919",
+      "volume": "74",
+      "author": "TM Deshpande",
+      "year": "2018",
+      "unstructured": "Deshpande TM, Pagare PP, Ghatge MS et al (2018) Rational modification of vanillin derivatives to stereospecifically destabilize sickle hemoglobin polymer formation. Acta Crystallogr D Struct Biol 74:956–964. https://doi.org/10.1107/S2059798318009919",
+      "journal-title": "Acta Crystallogr D Struct Biol"
+    },
+    {
+      "key": "14_CR47",
+      "doi-asserted-by": "publisher",
+      "first-page": "57",
+      "DOI": "10.3109/03630269409014146",
+      "volume": "18",
+      "author": "G Dinçol",
+      "year": "1994",
+      "unstructured": "Dinçol G, Dinçol K, Erdem S et al (1994) Hb Capa or alpha (2)94(G1)Asp → Gly beta 2, a mildly unstable variant with an A → G (GAC → GGC) mutation in codon 94 of the alpha 1-globin gene. Hemoglobin 18:57–60",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR48",
+      "doi-asserted-by": "publisher",
+      "first-page": "351",
+      "DOI": "10.1002/prot.340140304",
+      "volume": "14",
+      "author": "ML Doyle",
+      "year": "1992",
+      "unstructured": "Doyle ML, Lew G, Turner GJ et al (1992) Regulation of oxygen affinity by quaternary enhancement: does hemoglobin ypsilanti represent an allosteric intermediate? Proteins: Struct Funct Bioinform 14:351–362. https://doi.org/10.1002/prot.340140304",
+      "journal-title": "Proteins: Struct Funct Bioinform"
+    },
+    {
+      "key": "14_CR49",
+      "doi-asserted-by": "publisher",
+      "first-page": "63",
+      "DOI": "10.1016/S0065-3233(08)60287-9",
+      "volume": "40",
+      "author": "WA Eaton",
+      "year": "1990",
+      "unstructured": "Eaton WA, Hofrichter J (1990) Sickle cell hemoglobin polymerization. Adv Protein Chem 40:63–279",
+      "journal-title": "Adv Protein Chem"
+    },
+    {
+      "key": "14_CR50",
+      "doi-asserted-by": "publisher",
+      "first-page": "75",
+      "DOI": "10.3109/03630267808999192",
+      "volume": "2",
+      "author": "GD Efremov",
+      "year": "1978",
+      "unstructured": "Efremov GD, Stojmirovic E, Lam HL et al (1978) HB Beth Israel (beta 102 [G4] Asn replaced by Ser) observed in a Yugoslavian teenager. Hemoglobin 2:75–77. https://doi.org/10.3109/03630267808999192",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR51",
+      "doi-asserted-by": "publisher",
+      "first-page": "162",
+      "DOI": "10.1016/j.sbi.2010.01.002",
+      "volume": "20",
+      "author": "R Elber",
+      "year": "2010",
+      "unstructured": "Elber R (2010) Ligand diffusion in globins: simulations versus experiment. Curr Opin Struct Biol 20:162–167. https://doi.org/10.1016/j.sbi.2010.01.002",
+      "journal-title": "Curr Opin Struct Biol"
+    },
+    {
+      "key": "14_CR52",
+      "doi-asserted-by": "publisher",
+      "first-page": "5809",
+      "DOI": "10.1021/bi4005683",
+      "volume": "52",
+      "author": "J-S Fan",
+      "year": "2013",
+      "unstructured": "Fan J-S, Zheng Y, Choy W-Y et al (2013) Solution structure and dynamics of human hemoglobin in the carbonmonoxy form. Biochemistry 52:5809–5820. https://doi.org/10.1021/bi4005683",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR53",
+      "doi-asserted-by": "publisher",
+      "first-page": "237",
+      "DOI": "10.1016/s0022-2836(75)80037-4",
+      "volume": "97",
+      "author": "G Fermi",
+      "year": "1975",
+      "unstructured": "Fermi G (1975) Three-dimensional fourier synthesis of human deoxyhaemoglobin at 2–5 a resolution: refinement of the atomic model. J Mol Biol 97:237–256. https://doi.org/10.1016/s0022-2836(75)80037-4",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR54",
+      "doi-asserted-by": "publisher",
+      "first-page": "1245",
+      "DOI": "10.1006/jmbi.2000.3525",
+      "volume": "296",
+      "author": "EJ Fernandez",
+      "year": "2000",
+      "unstructured": "Fernandez EJ, Abad-Zapatero C, Olsen KW (2000) Crystal structure of Lysβ182-Lysβ282 crosslinked hemoglobin: A possible allosteric intermediate 11 Edited by K. Nagai. J Mol Biol 296:1245–1256. https://doi.org/10.1006/jmbi.2000.3525",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR55",
+      "doi-asserted-by": "crossref",
+      "first-page": "23965",
+      "DOI": "10.1016/S0021-9258(19)51032-8",
+      "volume": "269",
+      "author": "C Fronticelli",
+      "year": "1994",
+      "unstructured": "Fronticelli C, Pechik I, Brinigar WS et al (1994) Chloride ion independence of the Bohr effect in a mutant human hemoglobin beta (V1M + H2deleted). J Biol Chem 269:23965–23969",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR56",
+      "doi-asserted-by": "publisher",
+      "first-page": "13",
+      "DOI": "10.1016/j.bcmd.2017.10.006",
+      "volume": "70",
+      "author": "DA Gell",
+      "year": "2018",
+      "unstructured": "Gell DA (2018) Structure and function of haemoglobins. Blood Cells Mol Dis 70:13–42. https://doi.org/10.1016/j.bcmd.2017.10.006",
+      "journal-title": "Blood Cells Mol Dis"
+    },
+    {
+      "key": "14_CR57",
+      "doi-asserted-by": "publisher",
+      "first-page": "446",
+      "DOI": "10.1016/j.jsb.2016.04.003",
+      "volume": "194",
+      "author": "MS Ghatge",
+      "year": "2016",
+      "unstructured": "Ghatge MS, Ahmed MH, Omar ASM et al (2016) Crystal structure of carbonmonoxy sickle hemoglobin in R-state conformation. J Struct Biol 194:446–450. https://doi.org/10.1016/j.jsb.2016.04.003",
+      "journal-title": "J Struct Biol"
+    },
+    {
+      "key": "14_CR58",
+      "doi-asserted-by": "publisher",
+      "first-page": "714",
+      "DOI": "10.1021/acsmedchemlett.8b00166",
+      "volume": "9",
+      "author": "SR Goldstein",
+      "year": "2018",
+      "unstructured": "Goldstein SR, Liu C, Safo MK et al (2018) Design, synthesis, and biological evaluation of allosteric effectors that enhance CO release from carboxyhemoglobin. ACS Med Chem Lett 9:714–718. https://doi.org/10.1021/acsmedchemlett.8b00166",
+      "journal-title": "ACS Med Chem Lett"
+    },
+    {
+      "key": "14_CR59",
+      "doi-asserted-by": "publisher",
+      "first-page": "5140",
+      "DOI": "10.1021/bi052424h",
+      "volume": "45",
+      "author": "Q Gong",
+      "year": "2006",
+      "unstructured": "Gong Q, Simplaceanu V, Lukin JA et al (2006) Quaternary structure of carbonmonoxyhemoglobins in solution: structural changes induced by the allosteric effector inositol hexaphosphate. Biochemistry 45:5140–5148. https://doi.org/10.1021/bi052424h",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR60",
+      "doi-asserted-by": "publisher",
+      "first-page": "381",
+      "DOI": "10.1111/j.1365-2141.1975.tb00869.x",
+      "volume": "31",
+      "author": "JA Grasso",
+      "year": "1975",
+      "unstructured": "Grasso JA, Sullivan AL, Sullivan LW (1975) Ultrastructural studies of the bone marrow in sickle cell anaemia. II. the morphology of erythropoietic cells and their response to deoxygenation in vitro. Br J Haematol 31:381–389. https://doi.org/10.1111/j.1365-2141.1975.tb00869.x",
+      "journal-title": "Br J Haematol"
+    },
+    {
+      "key": "14_CR61",
+      "doi-asserted-by": "crossref",
+      "first-page": "8250",
+      "DOI": "10.1016/S0021-9258(19)86883-7",
+      "volume": "254",
+      "author": "RK Gupta",
+      "year": "1979",
+      "unstructured": "Gupta RK, Benovic JL, Rose ZB (1979) Location of the allosteric site for 2,3-bisphosphoglycerate on human oxy- and deoxyhemoglobin as observed by magnetic resonance spectroscopy. J Biol Chem 254:8250–8255",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR62",
+      "doi-asserted-by": "publisher",
+      "first-page": "1202",
+      "DOI": "10.1096/fj.06-7433com",
+      "volume": "21",
+      "author": "P Hänel",
+      "year": "2007",
+      "unstructured": "Hänel P, Andréani P, Gräler MH (2007) Erythrocytes store and release sphingosine 1-phosphate in blood. FASEB J 21:1202–1209. https://doi.org/10.1096/fj.06-7433com",
+      "journal-title": "FASEB J"
+    },
+    {
+      "key": "14_CR63",
+      "doi-asserted-by": "publisher",
+      "first-page": "344",
+      "DOI": "10.1006/geno.1994.1275",
+      "volume": "21",
+      "author": "R Hardison",
+      "year": "1994",
+      "unstructured": "Hardison R, Chao KM, Schwartz S et al (1994) Globin gene server: a prototype E-mail database server featuring extensive multiple alignments and data compilation for electronic genetic analysis. Genomics 21:344–353. https://doi.org/10.1006/geno.1994.1275",
+      "journal-title": "Genomics"
+    },
+    {
+      "key": "14_CR64",
+      "doi-asserted-by": "publisher",
+      "first-page": "183",
+      "DOI": "10.1081/HEM-100104027",
+      "volume": "25",
+      "author": "RC Hardison",
+      "year": "2001",
+      "unstructured": "Hardison RC, Chui DH, Riemer C et al (2001) Databases of human hemoglobin variants and other resources at the globin gene server. Hemoglobin 25:183–193",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR65",
+      "doi-asserted-by": "publisher",
+      "first-page": "398",
+      "DOI": "10.1006/jmbi.1997.1253",
+      "volume": "272",
+      "author": "DJ Harrington",
+      "year": "1997",
+      "unstructured": "Harrington DJ, Adachi K, Royer WE (1997) The high resolution crystal structure of deoxyhemoglobin S. J Mol Biol 272:398–407. https://doi.org/10.1006/jmbi.1997.1253",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR66",
+      "doi-asserted-by": "publisher",
+      "first-page": "1376",
+      "DOI": "10.1016/j.bbrc.2004.10.180",
+      "volume": "325",
+      "author": "Z He",
+      "year": "2004",
+      "unstructured": "He Z, Russell JE (2004a) Effect of zeta-globin substitution on the O2-transport properties of Hb S in vitro and in vivo. Biochem Biophys Res Commun 325:1376–1382. https://doi.org/10.1016/j.bbrc.2004.10.180",
+      "journal-title": "Biochem Biophys Res Commun"
+    },
+    {
+      "key": "14_CR67",
+      "doi-asserted-by": "publisher",
+      "first-page": "365",
+      "DOI": "10.1038/nm1022",
+      "volume": "10",
+      "author": "Z He",
+      "year": "2004",
+      "unstructured": "He Z, Russell JE (2004b) Antisickling effects of an endogenous human alpha-like globin. Nat Med 10:365–367. https://doi.org/10.1038/nm1022",
+      "journal-title": "Nat Med"
+    },
+    {
+      "key": "14_CR68",
+      "doi-asserted-by": "publisher",
+      "first-page": "149",
+      "DOI": "10.1016/S0301-4622(02)00091-1",
+      "volume": "98",
+      "author": "ER Henry",
+      "year": "2002",
+      "unstructured": "Henry ER, Bettati S, Hofrichter J, Eaton WA (2002) A tertiary two-state allosteric model for hemoglobin. Biophys Chem 98:149–164. https://doi.org/10.1016/S0301-4622(02)00091-1",
+      "journal-title": "Biophys Chem"
+    },
+    {
+      "key": "14_CR69",
+      "volume-title": "A syllabus of human hemoglobin variants",
+      "author": "THJ Huisman",
+      "year": "1996",
+      "unstructured": "Huisman THJ, Carver MFH, Efremov G (1996) A syllabus of human hemoglobin variants. The Sickle Cell Anemia Foundation, Augusta, GA, USA"
+    },
+    {
+      "key": "14_CR70",
+      "doi-asserted-by": "publisher",
+      "first-page": "212",
+      "DOI": "10.1016/j.bbrc.2007.03.123",
+      "volume": "357",
+      "author": "K Ito",
+      "year": "2007",
+      "unstructured": "Ito K, Anada Y, Tani M et al (2007) Lack of sphingosine 1-phosphate-degrading enzymes in erythrocytes. Biochem Biophys Res Commun 357:212–217. https://doi.org/10.1016/j.bbrc.2007.03.123",
+      "journal-title": "Biochem Biophys Res Commun"
+    },
+    {
+      "key": "14_CR71",
+      "doi-asserted-by": "publisher",
+      "first-page": "1",
+      "DOI": "10.1002/prot.340150102",
+      "volume": "15",
+      "author": "J Janin",
+      "year": "1993",
+      "unstructured": "Janin J, Wodak SJ (1993) The quaternary structure of carbonmonoxy hemoglobin ypsilanti. Proteins: Struct Funct Bioinform 15:1–4. https://doi.org/10.1002/prot.340150102",
+      "journal-title": "Proteins: Struct Funct Bioinform"
+    },
+    {
+      "key": "14_CR72",
+      "doi-asserted-by": "publisher",
+      "first-page": "1843",
+      "DOI": "10.1126/science.7569921",
+      "volume": "269",
+      "author": "V Jayaraman",
+      "year": "1995",
+      "unstructured": "Jayaraman V, Rodgers KR, Mukerji I, Spiro TG (1995) Hemoglobin allostery: resonance Raman spectroscopy of kinetic intermediates. Science 269:1843–1848. https://doi.org/10.1126/science.7569921",
+      "journal-title": "Science"
+    },
+    {
+      "key": "14_CR73",
+      "doi-asserted-by": "publisher",
+      "first-page": "41",
+      "DOI": "10.1107/S0907444908037256",
+      "volume": "65",
+      "author": "JD Jenkins",
+      "year": "2009",
+      "unstructured": "Jenkins JD, Musayev FN, Danso-Danquah R et al (2009) Structure of relaxed-state human hemoglobin: insight into ligand uptake, transport and release. Acta Cryst D 65:41–48. https://doi.org/10.1107/S0907444908037256",
+      "journal-title": "Acta Cryst D"
+    },
+    {
+      "key": "14_CR74",
+      "doi-asserted-by": "publisher",
+      "first-page": "469",
+      "DOI": "10.1172/JCI107953",
+      "volume": "55",
+      "author": "M Jensen",
+      "year": "1975",
+      "unstructured": "Jensen M, Oski FA, Nathan DG, Bunn HF (1975) Hemoglobin Syracuse (alpha2beta2-143(H21)His leads to Pro), a new high-affinity variant detected by special electrophoretic methods. observations on the auto-oxidation of normal and variant hemoglobins. J Clin Invest 55:469–477. https://doi.org/10.1172/JCI107953",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR75",
+      "doi-asserted-by": "publisher",
+      "first-page": "1840",
+      "DOI": "10.1172/JCI105674",
+      "volume": "46",
+      "author": "RT Jones",
+      "year": "1967",
+      "unstructured": "Jones RT, Osgood EE, Brimhall B, Koler RD (1967) Hemoglobin Yakina. I. clinical and biochemical studies. J Clin Invest 46:1840–1847. https://doi.org/10.1172/JCI105674",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR76",
+      "doi-asserted-by": "publisher",
+      "first-page": "73",
+      "DOI": "10.1016/j.abb.2017.11.010",
+      "volume": "637",
+      "author": "SE Jorge",
+      "year": "2018",
+      "unstructured": "Jorge SE, Bringas M, Petruk AA et al (2018) Understanding the molecular basis of the high oxygen affinity variant human hemoglobin Coimbra. Arch Biochem Biophys 637:73–78. https://doi.org/10.1016/j.abb.2017.11.010",
+      "journal-title": "Arch Biochem Biophys"
+    },
+    {
+      "key": "14_CR77",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Kamel K, el-Najjar A, Webber BB et al (1985) Hb Doha or alpha 2 beta 2[X-N-Met-1(NA1)Val–Glu]; a new beta-chain abnormal hemoglobin observed in a Qatari female. Biochim Biophys Acta 831:257–260. https://doi.org/10.1016/0167-4838(85)90043-3",
+      "DOI": "10.1016/0167-4838(85)90043-3"
+    },
+    {
+      "key": "14_CR78",
+      "doi-asserted-by": "publisher",
+      "first-page": "1009",
+      "DOI": "10.1182/blood.V122.21.1009.1009",
+      "volume": "122",
+      "author": "GJ Kato",
+      "year": "2013",
+      "unstructured": "Kato GJ, Lawrence MP, Mendelsohn LG et al (2013) Phase 1 clinical trial of the candidate anti-sickling agent Aes-103 In adults with sickle cell anemia. Blood 122:1009–1009",
+      "journal-title": "Blood"
+    },
+    {
+      "key": "14_CR79",
+      "doi-asserted-by": "publisher",
+      "first-page": "4111",
+      "DOI": "10.1021/bi00131a030",
+      "volume": "31",
+      "author": "JS Kavanaugh",
+      "year": "1992",
+      "unstructured": "Kavanaugh JS, Rogers PH, Case DA, Arnone A (1992) High-resolution x-ray study of deoxyhemoglobin Rothschild 37.beta. Trp.fwdarw. Arg: a mutation that creates an intersubunit chloride-binding site. Biochemistry 31:4111–4121. https://doi.org/10.1021/bi00131a030",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR80",
+      "doi-asserted-by": "publisher",
+      "first-page": "1847",
+      "DOI": "10.1110/ps.16401",
+      "volume": "10",
+      "author": "JS Kavanaugh",
+      "year": "2001",
+      "unstructured": "Kavanaugh JS, Weydert JA, Rogers PH et al (2001) Site-directed mutations of human hemoglobin at residue 35beta: a residue at the intersection of the alpha1beta1, alpha1beta2, and alpha1alpha2 interfaces. Protein Sci 10:1847–1855. https://doi.org/10.1110/ps.16401",
+      "journal-title": "Protein Sci"
+    },
+    {
+      "key": "14_CR81",
+      "doi-asserted-by": "publisher",
+      "first-page": "6101",
+      "DOI": "10.1021/bi047813a",
+      "volume": "44",
+      "author": "JS Kavanaugh",
+      "year": "2005",
+      "unstructured": "Kavanaugh JS, Rogers PH, Arnone A (2005) Crystallographic evidence for a new ensemble of ligand-induced allosteric transitions in hemoglobin: the T-to-T(high) quaternary transitions. Biochemistry 44:6101–6121. https://doi.org/10.1021/bi047813a",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR82",
+      "doi-asserted-by": "publisher",
+      "first-page": "H1450",
+      "DOI": "10.1152/ajpheart.1993.265.4.H1450",
+      "volume": "265",
+      "author": "SR Khandelwal",
+      "year": "1993",
+      "unstructured": "Khandelwal SR, Randad RS, Lin PS et al (1993) Enhanced oxygenation in vivo by allosteric inhibitors of hemoglobin saturation. Am J Physiol 265:H1450–H1453. https://doi.org/10.1152/ajpheart.1993.265.4.H1450",
+      "journal-title": "Am J Physiol"
+    },
+    {
+      "key": "14_CR83",
+      "doi-asserted-by": "publisher",
+      "first-page": "15",
+      "DOI": "10.1016/0005-2795(78)90471-3",
+      "volume": "534",
+      "author": "JV Kilmartin",
+      "year": "1978",
+      "unstructured": "Kilmartin JV, Imai K, Jones RT et al (1978) Role of Bohr group salt bridges in cooperativity in hemoglobin. Biochim Biophys Acta 534:15–25. https://doi.org/10.1016/0005-2795(78)90471-3",
+      "journal-title": "Biochim Biophys Acta"
+    },
+    {
+      "key": "14_CR84",
+      "doi-asserted-by": "publisher",
+      "first-page": "125",
+      "DOI": "10.1111/j.1365-2141.1972.tb08794.x",
+      "volume": "22",
+      "author": "MA King",
+      "year": "1972",
+      "unstructured": "King MA, Wiltshire BG, Lehmann H, Morimoto H (1972) An unstable haemoglobin with reduced oxygen affinity: haemoglobin Peterborough, 3 (GI3) Valine lead to Phenylalanine, its interaction with normal haemoglobin and with haemoglobin Lepore. Br J Haematol 22:125–134. https://doi.org/10.1111/j.1365-2141.1972.tb08794.x",
+      "journal-title": "Br J Haematol"
+    },
+    {
+      "key": "14_CR85",
+      "doi-asserted-by": "publisher",
+      "first-page": "34",
+      "DOI": "10.1016/0167-4838(94)00190-r",
+      "volume": "1246",
+      "author": "J Kister",
+      "year": "1995",
+      "unstructured": "Kister J, Kiger L, Francina A et al (1995) Hemoglobin Roanne [alpha 94(G1) Asp → Glu]: a variant of the alpha 1 beta 2 interface with an unexpected high oxygen affinity. Biochim Biophys Acta 1246:34–38. https://doi.org/10.1016/0167-4838(94)00190-r",
+      "journal-title": "Biochim Biophys Acta"
+    },
+    {
+      "key": "14_CR86",
+      "doi-asserted-by": "publisher",
+      "first-page": "2593",
+      "DOI": "10.1200/JCO.1999.17.8.2593",
+      "volume": "17",
+      "author": "L Kleinberg",
+      "year": "1999",
+      "unstructured": "Kleinberg L, Grossman SA, Piantadosi S et al (1999) Phase I trial to determine the safety, pharmacodynamics, and pharmacokinetics of RSR13, a novel radioenhancer, in newly diagnosed glioblastoma multiforme. J Clin Oncol 17:2593–2603. https://doi.org/10.1200/JCO.1999.17.8.2593",
+      "journal-title": "J Clin Oncol"
+    },
+    {
+      "key": "14_CR87",
+      "doi-asserted-by": "publisher",
+      "first-page": "365",
+      "DOI": "10.1021/bi00865a047",
+      "volume": "5",
+      "author": "DE Koshland",
+      "year": "1966",
+      "unstructured": "Koshland DE, Némethy G, Filmer D (1966) Comparison of experimental binding data and theoretical models in proteins containing subunits. Biochemistry 5:365–385. https://doi.org/10.1021/bi00865a047",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR88",
+      "doi-asserted-by": "publisher",
+      "first-page": "1575",
+      "DOI": "10.1134/S0006297918120155",
+      "volume": "83",
+      "author": "OV Kosmachevskaya",
+      "year": "2018",
+      "unstructured": "Kosmachevskaya OV, Topunov AF (2018) Alternate and additional functions of erythrocyte hemoglobin. Biochem Mosc 83:1575–1593. https://doi.org/10.1134/S0006297918120155",
+      "journal-title": "Biochem Mosc"
+    },
+    {
+      "key": "14_CR89",
+      "doi-asserted-by": "publisher",
+      "first-page": "627",
+      "DOI": "10.1016/j.febslet.2004.12.033",
+      "volume": "579",
+      "author": "M Laberge",
+      "year": "2005",
+      "unstructured": "Laberge M, Kövesi I, Yonetani T, Fidy J (2005) R-state hemoglobin bound to heterotropic effectors: models of the DPG, IHP and RSR13 binding sites. FEBS Lett 579:627–632. https://doi.org/10.1016/j.febslet.2004.12.033",
+      "journal-title": "FEBS Lett"
+    },
+    {
+      "key": "14_CR90",
+      "doi-asserted-by": "publisher",
+      "first-page": "385",
+      "DOI": "10.1016/0022-2836(77)90256-x",
+      "volume": "114",
+      "author": "RC Ladner",
+      "year": "1977",
+      "unstructured": "Ladner RC, Heidner EJ, Perutz MF (1977) The structure of horse methaemoglobin at 2-0 A resolution. J Mol Biol 114:385–414. https://doi.org/10.1016/0022-2836(77)90256-x",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR91",
+      "doi-asserted-by": "publisher",
+      "first-page": "6117",
+      "DOI": "10.1073/pnas.85.16.6117",
+      "volume": "85",
+      "author": "I Lalezari",
+      "year": "1988",
+      "unstructured": "Lalezari I, Rahbar S, Lalezari P et al (1988) LR16, a compound with potent effects on the oxygen affinity of hemoglobin, on blood cholesterol, and on low density lipoprotein. PNAS 85:6117–6121. https://doi.org/10.1073/pnas.85.16.6117",
+      "journal-title": "PNAS"
+    },
+    {
+      "key": "14_CR92",
+      "doi-asserted-by": "publisher",
+      "first-page": "1515",
+      "DOI": "10.1021/bi00458a024",
+      "volume": "29",
+      "author": "I Lalezari",
+      "year": "1990",
+      "unstructured": "Lalezari I, Lalezari P, Poyart C et al (1990) New effectors of human hemoglobin: structure and function. Biochemistry 29:1515–1523. https://doi.org/10.1021/bi00458a024",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR93",
+      "doi-asserted-by": "publisher",
+      "first-page": "2060",
+      "DOI": "10.1172/JCI107390",
+      "volume": "52",
+      "author": "JJ Lokich",
+      "year": "1973",
+      "unstructured": "Lokich JJ, Moloney WC, Bunn HF et al (1973) Hemoglobin brigham (alpha2Abeta2100 Pro–Leu). Hemoglobin variant associated with familial erythrocytosis. J Clin Invest 52:2060–2067. https://doi.org/10.1172/JCI107390",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR94",
+      "doi-asserted-by": "publisher",
+      "first-page": "1219",
+      "DOI": "10.1021/cr940325w",
+      "volume": "104",
+      "author": "JA Lukin",
+      "year": "2004",
+      "unstructured": "Lukin JA, Ho C (2004) The structure–function relationship of hemoglobin in solution at atomic resolution. Chem Rev 104:1219–1230. https://doi.org/10.1021/cr940325w",
+      "journal-title": "Chem Rev"
+    },
+    {
+      "key": "14_CR95",
+      "doi-asserted-by": "publisher",
+      "first-page": "517",
+      "DOI": "10.1073/pnas.232715799",
+      "volume": "100",
+      "author": "JA Lukin",
+      "year": "2003",
+      "unstructured": "Lukin JA, Kontaxis G, Simplaceanu V et al (2003) Quaternary structure of hemoglobin in solution. PNAS 100:517–520. https://doi.org/10.1073/pnas.232715799",
+      "journal-title": "PNAS"
+    },
+    {
+      "key": "14_CR96",
+      "doi-asserted-by": "publisher",
+      "first-page": "203",
+      "DOI": "10.1023/B:JNMR.0000013816.64039.6f",
+      "volume": "28",
+      "author": "JA Lukin",
+      "year": "2004",
+      "unstructured": "Lukin JA, Kontaxis G, Simplaceanu V et al (2004) Backbone resonance assignments of human adult hemoglobin in the carbonmonoxy form. J Biomol NMR 28:203–204. https://doi.org/10.1023/B:JNMR.0000013816.64039.6f",
+      "journal-title": "J Biomol NMR"
+    },
+    {
+      "key": "14_CR97",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Mairbäurl H, Weber RE (2012) Oxygen transport by hemoglobin. Compr Physiol 2:1463–1489. https://doi.org/10.1002/cphy.c080113",
+      "DOI": "10.1002/cphy.c080113"
+    },
+    {
+      "key": "14_CR98",
+      "doi-asserted-by": "publisher",
+      "first-page": "909",
+      "DOI": "10.1016/j.jmb.2011.02.062",
+      "volume": "408",
+      "author": "L Makowski",
+      "year": "2011",
+      "unstructured": "Makowski L, Bardhan J, Gore D et al (2011) WAXS studies of the structural diversity of hemoglobin in solution. J Mol Biol 408:909–921. https://doi.org/10.1016/j.jmb.2011.02.062",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR99",
+      "doi-asserted-by": "publisher",
+      "first-page": "397",
+      "DOI": "10.1016/S0006-3495(90)82556-X",
+      "volume": "57",
+      "author": "MC Marden",
+      "year": "1990",
+      "unstructured": "Marden MC, Bohn B, Kister J, Poyart C (1990) Effectors of hemoglobin. separation of allosteric and affinity factors. Biophys J 57:397–403. https://doi.org/10.1016/S0006-3495(90)82556-X",
+      "journal-title": "Biophys J"
+    },
+    {
+      "key": "14_CR100",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Marengo-Rowe AJ (2006) Structure-function relations of human hemoglobins. Proc (Bayl Univ Med Cent) 19:239–245. https://doi.org/10.1080/08998280.2006.11928171",
+      "DOI": "10.1080/08998280.2006.11928171"
+    },
+    {
+      "key": "14_CR101",
+      "doi-asserted-by": "publisher",
+      "first-page": "3944",
+      "DOI": "10.1021/bi00468a022",
+      "volume": "29",
+      "author": "AS Mehanna",
+      "year": "1990",
+      "unstructured": "Mehanna AS, Abraham DJ (1990) Comparison of crystal and solution hemoglobin binding of selected antigelling agents and allosteric modifiers. Biochemistry 29:3944–3952. https://doi.org/10.1021/bi00468a022",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR102",
+      "doi-asserted-by": "publisher",
+      "first-page": "321",
+      "DOI": "10.1021/acsmedchemlett.6b00491",
+      "volume": "8",
+      "author": "B Metcalf",
+      "year": "2017",
+      "unstructured": "Metcalf B, Chuang C, Dufu K et al (2017) Discovery of GBT440, an orally bioavailable R-state stabilizer of sickle cell hemoglobin. ACS Med Chem Lett 8:321–326. https://doi.org/10.1021/acsmedchemlett.6b00491",
+      "journal-title": "ACS Med Chem Lett"
+    },
+    {
+      "key": "14_CR103",
+      "doi-asserted-by": "publisher",
+      "first-page": "88",
+      "DOI": "10.1016/s0022-2836(65)80285-6",
+      "volume": "12",
+      "author": "J Monod",
+      "year": "1965",
+      "unstructured": "Monod J, Wyman J, Changeux JP (1965) On the nature of allosteric transitions: a plausible model. J Mol Biol 12:88–118. https://doi.org/10.1016/s0022-2836(65)80285-6",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR104",
+      "doi-asserted-by": "publisher",
+      "first-page": "416",
+      "DOI": "10.1038/351416a0",
+      "volume": "351",
+      "author": "A Mozzarelli",
+      "year": "1991",
+      "unstructured": "Mozzarelli A, Rivetti C, Rossi GL et al (1991) Crystals of haemoglobin with the T quaternary structure bind oxygen noncooperatively with no Bohr effect. Nature 351:416–419. https://doi.org/10.1038/351416a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR105",
+      "doi-asserted-by": "publisher",
+      "first-page": "15353",
+      "DOI": "10.1021/bi0012944",
+      "volume": "39",
+      "author": "TC Mueser",
+      "year": "2000",
+      "unstructured": "Mueser TC, Rogers PH, Arnone A (2000) Interface sliding as illustrated by the multiple quaternary structures of liganded hemoglobin. Biochemistry 39:15353–15364. https://doi.org/10.1021/bi0012944",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR106",
+      "doi-asserted-by": "publisher",
+      "first-page": "633",
+      "DOI": "10.1038/199633a0",
+      "volume": "199",
+      "author": "H Muirhead",
+      "year": "1963",
+      "unstructured": "Muirhead H, Perutz MF (1963) Structure of hæemoglobin: a three-dimensional Fourier synthesis of reduced human haemoglobin at 5.5 Å resolution. Nature 199:633–638. https://doi.org/10.1038/199633a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR107",
+      "doi-asserted-by": "publisher",
+      "first-page": "267",
+      "DOI": "10.3109/03630267709003409",
+      "volume": "1",
+      "author": "J Murari",
+      "year": "1977",
+      "unstructured": "Murari J, Smith LL, Wilson JB et al (1977) Some properties of hemoglobin Gun Hill. Hemoglobin 1:267–282",
+      "journal-title": "Hemoglobin"
+    },
+    {
+      "key": "14_CR108",
+      "doi-asserted-by": "publisher",
+      "first-page": "832",
+      "DOI": "10.1038/283832a0",
+      "volume": "283",
+      "author": "RL Nagel",
+      "year": "1980",
+      "unstructured": "Nagel RL, Johnson J, Bookchin RM et al (1980) Beta-chain contact sites in the haemoglobin S polymer. Nature 283:832–834. https://doi.org/10.1038/283832a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR109",
+      "doi-asserted-by": "publisher",
+      "first-page": "2318",
+      "DOI": "10.1021/cb500230b",
+      "volume": "9",
+      "author": "A Nakagawa",
+      "year": "2014",
+      "unstructured": "Nakagawa A, Lui FE, Wassaf D et al (2014) Identification of a small molecule that increases hemoglobin oxygen affinity and reduces SS erythrocyte sickling. ACS Chem Biol 9:2318–2325. https://doi.org/10.1021/cb500230b",
+      "journal-title": "ACS Chem Biol"
+    },
+    {
+      "key": "14_CR110",
+      "doi-asserted-by": "publisher",
+      "first-page": "1954",
+      "DOI": "10.1021/acs.molpharmaceut.8b00108",
+      "volume": "15",
+      "author": "A Nakagawa",
+      "year": "2018",
+      "unstructured": "Nakagawa A, Ferrari M, Schleifer G et al (2018) A triazole disulfide compound increases the affinity of hemoglobin for oxygen and reduces the sickling of human sickle cells. Mol Pharm 15:1954–1963. https://doi.org/10.1021/acs.molpharmaceut.8b00108",
+      "journal-title": "Mol Pharm"
+    },
+    {
+      "key": "14_CR111",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Nienhuis AW (1987) Hemoglobin: Molecular, genetic and clinical aspects: By H. F. Bunn and B. G. Forget. Philadelphia: W. B. Saunders Company. (1986). 690 pp. $99.00. Cell 48:731. https://doi.org/10.1016/0092-8674(87)90069-9",
+      "DOI": "10.1016/0092-8674(87)90069-9"
+    },
+    {
+      "key": "14_CR112",
+      "doi-asserted-by": "publisher",
+      "first-page": "1762",
+      "DOI": "10.1002/cbdv.200890165",
+      "volume": "5",
+      "author": "IN Nnamani",
+      "year": "2008",
+      "unstructured": "Nnamani IN, Joshi GS, Danso-Danquah R et al (2008) Pyridyl derivatives of benzaldehyde as potential antisickling agents. Chem Biodivers 5:1762–1769. https://doi.org/10.1002/cbdv.200890165",
+      "journal-title": "Chem Biodivers"
+    },
+    {
+      "key": "14_CR113",
+      "doi-asserted-by": "publisher",
+      "first-page": "12357",
+      "DOI": "10.1021/bi010988p",
+      "volume": "40",
+      "author": "RW Noble",
+      "year": "2001",
+      "unstructured": "Noble RW, Hui HL, Kwiatkowski LD et al (2001) Mutational effects at the subunit interfaces of human hemoglobin: evidence for a unique sensitivity of the T quaternary state to changes in the hinge region of the alpha 1 beta 2 interface. Biochemistry 40:12357–12368. https://doi.org/10.1021/bi010988p",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR114",
+      "doi-asserted-by": "crossref",
+      "first-page": "12204",
+      "DOI": "10.1016/S0021-9258(19)86450-5",
+      "volume": "254",
+      "author": "S O’Donnell",
+      "year": "1979",
+      "unstructured": "O’Donnell S, Mandaro R, Schuster TM, Arnone A (1979) X-ray diffraction and solution studies of specifically carbamylated human hemoglobin A. evidence for the location of a proton- and oxygen-linked chloride binding site at valine 1 alpha. J Biol Chem 254:12204–12208",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR115",
+      "doi-asserted-by": "publisher",
+      "first-page": "141",
+      "DOI": "10.1111/bjh.14214",
+      "volume": "175",
+      "author": "D Oksenberg",
+      "year": "2016",
+      "unstructured": "Oksenberg D, Dufu K, Patel MP et al (2016) GBT440 increases haemoglobin oxygen affinity, reduces sickling and prolongs RBC half-life in a murine model of sickle cell disease. Br J Haematol 175:141–153. https://doi.org/10.1111/bjh.14214",
+      "journal-title": "Br J Haematol"
+    },
+    {
+      "key": "14_CR116",
+      "doi-asserted-by": "publisher",
+      "first-page": "6353",
+      "DOI": "10.1039/c5ob00367a",
+      "volume": "13",
+      "author": "AM Omar",
+      "year": "2015",
+      "unstructured": "Omar AM, Mahran MA, Ghatge MS et al (2015) Identification of a novel class of covalent modifiers of hemoglobin as potential antisickling agents. Org Biomol Chem 13:6353–6370. https://doi.org/10.1039/c5ob00367a",
+      "journal-title": "Org Biomol Chem"
+    },
+    {
+      "key": "14_CR117",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Omar AM, Mahran MA, Ghatge MS et al (2016) Aryloxyalkanoic acids as non-covalent modifiers of the allosteric properties of hemoglobin. Molecules 21. https://doi.org/10.3390/molecules21081057",
+      "DOI": "10.3390/molecules21081057"
+    },
+    {
+      "key": "14_CR118",
+      "doi-asserted-by": "publisher",
+      "first-page": "2530",
+      "DOI": "10.1016/j.bmc.2018.04.015",
+      "volume": "26",
+      "author": "PP Pagare",
+      "year": "2018",
+      "unstructured": "Pagare PP, Ghatge MS, Musayev FN et al (2018) Rational design of pyridyl derivatives of vanillin for the treatment of sickle cell disease. Bioorg Med Chem 26:2530–2538. https://doi.org/10.1016/j.bmc.2018.04.015",
+      "journal-title": "Bioorg Med Chem"
+    },
+    {
+      "key": "14_CR119",
+      "doi-asserted-by": "publisher",
+      "first-page": "527",
+      "DOI": "10.1007/978-1-4615-4863-8_63",
+      "volume": "454",
+      "author": "PS Pagel",
+      "year": "1998",
+      "unstructured": "Pagel PS, Hettrick DA, Montgomery MW et al (1998) RSR13, a synthetic allosteric modifier of hemoglobin, enhances recovery of stunned myocardium in dogs. Adv Exp Med Biol 454:527–531. https://doi.org/10.1007/978-1-4615-4863-8_63",
+      "journal-title": "Adv Exp Med Biol"
+    },
+    {
+      "key": "14_CR120",
+      "doi-asserted-by": "publisher",
+      "first-page": "775",
+      "DOI": "10.1006/jmbi.1996.0124",
+      "volume": "256",
+      "author": "M Paoli",
+      "year": "1996",
+      "unstructured": "Paoli M, Liddington R, Tame J et al (1996) Crystal structure of T state haemoglobin with oxygen bound at all four haems. J Mol Biol 256:775–792. https://doi.org/10.1006/jmbi.1996.0124",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR121",
+      "first-page": "589",
+      "volume": "12",
+      "author": "DC Patwa",
+      "year": "1987",
+      "unstructured": "Patwa DC, Abraham DJ, Hung TC (1987) Design, synthesis, and testing of potential antisickling agents. 6. Rheologic studies with active phenoxy and benzyloxy acids. Blood Cells 12:589–601",
+      "journal-title": "Blood Cells"
+    },
+    {
+      "key": "14_CR122",
+      "doi-asserted-by": "publisher",
+      "first-page": "2605",
+      "DOI": "10.1074/jbc.274.5.2605",
+      "volume": "274",
+      "author": "M Perrella",
+      "year": "1999",
+      "unstructured": "Perrella M, Cera ED (1999) CO ligation intermediates and the mechanism of hemoglobin cooperativity. J Biol Chem 274:2605–2608. https://doi.org/10.1074/jbc.274.5.2605",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR123",
+      "doi-asserted-by": "publisher",
+      "first-page": "587",
+      "DOI": "10.1016/s0300-9084(72)80142-1",
+      "volume": "54",
+      "author": "MF Perutz",
+      "year": "1972",
+      "unstructured": "Perutz MF (1972a) Stereochemical mechanism of cooperative effects in haemoglobin. Biochimie 54:587–588. https://doi.org/10.1016/s0300-9084(72)80142-1",
+      "journal-title": "Biochimie"
+    },
+    {
+      "key": "14_CR124",
+      "doi-asserted-by": "publisher",
+      "first-page": "495",
+      "DOI": "10.1038/237495a0",
+      "volume": "237",
+      "author": "MF Perutz",
+      "year": "1972",
+      "unstructured": "Perutz MF (1972b) Nature of haem-haem interaction. Nature 237:495–499. https://doi.org/10.1038/237495a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR125",
+      "doi-asserted-by": "publisher",
+      "first-page": "195",
+      "DOI": "10.1093/oxfordjournals.bmb.a071363",
+      "volume": "32",
+      "author": "MF Perutz",
+      "year": "1976",
+      "unstructured": "Perutz MF (1976) Structure and mechanism of haemoglobin. Br Med Bull 32:195–208. https://doi.org/10.1093/oxfordjournals.bmb.a071363",
+      "journal-title": "Br Med Bull"
+    },
+    {
+      "key": "14_CR126",
+      "doi-asserted-by": "publisher",
+      "first-page": "1",
+      "DOI": "10.1093/oxfordjournals.molbev.a040299",
+      "volume": "1",
+      "author": "MF Perutz",
+      "year": "1983",
+      "unstructured": "Perutz MF (1983) Species adaptation in a protein molecule. Mol Biol Evol 1:1–28. https://doi.org/10.1093/oxfordjournals.molbev.a040299",
+      "journal-title": "Mol Biol Evol"
+    },
+    {
+      "key": "14_CR127",
+      "doi-asserted-by": "publisher",
+      "first-page": "42",
+      "DOI": "10.1016/0968-0004(89)90039-X",
+      "volume": "14",
+      "author": "MF Perutz",
+      "year": "1989",
+      "unstructured": "Perutz MF (1989) Myoglobin and haemoglobin: role of distal residues in reactions with haem ligands. Trends Biochem Sci 14:42–44. https://doi.org/10.1016/0968-0004(89)90039-X",
+      "journal-title": "Trends Biochem Sci"
+    },
+    {
+      "key": "14_CR128",
+      "doi-asserted-by": "publisher",
+      "first-page": "881",
+      "DOI": "10.1016/S0140-6736(83)90870-X",
+      "volume": "322",
+      "author": "MF Perutz",
+      "year": "1983",
+      "unstructured": "Perutz MF, Poyart C (1983) Bezafibrate lowers oxygen affinity of haemoglobin. The Lancet 322:881–882. https://doi.org/10.1016/S0140-6736(83)90870-X",
+      "journal-title": "The Lancet"
+    },
+    {
+      "key": "14_CR129",
+      "doi-asserted-by": "publisher",
+      "first-page": "131",
+      "DOI": "10.1038/219131a0",
+      "volume": "219",
+      "author": "MF Perutz",
+      "year": "1968",
+      "unstructured": "Perutz MF, Muirhead H, Cox JM, Goaman LC (1968) Three-dimensional Fourier synthesis of horse oxyhaemoglobin at 2.8 A resolution: the atomic model. Nature 219:131–139. https://doi.org/10.1038/219131a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR130",
+      "doi-asserted-by": "publisher",
+      "first-page": "1240",
+      "DOI": "10.1038/2221240a0",
+      "volume": "222",
+      "author": "MF Perutz",
+      "year": "1969",
+      "unstructured": "Perutz MF, Muirhead H, Mazzarella L et al (1969) Identification of residues responsible for the alkaline Bohr effect in haemoglobin. Nature 222:1240–1243. https://doi.org/10.1038/2221240a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR131",
+      "doi-asserted-by": "publisher",
+      "first-page": "1064",
+      "DOI": "10.1021/ja00265a036",
+      "volume": "108",
+      "author": "MF Perutz",
+      "year": "1986",
+      "unstructured": "Perutz MF, Giulio Fermi, Abraham DJ et al (1986) Hemoglobin as a receptor of drugs and peptides: x-ray studies of the stereochemistry of binding. J Am Chem Soc 108:1064–1078. https://doi.org/10.1021/ja00265a036",
+      "journal-title": "J Am Chem Soc"
+    },
+    {
+      "key": "14_CR132",
+      "doi-asserted-by": "publisher",
+      "first-page": "536",
+      "DOI": "10.1006/jmbi.1993.1530",
+      "volume": "233",
+      "author": "MF Perutz",
+      "year": "1993",
+      "unstructured": "Perutz MF, Fermi G, Poyart C et al (1993) A novel allosteric mechanism in haemoglobin: structure of bovine deoxyhaemoglobin, absence of specific chloride-binding sites and origin of the chloride-linked Bohr effect in bovine and human haemoglobin. J Mol Biol 233:536–545. https://doi.org/10.1006/jmbi.1993.1530",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR133",
+      "doi-asserted-by": "publisher",
+      "unstructured": "Perutz MF, Shih DT -b., Williamson D (1994) The chloride effect in human haemoglobin. a new kind of allosteric mechanism. J Mol Biol 239:555–560. https://doi.org/10.1006/jmbi.1994.1394",
+      "DOI": "10.1006/jmbi.1994.1394"
+    },
+    {
+      "key": "14_CR134",
+      "doi-asserted-by": "publisher",
+      "first-page": "1",
+      "DOI": "10.1146/annurev.biophys.27.1.1",
+      "volume": "27",
+      "author": "MF Perutz",
+      "year": "1998",
+      "unstructured": "Perutz MF, Wilkinson AJ, Paoli M, Dodson GG (1998) The stereochemical mechanism of the cooperative effects in hemoglobin revisited. Annu Rev Biophys Biomol Struct 27:1–34. https://doi.org/10.1146/annurev.biophys.27.1.1",
+      "journal-title": "Annu Rev Biophys Biomol Struct"
+    },
+    {
+      "key": "14_CR135",
+      "doi-asserted-by": "publisher",
+      "first-page": "4726",
+      "DOI": "10.1021/jm000199q",
+      "volume": "43",
+      "author": "M Phelps Grella",
+      "year": "2000",
+      "unstructured": "Phelps Grella M, Danso-Danquah R, Safo MK et al (2000) Synthesis and structure-activity relationships of chiral allosteric modifiers of hemoglobin. J Med Chem 43:4726–4737. https://doi.org/10.1021/jm000199q",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR136",
+      "doi-asserted-by": "publisher",
+      "first-page": "178",
+      "DOI": "10.1182/blood.V77.1.178.178",
+      "volume": "77",
+      "author": "D Plaseska",
+      "year": "1991",
+      "unstructured": "Plaseska D, Dimovski AJ, Wilson JB et al (1991) Hemoglobin Montreal: a new variant with an extended beta chain due to a deletion of Asp, Gly, Leu at positions 73, 74, and 75, and an insertion of Ala, Arg, Cys, Gln at the same location. Blood 77:178–181",
+      "journal-title": "Blood"
+    },
+    {
+      "key": "14_CR137",
+      "doi-asserted-by": "publisher",
+      "first-page": "301",
+      "DOI": "10.1016/0003-9861(86)90006-8",
+      "volume": "249",
+      "author": "WN Poillon",
+      "year": "1986",
+      "unstructured": "Poillon WN, Kim BC, Welty EV, Walder JA (1986) The effect of 2,3-diphosphoglycerate on the solubility of deoxyhemoglobin S. Arch Biochem Biophys 249:301–305. https://doi.org/10.1016/0003-9861(86)90006-8",
+      "journal-title": "Arch Biochem Biophys"
+    },
+    {
+      "key": "14_CR138",
+      "doi-asserted-by": "publisher",
+      "first-page": "752",
+      "DOI": "10.1021/jm00106a041",
+      "volume": "34",
+      "author": "RS Randad",
+      "year": "1991",
+      "unstructured": "Randad RS, Mahran MA, Mehanna AS, Abraham DJ (1991) Allosteric modifiers of hemoglobin. 1. Design, synthesis, testing, and structure-allosteric activity relationship of novel hemoglobin oxygen affinity decreasing agents. J Med Chem 34:752–757. https://doi.org/10.1021/jm00106a041",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR139",
+      "doi-asserted-by": "publisher",
+      "first-page": "1826",
+      "DOI": "10.1172/JCI104406",
+      "volume": "40",
+      "author": "KR Reissmann",
+      "year": "1961",
+      "unstructured": "Reissmann KR, Ruth WE, Nomura T (1961) A human hemoglobin with lowered oxygen affinity and impaired heme-heme interactions. J Clin Invest 40:1826–1833. https://doi.org/10.1172/JCI104406",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR140",
+      "doi-asserted-by": "publisher",
+      "first-page": "8",
+      "DOI": "10.1016/s0006-291x(83)80109-0",
+      "volume": "111",
+      "author": "MD Rhoda",
+      "year": "1983",
+      "unstructured": "Rhoda MD, Martin J, Blouquit Y et al (1983) Sickle cell hemoglobin fiber formation strongly inhibited by the Stanleyville II mutation (alpha 78 Asn leads to Lys). Biochem Biophys Res Commun 111:8–13. https://doi.org/10.1016/s0006-291x(83)80109-0",
+      "journal-title": "Biochem Biophys Res Commun"
+    },
+    {
+      "key": "14_CR141",
+      "doi-asserted-by": "publisher",
+      "first-page": "270",
+      "DOI": "10.1006/jmbi.1993.1505",
+      "volume": "233",
+      "author": "V Richard",
+      "year": "1993",
+      "unstructured": "Richard V, Dodson GG, Mauguen Y (1993) Human deoxyhaemoglobin-2,3-diphosphoglycerate complex low-salt structure at 2.5 A resolution. J Mol Biol 233:270–274. https://doi.org/10.1006/jmbi.1993.1505",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR142",
+      "doi-asserted-by": "publisher",
+      "first-page": "1627",
+      "DOI": "10.1172/JCI106128",
+      "volume": "48",
+      "author": "RF Rieder",
+      "year": "1969",
+      "unstructured": "Rieder RF, Oski FA, Clegg JB (1969) Hemoglobin Philly (beta 35 tyrosine phenylalanine): studies in the molecular pathology of hemoglobin. J Clin Invest 48:1627–1642. https://doi.org/10.1172/JCI106128",
+      "journal-title": "J Clin Invest"
+    },
+    {
+      "key": "14_CR143",
+      "doi-asserted-by": "publisher",
+      "first-page": "325",
+      "DOI": "10.1006/geno.1998.5524",
+      "volume": "53",
+      "author": "C Riemer",
+      "year": "1998",
+      "unstructured": "Riemer C, ElSherbini A, Stojanovic N et al (1998) A database of experimental results on globin gene expression. Genomics 53:325–337. https://doi.org/10.1006/geno.1998.5524",
+      "journal-title": "Genomics"
+    },
+    {
+      "key": "14_CR144",
+      "doi-asserted-by": "publisher",
+      "first-page": "8347",
+      "DOI": "10.1021/bi050412q",
+      "volume": "44",
+      "author": "MK Safo",
+      "year": "2005",
+      "unstructured": "Safo MK, Abraham DJ (2005) The enigma of the liganded hemoglobin end state: a novel quaternary structure of human carbonmonoxy hemoglobin. Biochemistry 44:8347–8359. https://doi.org/10.1021/bi050412q",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR145",
+      "unstructured": "Safo MK, Bruno S (2011) Allosteric effectors of hemoglobin: past, present and future. In: Chemistry and biochemistry of oxygen therapeutics. Wiley, Ltd., pp 285–300"
+    },
+    {
+      "key": "14_CR146",
+      "doi-asserted-by": "publisher",
+      "first-page": "951",
+      "DOI": "10.1110/ps.50601",
+      "volume": "10",
+      "author": "MK Safo",
+      "year": "2001",
+      "unstructured": "Safo MK, Moure CM, Burnett JC et al (2001) High–resolution crystal structure of deoxy hemoglobin complexed with a potent allosteric effector. Protein Sci 10:951–957",
+      "journal-title": "Protein Sci"
+    },
+    {
+      "key": "14_CR147",
+      "doi-asserted-by": "publisher",
+      "first-page": "634",
+      "DOI": "10.1107/s0907444902002627",
+      "volume": "58",
+      "author": "MK Safo",
+      "year": "2002",
+      "unstructured": "Safo MK, Boyiri T, Burnett JC et al (2002a) X-ray crystallographic analyses of symmetrical allosteric effectors of hemoglobin: compounds designed to link primary and secondary binding sites. Acta Crystallogr D Biol Crystallogr 58:634–644. https://doi.org/10.1107/s0907444902002627",
+      "journal-title": "Acta Crystallogr D Biol Crystallogr"
+    },
+    {
+      "key": "14_CR148",
+      "doi-asserted-by": "publisher",
+      "first-page": "2031",
+      "DOI": "10.1107/S0907444902015809",
+      "volume": "58",
+      "author": "MK Safo",
+      "year": "2002",
+      "unstructured": "Safo MK, Burnett JC, Musayev FN et al (2002b) Structure of human carbonmonoxyhemoglobin at 2.16 Å: a snapshot of the allosteric transition. Acta Crystallographica Section D 58:2031–2037. https://doi.org/10.1107/S0907444902015809",
+      "journal-title": "Acta Crystallographica Section D"
+    },
+    {
+      "key": "14_CR149",
+      "doi-asserted-by": "publisher",
+      "first-page": "4665",
+      "DOI": "10.1021/jm0498001",
+      "volume": "47",
+      "author": "MK Safo",
+      "year": "2004",
+      "unstructured": "Safo MK, Abdulmalik O, Danso-Danquah R et al (2004) Structural basis for the potent antisickling effect of a novel class of five-membered heterocyclic aldehydic compounds. J Med Chem 47:4665–4676. https://doi.org/10.1021/jm0498001",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR150",
+      "doi-asserted-by": "publisher",
+      "first-page": "156",
+      "DOI": "10.1107/S0907444904030501",
+      "volume": "61",
+      "author": "MK Safo",
+      "year": "2005",
+      "unstructured": "Safo MK, Abdulmalik O, Lin HR et al (2005) Structures of R- and T-state hemoglobin Bassett: elucidating the structural basis for the low oxygen affinity of a mutant hemoglobin. Acta Crystallogr D Biol Crystallogr 61:156–162. https://doi.org/10.1107/S0907444904030501",
+      "journal-title": "Acta Crystallogr D Biol Crystallogr"
+    },
+    {
+      "key": "14_CR151",
+      "doi-asserted-by": "publisher",
+      "first-page": "797",
+      "DOI": "10.1016/j.bbapap.2011.02.013",
+      "volume": "1814",
+      "author": "MK Safo",
+      "year": "2011",
+      "unstructured": "Safo MK, Ahmed MH, Ghatge MS, Boyiri T (2011) Hemoglobin-ligand binding: understanding Hb function and allostery on atomic level. Biochim Biophys Acta 1814:797–809. https://doi.org/10.1016/j.bbapap.2011.02.013",
+      "journal-title": "Biochim Biophys Acta"
+    },
+    {
+      "key": "14_CR152",
+      "doi-asserted-by": "publisher",
+      "first-page": "2061",
+      "DOI": "10.1107/S0907444913019197",
+      "volume": "69",
+      "author": "MK Safo",
+      "year": "2013",
+      "unstructured": "Safo MK, Ko T-P, Abdulmalik O et al (2013) Structure of fully liganded Hb ζ2β2s trapped in a tense conformation. Acta Crystallogr D Biol Crystallogr 69:2061–2071. https://doi.org/10.1107/S0907444913019197",
+      "journal-title": "Acta Crystallogr D Biol Crystallogr"
+    },
+    {
+      "key": "14_CR153",
+      "doi-asserted-by": "publisher",
+      "first-page": "99",
+      "DOI": "10.1016/j.molstruc.2015.06.047",
+      "volume": "1099",
+      "author": "MK Safo",
+      "year": "2015",
+      "unstructured": "Safo MK, Ko T-P, Schreiter ER, Russell JE (2015) Structural basis for the antipolymer activity of Hb ζ2β2s trapped in a tense conformation. J Mol Struct 1099:99–107. https://doi.org/10.1016/j.molstruc.2015.06.047",
+      "journal-title": "J Mol Struct"
+    },
+    {
+      "key": "14_CR154",
+      "doi-asserted-by": "publisher",
+      "first-page": "9973",
+      "DOI": "10.1021/bi700935z",
+      "volume": "46",
+      "author": "SC Sahu",
+      "year": "2007",
+      "unstructured": "Sahu SC, Simplaceanu V, Gong Q et al (2007) Insights into the solution structure of human deoxyhemoglobin in the absence and presence of an allosteric effector. Biochemistry 46:9973–9980. https://doi.org/10.1021/bi700935z",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR155",
+      "first-page": "896",
+      "volume": "47",
+      "author": "M Sakuragawa",
+      "year": "1984",
+      "unstructured": "Sakuragawa M, Ohba Y, Miyaji T et al (1984) A Japanese boy with hemolytic anemia due to an unstable hemoglobin (Hb Bristol). Nippon Ketsueki Gakkai Zasshi 47:896–902",
+      "journal-title": "Nippon Ketsueki Gakkai Zasshi"
+    },
+    {
+      "key": "14_CR156",
+      "doi-asserted-by": "crossref",
+      "first-page": "4528",
+      "DOI": "10.1016/S0021-9258(18)61224-4",
+      "volume": "262",
+      "author": "M Samaja",
+      "year": "1987",
+      "unstructured": "Samaja M, Rovida E, Niggeler M et al (1987) The dissociation of carbon monoxide from hemoglobin intermediate. J Biol Chem 262:4528–4533",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR157",
+      "doi-asserted-by": "publisher",
+      "first-page": "13674",
+      "DOI": "10.1021/bi048531d",
+      "volume": "43",
+      "author": "U Samuni",
+      "year": "2004",
+      "unstructured": "Samuni U, Dantsker D, Juszczak LJ et al (2004) Spectroscopic and functional characterization of T state hemoglobin conformations encapsulated in silica gels. Biochemistry 43:13674–13682. https://doi.org/10.1021/bi048531d",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR158",
+      "doi-asserted-by": "crossref",
+      "first-page": "1533",
+      "DOI": "10.1016/S0021-9258(17)33681-5",
+      "volume": "251",
+      "author": "CA Sawicki",
+      "year": "1976",
+      "unstructured": "Sawicki CA, Gibson QH (1976) Quaternary conformational changes in human hemoglobin studied by laser photolysis of carboxyhemoglobin. J Biol Chem 251:1533–1542",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR159",
+      "doi-asserted-by": "publisher",
+      "first-page": "21",
+      "DOI": "10.1016/S0006-3495(78)85328-4",
+      "volume": "24",
+      "author": "CA Sawicki",
+      "year": "1978",
+      "unstructured": "Sawicki CA, Gibson QH (1978) The relation between carbon monoxide binding and the conformational change of hemoglobin. Biophys J 24:21–33. https://doi.org/10.1016/S0006-3495(78)85328-4",
+      "journal-title": "Biophys J"
+    },
+    {
+      "key": "14_CR160",
+      "doi-asserted-by": "publisher",
+      "first-page": "365",
+      "DOI": "10.1016/0005-2795(75)90192-0",
+      "volume": "400",
+      "author": "RG Schneider",
+      "year": "1975",
+      "unstructured": "Schneider RG, Atkins RJ, Hosty TS et al (1975) Haemoglobin Titusville: alpha94 Asp replaced by Asn. a new haemoglobin with a lowered affinity for oxygen. Biochim Biophys Acta 400:365–373",
+      "journal-title": "Biochim Biophys Acta"
+    },
+    {
+      "key": "14_CR161",
+      "doi-asserted-by": "publisher",
+      "first-page": "4195",
+      "DOI": "10.1073/pnas.73.11.4195",
+      "volume": "73",
+      "author": "BP Schoenborn",
+      "year": "1976",
+      "unstructured": "Schoenborn BP (1976) Dichloromethane as an antisickling agent in sickle cell hemoglobin. Proc Natl Acad Sci USA 73:4195–4199. https://doi.org/10.1073/pnas.73.11.4195",
+      "journal-title": "Proc Natl Acad Sci USA"
+    },
+    {
+      "key": "14_CR162",
+      "doi-asserted-by": "publisher",
+      "first-page": "84",
+      "DOI": "10.1038/375084a0",
+      "volume": "375",
+      "author": "MA Schumacher",
+      "year": "1995",
+      "unstructured": "Schumacher MA, Dixon MM, Kluger R et al (1995) Allosteric transition intermediates modelled by crosslinked haemoglobins. Nature 375:84–87. https://doi.org/10.1038/375084a0",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "14_CR163",
+      "doi-asserted-by": "publisher",
+      "first-page": "7841",
+      "DOI": "10.1073/pnas.94.15.7841",
+      "volume": "94",
+      "author": "MA Schumacher",
+      "year": "1997",
+      "unstructured": "Schumacher MA, Zheleznova EE, Poundstone KS et al (1997) Allosteric intermediates indicate R2 is the liganded hemoglobin end state. Proc Natl Acad Sci USA 94:7841–7844. https://doi.org/10.1073/pnas.94.15.7841",
+      "journal-title": "Proc Natl Acad Sci USA"
+    },
+    {
+      "key": "14_CR164",
+      "doi-asserted-by": "publisher",
+      "first-page": "267",
+      "DOI": "10.1016/0022-2836(80)90090-x",
+      "volume": "144",
+      "author": "VS Sharma",
+      "year": "1980",
+      "unstructured": "Sharma VS, Newton GL, Ranney HM et al (1980) Hemoglobin Rothschild (beta 37(C3)Trp replaced by Arg): a high/low affinity hemoglobin mutant. J Mol Biol 144:267–280. https://doi.org/10.1016/0022-2836(80)90090-x",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR165",
+      "doi-asserted-by": "publisher",
+      "first-page": "2364",
+      "DOI": "10.1200/JCO.2003.08.116",
+      "volume": "21",
+      "author": "E Shaw",
+      "year": "2003",
+      "unstructured": "Shaw E, Scott C, Suh J et al (2003) RSR13 plus cranial radiation therapy in patients with brain metastases: comparison with the radiation therapy oncology group recursive partitioning analysis brain metastases database. J Clin Oncol 21:2364–2371. https://doi.org/10.1200/JCO.2003.08.116",
+      "journal-title": "J Clin Oncol"
+    },
+    {
+      "key": "14_CR166",
+      "doi-asserted-by": "publisher",
+      "first-page": "50",
+      "DOI": "10.1016/s0014-5793(01)02225-6",
+      "volume": "492",
+      "author": "N Shibayama",
+      "year": "2001",
+      "unstructured": "Shibayama N, Saigo S (2001) Direct observation of two distinct affinity conformations in the T state human deoxyhemoglobin. FEBS Lett 492:50–53. https://doi.org/10.1016/s0014-5793(01)02225-6",
+      "journal-title": "FEBS Lett"
+    },
+    {
+      "key": "14_CR167",
+      "doi-asserted-by": "publisher",
+      "first-page": "38791",
+      "DOI": "10.1074/jbc.M205461200",
+      "volume": "277",
+      "author": "N Shibayama",
+      "year": "2002",
+      "unstructured": "Shibayama N, Miura S, Tame JRH et al (2002) Crystal structure of horse carbonmonoxyhemoglobin-bezafibrate complex at 1.55-A resolution. a novel allosteric binding site in R-state hemoglobin. J Biol Chem 277:38791–38796. https://doi.org/10.1074/jbc.M205461200",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR168",
+      "doi-asserted-by": "crossref",
+      "first-page": "17248",
+      "DOI": "10.1016/S0021-9258(18)41919-9",
+      "volume": "267",
+      "author": "MM Silva",
+      "year": "1992",
+      "unstructured": "Silva MM, Rogers PH, Arnone A (1992) A third quaternary structure of human hemoglobin A at 1.7-A resolution. J Biol Chem 267:17248–17256",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR169",
+      "doi-asserted-by": "publisher",
+      "first-page": "295",
+      "DOI": "10.1002/prot.340180310",
+      "volume": "18",
+      "author": "FR Smith",
+      "year": "1994",
+      "unstructured": "Smith FR, Simmons KC (1994) Cyanomet human hemoglobin crystallized under physiological conditions exhibits the Y quaternary structure. Proteins 18:295–300. https://doi.org/10.1002/prot.340180310",
+      "journal-title": "Proteins"
+    },
+    {
+      "key": "14_CR170",
+      "doi-asserted-by": "publisher",
+      "first-page": "81",
+      "DOI": "10.1002/prot.340100202",
+      "volume": "10",
+      "author": "FR Smith",
+      "year": "1991",
+      "unstructured": "Smith FR, Lattman EE, Carter CW (1991) The mutation beta 99 Asp-Tyr stabilizes Y-a new, composite quaternary state of human hemoglobin. Proteins 10:81–91. https://doi.org/10.1002/prot.340100202",
+      "journal-title": "Proteins"
+    },
+    {
+      "key": "14_CR171",
+      "doi-asserted-by": "publisher",
+      "first-page": "4907",
+      "DOI": "10.1021/bi7023699",
+      "volume": "47",
+      "author": "X Song",
+      "year": "2008",
+      "unstructured": "Song X, Simplaceanu V, Ho NT, Ho C (2008) Effector-induced structural fluctuation regulates the ligand affinity of an allosteric protein: binding of inositol hexaphosphate has distinct dynamic consequences for the T and R states of hemoglobin. Biochemistry 47:4907–4915. https://doi.org/10.1021/bi7023699",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR172",
+      "doi-asserted-by": "publisher",
+      "first-page": "397",
+      "DOI": "10.1038/nrm1103",
+      "volume": "4",
+      "author": "S Spiegel",
+      "year": "2003",
+      "unstructured": "Spiegel S, Milstien S (2003) Sphingosine-1-phosphate: an enigmatic signalling lipid. Nat Rev Mol Cell Biol 4:397–407. https://doi.org/10.1038/nrm1103",
+      "journal-title": "Nat Rev Mol Cell Biol"
+    },
+    {
+      "key": "14_CR173",
+      "doi-asserted-by": "publisher",
+      "first-page": "11113",
+      "DOI": "10.1073/pnas.91.23.11113",
+      "volume": "91",
+      "author": "R Srinivasan",
+      "year": "1994",
+      "unstructured": "Srinivasan R, Rose GD (1994) The T-to-R transformation in hemoglobin: a reevaluation. PNAS 91:11113–11117. https://doi.org/10.1073/pnas.91.23.11113",
+      "journal-title": "PNAS"
+    },
+    {
+      "key": "14_CR174",
+      "doi-asserted-by": "publisher",
+      "first-page": "3210",
+      "DOI": "10.1182/blood.V120.21.3210.3210",
+      "volume": "120",
+      "author": "W Stern",
+      "year": "2012",
+      "unstructured": "Stern W, Mathews D, McKew J et al (2012) A phase 1, first-in-man, dose-response study of Aes-103 (5-HMF), an anti-sickling, allosteric modifier of hemoglobin oxygen affinity in healthy norman volunteers. Blood 120:3210–3210",
+      "journal-title": "Blood"
+    },
+    {
+      "issue": "Suppl 1",
+      "key": "14_CR175",
+      "first-page": "458",
+      "volume": "3",
+      "author": "O Stucker",
+      "year": "1985",
+      "unstructured": "Stucker O, Laurent D, Duvelleroy M et al (1985) Incorporation of inositol hexaphosphate in stored erythrocytes: effect on tissue oxygenation. Life Support Syst 3(Suppl 1):458–461",
+      "journal-title": "Life Support Syst"
+    },
+    {
+      "key": "14_CR176",
+      "doi-asserted-by": "publisher",
+      "first-page": "6663",
+      "DOI": "10.1021/bi963121d",
+      "volume": "36",
+      "author": "DP Sun",
+      "year": "1997",
+      "unstructured": "Sun DP, Zou M, Ho NT, Ho C (1997) Contribution of surface histidyl residues in the alpha-chain to the Bohr effect of human normal adult hemoglobin: roles of global electrostatic effects. Biochemistry 36:6663–6673. https://doi.org/10.1021/bi963121d",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR177",
+      "doi-asserted-by": "publisher",
+      "first-page": "15281",
+      "DOI": "10.1038/s41598-017-13667-8",
+      "volume": "7",
+      "author": "K Sun",
+      "year": "2017",
+      "unstructured": "Sun K, D’Alessandro A, Ahmed MH et al (2017) Structural and functional insight of sphingosine 1-phosphate-mediated pathogenic metabolic reprogramming in sickle cell disease. Sci Rep 7:15281. https://doi.org/10.1038/s41598-017-13667-8",
+      "journal-title": "Sci Rep"
+    },
+    {
+      "key": "14_CR178",
+      "doi-asserted-by": "publisher",
+      "first-page": "163",
+      "DOI": "10.1016/0022-2836(72)90077-0",
+      "volume": "72",
+      "author": "A Szabo",
+      "year": "1972",
+      "unstructured": "Szabo A, Karplus M (1972) A mathematical model for structure-function relations in hemoglobin. J Mol Biol 72:163–197. https://doi.org/10.1016/0022-2836(72)90077-0",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR179",
+      "doi-asserted-by": "publisher",
+      "first-page": "a011858",
+      "DOI": "10.1101/cshperspect.a011858",
+      "volume": "3",
+      "author": "CS Thom",
+      "year": "2013",
+      "unstructured": "Thom CS, Dickson CF, Gell DA, Weiss MJ (2013) Hemoglobin variants: biochemical properties and clinical correlates. Cold Spring Harb Perspect Med 3:a011858. https://doi.org/10.1101/cshperspect.a011858",
+      "journal-title": "Cold Spring Harb Perspect Med"
+    },
+    {
+      "key": "14_CR180",
+      "doi-asserted-by": "publisher",
+      "first-page": "165",
+      "DOI": "10.1056/NEJM197007232830402",
+      "volume": "283",
+      "author": "J Torrance",
+      "year": "1970",
+      "unstructured": "Torrance J, Jacobs P, Restrepo A et al (1970) Intraerythrocytic adaptation to anemia. N Engl J Med 283:165–169. https://doi.org/10.1056/NEJM197007232830402",
+      "journal-title": "N Engl J Med"
+    },
+    {
+      "key": "14_CR181",
+      "doi-asserted-by": "crossref",
+      "first-page": "12147",
+      "DOI": "10.1016/S0021-9258(17)44148-2",
+      "volume": "258",
+      "author": "TG Traylor",
+      "year": "1983",
+      "unstructured": "Traylor TG, Deardurff LA, Coletta M et al (1983) Reactivity of ferrous heme proteins at low pH. J Biol Chem 258:12147–12148",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR182",
+      "doi-asserted-by": "crossref",
+      "first-page": "12682",
+      "DOI": "10.1016/S0021-9258(18)42331-9",
+      "volume": "267",
+      "author": "C Vasseur",
+      "year": "1992",
+      "unstructured": "Vasseur C, Blouquit Y, Kister J et al (1992) Hemoglobin Thionville. An alpha-chain variant with a substitution of a glutamate for valine at NA-1 and having an acetylated methionine NH2 terminus. J Biol Chem 267:12682–12691",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR183",
+      "doi-asserted-by": "publisher",
+      "first-page": "509",
+      "DOI": "10.1056/NEJMoa1903212",
+      "volume": "381",
+      "author": "E Vichinsky",
+      "year": "2019",
+      "unstructured": "Vichinsky E, Hoppe CC, Ataga KI et al (2019) A phase 3 randomized trial of Voxelotor in sickle cell disease. N Engl J Med 381:509–519. https://doi.org/10.1056/NEJMoa1903212",
+      "journal-title": "N Engl J Med"
+    },
+    {
+      "key": "14_CR184",
+      "doi-asserted-by": "publisher",
+      "first-page": "743",
+      "DOI": "10.1006/jmbi.1996.0674",
+      "volume": "264",
+      "author": "J Wilson",
+      "year": "1996",
+      "unstructured": "Wilson J, Phillips K, Luisi B (1996) The crystal structure of horse deoxyhaemoglobin trapped in the high-affinity (R) state. J Mol Biol 264:743–756. https://doi.org/10.1006/jmbi.1996.0674",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR185",
+      "doi-asserted-by": "crossref",
+      "first-page": "6939",
+      "DOI": "10.1016/S0021-9258(19)41022-3",
+      "volume": "250",
+      "author": "RM Winslow",
+      "year": "1975",
+      "unstructured": "Winslow RM, Charache S (1975) Hemoglobin Richmond. Subunit dissociation and oxygen equilibrium properties. J Biol Chem 250:6939–6942",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR186",
+      "doi-asserted-by": "publisher",
+      "first-page": "1502",
+      "DOI": "10.1001/jama.1976.03270140054029",
+      "volume": "236",
+      "author": "PM Winter",
+      "year": "1976",
+      "unstructured": "Winter PM, Miller JN (1976) Carbon monoxide poisoning. JAMA 236:1502–1504. https://doi.org/10.1001/jama.1976.03270140054029",
+      "journal-title": "JAMA"
+    },
+    {
+      "key": "14_CR187",
+      "doi-asserted-by": "publisher",
+      "first-page": "2209",
+      "DOI": "10.1073/pnas.88.6.2209",
+      "volume": "88",
+      "author": "FC Wireko",
+      "year": "1991",
+      "unstructured": "Wireko FC, Abraham DJ (1991) X-ray diffraction study of the binding of the antisickling agent 12C79 to human hemoglobin. Proc Natl Acad Sci USA 88:2209–2211. https://doi.org/10.1073/pnas.88.6.2209",
+      "journal-title": "Proc Natl Acad Sci USA"
+    },
+    {
+      "key": "14_CR188",
+      "doi-asserted-by": "publisher",
+      "first-page": "758",
+      "DOI": "10.1021/jm00106a042",
+      "volume": "34",
+      "author": "FC Wireko",
+      "year": "1991",
+      "unstructured": "Wireko FC, Kellogg GE, Abraham DJ (1991) Allosteric modifiers of hemoglobin. 2. Crystallographically determined binding sites and hydrophobic binding/interaction analysis of novel hemoglobin oxygen effectors. J Med Chem 34:758–767. https://doi.org/10.1021/jm00106a042",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR189",
+      "doi-asserted-by": "publisher",
+      "first-page": "359",
+      "DOI": "10.1097/00005344-199803000-00005",
+      "volume": "31",
+      "author": "JA Woods",
+      "year": "1998",
+      "unstructured": "Woods JA, Storey CJ, Babcock EE, Malloy CR (1998) Right-shifting the oxyhemoglobin dissociation curve with RSR13: effects on high-energy phosphates and myocardial recovery after low-flow ischemia. J Cardiovasc Pharmacol 31:359–363. https://doi.org/10.1097/00005344-199803000-00005",
+      "journal-title": "J Cardiovasc Pharmacol"
+    },
+    {
+      "key": "14_CR190",
+      "doi-asserted-by": "publisher",
+      "first-page": "7178",
+      "DOI": "10.1021/acs.biochem.5b01074",
+      "volume": "54",
+      "author": "GG Xu",
+      "year": "2015",
+      "unstructured": "Xu GG, Deshpande TM, Ghatge MS et al (2015) Design, synthesis, and investigation of novel nitric oxide (NO)-releasing prodrugs as drug candidates for the treatment of ischemic disorders: insights into NO-releasing prodrug biotransformation and hemoglobin-NO biochemistry. Biochemistry 54:7178–7192. https://doi.org/10.1021/acs.biochem.5b01074",
+      "journal-title": "Biochemistry"
+    },
+    {
+      "key": "14_CR191",
+      "doi-asserted-by": "publisher",
+      "first-page": "3499",
+      "DOI": "10.1021/acs.molpharmaceut.7b00553",
+      "volume": "14",
+      "author": "GG Xu",
+      "year": "2017",
+      "unstructured": "Xu GG, Pagare PP, Ghatge MS et al (2017) Design, synthesis, and biological evaluation of ester and ether derivatives of antisickling agent 5-HMF for the treatment of sickle cell disease. Mol Pharm 14:3499–3511. https://doi.org/10.1021/acs.molpharmaceut.7b00553",
+      "journal-title": "Mol Pharm"
+    },
+    {
+      "key": "14_CR192",
+      "doi-asserted-by": "publisher",
+      "first-page": "790",
+      "DOI": "10.1016/j.jmb.2005.12.018",
+      "volume": "356",
+      "author": "T Yokoyama",
+      "year": "2006",
+      "unstructured": "Yokoyama T, Neya S, Tsuneshige A et al (2006) R-state haemoglobin with low oxygen affinity: crystal structures of deoxy human and carbonmonoxy horse haemoglobin bound to the effector molecule L35. J Mol Biol 356:790–801. https://doi.org/10.1016/j.jmb.2005.12.018",
+      "journal-title": "J Mol Biol"
+    },
+    {
+      "key": "14_CR193",
+      "doi-asserted-by": "publisher",
+      "first-page": "1873",
+      "DOI": "10.1016/j.bbapap.2013.04.026",
+      "volume": "1834",
+      "author": "T Yonetani",
+      "year": "2013",
+      "unstructured": "Yonetani T, Kanaori K (2013) How does hemoglobin generate such diverse functionality of physiological relevance? Biochim Biophys Acta 1834:1873–1884. https://doi.org/10.1016/j.bbapap.2013.04.026",
+      "journal-title": "Biochim Biophys Acta"
+    },
+    {
+      "key": "14_CR194",
+      "doi-asserted-by": "publisher",
+      "first-page": "523",
+      "DOI": "10.1016/S1631-0691(03)00150-1",
+      "volume": "326",
+      "author": "T Yonetani",
+      "year": "2003",
+      "unstructured": "Yonetani T, Tsuneshige A (2003) The global allostery model of hemoglobin: an allosteric mechanism involving homotropic and heterotropic interactions. CR Biol 326:523–532. https://doi.org/10.1016/S1631-0691(03)00150-1",
+      "journal-title": "CR Biol"
+    },
+    {
+      "key": "14_CR195",
+      "doi-asserted-by": "publisher",
+      "first-page": "34508",
+      "DOI": "10.1074/jbc.M203135200",
+      "volume": "277",
+      "author": "T Yonetani",
+      "year": "2002",
+      "unstructured": "Yonetani T, Park S-I, Tsuneshige A et al (2002) Global allostery model of hemoglobin. Modulation of O(2) affinity, cooperativity, and Bohr effect by heterotropic allosteric effectors. J Biol Chem 277:34508–34520. https://doi.org/10.1074/jbc.M203135200",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR196",
+      "doi-asserted-by": "publisher",
+      "first-page": "1184",
+      "DOI": "10.1021/jm010358l",
+      "volume": "45",
+      "author": "AM Youssef",
+      "year": "2002",
+      "unstructured": "Youssef AM, Safo MK, Danso-Danquah R et al (2002) Synthesis and X-ray studies of chiral allosteric modifiers of hemoglobin. J Med Chem 45:1184–1195. https://doi.org/10.1021/jm010358l",
+      "journal-title": "J Med Chem"
+    },
+    {
+      "key": "14_CR197",
+      "doi-asserted-by": "publisher",
+      "first-page": "297",
+      "DOI": "10.1042/cs0650297",
+      "volume": "65",
+      "author": "MA Zago",
+      "year": "1983",
+      "unstructured": "Zago MA, Bottura C (1983) Splenic function in sickle-cell diseases. Clin Sci 65:297–302. https://doi.org/10.1042/cs0650297",
+      "journal-title": "Clin Sci"
+    },
+    {
+      "key": "14_CR198",
+      "doi-asserted-by": "crossref",
+      "first-page": "8542",
+      "DOI": "10.1016/S0021-9258(19)75254-5",
+      "volume": "252",
+      "author": "RH Zaugg",
+      "year": "1977",
+      "unstructured": "Zaugg RH, Walder JA, Klotz IM (1977) Schiff base adducts of hemoglobin. Modifications that inhibit erythrocyte sickling. J Biol Chem 252:8542–8548",
+      "journal-title": "J Biol Chem"
+    },
+    {
+      "key": "14_CR199",
+      "doi-asserted-by": "publisher",
+      "first-page": "2750",
+      "DOI": "10.1172/JCI74604",
+      "volume": "124",
+      "author": "Y Zhang",
+      "year": "2014",
+      "unstructured": "Zhang Y, Berka V, Song A et al (2014) Elevated sphingosine-1-phosphate promotes sickling and sickle cell disease progression. J Clin Invest 124:2750–2761. https://doi.org/10.1172/JCI74604",
+      "journal-title": "J Clin Invest"
+    }
+  ],
+  "container-title": [
+    "Subcellular Biochemistry",
+    "Vertebrate and Invertebrate Respiratory Proteins, Lipoproteins and other Body Fluid Proteins"
+  ],
+  "language": "en",
+  "link": [
+    {
+      "URL": "http://link.springer.com/content/pdf/10.1007/978-3-030-41769-7_14",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+    }
+  ],
+  "deposited": {
+    "date-parts": [
+      [
+        2021,
+        3,
+        4
+      ]
+    ],
+    "date-time": "2021-03-04T23:44:16Z",
+    "timestamp": 1614901456000
+  },
+  "score": 0.0,
+  "resource": {
+    "primary": {
+      "URL": "http://link.springer.com/10.1007/978-3-030-41769-7_14"
+    }
+  },
+  "issued": {
+    "date-parts": [
+      [
+        2020
+      ]
+    ]
+  },
+  "ISBN": [
+    "9783030417680",
+    "9783030417697"
+  ],
+  "references-count": 199,
+  "URL": "https://doi.org/10.1007/978-3-030-41769-7_14",
+  "ISSN": [
+    "0306-0225",
+    "2542-8810"
+  ],
+  "issn-type": [
+    {
+      "type": "print",
+      "value": "0306-0225"
+    },
+    {
+      "type": "electronic",
+      "value": "2542-8810"
+    }
+  ],
+  "published": {
+    "date-parts": [
+      [
+        2020
+      ]
+    ]
+  },
+  "assertion": [
+    {
+      "value": "19 March 2020",
+      "order": 1,
+      "name": "first_online",
+      "label": "First Online",
+      "group": {
+        "name": "ChapterHistory",
+        "label": "Chapter History"
+      }
+    },
+    {
+      "value": "Virginia Commonwealth University and Martin K. Safo have patents related to several aromatic aldehydes mentioned in the chapter.",
+      "order": 1,
+      "name": "Ethics",
+      "group": {
+        "name": "EthicsHeading",
+        "label": "Conflict-of-Interest Disclosure"
+      }
+    }
+  ]
+}

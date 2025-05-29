@@ -1,1 +1,340 @@
-{"indexed":{"date-parts":[[2025,5,25]],"date-time":"2025-05-25T17:22:21Z","timestamp":1748193741949},"reference-count":24,"publisher":"Wiley","issue":"6","license":[{"start":{"date-parts":[[2006,3,29]],"date-time":"2006-03-29T00:00:00Z","timestamp":1143590400000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/onlinelibrary.wiley.com\/termsAndConditions#vor"}],"content-domain":{"domain":["onlinelibrary.wiley.com"],"crossmark-restriction":true},"short-container-title":["Polymer International"],"published-print":{"date-parts":[[2006,6]]},"abstract":"<jats:title>Abstract<\/jats:title><jats:p>In this paper we discuss the optimization of various parameters which govern the behaviour of polymer based and organic photovoltaic cells. General mechanisms leading to the generation of charge carriers and the related loss factors are detailed. Theoretical electrical parameters for bilayer and interpenetrating networks of donors and acceptors (open circuit voltages) are established along with current <jats:italic>versus<\/jats:italic> voltage characteristics. An equivalent circuit to a solar cell, considering the effects of shunt resistance across the whole layer, is elaborated. After modelling optical interference and its effects on the photocurrent spectrum, orders of magnitude of the required parameters are established for an efficient solar cell. Deviations from optimal values and their effects on the current\u2013voltage characteristics are discussed. Ageing and degradation effects, and calculations demonstrating the necessary photophysical requirements to achieve long\u2010term stable devices are presented. Copyright \u00a9 2006 Society of Chemical Industry<\/jats:p>","DOI":"10.1002\/pi.2038","type":"journal-article","created":{"date-parts":[[2006,3,29]],"date-time":"2006-03-29T17:48:46Z","timestamp":1143654526000},"page":"583-600","update-policy":"http:\/\/dx.doi.org\/10.1002\/crossmark_policy","source":"Crossref","is-referenced-by-count":354,"title":["How to model the behaviour of organic photovoltaic cells"],"prefix":"10.1002","volume":"55","author":[{"given":"Andr\u00e9","family":"Moliton","sequence":"first","affiliation":[]},{"given":"Jean\u2010Michel","family":"Nunzi","sequence":"additional","affiliation":[]}],"member":"311","published-online":{"date-parts":[[2006,3,29]]},"reference":[{"key":"e_1_2_14_2_2","doi-asserted-by":"publisher","DOI":"10.1007\/978-3-642-70012-5"},{"key":"e_1_2_14_3_2","doi-asserted-by":"publisher","DOI":"10.1016\/S1359-0286(96)80103-3"},{"key":"e_1_2_14_4_2","doi-asserted-by":"publisher","DOI":"10.1088\/0953-8984\/6\/7\/009"},{"key":"e_1_2_14_5_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.1534621"},{"key":"e_1_2_14_6_2","unstructured":"RicaudA Photopiles solaires.Presses polytechniques et universitaires romandes Lausanne (1997)."},{"key":"e_1_2_14_7_2","first-page":"36","author":"Sariciftci NS","journal-title":"Materials Today"},{"key":"e_1_2_14_8_2","unstructured":"MolitonA Opto\u00e9lectronique mol\u00e9culaire et polym\u00e8re: des concepts aux composants.Springer France and France T\u00e9l\u00e9com R&D Paris (2003). [English edition Optolectronics of Molecules and Polymers translated from the original in French by Hiorns RC. Springer New York (2005).]."},{"key":"e_1_2_14_9_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.1506385"},{"key":"e_1_2_14_10_2","doi-asserted-by":"publisher","DOI":"10.1103\/PhysRevB.67.075205"},{"key":"e_1_2_14_11_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.1759786"},{"key":"e_1_2_14_12_2","doi-asserted-by":"publisher","DOI":"10.1002\/1616-3028(200110)11:5<374::AID-ADFM374>3.0.CO;2-W"},{"key":"e_1_2_14_13_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.1620683"},{"key":"e_1_2_14_14_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.359792"},{"key":"e_1_2_14_15_2","doi-asserted-by":"publisher","DOI":"10.1038\/376498a0"},{"key":"e_1_2_14_16_2","doi-asserted-by":"publisher","DOI":"10.1002\/(SICI)1521-4095(199906)11:8<605::AID-ADMA605>3.0.CO;2-Q"},{"key":"e_1_2_14_17_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.370757"},{"key":"e_1_2_14_18_2","unstructured":"BrousseB PhD thesis Limoges University (December 2004)."},{"key":"e_1_2_14_19_2","first-page":"523","volume":"3","author":"Nunzi J\u2010M","year":"2002","journal-title":"C R Acad Sci Paris"},{"key":"e_1_2_14_20_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.1669065"},{"key":"e_1_2_14_21_2","article-title":"Ambipolar organic field\u2010effect transistor fabricated by co\u2010evaporation of pentacene and perylene","author":"Unni KNN","journal-title":"Chem Phys Lett"},{"key":"e_1_2_14_22_2","doi-asserted-by":"publisher","DOI":"10.12693\/APhysPolA.107.377"},{"key":"e_1_2_14_23_2","doi-asserted-by":"publisher","DOI":"10.1016\/j.tsf.2004.10.018"},{"key":"e_1_2_14_24_2","doi-asserted-by":"publisher","DOI":"10.1063\/1.116934"},{"key":"e_1_2_14_25_2","doi-asserted-by":"publisher","DOI":"10.1002\/pi.1587"}],"container-title":["Polymer International"],"language":"en","link":[{"URL":"https:\/\/api.wiley.com\/onlinelibrary\/tdm\/v1\/articles\/10.1002%2Fpi.2038","content-type":"unspecified","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/onlinelibrary.wiley.com\/doi\/pdf\/10.1002\/pi.2038","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,10,9]],"date-time":"2023-10-09T07:01:51Z","timestamp":1696834911000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/onlinelibrary.wiley.com\/doi\/10.1002\/pi.2038"}},"issued":{"date-parts":[[2006,3,29]]},"references-count":24,"journal-issue":{"issue":"6","published-print":{"date-parts":[[2006,6]]}},"alternative-id":["10.1002\/pi.2038"],"URL":"https:\/\/doi.org\/10.1002\/pi.2038","archive":["Portico"],"ISSN":["0959-8103","1097-0126"],"issn-type":[{"value":"0959-8103","type":"print"},{"value":"1097-0126","type":"electronic"}],"published":{"date-parts":[[2006,3,29]]},"assertion":[{"value":"2005-07-06","order":0,"name":"received","label":"Received","group":{"name":"publication_history","label":"Publication History"}},{"value":"2006-01-06","order":1,"name":"accepted","label":"Accepted","group":{"name":"publication_history","label":"Publication History"}},{"value":"2006-03-29","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication History"}}]}
+{
+  "indexed": {
+    "date-parts": [
+      [
+        2025,
+        5,
+        25
+      ]
+    ],
+    "date-time": "2025-05-25T17:22:21Z",
+    "timestamp": 1748193741949
+  },
+  "reference-count": 24,
+  "publisher": "Wiley",
+  "issue": "6",
+  "license": [
+    {
+      "start": {
+        "date-parts": [
+          [
+            2006,
+            3,
+            29
+          ]
+        ],
+        "date-time": "2006-03-29T00:00:00Z",
+        "timestamp": 1143590400000
+      },
+      "content-version": "vor",
+      "delay-in-days": 0,
+      "URL": "http://onlinelibrary.wiley.com/termsAndConditions#vor"
+    }
+  ],
+  "content-domain": {
+    "domain": [
+      "onlinelibrary.wiley.com"
+    ],
+    "crossmark-restriction": true
+  },
+  "short-container-title": [
+    "Polymer International"
+  ],
+  "published-print": {
+    "date-parts": [
+      [
+        2006,
+        6
+      ]
+    ]
+  },
+  "abstract": "<jats:title>Abstract</jats:title><jats:p>In this paper we discuss the optimization of various parameters which govern the behaviour of polymer based and organic photovoltaic cells. General mechanisms leading to the generation of charge carriers and the related loss factors are detailed. Theoretical electrical parameters for bilayer and interpenetrating networks of donors and acceptors (open circuit voltages) are established along with current <jats:italic>versus</jats:italic> voltage characteristics. An equivalent circuit to a solar cell, considering the effects of shunt resistance across the whole layer, is elaborated. After modelling optical interference and its effects on the photocurrent spectrum, orders of magnitude of the required parameters are established for an efficient solar cell. Deviations from optimal values and their effects on the current–voltage characteristics are discussed. Ageing and degradation effects, and calculations demonstrating the necessary photophysical requirements to achieve long‐term stable devices are presented. Copyright © 2006 Society of Chemical Industry</jats:p>",
+  "DOI": "10.1002/pi.2038",
+  "type": "journal-article",
+  "created": {
+    "date-parts": [
+      [
+        2006,
+        3,
+        29
+      ]
+    ],
+    "date-time": "2006-03-29T17:48:46Z",
+    "timestamp": 1143654526000
+  },
+  "page": "583-600",
+  "update-policy": "http://dx.doi.org/10.1002/crossmark_policy",
+  "source": "Crossref",
+  "is-referenced-by-count": 354,
+  "title": [
+    "How to model the behaviour of organic photovoltaic cells"
+  ],
+  "prefix": "10.1002",
+  "volume": "55",
+  "author": [
+    {
+      "given": "André",
+      "family": "Moliton",
+      "sequence": "first",
+      "affiliation": []
+    },
+    {
+      "given": "Jean‐Michel",
+      "family": "Nunzi",
+      "sequence": "additional",
+      "affiliation": []
+    }
+  ],
+  "member": "311",
+  "published-online": {
+    "date-parts": [
+      [
+        2006,
+        3,
+        29
+      ]
+    ]
+  },
+  "reference": [
+    {
+      "key": "e_1_2_14_2_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1007/978-3-642-70012-5"
+    },
+    {
+      "key": "e_1_2_14_3_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1016/S1359-0286(96)80103-3"
+    },
+    {
+      "key": "e_1_2_14_4_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1088/0953-8984/6/7/009"
+    },
+    {
+      "key": "e_1_2_14_5_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.1534621"
+    },
+    {
+      "key": "e_1_2_14_6_2",
+      "unstructured": "RicaudA Photopiles solaires.Presses polytechniques et universitaires romandes Lausanne (1997)."
+    },
+    {
+      "key": "e_1_2_14_7_2",
+      "first-page": "36",
+      "author": "Sariciftci NS",
+      "journal-title": "Materials Today"
+    },
+    {
+      "key": "e_1_2_14_8_2",
+      "unstructured": "MolitonA Optoélectronique moléculaire et polymère: des concepts aux composants.Springer France and France Télécom R&D Paris (2003). [English edition Optolectronics of Molecules and Polymers translated from the original in French by Hiorns RC. Springer New York (2005).]."
+    },
+    {
+      "key": "e_1_2_14_9_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.1506385"
+    },
+    {
+      "key": "e_1_2_14_10_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1103/PhysRevB.67.075205"
+    },
+    {
+      "key": "e_1_2_14_11_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.1759786"
+    },
+    {
+      "key": "e_1_2_14_12_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1002/1616-3028(200110)11:5<374::AID-ADFM374>3.0.CO;2-W"
+    },
+    {
+      "key": "e_1_2_14_13_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.1620683"
+    },
+    {
+      "key": "e_1_2_14_14_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.359792"
+    },
+    {
+      "key": "e_1_2_14_15_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1038/376498a0"
+    },
+    {
+      "key": "e_1_2_14_16_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1002/(SICI)1521-4095(199906)11:8<605::AID-ADMA605>3.0.CO;2-Q"
+    },
+    {
+      "key": "e_1_2_14_17_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.370757"
+    },
+    {
+      "key": "e_1_2_14_18_2",
+      "unstructured": "BrousseB PhD thesis Limoges University (December 2004)."
+    },
+    {
+      "key": "e_1_2_14_19_2",
+      "first-page": "523",
+      "volume": "3",
+      "author": "Nunzi J‐M",
+      "year": "2002",
+      "journal-title": "C R Acad Sci Paris"
+    },
+    {
+      "key": "e_1_2_14_20_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.1669065"
+    },
+    {
+      "key": "e_1_2_14_21_2",
+      "article-title": "Ambipolar organic field‐effect transistor fabricated by co‐evaporation of pentacene and perylene",
+      "author": "Unni KNN",
+      "journal-title": "Chem Phys Lett"
+    },
+    {
+      "key": "e_1_2_14_22_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.12693/APhysPolA.107.377"
+    },
+    {
+      "key": "e_1_2_14_23_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1016/j.tsf.2004.10.018"
+    },
+    {
+      "key": "e_1_2_14_24_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1063/1.116934"
+    },
+    {
+      "key": "e_1_2_14_25_2",
+      "doi-asserted-by": "publisher",
+      "DOI": "10.1002/pi.1587"
+    }
+  ],
+  "container-title": [
+    "Polymer International"
+  ],
+  "language": "en",
+  "link": [
+    {
+      "URL": "https://api.wiley.com/onlinelibrary/tdm/v1/articles/10.1002%2Fpi.2038",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+    },
+    {
+      "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/pi.2038",
+      "content-type": "unspecified",
+      "content-version": "vor",
+      "intended-application": "similarity-checking"
+    }
+  ],
+  "deposited": {
+    "date-parts": [
+      [
+        2023,
+        10,
+        9
+      ]
+    ],
+    "date-time": "2023-10-09T07:01:51Z",
+    "timestamp": 1696834911000
+  },
+  "score": 0.0,
+  "resource": {
+    "primary": {
+      "URL": "https://onlinelibrary.wiley.com/doi/10.1002/pi.2038"
+    }
+  },
+  "issued": {
+    "date-parts": [
+      [
+        2006,
+        3,
+        29
+      ]
+    ]
+  },
+  "references-count": 24,
+  "journal-issue": {
+    "issue": "6",
+    "published-print": {
+      "date-parts": [
+        [
+          2006,
+          6
+        ]
+      ]
+    }
+  },
+  "alternative-id": [
+    "10.1002/pi.2038"
+  ],
+  "URL": "https://doi.org/10.1002/pi.2038",
+  "archive": [
+    "Portico"
+  ],
+  "ISSN": [
+    "0959-8103",
+    "1097-0126"
+  ],
+  "issn-type": [
+    {
+      "value": "0959-8103",
+      "type": "print"
+    },
+    {
+      "value": "1097-0126",
+      "type": "electronic"
+    }
+  ],
+  "published": {
+    "date-parts": [
+      [
+        2006,
+        3,
+        29
+      ]
+    ]
+  },
+  "assertion": [
+    {
+      "value": "2005-07-06",
+      "order": 0,
+      "name": "received",
+      "label": "Received",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    },
+    {
+      "value": "2006-01-06",
+      "order": 1,
+      "name": "accepted",
+      "label": "Accepted",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    },
+    {
+      "value": "2006-03-29",
+      "order": 2,
+      "name": "published",
+      "label": "Published",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    }
+  ]
+}
