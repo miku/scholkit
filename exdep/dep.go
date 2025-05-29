@@ -3,12 +3,14 @@ package exdep
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 // Dep represents an external tool dependency
 type Dep struct {
-	Name string
-	Docs string
+	Name  string
+	Links []string
+	Docs  string
 }
 
 func Check(deps []Dep) []error {
@@ -24,8 +26,8 @@ func Check(deps []Dep) []error {
 func check(dep Dep) error {
 	_, err := exec.LookPath(dep.Name)
 	if err != nil {
-		return fmt.Errorf("dependency '%s' not found: %w [%s]",
-			dep.Name, err, dep.Docs)
+		return fmt.Errorf("%s: %w [%s, %s]",
+			dep.Name, err, dep.Docs, strings.Join(dep.Links, ", "))
 	}
 	return nil
 }

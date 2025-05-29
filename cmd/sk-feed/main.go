@@ -27,13 +27,12 @@ var docs = strings.TrimLeft(`
 # sk-feed - fetch data feeds
 
 Uses mostly external tools to fetch raw bibliographic data from the web:
-rclone, metha, dcdump.  NOTE: not all flags may work, e.g. -B backfill is not
-fully implemented yet.
+rclone, metha, dcdump.
 
 ## openalex
 
-Hardcoded "aws" prefix, please add it to rclone.conf, cf.
-https://docs.openalex.org/download-all-data/download-to-your-machine
+By default we use "aws" as S3 prefix (-rclone-s3-prefix), please add it to
+rclone.conf, cf. https://docs.openalex.org/download-all-data/download-to-your-machine
 
 	$ cat ~/.config/rclone/rclone.conf
 
@@ -53,14 +52,25 @@ $ sk-feed -s crossref
 
 `, "\n")
 
-// deps are external dependencies, which should be made available during deployment.
+const FeedsDir = "feeds"
+
 var deps = []exdep.Dep{
 	{
-		Name: "metha-sync",
-		Docs: `OAI-PMH cli harvester; download from https://github.com/miku/metha/releases/ or use go install github.com/miku/metha/cmd/...@latest`,
+		Name:  "metha-sync",
+		Links: []string{"https://github.com/miku/metha/releases/"},
+		Docs:  `oai-pmh harvester`,
 	}, {
-		Name: "dcdump",
-		Docs: `Datacite API harvester; download from https://github.com/miku/dcdump/releases/ or run go install github.com/miku/dcdump/cmd/...@latest`,
+		Name:  "dcdump",
+		Links: []string{"https://github.com/miku/dcdump/releases/"},
+		Docs:  `datacite harvester`,
+	}, {
+		Name:  "rclone",
+		Links: []string{"https://rclone.org"},
+		Docs:  `cloud storage cli`,
+	}, {
+		Name:  "curl",
+		Links: []string{"https://curl.org"},
+		Docs:  `http cli`,
 	},
 }
 
@@ -87,13 +97,13 @@ var (
 	// dateStr is deprecated, we should make it so we can always request
 	// everything and skip things we have cached, already
 	dateStr     = flag.String("t", yesterday.Format("2006-01-02"), "date to capture")
-	runBackfill = flag.String("B", "", "run a backfill, if possible, from a given day (YYYY-MM-DD) on")
 	maxRetries  = flag.Int("r", 3, "max retries")
 	timeout     = flag.Duration("T", oneHour, "connectiont timeout")
 	showVersion = flag.Bool("version", false, "show version")
 	// rclone is used for openalex
 	rcloneTransfers = flag.Int("rclone-transfers", 8, "number of parallel transfers for rclone")
 	rcloneCheckers  = flag.Int("rclone-checkers", 16, "number of parallel checkers for rclone")
+	rcloneS3Prefix  = flag.String("rclone-s3-prefix", "aws", "rclone s3 storage designation")
 	// crossref specific options
 	crossrefApiEmail              = flag.String("crossref-api-email", "martin.czygan@gmail.com", "crossref api email")
 	crossrefApiFilter             = flag.String("crossref-api-filter", "index", "api filter to use with crossref")
@@ -132,7 +142,7 @@ func main() {
 	}
 	config := &config.Config{
 		DataDir:            *dir,
-		FeedDir:            path.Join(*dir, "feeds"),
+		FeedDir:            path.Join(*dir, FeedsDir),
 		Source:             *fetchSource,
 		EndpointURL:        *endpointURL,
 		Date:               date,
@@ -179,7 +189,7 @@ func main() {
 				fmt.Sprintf("--transfers=%d", config.RcloneTransfers),
 				fmt.Sprintf("--checkers=%d", config.RcloneCheckers),
 				"-P",
-				"aws:/openalex",
+				fmt.Sprintf("%s:/openalex", *rcloneS3Prefix), // TODO: sanitize and validate
 				dst)
 			log.Println(cmd)
 			b, err := cmd.CombinedOutput() // TODO(martin): show live update w/ pipe
