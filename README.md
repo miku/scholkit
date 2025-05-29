@@ -25,15 +25,9 @@ $ cd scholkit
 $ make
 ```
 
-This builds a couple of executables:
-
-* sk-feed (download raw data, mostly with external tools)
-* sk-convert (data format conversions)
-* sk-cat (stream data from many urls)
-* sk-cdx (ad-hoc cdx api lookup)
-* sk-norm (quick string normalization)
-
-Example dataset to work with, e.g. convert arxiv to fatcat release:
+This builds a couple of executables, all starting with the *sk* prefix. The
+executables are designed to work as standalone as possible, but also share
+configuration for various tasks (e.g. directories).
 
 ```sh
 $ curl -sL https://archive.org/download/arxiv-2024-02-15/arxiv-2024-02-15.xml.zst | \
@@ -55,10 +49,11 @@ entities). Source formats include:
 * [x] oaiscrape
 * [x] openalex
 * [x] dblp
+* [ ] and more
 
 Target:
 
-* [ ] fatcat entities (release, work, container, file, contrib, abstract)
+* [ ] fatcat2 entities
 
 For each format, try to find the smallest conversion unit, e.g. one record.
 Then add convenience layers on top, e.g. for streams.
