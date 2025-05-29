@@ -14,7 +14,6 @@ require (
 	github.com/klauspost/pgzip v1.2.6
 	github.com/segmentio/encoding v0.4.1
 	github.com/sethgrid/pester v1.2.0
-	golang.org/x/sync v0.10.0
 )
 
 require (
