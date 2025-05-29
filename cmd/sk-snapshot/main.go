@@ -14,12 +14,13 @@ import (
 	"time"
 
 	"github.com/adrg/xdg"
+	"github.com/miku/scholkit"
 	"github.com/miku/scholkit/config"
 	"github.com/miku/scholkit/crossref"
 )
 
 var (
-	defaultDataDir   = path.Join(xdg.DataHome, "schol")
+	defaultDataDir   = path.Join(xdg.DataHome, "schol") // TODO: this is more general, move this out
 	availableSources = []string{
 		"openalex",
 		"crossref",
@@ -49,8 +50,8 @@ func main() {
 	}
 	config := &config.Config{
 		DataDir:     *dir,
-		FeedDir:     path.Join(*dir, "feeds"),
-		SnapshotDir: path.Join(*dir, "snapshots"),
+		FeedDir:     path.Join(*dir, scholkit.FeedsDir),
+		SnapshotDir: path.Join(*dir, scholkit.SnapshotsDir),
 		Source:      *source,
 		TempDir:     *tempDir,
 	}

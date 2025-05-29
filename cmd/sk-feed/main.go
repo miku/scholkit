@@ -52,8 +52,6 @@ $ sk-feed -s crossref
 
 `, "\n")
 
-const FeedsDir = "feeds"
-
 var deps = []exdep.Dep{
 	{
 		Name:  "metha-sync",
@@ -142,7 +140,7 @@ func main() {
 	}
 	config := &config.Config{
 		DataDir:            *dir,
-		FeedDir:            path.Join(*dir, FeedsDir),
+		FeedDir:            path.Join(*dir, scholkit.FeedsDir),
 		Source:             *fetchSource,
 		EndpointURL:        *endpointURL,
 		Date:               date,
