@@ -19,7 +19,6 @@ files.
         sk-oai-records | \
         awk 'BEGIN{RS="\x1E"} {print > "oaiscrape-xml-fatcat-2025-05-01-" sprintf("%04d", NR-1) ".input"}'
 
-
     $ for file in oaiscrape-fatcat-2025-05-01-*.txt; do
-        xmllint --format "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+        xmllint --format "$file" | sponge "$file"
     done

@@ -1,0 +1,34 @@
+{
+    "source": "oaiscrape",
+    "contribs": [
+        {
+            "extra": {},
+            "raw_name": "Iwaszuk, Marta"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.15503/jecs2021.2.415.431",
+        "oai": "oai:ojs.pkp.sfu.ca:article/1332"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {
+            "set_spec": [
+                "jecs:EXPR",
+                "driver"
+            ],
+            "url": [
+                "https://e-methodology.eu/index.php/jecs/article/view/1332"
+            ]
+        }
+    },
+    "id": "oaiscrape-44c9aa6a6379b030115c6cb947ad640b486c0a23",
+    "language": "eng",
+    "release_date": "2021-09-25",
+    "title": "On cognitive tensions. The mediating function of a symbol through the lens of Kleinian psychoanalysis and Peirce semiotic"
+}

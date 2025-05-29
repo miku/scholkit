@@ -1,35 +1,38 @@
-
-<record xmlns="http://www.openarchives.org/OAI/2.0/"><header status=""><identifier>oai:ojs.pkp.sfu.ca:article/1359</identifier><datestamp>2021-10-01T22:09:52Z</datestamp><setSpec>jecs:ETH</setSpec><setSpec>driver</setSpec></header><metadata>
-<oai_dc:dc
-xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
-xmlns:dc="http://purl.org/dc/elements/1.1/"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
-http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-<dc:title xml:lang="en-US">VALUE-BASED TEACHING ENGLISH LANGUAGE AND LITERATURE</dc:title>
-<dc:creator>Prahaladaiah, Diwakar </dc:creator>
-<dc:subject xml:lang="en-US">value education</dc:subject>
-<dc:subject xml:lang="en-US">moral</dc:subject>
-<dc:subject xml:lang="en-US">dharma (duty)</dc:subject>
-<dc:subject xml:lang="en-US">human behaviour </dc:subject>
-<dc:description xml:lang="en-US">Aim. &quot;The ultimate aim became the realisation of the political ideas of democracy, equality, and social justice&quot; (Orlenius, 2001; Svingby, 1994,p. 57). The current study aimed to explore the concept of value education at Poornaprajna institutions that have adopted value education in their curriculum.
+<?xml version="1.0"?>
+<record xmlns="http://www.openarchives.org/OAI/2.0/">
+  <header status="">
+    <identifier>oai:ojs.pkp.sfu.ca:article/1359</identifier>
+    <datestamp>2021-10-01T22:09:52Z</datestamp>
+    <setSpec>jecs:ETH</setSpec>
+    <setSpec>driver</setSpec>
+  </header>
+  <metadata>
+    <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+      <dc:title xml:lang="en-US">VALUE-BASED TEACHING ENGLISH LANGUAGE AND LITERATURE</dc:title>
+      <dc:creator>Prahaladaiah, Diwakar </dc:creator>
+      <dc:subject xml:lang="en-US">value education</dc:subject>
+      <dc:subject xml:lang="en-US">moral</dc:subject>
+      <dc:subject xml:lang="en-US">dharma (duty)</dc:subject>
+      <dc:subject xml:lang="en-US">human behaviour </dc:subject>
+      <dc:description xml:lang="en-US">Aim. "The ultimate aim became the realisation of the political ideas of democracy, equality, and social justice" (Orlenius, 2001; Svingby, 1994,p. 57). The current study aimed to explore the concept of value education at Poornaprajna institutions that have adopted value education in their curriculum.
 Methods.The study was designed in a qualitative exploratory research approach. The researcher had adopted the interviews for a case study as a microscopic social study through observation and also studied the archival records in Poornaprajna institutions. The informal group interviews were administered as part of a qualitative research approach, and it aimed to collect data from twenty eight English teachers and students of Poornaprajna institutions.
 Result. The validity and trustworthiness of the study were established by adopting Miles and Hubeman's formula, and it is 0.91. The exploration and findings revealed the need and implication of value education in the present scenario. Furthermore, the data analysis revealed that value education is a process that begins at home and continues in society, and further, it continues in formal educational institutions.
-Conclusion. The study envisions that the educational institutions must integrate the curriculum with value education so that students’ cultural worlds, meanings they attribute to behaviour, events which essentially lead to the developmental process of the society. The National Education Policy 2020, aims to universalise education in India by 2025, and it also aims at inter- and multidisciplinary approaches in Indian education. The present study juxtaposes an interdisciplinary approach to English and value education.</dc:description>
-<dc:publisher xml:lang="en-US">Foundation Pro Scientia Publica/ University of Wrocław</dc:publisher>
-<dc:date>2021-09-25</dc:date>
-<dc:type>info:eu-repo/semantics/article</dc:type>
-<dc:type>info:eu-repo/semantics/publishedVersion</dc:type>
-<dc:format>application/pdf</dc:format>
-<dc:identifier>https://e-methodology.eu/index.php/jecs/article/view/1359</dc:identifier>
-<dc:identifier>10.15503/jecs2021.2.59.66</dc:identifier>
-<dc:source xml:lang="en-US">Journal of Education Culture and Society; Vol. 12 No. 2 (2021): Journal of Education Culture and Society; 59-66</dc:source>
-<dc:source>2081-1640</dc:source>
-<dc:source>2081-1640</dc:source>
-<dc:language>eng</dc:language>
-<dc:relation>https://e-methodology.eu/index.php/jecs/article/view/1359/1192</dc:relation>
-<dc:rights xml:lang="en-US">Copyright (c) 2021 Diwakar  Prahaladaiah</dc:rights>
-<dc:rights xml:lang="en-US">http://creativecommons.org/licenses/by/4.0</dc:rights>
-</oai_dc:dc>
-</metadata><about></about></record>
-
+Conclusion. The study envisions that the educational institutions must integrate the curriculum with value education so that students&#x2019; cultural worlds, meanings they attribute to behaviour, events which essentially lead to the developmental process of the society. The National Education Policy 2020, aims to universalise education in India by 2025, and it also aims at inter- and multidisciplinary approaches in Indian education. The present study juxtaposes an interdisciplinary approach to English and value education.</dc:description>
+      <dc:publisher xml:lang="en-US">Foundation Pro Scientia Publica/ University of Wroc&#x142;aw</dc:publisher>
+      <dc:date>2021-09-25</dc:date>
+      <dc:type>info:eu-repo/semantics/article</dc:type>
+      <dc:type>info:eu-repo/semantics/publishedVersion</dc:type>
+      <dc:format>application/pdf</dc:format>
+      <dc:identifier>https://e-methodology.eu/index.php/jecs/article/view/1359</dc:identifier>
+      <dc:identifier>10.15503/jecs2021.2.59.66</dc:identifier>
+      <dc:source xml:lang="en-US">Journal of Education Culture and Society; Vol. 12 No. 2 (2021): Journal of Education Culture and Society; 59-66</dc:source>
+      <dc:source>2081-1640</dc:source>
+      <dc:source>2081-1640</dc:source>
+      <dc:language>eng</dc:language>
+      <dc:relation>https://e-methodology.eu/index.php/jecs/article/view/1359/1192</dc:relation>
+      <dc:rights xml:lang="en-US">Copyright (c) 2021 Diwakar  Prahaladaiah</dc:rights>
+      <dc:rights xml:lang="en-US">http://creativecommons.org/licenses/by/4.0</dc:rights>
+    </oai_dc:dc>
+  </metadata>
+  <about/>
+</record>

@@ -1,0 +1,34 @@
+{
+    "source": "oaiscrape",
+    "contribs": [
+        {
+            "extra": {},
+            "raw_name": "Prahaladaiah, Diwakar"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.15503/jecs2021.2.59.66",
+        "oai": "oai:ojs.pkp.sfu.ca:article/1359"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {
+            "set_spec": [
+                "jecs:ETH",
+                "driver"
+            ],
+            "url": [
+                "https://e-methodology.eu/index.php/jecs/article/view/1359"
+            ]
+        }
+    },
+    "id": "oaiscrape-fdf1e838e8ceb583f1ba41a2fbb1078443eb7f7d",
+    "language": "eng",
+    "release_date": "2021-09-25",
+    "title": "VALUE-BASED TEACHING ENGLISH LANGUAGE AND LITERATURE"
+}

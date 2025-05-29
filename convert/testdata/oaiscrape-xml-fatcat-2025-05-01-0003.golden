@@ -1,0 +1,50 @@
+{
+    "source": "oaiscrape",
+    "contribs": [
+        {
+            "extra": {},
+            "raw_name": "Aloshyna, Oksana"
+        },
+        {
+            "extra": {},
+            "raw_name": "Smyrnov, Andrii"
+        },
+        {
+            "extra": {},
+            "raw_name": "Yankovska, Zhanna"
+        },
+        {
+            "extra": {},
+            "raw_name": "Blyzniak, Mykola"
+        },
+        {
+            "extra": {},
+            "raw_name": "Marchuk, Volodymyr"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.15503/jecs2021.2.242.250",
+        "oai": "oai:ojs.pkp.sfu.ca:article/1371"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {
+            "set_spec": [
+                "jecs:EXP",
+                "driver"
+            ],
+            "url": [
+                "https://e-methodology.eu/index.php/jecs/article/view/1371"
+            ]
+        }
+    },
+    "id": "oaiscrape-6c468254df07161fe8edcd8494dbc87fab3a6ea6",
+    "language": "eng",
+    "release_date": "2021-09-25",
+    "title": "Organisational foundations of functioning of the Right-Bank Ukraine orthodox brotherhoods from the 1850s to 1900s"
+}

@@ -1,0 +1,58 @@
+{
+    "source": "oaiscrape",
+    "contribs": [
+        {
+            "extra": {},
+            "raw_name": "Kravets, Ruslan"
+        },
+        {
+            "extra": {},
+            "raw_name": "Vykhrushch, Vira"
+        },
+        {
+            "extra": {},
+            "raw_name": "Romanyshyna, Oksana"
+        },
+        {
+            "extra": {},
+            "raw_name": "Koziar, Mykhailo"
+        },
+        {
+            "extra": {},
+            "raw_name": "Ridkodubska, Hanna"
+        },
+        {
+            "extra": {},
+            "raw_name": "Marionda, Ivan"
+        },
+        {
+            "extra": {},
+            "raw_name": "Syvokhop, Eduard"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.15503/jecs2021.2.264.293",
+        "oai": "oai:ojs.pkp.sfu.ca:article/1321"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {
+            "set_spec": [
+                "jecs:EXP",
+                "driver"
+            ],
+            "url": [
+                "https://e-methodology.eu/index.php/jecs/article/view/1321"
+            ]
+        }
+    },
+    "id": "oaiscrape-8e3a106e38de6c97bc3fbf6bd85f99979f27498b",
+    "language": "eng",
+    "release_date": "2021-09-25",
+    "title": "Pedagogical Design of the Technology of Students’ Multicultural Competence at Higher Education Institutions"
+}
