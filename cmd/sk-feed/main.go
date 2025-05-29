@@ -15,6 +15,7 @@ import (
 
 	"github.com/adrg/xdg"
 	"github.com/miku/scholkit"
+	"github.com/miku/scholkit/config"
 	"github.com/miku/scholkit/dateutil"
 	"github.com/miku/scholkit/exdep"
 	"github.com/miku/scholkit/feeds"
@@ -137,7 +138,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("invalid date: %v", err)
 	}
-	config := &feeds.Config{
+	config := &config.Config{
 		DataDir:            *dir,
 		FeedDir:            path.Join(*dir, scholkit.FeedsDir),
 		Source:             *fetchSource,
