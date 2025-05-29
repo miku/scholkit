@@ -1,0 +1,24 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "HostingInstitution"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.26190/unsworks/26576"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-480008f5ad28f6384b90a3c2c1958ec56627e476",
+    "title": "Investigations of carrier-induced degradation behaviour in p-type mc-Si"
+}

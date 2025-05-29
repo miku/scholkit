@@ -1,0 +1,152 @@
+{
+  "id": "10.26190/unsworks/26595",
+  "type": "dois",
+  "attributes": {
+    "doi": "10.26190/unsworks/26595",
+    "identifiers": [],
+    "creators": [
+      {
+        "name": "Bartesaghi Koc, CA",
+        "nameType": "Personal",
+        "givenName": "CA",
+        "familyName": "Bartesaghi Koc",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-2877-621X",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Osmond, P",
+        "nameType": "Personal",
+        "givenName": "P",
+        "familyName": "Osmond",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-8533-6624",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Peters, A",
+        "nameType": "Personal",
+        "givenName": "A",
+        "familyName": "Peters",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0003-1626-6359",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      }
+    ],
+    "titles": [
+      {
+        "title": "Evaluating the thermal performance of urban green infrastructure at local scale: A methodological framework"
+      }
+    ],
+    "publisher": "UNSW Sydney",
+    "container": {},
+    "publicationYear": 2016,
+    "subjects": [],
+    "contributors": [
+      {
+        "name": "UNSW Sydney",
+        "nameType": "Organizational",
+        "affiliation": [
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://ror.org/",
+            "affiliationIdentifier": "https://ror.org/03r8z3t63",
+            "affiliationIdentifierScheme": "ROR"
+          },
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://www.grid.ac/",
+            "affiliationIdentifier": "https://www.grid.ac/grid.1005.4",
+            "affiliationIdentifierScheme": "GRID"
+          }
+        ],
+        "contributorType": "HostingInstitution",
+        "nameIdentifiers": []
+      }
+    ],
+    "dates": [
+      {
+        "date": "2016",
+        "dateType": "Issued"
+      }
+    ],
+    "language": null,
+    "types": {
+      "ris": "RPRT",
+      "bibtex": "article",
+      "citeproc": "article-journal",
+      "schemaOrg": "ScholarlyArticle",
+      "resourceType": "conference object",
+      "resourceTypeGeneral": "Text"
+    },
+    "relatedIdentifiers": [],
+    "relatedItems": [],
+    "sizes": [],
+    "formats": [],
+    "version": null,
+    "rightsList": [
+      {
+        "rights": "Creative Commons Attribution Non Commercial No Derivatives 4.0 International",
+        "rightsUri": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        "schemeUri": "https://spdx.org/licenses/",
+        "rightsIdentifier": "cc-by-nc-nd-4.0",
+        "rightsIdentifierScheme": "SPDX"
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "There is ample evidence of the climatic benefits provided by green infrastructure; however the optimal amount, composition and spatial distribution necessary to maximise the cooling potential of different GI typologies is unclear. Further research at higher spatial resolutions and at the local scale is also required since current climatological research has mainly focused on the mesoscale. This research proposes a new methodology for a more accurate and precise evaluation of thermal performance of GI using a combination of field measurements and airborne remote sensing. Its novelty lies in the combination of functional, morphological and configurational indicators and the estimation of evapotranspiration rates by adapting agro-meteorological models applied to highly heterogeneous urban settings using a GIS-based approach. This methodology includes: (a) the selection and cataloguing of sites using local climate zones (LCZ), (b) the classification and analysis of existing conditions based on a new green infrastructure typology, (c) the spatial and statistical analysis of indicators allocated to different typologies, and (d) formulation of a new assessment model. Future stages of the research will concentrate on testing and validating this method, using Sydney as the case study. Bankstown, Canterbury and Chatswood have been selected as potential sites due to their geographic location, urban characteristics and data availability. The research project is also intended to provide climate experts with protocols to evaluate, compare and communicate the evidence in a more standardised way, and propose guidelines and recommendations for urban designers and policy makers.",
+        "descriptionType": "Abstract"
+      },
+      {
+        "description": "11th Australian Climate Change Adaptation Research Network for Settlements and Infrastructure (ACCARNSI) ECR Conference; Canberra, Australia; 2016-02-15 - 2016-02-17",
+        "descriptionType": "Other"
+      }
+    ],
+    "geoLocations": [],
+    "fundingReferences": [],
+    "url": "http://hdl.handle.net/1959.4/unsworks_50344",
+    "contentUrl": null,
+    "metadataVersion": 4,
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "source": "mds",
+    "isActive": true,
+    "state": "findable",
+    "reason": null,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "referenceCount": 0,
+    "citationCount": 0,
+    "partCount": 0,
+    "partOfCount": 0,
+    "versionCount": 0,
+    "versionOfCount": 0,
+    "created": "2024-04-15T19:58:05Z",
+    "registered": "2024-04-15T19:58:25Z",
+    "published": null,
+    "updated": "2025-05-10T02:08:57Z"
+  },
+  "relationships": {
+    "client": {
+      "data": {
+        "id": "unsw.repo",
+        "type": "clients"
+      }
+    }
+  }
+}

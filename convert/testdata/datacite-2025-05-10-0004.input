@@ -1,0 +1,162 @@
+{
+  "id": "10.26190/unsworks/26544",
+  "type": "dois",
+  "attributes": {
+    "doi": "10.26190/unsworks/26544",
+    "identifiers": [],
+    "creators": [
+      {
+        "name": "McCausland, R",
+        "nameType": "Personal",
+        "givenName": "R",
+        "familyName": "McCausland",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0001-7323-0358",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Baldry, E",
+        "nameType": "Personal",
+        "givenName": "E",
+        "familyName": "Baldry",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0001-5599-5592",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "McEntyre, E",
+        "nameType": "Personal",
+        "givenName": "E",
+        "familyName": "McEntyre",
+        "affiliation": [],
+        "nameIdentifiers": []
+      }
+    ],
+    "titles": [
+      {
+        "title": "Indigenous People, Mental Health, Cognitive Disability and the Criminal Justice System"
+      }
+    ],
+    "publisher": "UNSW Sydney",
+    "container": {
+      "type": "Series",
+      "title": "22"
+    },
+    "publicationYear": 2017,
+    "subjects": [],
+    "contributors": [
+      {
+        "name": "Indigenous Justice Clearinghouse",
+        "nameType": "Organizational",
+        "affiliation": [],
+        "contributorType": "Sponsor",
+        "nameIdentifiers": []
+      },
+      {
+        "name": "UNSW Sydney",
+        "nameType": "Organizational",
+        "affiliation": [
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://ror.org/",
+            "affiliationIdentifier": "https://ror.org/03r8z3t63",
+            "affiliationIdentifierScheme": "ROR"
+          },
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://www.grid.ac/",
+            "affiliationIdentifier": "https://www.grid.ac/grid.1005.4",
+            "affiliationIdentifierScheme": "GRID"
+          }
+        ],
+        "contributorType": "HostingInstitution",
+        "nameIdentifiers": []
+      }
+    ],
+    "dates": [
+      {
+        "date": "2017",
+        "dateType": "Issued"
+      }
+    ],
+    "language": null,
+    "types": {
+      "ris": "RPRT",
+      "bibtex": "techreport",
+      "citeproc": "report",
+      "schemaOrg": "Report",
+      "resourceType": "report",
+      "resourceTypeGeneral": "Report"
+    },
+    "relatedIdentifiers": [
+      {
+        "relationType": "References",
+        "relatedIdentifier": "https://www.indigenousjustice.gov.au/wp-content/uploads/mp/files/publications/files/research-brief-24-final-31-8-17.pdf",
+        "relatedIdentifierType": "URL"
+      }
+    ],
+    "relatedItems": [],
+    "sizes": [],
+    "formats": [],
+    "version": null,
+    "rightsList": [
+      {
+        "rights": "Creative Commons Attribution Non Commercial No Derivatives 4.0 International",
+        "rightsUri": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        "schemeUri": "https://spdx.org/licenses/",
+        "rightsIdentifier": "cc-by-nc-nd-4.0",
+        "rightsIdentifierScheme": "SPDX"
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "Eileen",
+        "descriptionType": "Abstract"
+      },
+      {
+        "description": "22",
+        "descriptionType": "SeriesInformation"
+      }
+    ],
+    "geoLocations": [],
+    "fundingReferences": [],
+    "url": "http://hdl.handle.net/1959.4/unsworks_49662",
+    "contentUrl": null,
+    "metadataVersion": 4,
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "source": "mds",
+    "isActive": true,
+    "state": "findable",
+    "reason": null,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "referenceCount": 0,
+    "citationCount": 0,
+    "partCount": 0,
+    "partOfCount": 0,
+    "versionCount": 0,
+    "versionOfCount": 0,
+    "created": "2024-04-15T19:19:25Z",
+    "registered": "2024-04-15T19:19:44Z",
+    "published": null,
+    "updated": "2025-05-10T02:08:27Z"
+  },
+  "relationships": {
+    "client": {
+      "data": {
+        "id": "unsw.repo",
+        "type": "clients"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "Sponsor"
+        },
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "HostingInstitution"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.26190/unsworks/26544"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-5404c1d7457f3197b313719d89dd53e6c36cc72b",
+    "title": "Indigenous People, Mental Health, Cognitive Disability and the Criminal Justice System"
+}

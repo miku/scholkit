@@ -1,0 +1,24 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "HostingInstitution"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.26190/unsworks/26575"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-8d74f8d4741ebcfeb39695db317f6cc7db697036",
+    "title": "The outcomes of a community-based participatory research project with Aboriginal Australians reducing alcohol-related harms"
+}

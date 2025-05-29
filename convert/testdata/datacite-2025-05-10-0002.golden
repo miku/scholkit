@@ -1,0 +1,24 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "HostingInstitution"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.26190/unsworks/26595"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-5aabdc79d3b6ecd0f2e91c0e049c976ac9e19fa7",
+    "title": "Evaluating the thermal performance of urban green infrastructure at local scale: A methodological framework"
+}

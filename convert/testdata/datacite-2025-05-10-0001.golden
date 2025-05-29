@@ -1,0 +1,29 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "RightsHolder"
+        },
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "RightsHolder"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.35097/5put9t2x1xzbvnym"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-4db89dcd06755196e57355c531f5464315e70dc8",
+    "title": "CASENT0744389-Dorymyrmex.sp."
+}

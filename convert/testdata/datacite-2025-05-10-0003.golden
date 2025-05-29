@@ -1,0 +1,24 @@
+{
+    "source": "datacite",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": " ",
+            "role": "HostingInstitution"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.26190/unsworks/26550"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "datacite-7c586b16cb653e154875206ed7a848440cb53d16",
+    "title": "Viscoplastic behaviour of soft soil in vacuum consolidation"
+}

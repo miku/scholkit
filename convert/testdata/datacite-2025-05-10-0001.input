@@ -1,0 +1,341 @@
+{
+  "id": "10.35097/5put9t2x1xzbvnym",
+  "type": "dois",
+  "attributes": {
+    "doi": "10.35097/5put9t2x1xzbvnym",
+    "identifiers": [],
+    "creators": [
+      {
+        "name": "Katzke, Julian",
+        "givenName": "Julian",
+        "familyName": "Katzke",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-1447-9660",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Hita Garcia, Francisco",
+        "givenName": "Francisco",
+        "familyName": "Hita Garcia",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0003-4709-3083",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Lösel, Philipp D.",
+        "givenName": "Philipp D.",
+        "familyName": "Lösel",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0003-0506-1171",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Faragó, Tomáš",
+        "givenName": "Tomáš",
+        "familyName": "Faragó",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0009-0006-9824-2797",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Economo, Evan P.",
+        "givenName": "Evan P.",
+        "familyName": "Economo",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0001-7402-0432",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "van de Kamp, Thomas",
+        "givenName": "Thomas",
+        "familyName": "van de Kamp",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0001-7390-1318",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Azuma, Fumika",
+        "givenName": "Fumika",
+        "familyName": "Azuma",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-5275-8775",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Zuber, Marcus",
+        "givenName": "Marcus",
+        "familyName": "Zuber",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-2429-6171",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Hamann, Elias",
+        "givenName": "Elias",
+        "familyName": "Hamann",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-0623-9069",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Sarkar, Chandan",
+        "givenName": "Chandan",
+        "familyName": "Sarkar",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0009-0001-4374-0231",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      }
+    ],
+    "titles": [
+      {
+        "title": "CASENT0744389-Dorymyrmex.sp."
+      }
+    ],
+    "publisher": "Karlsruhe Institute of Technology(KIT),Okinawa Institute of Science and Technology Graduate University(OIST)",
+    "container": {},
+    "publicationYear": 2025,
+    "subjects": [
+      {
+        "subject": "Biology"
+      },
+      {
+        "subject": "dorymyrmex sp"
+      },
+      {
+        "subject": "antscan"
+      },
+      {
+        "subject": "ant"
+      },
+      {
+        "subject": "synchrotron"
+      },
+      {
+        "subject": "micro-CT"
+      },
+      {
+        "subject": "biology"
+      },
+      {
+        "subject": "biodiversity"
+      },
+      {
+        "subject": "digitization"
+      },
+      {
+        "subject": "tomography"
+      },
+      {
+        "subject": "insect"
+      },
+      {
+        "subject": "formicidae"
+      },
+      {
+        "subject": "anatomy"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Karlsruhe Institute Of Technology(KIT)",
+        "affiliation": [],
+        "contributorType": "RightsHolder",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://ror.org",
+            "nameIdentifier": "https://ror.org/04t3en479",
+            "nameIdentifierScheme": "ROR"
+          }
+        ]
+      },
+      {
+        "name": "Okinawa Institute Of Science And Technology Graduate University(OIST)",
+        "affiliation": [],
+        "contributorType": "RightsHolder",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://ror.org",
+            "nameIdentifier": "https://ror.org/02qg15b79",
+            "nameIdentifierScheme": "ROR"
+          }
+        ]
+      }
+    ],
+    "dates": [
+      {
+        "date": "2025",
+        "dateType": "Created"
+      },
+      {
+        "date": "2025",
+        "dateType": "Issued"
+      }
+    ],
+    "language": "en",
+    "types": {
+      "ris": "DATA",
+      "bibtex": "misc",
+      "citeproc": "dataset",
+      "schemaOrg": "Dataset",
+      "resourceType": "Dataset",
+      "resourceTypeGeneral": "Image"
+    },
+    "relatedIdentifiers": [],
+    "relatedItems": [],
+    "sizes": [
+      "552,4 MB"
+    ],
+    "formats": [
+      "application/x-tar"
+    ],
+    "version": null,
+    "rightsList": [
+      {
+        "rights": "Open Access",
+        "rightsUri": "info:eu-repo/semantics/openAccess"
+      },
+      {
+        "rights": "Creative Commons Attribution 4.0 International",
+        "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "schemeUri": "https://spdx.org/licenses/",
+        "rightsIdentifier": "cc-by-4.0",
+        "rightsIdentifierScheme": "SPDX"
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "Processed micro-tomographic scan of the ant Dorymyrmex sp , scanned at KIT Light Source. This dataset is part of the open-source digitization project ‘Antscan’, with a database consisting of thousands of scanned ethanol-preserved ant samples from museums and personal collections worldwide.",
+        "descriptionType": "TechnicalInfo"
+      },
+      {
+        "description": "Ant Specimen",
+        "descriptionType": "TechnicalInfo"
+      },
+      {
+        "description": "Tomographic data acquisition",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "Reconstruction of absorption and phase contrast 32-bit tomograms",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "Blending of both reconstructions",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "8-bit conversion",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "Stitching of height steps",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "Cropping",
+        "descriptionType": "Other"
+      },
+      {
+        "description": "specimen_code = CASENT0744389, collection_code = lsbf_027, taxon_code = Dorymyrmex.sp., lifestagesex_original_col = w, subcaste_original_col = not_available, caste = worker, caste_detail = not_available, genome_associated = not_available, LTS_Box = Brazil_LTS_4, for_more_specimen = not_available, specimens_left = not_available, scanning_vial_box = ANTSCAN_XS_21, problems_det = not_available, problems_other = not_available, stained = unstained, scan_tray = tray_11, magnification = 5x, voxel_size = 2.44 µm, filter = 500 µm Al, projections = 3000, fps = 100.0, exposure_time_per_frame = 0.01 s, Genus = Dorymyrmex, Species = sp., Status = unidentified, Name = Dorymyrmex sp., Family_or_other = Formicidae, Subfamily = Dolichoderinae, Tribe = Leptomyrmecini, Genus_authority = Mayr, 1866, Source = https://www.antwiki.org/wiki/Dorymyrmex, specimen_id = 47509.0, located_at = OIST, owned_by = not_available, antscan_contributor = Rodrigo M. Feitosa, determined_by = not_available, insert_user_23 = fumika, collected_by = A.C. Ferreira, R.M. Feitosa, T.S. Silva, method = hand, sampling_effort = not_available, date_collected_start = 2016-09-07, date_collected_end = not_available, habitat = not_available, microhabitat = not_available, behavior = not_available, disturbance_level = not_available, country = Brazil, adm1 = Acre, adm2 = not_available, island_group = not_available, island = not_available, locality_name = Senador Guiomard, Faz. Exp. Catuaba, latitude = -10.08003611, longitude = -67.62718611, latlong_error = not_available, elevation = 220.0, elevation_error = not_available, biogeographic_region = not_available",
+        "descriptionType": "Other"
+      }
+    ],
+    "geoLocations": [],
+    "fundingReferences": [
+      {
+        "awardUri": "",
+        "schemeUri": "https://ror.org",
+        "funderName": "BMBF",
+        "awardNumber": "05K2019 & 05K2022",
+        "funderIdentifier": "https://ror.org/04pz7b180",
+        "funderIdentifierType": "ROR"
+      },
+      {
+        "awardUri": "",
+        "schemeUri": "https://ror.org",
+        "funderName": "DFG",
+        "awardNumber": "INST 35/1503-1 FUGG",
+        "funderIdentifier": "https://ror.org/018mejw64",
+        "funderIdentifierType": "ROR"
+      }
+    ],
+    "url": "https://radar.kit.edu/radar/en/dataset/5put9t2x1xzbvnym",
+    "contentUrl": null,
+    "metadataVersion": 0,
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "source": "mds",
+    "isActive": true,
+    "state": "findable",
+    "reason": null,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "referenceCount": 0,
+    "citationCount": 0,
+    "partCount": 0,
+    "partOfCount": 0,
+    "versionCount": 0,
+    "versionOfCount": 0,
+    "created": "2025-05-10T02:08:34Z",
+    "registered": "2025-05-10T02:08:35Z",
+    "published": null,
+    "updated": "2025-05-10T02:08:35Z"
+  },
+  "relationships": {
+    "client": {
+      "data": {
+        "id": "tib.kit4radar",
+        "type": "clients"
+      }
+    }
+  }
+}

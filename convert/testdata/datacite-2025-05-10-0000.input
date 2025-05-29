@@ -1,0 +1,206 @@
+{
+  "id": "10.26190/unsworks/26576",
+  "type": "dois",
+  "attributes": {
+    "doi": "10.26190/unsworks/26576",
+    "identifiers": [],
+    "creators": [
+      {
+        "name": "chan, C",
+        "nameType": "Personal",
+        "givenName": "C",
+        "familyName": "chan",
+        "affiliation": [],
+        "nameIdentifiers": []
+      },
+      {
+        "name": "payne, D",
+        "nameType": "Personal",
+        "givenName": "D",
+        "familyName": "payne",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-6240-7821",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "abbott, M",
+        "nameType": "Personal",
+        "givenName": "M",
+        "familyName": "abbott",
+        "affiliation": [],
+        "nameIdentifiers": []
+      },
+      {
+        "name": "Chen, D",
+        "nameType": "Personal",
+        "givenName": "D",
+        "familyName": "Chen",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0001-7379-4751",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "ciesla, A",
+        "nameType": "Personal",
+        "givenName": "A",
+        "familyName": "ciesla",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-5109-6458",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "chen, R",
+        "nameType": "Personal",
+        "givenName": "R",
+        "familyName": "chen",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-2656-3907",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "hallam, B",
+        "nameType": "Personal",
+        "givenName": "B",
+        "familyName": "hallam",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-4811-5240",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "wenham, S",
+        "nameType": "Personal",
+        "givenName": "S",
+        "familyName": "wenham",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-1439-9871",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      }
+    ],
+    "titles": [
+      {
+        "title": "Investigations of carrier-induced degradation behaviour in p-type mc-Si"
+      }
+    ],
+    "publisher": "UNSW Sydney",
+    "container": {},
+    "publicationYear": 2017,
+    "subjects": [],
+    "contributors": [
+      {
+        "name": "UNSW Sydney",
+        "nameType": "Organizational",
+        "affiliation": [
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://ror.org/",
+            "affiliationIdentifier": "https://ror.org/03r8z3t63",
+            "affiliationIdentifierScheme": "ROR"
+          },
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://www.grid.ac/",
+            "affiliationIdentifier": "https://www.grid.ac/grid.1005.4",
+            "affiliationIdentifierScheme": "GRID"
+          }
+        ],
+        "contributorType": "HostingInstitution",
+        "nameIdentifiers": []
+      }
+    ],
+    "dates": [
+      {
+        "date": "2017",
+        "dateType": "Issued"
+      }
+    ],
+    "language": null,
+    "types": {
+      "ris": "RPRT",
+      "bibtex": "article",
+      "citeproc": "article-journal",
+      "schemaOrg": "ScholarlyArticle",
+      "resourceType": "conference poster",
+      "resourceTypeGeneral": "Text"
+    },
+    "relatedIdentifiers": [],
+    "relatedItems": [],
+    "sizes": [],
+    "formats": [],
+    "version": null,
+    "rightsList": [
+      {
+        "rights": "Creative Commons Attribution Non Commercial No Derivatives 4.0 International",
+        "rightsUri": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        "schemeUri": "https://spdx.org/licenses/",
+        "rightsIdentifier": "cc-by-nc-nd-4.0",
+        "rightsIdentifierScheme": "SPDX"
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "44th IEEE Photovoltaics Specialist Conference; Washington DC; 2017-06-25 - 2017-06-30",
+        "descriptionType": "Other"
+      }
+    ],
+    "geoLocations": [],
+    "fundingReferences": [],
+    "url": "http://hdl.handle.net/1959.4/unsworks_50213",
+    "contentUrl": null,
+    "metadataVersion": 2,
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "source": "mds",
+    "isActive": true,
+    "state": "findable",
+    "reason": null,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "referenceCount": 0,
+    "citationCount": 0,
+    "partCount": 0,
+    "partOfCount": 0,
+    "versionCount": 0,
+    "versionOfCount": 0,
+    "created": "2024-04-15T19:44:00Z",
+    "registered": "2024-04-15T19:44:19Z",
+    "published": null,
+    "updated": "2025-05-10T02:08:50Z"
+  },
+  "relationships": {
+    "client": {
+      "data": {
+        "id": "unsw.repo",
+        "type": "clients"
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "id": "10.26190/unsworks/26550",
+  "type": "dois",
+  "attributes": {
+    "doi": "10.26190/unsworks/26550",
+    "identifiers": [],
+    "creators": [
+      {
+        "name": "Kumarage, PI",
+        "nameType": "Personal",
+        "givenName": "PI",
+        "familyName": "Kumarage",
+        "nameIdentifiers": [
+          {
+            "schemeUri": "https://orcid.org",
+            "nameIdentifier": "https://orcid.org/0000-0002-7987-5410",
+            "nameIdentifierScheme": "ORCID"
+          }
+        ],
+        "affiliation": []
+      },
+      {
+        "name": "Gnanendran, CT",
+        "nameType": "Personal",
+        "givenName": "CT",
+        "familyName": "Gnanendran",
+        "affiliation": [],
+        "nameIdentifiers": []
+      }
+    ],
+    "titles": [
+      {
+        "title": "Viscoplastic behaviour of soft soil in vacuum consolidation"
+      }
+    ],
+    "publisher": "UNSW Sydney",
+    "container": {},
+    "publicationYear": 2017,
+    "subjects": [],
+    "contributors": [
+      {
+        "name": "UNSW Sydney",
+        "nameType": "Organizational",
+        "affiliation": [
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://ror.org/",
+            "affiliationIdentifier": "https://ror.org/03r8z3t63",
+            "affiliationIdentifierScheme": "ROR"
+          },
+          {
+            "name": "UNSW Sydney",
+            "schemeUri": "https://www.grid.ac/",
+            "affiliationIdentifier": "https://www.grid.ac/grid.1005.4",
+            "affiliationIdentifierScheme": "GRID"
+          }
+        ],
+        "contributorType": "HostingInstitution",
+        "nameIdentifiers": []
+      }
+    ],
+    "dates": [
+      {
+        "date": "2017",
+        "dateType": "Issued"
+      }
+    ],
+    "language": null,
+    "types": {
+      "ris": "CPAPER",
+      "bibtex": "article",
+      "citeproc": "",
+      "schemaOrg": "Article",
+      "resourceType": "conference paper",
+      "resourceTypeGeneral": "ConferencePaper"
+    },
+    "relatedIdentifiers": [],
+    "relatedItems": [],
+    "sizes": [],
+    "formats": [],
+    "version": null,
+    "rightsList": [
+      {
+        "rights": "Creative Commons Attribution Non Commercial No Derivatives 4.0 International",
+        "rightsUri": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        "schemeUri": "https://spdx.org/licenses/",
+        "rightsIdentifier": "cc-by-nc-nd-4.0",
+        "rightsIdentifierScheme": "SPDX"
+      }
+    ],
+    "descriptions": [
+      {
+        "description": "Consideration of vacuum consolidation in soft clays with respect to its long-term performance has been extremely limited, especially concerning thick clay deposits having significant creep characteristics. Popular coupled-consolidation elasto-plastic analysis models such as Cam-Clay cannot be used to predict long-term time-dependent deformational behaviour in soft soils. In this paper, a Biot type fully-coupled creep-based viscoplastic finite element analysis numerical model is proposed to predict the time-dependent deformations in thick deposits of soft clays under vacuum consolidation.",
+        "descriptionType": "Abstract"
+      },
+      {
+        "description": "GeoOttawa 2017; Ottawa, Ontario, Canada; 2017-10-01 - 2017-10-04",
+        "descriptionType": "Other"
+      }
+    ],
+    "geoLocations": [],
+    "fundingReferences": [],
+    "url": "http://hdl.handle.net/1959.4/unsworks_49799",
+    "contentUrl": null,
+    "metadataVersion": 0,
+    "schemaVersion": "http://datacite.org/schema/kernel-4",
+    "source": "mds",
+    "isActive": true,
+    "state": "findable",
+    "reason": null,
+    "viewCount": 0,
+    "downloadCount": 0,
+    "referenceCount": 0,
+    "citationCount": 0,
+    "partCount": 0,
+    "partOfCount": 0,
+    "versionCount": 0,
+    "versionOfCount": 0,
+    "created": "2024-04-15T19:23:54Z",
+    "registered": "2024-04-15T19:24:14Z",
+    "published": null,
+    "updated": "2025-05-10T02:08:31Z"
+  },
+  "relationships": {
+    "client": {
+      "data": {
+        "id": "unsw.repo",
+        "type": "clients"
+      }
+    }
+  }
+}
