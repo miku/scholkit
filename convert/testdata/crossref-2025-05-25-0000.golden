@@ -1,0 +1,42 @@
+{
+    "source": "crossref",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Mostafa H.",
+            "raw_name": "Mostafa H. Ahmed",
+            "role": "author",
+            "surname": "Ahmed"
+        },
+        {
+            "extra": {},
+            "given_name": "Mohini S.",
+            "raw_name": "Mohini S. Ghatge",
+            "role": "author",
+            "surname": "Ghatge"
+        },
+        {
+            "extra": {},
+            "given_name": "Martin K.",
+            "raw_name": "Martin K. Safo",
+            "role": "author",
+            "surname": "Safo"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1007/978-3-030-41769-7_14"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "crossref-0ddb821f898785fe7c2ea7e45bb4fb2df3a912dc",
+    "release_date": "52182-07-15",
+    "release_type": "chapter",
+    "title": "Hemoglobin: Structure, Function and Allostery"
+}

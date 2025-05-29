@@ -1,0 +1,112 @@
+{
+    "source": "crossref",
+    "contribs": [
+        {
+            "extra": {
+                "more_affiliation": [
+                    "Center for Research and Development of Medical Diagnostic Laboratories, Faculty of Associated Medical Sciences, Khon Kaen University, Khon Kaen, Thailand"
+                ]
+            },
+            "given_name": "Rungtiwa",
+            "raw_name": "Rungtiwa Dangtakot",
+            "role": "author",
+            "surname": "Dangtakot",
+            "raw_affiliation": "Science Program in Medical Technology, Faculty of Associated Medical Sciences, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {
+                "more_affiliation": [
+                    "Liver Fluke and Cholangiocarcinoma Research Center, Khon Kaen University, Khon Kaen, Thailand"
+                ]
+            },
+            "given_name": "Somchai",
+            "raw_name": "Somchai Pinlaor",
+            "role": "author",
+            "surname": "Pinlaor",
+            "raw_affiliation": "Department of Parasitology, Faculty of Medicine, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {},
+            "given_name": "Upsornsawan",
+            "raw_name": "Upsornsawan Itthitaetrakool",
+            "role": "author",
+            "surname": "Itthitaetrakool",
+            "raw_affiliation": "Biomedical Science Program, Graduate School, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {
+                "more_affiliation": [
+                    "Liver Fluke and Cholangiocarcinoma Research Center, Khon Kaen University, Khon Kaen, Thailand"
+                ]
+            },
+            "given_name": "Apisit",
+            "raw_name": "Apisit Chaidee",
+            "role": "author",
+            "surname": "Chaidee",
+            "raw_affiliation": "Department of Parasitology, Faculty of Medicine, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {
+                "more_affiliation": [
+                    "Department of Microbiology, Faculty of Medicine, Khon Kaen University, Khon Kaen, Thailand"
+                ]
+            },
+            "given_name": "Chariya",
+            "raw_name": "Chariya Chomvarin",
+            "role": "author",
+            "surname": "Chomvarin",
+            "raw_affiliation": "Liver Fluke and Cholangiocarcinoma Research Center, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {},
+            "given_name": "Arunnee",
+            "raw_name": "Arunnee Sangka",
+            "role": "author",
+            "surname": "Sangka",
+            "raw_affiliation": "Center for Research and Development of Medical Diagnostic Laboratories, Faculty of Associated Medical Sciences, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {},
+            "given_name": "Chotechana",
+            "raw_name": "Chotechana Wilailuckana",
+            "role": "author",
+            "surname": "Wilailuckana",
+            "raw_affiliation": "Center for Research and Development of Medical Diagnostic Laboratories, Faculty of Associated Medical Sciences, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {
+                "more_affiliation": [
+                    "Liver Fluke and Cholangiocarcinoma Research Center, Khon Kaen University, Khon Kaen, Thailand"
+                ]
+            },
+            "given_name": "Porntip",
+            "raw_name": "Porntip Pinlaor",
+            "role": "author",
+            "surname": "Pinlaor",
+            "raw_affiliation": "Center for Research and Development of Medical Diagnostic Laboratories, Faculty of Associated Medical Sciences, Khon Kaen University, Khon Kaen, Thailand"
+        },
+        {
+            "extra": {},
+            "given_name": "Steven R.",
+            "raw_name": "Steven R. Blanke",
+            "role": "editor",
+            "surname": "Blanke"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1128/iai.00009-17"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "crossref-54c8d3e8345f94c5976b7d55aa4f6a76e8092ed2",
+    "release_date": "49054-01-20",
+    "release_type": "article-journal",
+    "title": "Coinfection with Helicobacter pylori and Opisthorchis viverrini Enhances the Severity of Hepatobiliary Abnormalities in Hamsters"
+}

@@ -1,0 +1,35 @@
+{
+    "source": "crossref",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "André",
+            "raw_name": "André Moliton",
+            "role": "author",
+            "surname": "Moliton"
+        },
+        {
+            "extra": {},
+            "given_name": "Jean‐Michel",
+            "raw_name": "Jean‐Michel Nunzi",
+            "role": "author",
+            "surname": "Nunzi"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1002/pi.2038"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "crossref-c4db77157e3f9f246db844c36c59ac8c52877c9b",
+    "release_date": "38210-12-21",
+    "release_type": "article-journal",
+    "title": "How to model the behaviour of organic photovoltaic cells"
+}

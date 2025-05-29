@@ -1,0 +1,91 @@
+{
+    "source": "crossref",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "Thabele",
+            "raw_name": "Thabele Leslie-Mazwi",
+            "role": "author",
+            "surname": "Leslie-Mazwi"
+        },
+        {
+            "extra": {},
+            "given_name": "Ronil V",
+            "raw_name": "Ronil V Chandra",
+            "role": "author",
+            "surname": "Chandra"
+        },
+        {
+            "extra": {},
+            "given_name": "Blaise W",
+            "raw_name": "Blaise W Baxter",
+            "role": "author",
+            "surname": "Baxter"
+        },
+        {
+            "extra": {},
+            "given_name": "Adam S",
+            "raw_name": "Adam S Arthur",
+            "role": "author",
+            "surname": "Arthur"
+        },
+        {
+            "extra": {},
+            "given_name": "Muhammad S",
+            "raw_name": "Muhammad S Hussain",
+            "role": "author",
+            "surname": "Hussain"
+        },
+        {
+            "extra": {},
+            "given_name": "I Paul",
+            "raw_name": "I Paul Singh",
+            "role": "author",
+            "surname": "Singh"
+        },
+        {
+            "extra": {},
+            "given_name": "Don F",
+            "raw_name": "Don F Frei",
+            "role": "author",
+            "surname": "Frei"
+        },
+        {
+            "extra": {},
+            "given_name": "Richard P",
+            "raw_name": "Richard P Klucznik",
+            "role": "author",
+            "surname": "Klucznik"
+        },
+        {
+            "extra": {},
+            "given_name": "Felipe C",
+            "raw_name": "Felipe C Albuquerque",
+            "role": "author",
+            "surname": "Albuquerque"
+        },
+        {
+            "extra": {},
+            "given_name": "Joshua A",
+            "raw_name": "Joshua A Hirsch",
+            "role": "author",
+            "surname": "Hirsch"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1136/neurintsurg-2018-013792"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "crossref-2609237f013be2120d296a366a9033463d0d5e78",
+    "release_date": "50087-10-27",
+    "release_type": "article-journal",
+    "title": "ELVO: an operational definition"
+}

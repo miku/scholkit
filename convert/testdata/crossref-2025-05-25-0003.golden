@@ -1,0 +1,63 @@
+{
+    "source": "crossref",
+    "contribs": [
+        {
+            "extra": {},
+            "given_name": "S.",
+            "raw_name": "S. Galle",
+            "role": "author",
+            "surname": "Galle"
+        },
+        {
+            "extra": {},
+            "given_name": "W.",
+            "raw_name": "W. Derave",
+            "role": "author",
+            "surname": "Derave"
+        },
+        {
+            "extra": {},
+            "given_name": "F.",
+            "raw_name": "F. Bossuyt",
+            "role": "author",
+            "surname": "Bossuyt"
+        },
+        {
+            "extra": {},
+            "given_name": "P.",
+            "raw_name": "P. Calders",
+            "role": "author",
+            "surname": "Calders"
+        },
+        {
+            "extra": {},
+            "given_name": "P.",
+            "raw_name": "P. Malcolm",
+            "role": "author",
+            "surname": "Malcolm"
+        },
+        {
+            "extra": {},
+            "given_name": "D.",
+            "raw_name": "D. De Clercq",
+            "role": "author",
+            "surname": "De Clercq"
+        }
+    ],
+    "ext_ids": {
+        "doi": "10.1016/j.gaitpost.2016.11.040"
+    },
+    "extra": {
+        "arxiv": {},
+        "dblp": {},
+        "openalex": {
+            "open_access": {}
+        },
+        "crossref": {},
+        "oai": {}
+    },
+    "id": "crossref-8edd99f181232f2a704904d6f1fe3bfdb1184cb5",
+    "release_date": "48880-04-30",
+    "release_type": "article-journal",
+    "title": "Exoskeleton plantarflexion assistance for elderly"
+}
