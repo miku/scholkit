@@ -1,0 +1,37 @@
+
+<record xmlns="http://www.openarchives.org/OAI/2.0/"><header status=""><identifier>oai:ojs.pkp.sfu.ca:article/1332</identifier><datestamp>2021-10-02T18:16:28Z</datestamp><setSpec>jecs:EXPR</setSpec><setSpec>driver</setSpec></header><metadata>
+<oai_dc:dc
+xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/
+http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+<dc:title xml:lang="en-US">On cognitive tensions. The mediating function of a symbol through the lens of Kleinian psychoanalysis and Peirce semiotic</dc:title>
+<dc:creator>Iwaszuk, Marta</dc:creator>
+<dc:subject xml:lang="en-US">Charles S. Peirce</dc:subject>
+<dc:subject xml:lang="en-US">Melanie Klein</dc:subject>
+<dc:subject xml:lang="en-US">symbolization</dc:subject>
+<dc:subject xml:lang="en-US">conscious</dc:subject>
+<dc:subject xml:lang="en-US">unconscious</dc:subject>
+<dc:description xml:lang="en-US">Aim. The foundation of symbolization is a substitution: a mediation between a Representamen and Object. The paper leverages this core mechanic to examine the substitutions within the conscious and unconscious parts of the mind, which compose every act of thinking. Recognizing it is a single instance: the Ego, which regulates this parallel mediation, the paper focuses on the exploration of dichotomies that result from the necessity to perform two symbolizations simultaneously.
+Concepts. The study’s theoretical framework is determined by Charles S. Peirce’s (1998) concept of sign and Melanie Klein’s (1948) psychoanalytic theory. From semiotic and psychoanalytic angles, this paper explores possible comprehensions of the object in the quasi-mind (Interpretant in infinite semiosis) and actual realization of code in the act of individual thinking (Ego mediating between conscious and unconscious symbolization).
+Results and conclusion. The main result of the study is the exposure of dichotomies that structure the shared ground for the conscious and the unconscious symbolization. This, in turn, highlights tangible constraints that the mind is subjected to in the act of thinking.
+Cognitive value. The study’s main contribution is the high-level scheme of dynamics that hold the Ego in reality through the means of unconscious and conscious symbolization. The study also incorporates into coherent model unexamined aspects of individual sign usage: it deploys psychic continuity into the conscious symbolization process (by basing the model on the instance of Ego), which allows addressing the issues arising at the border of conscious and unconscious symbolization.</dc:description>
+<dc:publisher xml:lang="en-US">Foundation Pro Scientia Publica/ University of Wrocław</dc:publisher>
+<dc:date>2021-09-25</dc:date>
+<dc:type>info:eu-repo/semantics/article</dc:type>
+<dc:type>info:eu-repo/semantics/publishedVersion</dc:type>
+<dc:type xml:lang="en-US">text</dc:type>
+<dc:format>application/pdf</dc:format>
+<dc:identifier>https://e-methodology.eu/index.php/jecs/article/view/1332</dc:identifier>
+<dc:identifier>10.15503/jecs2021.2.415.431</dc:identifier>
+<dc:source xml:lang="en-US">Journal of Education Culture and Society; Vol. 12 No. 2 (2021): Journal of Education Culture and Society; 415-431</dc:source>
+<dc:source>2081-1640</dc:source>
+<dc:source>2081-1640</dc:source>
+<dc:language>eng</dc:language>
+<dc:relation>https://e-methodology.eu/index.php/jecs/article/view/1332/1174</dc:relation>
+<dc:rights xml:lang="en-US">Copyright (c) 2021 Marta Iwaszuk</dc:rights>
+<dc:rights xml:lang="en-US">http://creativecommons.org/licenses/by/4.0</dc:rights>
+</oai_dc:dc>
+</metadata><about></about></record>
+
