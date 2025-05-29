@@ -1,10 +1,6 @@
 // sk-oai-dctojsonl converts a stream of XML records, where each record is
-// separated by a record separator "1E". Currently, we do not support streaming
-// data in from stdin, but need a decompressed file, as we seek through it.
-//
-// Raw input in 02/2025 is 1.3TB XML with 1E separators. On a 32 core machine
-// conversion runs at about 500MB/s, overall it may take an hour to create a
-// JSONL version.
+// separated by a record separator "1E". This version supports streaming data
+// from stdin.
 package main
 
 import (
@@ -12,16 +8,22 @@ import (
 	"bytes"
 	"encoding/xml"
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
 	"runtime"
 	"sync"
 
+	"github.com/miku/scholkit/schema/oaiscrape"
 	"github.com/segmentio/encoding/json"
 )
 
-var filename = flag.String("f", "2025-01-16-metha-oai-sep-1e.xml", "filename to process")
+var (
+	bufferSize = flag.Int("b", 8*1024*1024, "buffer size for reading chunks")
+	numWorkers = flag.Int("w", runtime.NumCPU(), "number of worker goroutines")
+	printStats = flag.Bool("stats", false, "print processing statistics")
+)
 
 // Record and other type definitions remain the same as before
 type Record struct {
@@ -56,33 +58,36 @@ type DublinCore struct {
 	Rights      []string `xml:"rights"`
 }
 
-type FlatRecord struct {
-	Identifier   string   `json:"identifier"`
-	Datestamp    string   `json:"datestamp"`
-	SetSpec      []string `json:"set_spec"`
-	Title        []string `json:"title"`
-	Creator      []string `json:"creator"`
-	Subject      []string `json:"subject"`
-	Description  []string `json:"description"`
-	Publisher    []string `json:"publisher"`
-	Contributor  []string `json:"contributor"`
-	Date         []string `json:"date"`
-	Type         []string `json:"type"`
-	Format       []string `json:"format"`
-	DCIdentifier []string `json:"dc_identifier"`
-	Source       []string `json:"source"`
-	Language     []string `json:"language"`
-	Relation     []string `json:"relation"`
-	Rights       []string `json:"rights"`
+const recordSep = 0x1E // ASCII record separator
+
+// Stats for reporting
+type Stats struct {
+	mu             sync.Mutex
+	BytesRead      int64
+	RecordsRead    int64
+	RecordsWritten int64
 }
 
-const (
-	chunkSize = 67108864 // bytes per thread
-	recordSep = 0x1E     // ASCII record separator
-)
+func (s *Stats) IncrementBytesRead(n int64) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.BytesRead += n
+}
 
-func convertRecord(record *Record) *FlatRecord {
-	flat := &FlatRecord{
+func (s *Stats) IncrementRecordsRead() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.RecordsRead++
+}
+
+func (s *Stats) IncrementRecordsWritten() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.RecordsWritten++
+}
+
+func convertRecord(record *Record) *oaiscrape.FlatRecord {
+	flat := &oaiscrape.FlatRecord{
 		Identifier:   record.Header.Identifier,
 		Datestamp:    record.Header.Datestamp,
 		SetSpec:      record.Header.SetSpec,
@@ -104,107 +109,136 @@ func convertRecord(record *Record) *FlatRecord {
 	return flat
 }
 
-func batchWorker(queue chan []byte, resultC chan []byte, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for batch := range queue {
-		var i, j int
-		var buf bytes.Buffer
-		enc := json.NewEncoder(&buf)
-		for _, b := range batch {
-			j++
-			if b == recordSep {
-				var record Record
-				_ = xml.Unmarshal(batch[i:j], &record)
-				i = j + 1
-				flat := convertRecord(&record)
-				err := enc.Encode(flat)
-				if err != nil {
-					log.Fatal(err)
-				}
+// splitIntoRecords the data into XML records, separated by the record separator
+func splitIntoRecords(data []byte) [][]byte {
+	var records [][]byte
+	var start int
+	for i, b := range data {
+		if b == recordSep {
+			if i > start {
+				records = append(records, data[start:i])
 			}
+			start = i + 1
 		}
-		resultC <- buf.Bytes()
+	}
+	if start < len(data) {
+		records = append(records, data[start:])
+	}
+	return records
+}
+
+func processRecords(records [][]byte, stats *Stats) ([]byte, error) {
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	for _, record := range records {
+		stats.IncrementRecordsRead()
+		var r Record
+		err := xml.Unmarshal(record, &r)
+		if err != nil {
+			log.Printf("error unmarshaling record: %v", err)
+			continue
+		}
+		flat := convertRecord(&r)
+		err = enc.Encode(flat)
+		if err != nil {
+			return nil, fmt.Errorf("error encoding record: %w", err)
+		}
+		stats.IncrementRecordsWritten()
+	}
+	return buf.Bytes(), nil
+}
+
+func worker(jobs <-chan []byte, results chan<- []byte, wg *sync.WaitGroup, stats *Stats) {
+	defer wg.Done()
+	for data := range jobs {
+		records := splitIntoRecords(data)
+		result, err := processRecords(records, stats)
+		if err != nil {
+			log.Printf("error processing records: %v", err)
+			continue
+		}
+		results <- result
 	}
 }
 
-func writer(resultC chan []byte, done chan bool) {
-	bw := bufio.NewWriter(os.Stdout)
-	defer bw.Flush()
-	for blob := range resultC {
-		_, _ = bw.Write(blob)
+// readChunks reads from the reader and ensures chunks end with a record separator
+func readChunks(r io.Reader, chunkSize int, jobs chan<- []byte, stats *Stats) error {
+	buffer := make([]byte, chunkSize)
+	carryover := make([]byte, 0)
+	for {
+		n, err := r.Read(buffer)
+		if err != nil && err != io.EOF {
+			return fmt.Errorf("error reading from stdin: %w", err)
+		}
+		if n == 0 {
+			if len(carryover) > 0 {
+				jobs <- carryover
+				stats.IncrementBytesRead(int64(len(carryover)))
+			}
+			break
+		}
+		stats.IncrementBytesRead(int64(n))
+		lastSepIdx := -1
+		for i := n - 1; i >= 0; i-- {
+			if buffer[i] == recordSep {
+				lastSepIdx = i
+				break
+			}
+		}
+		if lastSepIdx == -1 {
+			carryover = append(carryover, buffer[:n]...)
+			continue
+		}
+		chunk := make([]byte, len(carryover)+lastSepIdx+1)
+		copy(chunk, carryover)
+		copy(chunk[len(carryover):], buffer[:lastSepIdx+1])
+		jobs <- chunk
+		carryover = make([]byte, n-(lastSepIdx+1))
+		copy(carryover, buffer[lastSepIdx+1:n])
+		if err == io.EOF {
+			if len(carryover) > 0 {
+				jobs <- carryover
+			}
+			break
+		}
 	}
-	done <- true
+	return nil
 }
 
 func main() {
 	flag.Parse()
-	f, err := os.Open(*filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-	fi, err := os.Stat(*filename)
-	if err != nil {
-		log.Fatal(err)
-	}
 	var (
-		queue   = make(chan []byte)
-		resultC = make(chan []byte)
-		done    = make(chan bool)
-		wg      sync.WaitGroup
+		stats   = &Stats{}
+		jobs    = make(chan []byte, *numWorkers)
+		results = make(chan []byte, *numWorkers)
+		done    = make(chan struct{})
 	)
-	go writer(resultC, done)
-	for k := 0; k < runtime.NumCPU(); k++ {
+	var wg sync.WaitGroup
+	for i := 0; i < *numWorkers; i++ {
 		wg.Add(1)
-		go batchWorker(queue, resultC, &wg)
+		go worker(jobs, results, &wg, stats)
 	}
-	var i, j, L int64 // start, stop and length of chunk
-	var singleByte = make([]byte, 1)
-	for i < fi.Size() {
-		j = i + chunkSize
-		if j > fi.Size() {
-			L = j - i
-			_, err := f.Seek(i, io.SeekStart)
+	go func() {
+		bufWriter := bufio.NewWriter(os.Stdout)
+		defer bufWriter.Flush()
+		for result := range results {
+			_, err := bufWriter.Write(result)
 			if err != nil {
-				log.Fatal(err)
+				log.Printf("error writing to stdout: %v", err)
 			}
-			buf := make([]byte, L)
-			_, err = f.Read(buf)
-			if err != nil {
-				log.Fatal(err)
-			}
-			queue <- buf
-			break
 		}
-		_, err = f.Seek(j, io.SeekStart)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for j < fi.Size() {
-			_, err := f.Read(singleByte)
-			if err != nil {
-				log.Fatal(err)
-			}
-			if singleByte[0] == recordSep {
-				break
-			}
-			j++
-		}
-		L = j - i
-		_, err := f.Seek(i, io.SeekStart)
-		if err != nil {
-			log.Fatal(err)
-		}
-		buf := make([]byte, L)
-		_, err = f.Read(buf)
-		if err != nil {
-			log.Fatal(err)
-		}
-		queue <- buf
-		i = j + 1
+		done <- struct{}{}
+	}()
+	err := readChunks(os.Stdin, *bufferSize, jobs, stats)
+	if err != nil {
+		log.Fatalf("error reading chunks: %v", err)
 	}
-	close(queue)
+	close(jobs)
 	wg.Wait()
-	close(resultC)
+	close(results)
 	<-done
+	if *printStats {
+		log.Printf("read: %d bytes, records read: %d, records written: %d",
+			stats.BytesRead, stats.RecordsRead, stats.RecordsWritten)
+	}
 }
