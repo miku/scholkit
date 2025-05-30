@@ -95,7 +95,7 @@ func main() {
 		}
 	case "oai":
 		dir := path.Join(config.FeedDir, "metha")
-		script := fmt.Sprintf(`find %s -type f -name "*.gz" | parallel -j %d "unpigz -c" | sk-oai-records | sk-oai-dctojsonl-stream > %s`,
+		script := fmt.Sprintf(`find %s -type f -name "*.zst" | parallel -j %d "zstdcat -T0" | sk-oai-records | sk-oai-dctojsonl-stream > %s`,
 			dir, *numWorkers, outputFile)
 		log.Println(script)
 		cmd := exec.Command("bash", "-c", script)
