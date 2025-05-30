@@ -209,13 +209,11 @@ func main() {
 	)
 	flag.Parse()
 
-	// Determine separator
 	sep := *separator
 	if *useTab {
 		sep = "\t"
 	}
 
-	// Open input (stdin or file)
 	var input *os.File
 	var err error
 
@@ -224,7 +222,7 @@ func main() {
 	} else {
 		input, err = os.Open(*inputFile)
 		if err != nil {
-			log.Fatal("Error opening input file:", err)
+			log.Fatal(err)
 		}
 		defer input.Close()
 	}
