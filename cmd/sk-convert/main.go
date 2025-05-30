@@ -8,7 +8,6 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
 	"runtime"
@@ -344,25 +343,9 @@ func main() {
 			log.Fatal(err)
 		}
 	case "pubmed": // XML
-		// const (
-		// 	MaxBufferSize = 67108864
-		// 	MaxTokenSize  = 134217728
-		// )
-		// tagSplitter := pprecord.TagSplitter("PubmedArticle", MaxBufferSize, MaxTokenSize)
-
-		// scanner := bufio.NewScanner(br)
-		// scanner.Split(tagSplitter)
-		// for scanner.Scan() {
-		// 	log.Println(len(scanner.Bytes()))
-		// }
-		// if err := scanner.Err(); err != nil {
-		// 	log.Fatal(err)
-		// }
-
 		scanner := xmlstream.NewScanner(os.Stdin, new(pubmed.Article))
 		scanner.Decoder.Strict = false
-		var buf bytes.Buffer
-		var enc = json.NewEncoder(&buf)
+		var enc = json.NewEncoder(bw)
 		for scanner.Scan() {
 			tag := scanner.Element()
 			if article, ok := tag.(*pubmed.Article); ok {
@@ -377,13 +360,6 @@ func main() {
 			}
 		}
 		if err := scanner.Err(); err != nil {
-			if *bestEffort {
-				log.Println(err)
-			} else {
-				log.Fatal(err)
-			}
-		}
-		if _, err := io.Copy(bw, &buf); err != nil {
 			if *bestEffort {
 				log.Println(err)
 			} else {
