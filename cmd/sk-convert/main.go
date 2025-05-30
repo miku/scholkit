@@ -369,7 +369,7 @@ func main() {
 				release, _ := convert.PubmedArticleToFatcatRelease(article)
 				if err := enc.Encode(release); err != nil {
 					if *bestEffort {
-						log.Fatal(err)
+						log.Println(err)
 					} else {
 						log.Fatal(err)
 					}
@@ -378,14 +378,14 @@ func main() {
 		}
 		if err := scanner.Err(); err != nil {
 			if *bestEffort {
-				log.Fatal(err)
+				log.Println(err)
 			} else {
 				log.Fatal(err)
 			}
 		}
 		if _, err := io.Copy(bw, &buf); err != nil {
 			if *bestEffort {
-				log.Fatal(err)
+				log.Println(err)
 			} else {
 				log.Fatal(err)
 			}
