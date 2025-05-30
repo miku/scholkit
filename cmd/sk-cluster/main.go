@@ -269,6 +269,10 @@ func main() {
 	fmt.Fprintln(w, strings.Join(header, sep))
 
 	scanner := bufio.NewScanner(input)
+
+	buf := make([]byte, 33554432)
+	scanner.Buffer(buf, 67108864)
+
 	lineNum := 0
 
 	for scanner.Scan() {
