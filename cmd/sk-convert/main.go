@@ -343,6 +343,11 @@ func main() {
 			log.Fatal(err)
 		}
 	case "pubmed": // XML
+		// 76.4M 6:44:27 [3.15k/s] [                                                                                                                                      <=>                                                                            ]
+		//
+		// real    404m27.150s
+		// user    438m23.081s
+		// sys     21m23.165s
 		scanner := xmlstream.NewScanner(os.Stdin, new(pubmed.Article))
 		scanner.Decoder.Strict = false
 		var enc = json.NewEncoder(bw)
