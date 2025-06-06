@@ -9,7 +9,7 @@ type Contrib struct {
 		MoreAffiliation []string `json:"more_affiliation,omitempty"`
 	} `json:"extra,omitempty"`
 	GivenName      string `json:"given_name,omitempty"`
-	Index          int64  `json:"index,omitempty"`
+	Index          int64  `json:"index"`
 	RawName        string `json:"raw_name,omitempty"`
 	Role           string `json:"role,omitempty"`
 	Surname        string `json:"surname,omitempty"`
@@ -19,7 +19,7 @@ type Contrib struct {
 type Ref struct {
 	ContainerName string          `json:"container_name,omitempty"`
 	Extra         json.RawMessage `json:"extra,omitempty"`
-	Index         int64           `json:"index,omitempty"`
+	Index         int64           `json:"index"`
 	Key           string          `json:"key,omitempty"`
 	Locator       string          `json:"locator,omitempty"`
 	Title         string          `json:"title,omitempty"`
