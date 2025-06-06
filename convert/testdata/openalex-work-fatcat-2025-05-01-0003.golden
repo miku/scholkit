@@ -3,8 +3,10 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": "Lauren Kaufmann",
-            "role": "first"
+            "given_name": "Lauren",
+            "raw_name": "Lauren Kaufmann",
+            "role": "first",
+            "surname": "Kaufmann"
         }
     ],
     "ext_ids": {

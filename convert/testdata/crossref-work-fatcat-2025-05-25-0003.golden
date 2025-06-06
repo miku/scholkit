@@ -11,6 +11,7 @@
         {
             "extra": {},
             "given_name": "W.",
+            "index": 1,
             "raw_name": "W. Derave",
             "role": "author",
             "surname": "Derave"
@@ -18,6 +19,7 @@
         {
             "extra": {},
             "given_name": "F.",
+            "index": 2,
             "raw_name": "F. Bossuyt",
             "role": "author",
             "surname": "Bossuyt"
@@ -25,6 +27,7 @@
         {
             "extra": {},
             "given_name": "P.",
+            "index": 3,
             "raw_name": "P. Calders",
             "role": "author",
             "surname": "Calders"
@@ -32,6 +35,7 @@
         {
             "extra": {},
             "given_name": "P.",
+            "index": 4,
             "raw_name": "P. Malcolm",
             "role": "author",
             "surname": "Malcolm"
@@ -39,6 +43,7 @@
         {
             "extra": {},
             "given_name": "D.",
+            "index": 5,
             "raw_name": "D. De Clercq",
             "role": "author",
             "surname": "De Clercq"
@@ -53,11 +58,19 @@
         "openalex": {
             "open_access": {}
         },
-        "crossref": {},
+        "crossref": {
+            "subject": [
+                "container:Gait \u0026amp; Posture"
+            ]
+        },
         "oai": {}
     },
     "id": "crossref-8edd99f181232f2a704904d6f1fe3bfdb1184cb5",
-    "release_date": "48880-04-30",
+    "pages": "183-188",
+    "publisher": "Elsevier BV",
+    "release_date": "2017-02-01",
     "release_type": "article-journal",
-    "title": "Exoskeleton plantarflexion assistance for elderly"
+    "release_year": 2017,
+    "title": "Exoskeleton plantarflexion assistance for elderly",
+    "volume": "52"
 }

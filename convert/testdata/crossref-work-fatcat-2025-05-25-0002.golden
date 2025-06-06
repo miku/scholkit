@@ -11,6 +11,7 @@
         {
             "extra": {},
             "given_name": "Ronil V",
+            "index": 1,
             "raw_name": "Ronil V Chandra",
             "role": "author",
             "surname": "Chandra"
@@ -18,6 +19,7 @@
         {
             "extra": {},
             "given_name": "Blaise W",
+            "index": 2,
             "raw_name": "Blaise W Baxter",
             "role": "author",
             "surname": "Baxter"
@@ -25,6 +27,7 @@
         {
             "extra": {},
             "given_name": "Adam S",
+            "index": 3,
             "raw_name": "Adam S Arthur",
             "role": "author",
             "surname": "Arthur"
@@ -32,6 +35,7 @@
         {
             "extra": {},
             "given_name": "Muhammad S",
+            "index": 4,
             "raw_name": "Muhammad S Hussain",
             "role": "author",
             "surname": "Hussain"
@@ -39,6 +43,7 @@
         {
             "extra": {},
             "given_name": "I Paul",
+            "index": 5,
             "raw_name": "I Paul Singh",
             "role": "author",
             "surname": "Singh"
@@ -46,6 +51,7 @@
         {
             "extra": {},
             "given_name": "Don F",
+            "index": 6,
             "raw_name": "Don F Frei",
             "role": "author",
             "surname": "Frei"
@@ -53,6 +59,7 @@
         {
             "extra": {},
             "given_name": "Richard P",
+            "index": 7,
             "raw_name": "Richard P Klucznik",
             "role": "author",
             "surname": "Klucznik"
@@ -60,6 +67,7 @@
         {
             "extra": {},
             "given_name": "Felipe C",
+            "index": 8,
             "raw_name": "Felipe C Albuquerque",
             "role": "author",
             "surname": "Albuquerque"
@@ -67,6 +75,7 @@
         {
             "extra": {},
             "given_name": "Joshua A",
+            "index": 9,
             "raw_name": "Joshua A Hirsch",
             "role": "author",
             "surname": "Hirsch"
@@ -81,11 +90,20 @@
         "openalex": {
             "open_access": {}
         },
-        "crossref": {},
+        "crossref": {
+            "subject": [
+                "container:Journal of NeuroInterventional Surgery"
+            ]
+        },
         "oai": {}
     },
     "id": "crossref-2609237f013be2120d296a366a9033463d0d5e78",
-    "release_date": "50087-10-27",
+    "issue": "6",
+    "pages": "507-509",
+    "publisher": "BMJ",
+    "release_date": "2018-02-08",
     "release_type": "article-journal",
-    "title": "ELVO: an operational definition"
+    "release_year": 2018,
+    "title": "ELVO: an operational definition",
+    "volume": "10"
 }

@@ -3,8 +3,10 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": "Paula Smithka",
-            "role": "first"
+            "given_name": "Paula",
+            "raw_name": "Paula Smithka",
+            "role": "first",
+            "surname": "Smithka"
         }
     ],
     "ext_ids": {

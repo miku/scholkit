@@ -1,5 +1,12 @@
 {
     "source": "crossref",
+    "abstracts": [
+        {
+            "content": "ABSTRACT\n          \n            Persistent infection with\n            Opisthorchis viverrini\n            causes hepatobiliary abnormalities, predisposing infected individuals to cholangiocarcinoma (CCA). In addition,\n            Helicobacter pylori\n            is highly prevalent in most countries and is a possible risk factor for CCA; however, its role in enhancing hepatobiliary abnormality is unclear. Here, we investigated the effects of coinfection with\n            H. pylori\n            and\n            O. viverrini\n            on hepatobiliary abnormality. Hamsters were divided into four groups: (i) normal, (ii)\n            H. pylori\n            infected (HP), (iii)\n            O. viverrini\n            infected (OV), and (iv)\n            O. viverrini\n            and\n            H. pylori\n            infected (OV+HP). At 6 months postinfection, PCR and immunohistochemistry were used to test for the presence of\n            H. pylori\n            in the stomach, gallbladder, and liver. In the liver,\n            H. pylori\n            was detected in the following order: OV+HP, 5 of 8 (62.5%); HP, 2 of 5 (40%); OV, 2 of 8 (25%).\n            H. pylori\n            was not detected in normal (control) liver tissues. Coinfection induced the most severe hepatobiliary abnormalities, including periductal fibrosis, cholangitis, and bile duct hyperplasia, leading to a significantly decreased survival rate of experimental animals. The greatest thickness of periductal fibrosis was associated with a significant increase in fibrogenesis markers (expression of alpha smooth muscle actin and transforming growth factor beta). Quantitative reverse transcription-PCR revealed that the highest expression levels of genes for proinflammatory cytokines (interleukin-1 [\n            IL-1\n            ],\n            IL-6\n            , and tumor necrosis factor alpha) were also observed in the OV+HP group. These results suggest that coinfection with\n            H. pylori\n            and\n            O. viverrini\n            increased the severity of hepatobiliary abnormalities to a greater extent than either single infection did.",
+            "mimetype": "text/plain",
+            "sha1": "bde5e1473ad5f0b470c6bb220140c85dbaf488cc"
+        }
+    ],
     "contribs": [
         {
             "extra": {
@@ -20,6 +27,7 @@
                 ]
             },
             "given_name": "Somchai",
+            "index": 1,
             "raw_name": "Somchai Pinlaor",
             "role": "author",
             "surname": "Pinlaor",
@@ -28,6 +36,7 @@
         {
             "extra": {},
             "given_name": "Upsornsawan",
+            "index": 2,
             "raw_name": "Upsornsawan Itthitaetrakool",
             "role": "author",
             "surname": "Itthitaetrakool",
@@ -40,6 +49,7 @@
                 ]
             },
             "given_name": "Apisit",
+            "index": 3,
             "raw_name": "Apisit Chaidee",
             "role": "author",
             "surname": "Chaidee",
@@ -52,6 +62,7 @@
                 ]
             },
             "given_name": "Chariya",
+            "index": 4,
             "raw_name": "Chariya Chomvarin",
             "role": "author",
             "surname": "Chomvarin",
@@ -60,6 +71,7 @@
         {
             "extra": {},
             "given_name": "Arunnee",
+            "index": 5,
             "raw_name": "Arunnee Sangka",
             "role": "author",
             "surname": "Sangka",
@@ -68,6 +80,7 @@
         {
             "extra": {},
             "given_name": "Chotechana",
+            "index": 6,
             "raw_name": "Chotechana Wilailuckana",
             "role": "author",
             "surname": "Wilailuckana",
@@ -75,11 +88,13 @@
         },
         {
             "extra": {
+                "seq": "0000-0001-7436-3355",
                 "more_affiliation": [
                     "Liver Fluke and Cholangiocarcinoma Research Center, Khon Kaen University, Khon Kaen, Thailand"
                 ]
             },
             "given_name": "Porntip",
+            "index": 7,
             "raw_name": "Porntip Pinlaor",
             "role": "author",
             "surname": "Pinlaor",
@@ -88,6 +103,7 @@
         {
             "extra": {},
             "given_name": "Steven R.",
+            "index": 8,
             "raw_name": "Steven R. Blanke",
             "role": "editor",
             "surname": "Blanke"
@@ -102,11 +118,19 @@
         "openalex": {
             "open_access": {}
         },
-        "crossref": {},
+        "crossref": {
+            "subject": [
+                "container:Infection and Immunity"
+            ]
+        },
         "oai": {}
     },
     "id": "crossref-54c8d3e8345f94c5976b7d55aa4f6a76e8092ed2",
-    "release_date": "49054-01-20",
+    "issue": "4",
+    "publisher": "American Society for Microbiology",
+    "release_date": "2017-04-01",
     "release_type": "article-journal",
-    "title": "Coinfection with Helicobacter pylori and Opisthorchis viverrini Enhances the Severity of Hepatobiliary Abnormalities in Hamsters"
+    "release_year": 2017,
+    "title": "Coinfection with Helicobacter pylori and Opisthorchis viverrini Enhances the Severity of Hepatobiliary Abnormalities in Hamsters",
+    "volume": "85"
 }

@@ -3,13 +3,98 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": " ",
-            "role": "RightsHolder"
+            "given_name": "Julian",
+            "raw_name": "Julian Katzke",
+            "role": "author",
+            "surname": "Katzke"
         },
         {
             "extra": {},
-            "given_name": " ",
-            "role": "RightsHolder"
+            "given_name": "Francisco",
+            "index": 1,
+            "raw_name": "Francisco Hita Garcia",
+            "role": "author",
+            "surname": "Hita Garcia"
+        },
+        {
+            "extra": {},
+            "given_name": "Philipp D.",
+            "index": 2,
+            "raw_name": "Philipp D. Lösel",
+            "role": "author",
+            "surname": "Lösel"
+        },
+        {
+            "extra": {},
+            "given_name": "Tomáš",
+            "index": 3,
+            "raw_name": "Tomáš Faragó",
+            "role": "author",
+            "surname": "Faragó"
+        },
+        {
+            "extra": {},
+            "given_name": "Evan P.",
+            "index": 4,
+            "raw_name": "Evan P. Economo",
+            "role": "author",
+            "surname": "Economo"
+        },
+        {
+            "extra": {},
+            "given_name": "Thomas",
+            "index": 5,
+            "raw_name": "Thomas van de Kamp",
+            "role": "author",
+            "surname": "van de Kamp"
+        },
+        {
+            "extra": {},
+            "given_name": "Fumika",
+            "index": 6,
+            "raw_name": "Fumika Azuma",
+            "role": "author",
+            "surname": "Azuma"
+        },
+        {
+            "extra": {},
+            "given_name": "Marcus",
+            "index": 7,
+            "raw_name": "Marcus Zuber",
+            "role": "author",
+            "surname": "Zuber"
+        },
+        {
+            "extra": {},
+            "given_name": "Elias",
+            "index": 8,
+            "raw_name": "Elias Hamann",
+            "role": "author",
+            "surname": "Hamann"
+        },
+        {
+            "extra": {},
+            "given_name": "Chandan",
+            "index": 9,
+            "raw_name": "Chandan Sarkar",
+            "role": "author",
+            "surname": "Sarkar"
+        },
+        {
+            "extra": {},
+            "given_name": "Karlsruhe Institute Of",
+            "index": 10,
+            "raw_name": "Karlsruhe Institute Of Technology(KIT)",
+            "role": "rightsholder",
+            "surname": "Technology(KIT)"
+        },
+        {
+            "extra": {},
+            "given_name": "Okinawa Institute Of Science And Technology Graduate",
+            "index": 12,
+            "raw_name": "Okinawa Institute Of Science And Technology Graduate University(OIST)",
+            "role": "rightsholder",
+            "surname": "University(OIST)"
         }
     ],
     "ext_ids": {
@@ -25,5 +110,10 @@
         "oai": {}
     },
     "id": "datacite-4db89dcd06755196e57355c531f5464315e70dc8",
+    "language": "en",
+    "publisher": "Karlsruhe Institute of Technology(KIT),Okinawa Institute of Science and Technology Graduate University(OIST)",
+    "release_date": "2025-01-01",
+    "release_type": "dataset",
+    "release_year": 2025,
     "title": "CASENT0744389-Dorymyrmex.sp."
 }

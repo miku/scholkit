@@ -3,48 +3,66 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": "Jing Guo",
-            "role": "first"
+            "given_name": "Jing",
+            "raw_name": "Jing Guo",
+            "role": "first",
+            "surname": "Guo"
         },
         {
             "extra": {},
-            "given_name": "Li Li",
-            "role": "middle"
+            "given_name": "Li",
+            "raw_name": "Li Li",
+            "role": "middle",
+            "surname": "Li"
         },
         {
             "extra": {},
-            "given_name": "Feiyi Chen",
-            "role": "middle"
+            "given_name": "Feiyi",
+            "raw_name": "Feiyi Chen",
+            "role": "middle",
+            "surname": "Chen"
         },
         {
             "extra": {},
-            "given_name": "Minhan Fu",
-            "role": "middle"
+            "given_name": "Minhan",
+            "raw_name": "Minhan Fu",
+            "role": "middle",
+            "surname": "Fu"
         },
         {
             "extra": {},
-            "given_name": "Cheng Cheng",
-            "role": "middle"
+            "given_name": "Cheng",
+            "raw_name": "Cheng Cheng",
+            "role": "middle",
+            "surname": "Cheng"
         },
         {
             "extra": {},
-            "given_name": "Meizi Wang",
-            "role": "middle"
+            "given_name": "Meizi",
+            "raw_name": "Meizi Wang",
+            "role": "middle",
+            "surname": "Wang"
         },
         {
             "extra": {},
-            "given_name": "Jun Hu",
-            "role": "middle"
+            "given_name": "Jun",
+            "raw_name": "Jun Hu",
+            "role": "middle",
+            "surname": "Hu"
         },
         {
             "extra": {},
-            "given_name": "Lixia Pei",
-            "role": "middle"
+            "given_name": "Lixia",
+            "raw_name": "Lixia Pei",
+            "role": "middle",
+            "surname": "Pei"
         },
         {
             "extra": {},
-            "given_name": "Jianhua Sun",
-            "role": "last"
+            "given_name": "Jianhua",
+            "raw_name": "Jianhua Sun",
+            "role": "last",
+            "surname": "Sun"
         }
     ],
     "ext_ids": {

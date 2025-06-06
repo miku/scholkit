@@ -1,5 +1,12 @@
 {
     "source": "crossref",
+    "abstracts": [
+        {
+            "content": "AbstractIn this paper we discuss the optimization of various parameters which govern the behaviour of polymer based and organic photovoltaic cells. General mechanisms leading to the generation of charge carriers and the related loss factors are detailed. Theoretical electrical parameters for bilayer and interpenetrating networks of donors and acceptors (open circuit voltages) are established along with current versus voltage characteristics. An equivalent circuit to a solar cell, considering the effects of shunt resistance across the whole layer, is elaborated. After modelling optical interference and its effects on the photocurrent spectrum, orders of magnitude of the required parameters are established for an efficient solar cell. Deviations from optimal values and their effects on the current–voltage characteristics are discussed. Ageing and degradation effects, and calculations demonstrating the necessary photophysical requirements to achieve long‐term stable devices are presented. Copyright © 2006 Society of Chemical Industry",
+            "mimetype": "text/plain",
+            "sha1": "0c81ee77277875bbbff7f1ea72986ad5e11438ae"
+        }
+    ],
     "contribs": [
         {
             "extra": {},
@@ -11,6 +18,7 @@
         {
             "extra": {},
             "given_name": "Jean‐Michel",
+            "index": 1,
             "raw_name": "Jean‐Michel Nunzi",
             "role": "author",
             "surname": "Nunzi"
@@ -25,11 +33,20 @@
         "openalex": {
             "open_access": {}
         },
-        "crossref": {},
+        "crossref": {
+            "subject": [
+                "container:Polymer International"
+            ]
+        },
         "oai": {}
     },
     "id": "crossref-c4db77157e3f9f246db844c36c59ac8c52877c9b",
-    "release_date": "38210-12-21",
+    "issue": "6",
+    "pages": "583-600",
+    "publisher": "Wiley",
+    "release_date": "2006-03-29",
     "release_type": "article-journal",
-    "title": "How to model the behaviour of organic photovoltaic cells"
+    "release_year": 2006,
+    "title": "How to model the behaviour of organic photovoltaic cells",
+    "volume": "55"
 }

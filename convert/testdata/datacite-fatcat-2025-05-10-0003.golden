@@ -1,10 +1,35 @@
 {
     "source": "datacite",
+    "abstracts": [
+        {
+            "content": "Consideration of vacuum consolidation in soft clays with respect to its long-term performance has been extremely limited, especially concerning thick clay deposits having significant creep characteristics. Popular coupled-consolidation elasto-plastic analysis models such as Cam-Clay cannot be used to predict long-term time-dependent deformational behaviour in soft soils. In this paper, a Biot type fully-coupled creep-based viscoplastic finite element analysis numerical model is proposed to predict the time-dependent deformations in thick deposits of soft clays under vacuum consolidation.",
+            "mimetype": "text/plain",
+            "sha1": "2f566c6b1cc72267e7aee4269eab7b59f30c9fb5"
+        }
+    ],
     "contribs": [
         {
             "extra": {},
-            "given_name": " ",
-            "role": "HostingInstitution"
+            "given_name": "PI",
+            "raw_name": "PI Kumarage",
+            "role": "author",
+            "surname": "Kumarage"
+        },
+        {
+            "extra": {},
+            "given_name": "CT",
+            "index": 1,
+            "raw_name": "CT Gnanendran",
+            "role": "author",
+            "surname": "Gnanendran"
+        },
+        {
+            "extra": {},
+            "given_name": "UNSW",
+            "index": 2,
+            "raw_name": "UNSW Sydney",
+            "role": "hostinginstitution",
+            "surname": "Sydney"
         }
     ],
     "ext_ids": {
@@ -20,5 +45,9 @@
         "oai": {}
     },
     "id": "datacite-7c586b16cb653e154875206ed7a848440cb53d16",
+    "publisher": "UNSW Sydney",
+    "release_date": "2017-01-01",
+    "release_type": "paper-conference",
+    "release_year": 2017,
     "title": "Viscoplastic behaviour of soft soil in vacuum consolidation"
 }

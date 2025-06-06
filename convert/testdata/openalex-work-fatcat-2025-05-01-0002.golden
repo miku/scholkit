@@ -3,8 +3,10 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": "ShyamS Kothari",
-            "role": "first"
+            "given_name": "ShyamS",
+            "raw_name": "ShyamS Kothari",
+            "role": "first",
+            "surname": "Kothari"
         }
     ],
     "ext_ids": {

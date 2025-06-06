@@ -3,13 +3,42 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": " ",
-            "role": "Sponsor"
+            "given_name": "R",
+            "raw_name": "R McCausland",
+            "role": "author",
+            "surname": "McCausland"
         },
         {
             "extra": {},
-            "given_name": " ",
-            "role": "HostingInstitution"
+            "given_name": "E",
+            "index": 1,
+            "raw_name": "E Baldry",
+            "role": "author",
+            "surname": "Baldry"
+        },
+        {
+            "extra": {},
+            "given_name": "E",
+            "index": 2,
+            "raw_name": "E McEntyre",
+            "role": "author",
+            "surname": "McEntyre"
+        },
+        {
+            "extra": {},
+            "given_name": "Indigenous Justice",
+            "index": 3,
+            "raw_name": "Indigenous Justice Clearinghouse",
+            "role": "sponsor",
+            "surname": "Clearinghouse"
+        },
+        {
+            "extra": {},
+            "given_name": "UNSW",
+            "index": 5,
+            "raw_name": "UNSW Sydney",
+            "role": "hostinginstitution",
+            "surname": "Sydney"
         }
     ],
     "ext_ids": {
@@ -25,5 +54,9 @@
         "oai": {}
     },
     "id": "datacite-5404c1d7457f3197b313719d89dd53e6c36cc72b",
+    "publisher": "UNSW Sydney",
+    "release_date": "2017-01-01",
+    "release_type": "report",
+    "release_year": 2017,
     "title": "Indigenous People, Mental Health, Cognitive Disability and the Criminal Justice System"
 }

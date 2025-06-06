@@ -141,23 +141,51 @@ func CrossrefWorkToFatcatRelease(work *crossref.Work) (*fatcat.Release, error) {
 	// Enhanced contributor processing
 	rel.Contribs = processCrossrefContributors(work)
 
-	// Enhanced date handling
-	if work.Created.Timestamp != 0 {
+	// Enhanced date handling - prioritize published date over created date
+	var releaseDate string
+	var releaseYear int64
+
+	// First try to use published date (this is what we want for the release)
+	if len(work.Published.DateParts) > 0 && len(work.Published.DateParts[0]) > 0 {
+		year := work.Published.DateParts[0][0]
+		releaseYear = year
+		dateStr := fmt.Sprintf("%d", year)
+		if len(work.Published.DateParts[0]) > 1 {
+			dateStr += fmt.Sprintf("-%02d", work.Published.DateParts[0][1])
+			if len(work.Published.DateParts[0]) > 2 {
+				dateStr += fmt.Sprintf("-%02d", work.Published.DateParts[0][2])
+			} else {
+				dateStr += "-01" // Default to first day if day not specified
+			}
+		} else {
+			dateStr += "-01-01" // Default to January 1st if month not specified
+		}
+		releaseDate = parseDate(dateStr)
+	} else if work.Created.Timestamp != 0 {
+		// Fallback to created date if published date is not available
 		t := time.Unix(work.Created.Timestamp, 0)
-		rel.ReleaseDate = t.Format("2006-01-02")
-		rel.ReleaseYear = int64(t.Year())
+		releaseDate = t.Format("2006-01-02")
+		releaseYear = int64(t.Year())
 	} else if len(work.Created.DateParts) > 0 && len(work.Created.DateParts[0]) > 0 {
+		// Fallback to created date parts if timestamp is not available
 		year := work.Created.DateParts[0][0]
-		rel.ReleaseYear = year
+		releaseYear = year
 		dateStr := fmt.Sprintf("%d", year)
 		if len(work.Created.DateParts[0]) > 1 {
 			dateStr += fmt.Sprintf("-%02d", work.Created.DateParts[0][1])
 			if len(work.Created.DateParts[0]) > 2 {
 				dateStr += fmt.Sprintf("-%02d", work.Created.DateParts[0][2])
+			} else {
+				dateStr += "-01"
 			}
+		} else {
+			dateStr += "-01-01"
 		}
-		rel.ReleaseDate = parseDate(dateStr)
+		releaseDate = parseDate(dateStr)
 	}
+
+	rel.ReleaseDate = releaseDate
+	rel.ReleaseYear = releaseYear
 
 	// Enhanced type mapping
 	if releaseType, ok := CrossrefTypeMap[work.Type]; ok {

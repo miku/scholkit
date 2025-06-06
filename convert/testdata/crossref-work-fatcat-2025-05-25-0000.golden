@@ -11,6 +11,7 @@
         {
             "extra": {},
             "given_name": "Mohini S.",
+            "index": 1,
             "raw_name": "Mohini S. Ghatge",
             "role": "author",
             "surname": "Ghatge"
@@ -18,6 +19,7 @@
         {
             "extra": {},
             "given_name": "Martin K.",
+            "index": 2,
             "raw_name": "Martin K. Safo",
             "role": "author",
             "surname": "Safo"
@@ -32,11 +34,18 @@
         "openalex": {
             "open_access": {}
         },
-        "crossref": {},
+        "crossref": {
+            "subject": [
+                "container:Subcellular Biochemistry"
+            ]
+        },
         "oai": {}
     },
     "id": "crossref-0ddb821f898785fe7c2ea7e45bb4fb2df3a912dc",
-    "release_date": "52182-07-15",
+    "pages": "345-382",
+    "publisher": "Springer International Publishing",
+    "release_date": "2020-01-01",
     "release_type": "chapter",
+    "release_year": 2020,
     "title": "Hemoglobin: Structure, Function and Allostery"
 }

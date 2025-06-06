@@ -3,8 +3,74 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": " ",
-            "role": "HostingInstitution"
+            "given_name": "C",
+            "raw_name": "C chan",
+            "role": "author",
+            "surname": "chan"
+        },
+        {
+            "extra": {},
+            "given_name": "D",
+            "index": 1,
+            "raw_name": "D payne",
+            "role": "author",
+            "surname": "payne"
+        },
+        {
+            "extra": {},
+            "given_name": "M",
+            "index": 2,
+            "raw_name": "M abbott",
+            "role": "author",
+            "surname": "abbott"
+        },
+        {
+            "extra": {},
+            "given_name": "D",
+            "index": 3,
+            "raw_name": "D Chen",
+            "role": "author",
+            "surname": "Chen"
+        },
+        {
+            "extra": {},
+            "given_name": "A",
+            "index": 4,
+            "raw_name": "A ciesla",
+            "role": "author",
+            "surname": "ciesla"
+        },
+        {
+            "extra": {},
+            "given_name": "R",
+            "index": 5,
+            "raw_name": "R chen",
+            "role": "author",
+            "surname": "chen"
+        },
+        {
+            "extra": {},
+            "given_name": "B",
+            "index": 6,
+            "raw_name": "B hallam",
+            "role": "author",
+            "surname": "hallam"
+        },
+        {
+            "extra": {},
+            "given_name": "S",
+            "index": 7,
+            "raw_name": "S wenham",
+            "role": "author",
+            "surname": "wenham"
+        },
+        {
+            "extra": {},
+            "given_name": "UNSW",
+            "index": 8,
+            "raw_name": "UNSW Sydney",
+            "role": "hostinginstitution",
+            "surname": "Sydney"
         }
     ],
     "ext_ids": {
@@ -20,5 +86,9 @@
         "oai": {}
     },
     "id": "datacite-480008f5ad28f6384b90a3c2c1958ec56627e476",
+    "publisher": "UNSW Sydney",
+    "release_date": "2017-01-01",
+    "release_type": "article",
+    "release_year": 2017,
     "title": "Investigations of carrier-induced degradation behaviour in p-type mc-Si"
 }

@@ -3,18 +3,24 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": "Enchao Bi",
-            "role": "first"
+            "given_name": "Enchao",
+            "raw_name": "Enchao Bi",
+            "role": "first",
+            "surname": "Bi"
         },
         {
             "extra": {},
-            "given_name": "Huan Yang",
-            "role": "middle"
+            "given_name": "Huan",
+            "raw_name": "Huan Yang",
+            "role": "middle",
+            "surname": "Yang"
         },
         {
             "extra": {},
-            "given_name": "Qiannan Zhang",
-            "role": "last"
+            "given_name": "Qiannan",
+            "raw_name": "Qiannan Zhang",
+            "role": "last",
+            "surname": "Zhang"
         }
     ],
     "ext_ids": {

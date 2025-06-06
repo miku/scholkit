@@ -3,8 +3,50 @@
     "contribs": [
         {
             "extra": {},
-            "given_name": " ",
-            "role": "HostingInstitution"
+            "given_name": "M",
+            "raw_name": "M Snijder",
+            "role": "author",
+            "surname": "Snijder"
+        },
+        {
+            "extra": {},
+            "given_name": "B",
+            "index": 1,
+            "raw_name": "B Calabria",
+            "role": "author",
+            "surname": "Calabria"
+        },
+        {
+            "extra": {},
+            "given_name": "A",
+            "index": 2,
+            "raw_name": "A Wagemakers",
+            "role": "author",
+            "surname": "Wagemakers"
+        },
+        {
+            "extra": {},
+            "given_name": "T",
+            "index": 3,
+            "raw_name": "T Dobbins",
+            "role": "author",
+            "surname": "Dobbins"
+        },
+        {
+            "extra": {},
+            "given_name": "A",
+            "index": 4,
+            "raw_name": "A Shakeshaft",
+            "role": "author",
+            "surname": "Shakeshaft"
+        },
+        {
+            "extra": {},
+            "given_name": "UNSW",
+            "index": 5,
+            "raw_name": "UNSW Sydney",
+            "role": "hostinginstitution",
+            "surname": "Sydney"
         }
     ],
     "ext_ids": {
@@ -20,5 +62,9 @@
         "oai": {}
     },
     "id": "datacite-8d74f8d4741ebcfeb39695db317f6cc7db697036",
+    "publisher": "UNSW Sydney",
+    "release_date": "2018-01-01",
+    "release_type": "article",
+    "release_year": 2018,
     "title": "The outcomes of a community-based participatory research project with Aboriginal Australians reducing alcohol-related harms"
 }

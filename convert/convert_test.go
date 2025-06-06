@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/miku/scholkit/schema/crossref"
 	"github.com/miku/scholkit/schema/datacite"
 	"github.com/miku/scholkit/schema/fatcat"
@@ -52,9 +53,10 @@ func TestConvertCrossrefWorkToFatcatRelease(t *testing.T) {
 				}
 				t.Fatal(err)
 			}
-			if string(got) != string(want) {
-				t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
-			}
+			compareJSONWithDiff(t, name, got, want)
+			// if string(got) != string(want) {
+			// 	t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
+			// }
 		})
 	}
 }
@@ -96,9 +98,10 @@ func TestConvertDataciteToFatcatRelease(t *testing.T) {
 				}
 				t.Fatal(err)
 			}
-			if string(got) != string(want) {
-				t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
-			}
+			compareJSONWithDiff(t, name, got, want)
+			// if string(got) != string(want) {
+			// 	t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
+			// }
 		})
 	}
 }
@@ -140,9 +143,10 @@ func TestConvertOpenAlexWorkToFatcatRelease(t *testing.T) {
 				}
 				t.Fatal(err)
 			}
-			if string(got) != string(want) {
-				t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
-			}
+			compareJSONWithDiff(t, name, got, want)
+			// if string(got) != string(want) {
+			// 	t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
+			// }
 		})
 	}
 }
@@ -184,9 +188,22 @@ func TestConvertOaiScrapeToFatcatRelease(t *testing.T) {
 				}
 				t.Fatal(err)
 			}
-			if string(got) != string(want) {
-				t.Errorf("%s: got: %s want: %s", name, string(got), string(want))
-			}
+			compareJSONWithDiff(t, name, got, want)
 		})
+	}
+}
+
+// Helper function to compare JSON with better diff output
+func compareJSONWithDiff(t *testing.T, name string, got, want []byte) {
+	var gotObj, wantObj interface{}
+	if err := json.Unmarshal(got, &gotObj); err != nil {
+		t.Fatalf("failed to unmarshal got JSON: %v", err)
+	}
+	if err := json.Unmarshal(want, &wantObj); err != nil {
+		t.Fatalf("failed to unmarshal want JSON: %v", err)
+	}
+
+	if diff := cmp.Diff(wantObj, gotObj); diff != "" {
+		t.Errorf("%s: JSON mismatch (-want +got):\n%s", name, diff)
 	}
 }
