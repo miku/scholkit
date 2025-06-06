@@ -4,9 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
-	"strconv"
 	"strings"
-	"time"
 
 	"github.com/miku/scholkit/schema/fatcat"
 	"github.com/miku/scholkit/schema/oaiscrape"
@@ -164,29 +162,6 @@ func FlatRecordToRelease(metadata *oaiscrape.FlatRecord) (*fatcat.Release, error
 		}
 	}
 	return &release, nil
-}
-
-// extractYear attempts to extract a year from a date string
-func extractYear(date string) (int64, error) {
-	// Try parsing as full date
-	formats := []string{
-		"2006-01-02",
-		"2006-01-02T15:04:05Z",
-		"2006-01-02T15:04:05-07:00",
-		"2006",
-	}
-	for _, format := range formats {
-		if t, err := time.Parse(format, date); err == nil {
-			return int64(t.Year()), nil
-		}
-	}
-	yearPattern := regexp.MustCompile(`\b(19|20)\d{2}\b`)
-	match := yearPattern.FindString(date)
-	if match != "" {
-		year, err := strconv.ParseInt(match, 10, 64)
-		return year, err
-	}
-	return 0, fmt.Errorf("could not extract year from date: %s", date)
 }
 
 // extractDOI extracts a DOI from a string that might contain one

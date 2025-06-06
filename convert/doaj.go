@@ -44,37 +44,85 @@ func DOAJRecordToFatcatRelease(record *doaj.Record) (*fatcat.Release, error) {
 	if record == nil {
 		return nil, ErrNilRecord
 	}
+
 	id := record.ID()
 	if id == "" {
 		return nil, ErrMissingDOAJIdentifier
 	}
+
 	release := &fatcat.Release{
-		ID:          fmt.Sprintf("doaj-%s", id),
-		Source:      "doaj",
-		Title:       record.Metadata.Dc.Title,
-		ReleaseDate: record.Metadata.Dc.Date,
-		Ident:       id,
+		ID:     fmt.Sprintf("doaj-%s", hashString(id)),
+		Source: "doaj",
+		Title:  cleanTitle(record.Metadata.Dc.Title),
+		Ident:  id,
 		ExtIDs: fatcat.ExtID{
 			OAI:  record.Header.Identifier,
 			DOI:  record.DOI(),
 			DOAJ: id,
 		},
 	}
-	// Handle contributors
-	release.Contribs = make([]fatcat.Contrib, 0, len(record.Metadata.Dc.Creator))
-	for _, creator := range record.Metadata.Dc.Creator {
-		if creator.Text == "" {
-			continue // Skip empty creator names
+
+	// Enhanced date handling
+	if record.Metadata.Dc.Date != "" {
+		release.ReleaseDate = parseDate(record.Metadata.Dc.Date)
+		if year, err := extractYear(record.Metadata.Dc.Date); err == nil {
+			release.ReleaseYear = year
 		}
-		nameParts := parseFullName(creator.Text)
-		release.Contribs = append(release.Contribs, fatcat.Contrib{
-			GivenName: nameParts.GivenName,
-			Surname:   nameParts.Surname,
+	}
+
+	// Enhanced contributor processing
+	for i, creator := range record.Metadata.Dc.Creator {
+		if creator.Text == "" {
+			continue
+		}
+
+		contrib := fatcat.Contrib{
+			Index:   int64(i),
+			RawName: strings.TrimSpace(creator.Text),
+			Role:    "author",
+		}
+
+		given, family := parseContributorName(creator.Text)
+		contrib.GivenName = given
+		contrib.Surname = family
+
+		release.Contribs = append(release.Contribs, contrib)
+	}
+
+	// Enhanced subject/keyword handling
+	for _, subject := range record.Metadata.Dc.Subject {
+		if subject.Text != "" {
+			// Store subjects using existing OAI extra fields
+			release.Extra.OAI.SetSpec = append(release.Extra.OAI.SetSpec, "subject:"+strings.TrimSpace(subject.Text))
+		}
+	}
+
+	// Publisher
+	if record.Metadata.Dc.Publisher != "" {
+		release.Publisher = strings.TrimSpace(record.Metadata.Dc.Publisher)
+	}
+
+	// Language
+	if len(record.Metadata.Dc.Language) > 0 && record.Metadata.Dc.Language[0] != "" {
+		release.Language = strings.TrimSpace(record.Metadata.Dc.Language[0])
+	}
+
+	// Enhanced description/abstract handling
+	if record.Metadata.Dc.Description != "" && len(record.Metadata.Dc.Description) > 20 {
+		release.Abstracts = append(release.Abstracts, fatcat.Abstract{
+			Content:  strings.TrimSpace(record.Metadata.Dc.Description),
+			Mimetype: "text/plain",
+			SHA1:     hashString(record.Metadata.Dc.Description),
 		})
 	}
-	// Set alternative URL if available
+
+	// Set spec information
+	release.Extra.OAI.SetSpec = record.Header.SetSpec
+
+	// Alternative URL
 	if url := record.URL(); url != "" {
-		release.Extra.Crossref.AlternativeId = []string{url}
+		release.Extra.OAI.URL = append(release.Extra.OAI.URL, url)
 	}
+
 	return release, nil
 }

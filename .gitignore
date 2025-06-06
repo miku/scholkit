@@ -48,3 +48,5 @@ packaging/deb/scholkit/usr/*
 *.deb
 
 /skol*
+
+digest.txt
