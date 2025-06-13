@@ -11,6 +11,7 @@
         {
             "extra": {},
             "given_name": "PI",
+            "index": 0,
             "raw_name": "PI Kumarage",
             "role": "author",
             "surname": "Kumarage"

@@ -4,6 +4,7 @@
         {
             "extra": {},
             "given_name": "C",
+            "index": 0,
             "raw_name": "C chan",
             "role": "author",
             "surname": "chan"

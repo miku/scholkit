@@ -4,6 +4,7 @@
         {
             "extra": {},
             "given_name": "Enchao",
+            "index": 0,
             "raw_name": "Enchao Bi",
             "role": "first",
             "surname": "Bi"
@@ -11,6 +12,7 @@
         {
             "extra": {},
             "given_name": "Huan",
+            "index": 0,
             "raw_name": "Huan Yang",
             "role": "middle",
             "surname": "Yang"
@@ -18,6 +20,7 @@
         {
             "extra": {},
             "given_name": "Qiannan",
+            "index": 0,
             "raw_name": "Qiannan Zhang",
             "role": "last",
             "surname": "Zhang"

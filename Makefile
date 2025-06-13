@@ -24,7 +24,7 @@ all: $(TARGETS)
 
 .PHONY: test
 test:
-	go test -cover ./...
+	go test -v -cover ./...
 
 .PHONY: clean
 clean:

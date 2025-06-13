@@ -4,6 +4,7 @@
         {
             "extra": {},
             "given_name": "Jing",
+            "index": 0,
             "raw_name": "Jing Guo",
             "role": "first",
             "surname": "Guo"
@@ -11,6 +12,7 @@
         {
             "extra": {},
             "given_name": "Li",
+            "index": 0,
             "raw_name": "Li Li",
             "role": "middle",
             "surname": "Li"
@@ -18,6 +20,7 @@
         {
             "extra": {},
             "given_name": "Feiyi",
+            "index": 0,
             "raw_name": "Feiyi Chen",
             "role": "middle",
             "surname": "Chen"
@@ -25,6 +28,7 @@
         {
             "extra": {},
             "given_name": "Minhan",
+            "index": 0,
             "raw_name": "Minhan Fu",
             "role": "middle",
             "surname": "Fu"
@@ -32,6 +36,7 @@
         {
             "extra": {},
             "given_name": "Cheng",
+            "index": 0,
             "raw_name": "Cheng Cheng",
             "role": "middle",
             "surname": "Cheng"
@@ -39,6 +44,7 @@
         {
             "extra": {},
             "given_name": "Meizi",
+            "index": 0,
             "raw_name": "Meizi Wang",
             "role": "middle",
             "surname": "Wang"
@@ -46,6 +52,7 @@
         {
             "extra": {},
             "given_name": "Jun",
+            "index": 0,
             "raw_name": "Jun Hu",
             "role": "middle",
             "surname": "Hu"
@@ -53,6 +60,7 @@
         {
             "extra": {},
             "given_name": "Lixia",
+            "index": 0,
             "raw_name": "Lixia Pei",
             "role": "middle",
             "surname": "Pei"
@@ -60,6 +68,7 @@
         {
             "extra": {},
             "given_name": "Jianhua",
+            "index": 0,
             "raw_name": "Jianhua Sun",
             "role": "last",
             "surname": "Sun"
