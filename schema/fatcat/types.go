@@ -114,6 +114,8 @@ type Release struct {
 			Subject         []string `json:"subject,omitempty"`
 			Type            string   `json:"type,omitempty"`
 			ContainterTitle []string `json:"container_title,omitempty"`
+			ReferenceCount  int64    `json:"reference_count"`
+			ReferencesCount int64    `json:"references_count"`
 		} `json:"crossref,omitempty"`
 		OAI struct {
 			SetSpec []string `json:"set_spec,omitempty"` // setSpec

@@ -214,6 +214,9 @@ func CrossrefWorkToFatcatRelease(work *crossref.Work) (*fatcat.Release, error) {
 
 	// Container title mapping
 	rel.Extra.Crossref.ContainterTitle = work.ContainerTitle
+	// Reference count
+	rel.Extra.Crossref.ReferenceCount = work.ReferenceCount
+	rel.Extra.Crossref.ReferencesCount = work.ReferencesCount
 
 	// Enhanced license handling
 	if len(work.License) > 0 {
