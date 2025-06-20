@@ -120,8 +120,8 @@
             "open_access": {}
         },
         "crossref": {
-            "subject": [
-                "container:Infection and Immunity"
+            "container_title": [
+                "Infection and Immunity"
             ]
         },
         "oai": {}

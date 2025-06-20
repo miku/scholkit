@@ -36,8 +36,9 @@
             "open_access": {}
         },
         "crossref": {
-            "subject": [
-                "container:Subcellular Biochemistry"
+            "container_title": [
+                "Subcellular Biochemistry",
+                "Vertebrate and Invertebrate Respiratory Proteins, Lipoproteins and other Body Fluid Proteins"
             ]
         },
         "oai": {}

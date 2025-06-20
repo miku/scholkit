@@ -213,10 +213,7 @@ func CrossrefWorkToFatcatRelease(work *crossref.Work) (*fatcat.Release, error) {
 	rel.Publisher = strings.TrimSpace(work.Publisher)
 
 	// Container title mapping
-	if len(work.ContainerTitle) > 0 {
-		// Store container information in extra using existing fields
-		rel.Extra.Crossref.Subject = append(rel.Extra.Crossref.Subject, "container:"+work.ContainerTitle[0])
-	}
+	rel.Extra.Crossref.ContainterTitle = work.ContainerTitle
 
 	// Enhanced license handling
 	if len(work.License) > 0 {

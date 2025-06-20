@@ -111,8 +111,9 @@ type Release struct {
 				Start          string `json:"start,omitempty"`
 				URL            string
 			} `json:"license,omitempty"`
-			Subject []string `json:"subject,omitempty"`
-			Type    string   `json:"type,omitempty"`
+			Subject         []string `json:"subject,omitempty"`
+			Type            string   `json:"type,omitempty"`
+			ContainterTitle []string `json:"container_title,omitempty"`
 		} `json:"crossref,omitempty"`
 		OAI struct {
 			SetSpec []string `json:"set_spec,omitempty"` // setSpec

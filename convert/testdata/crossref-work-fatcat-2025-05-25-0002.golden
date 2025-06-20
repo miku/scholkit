@@ -92,8 +92,8 @@
             "open_access": {}
         },
         "crossref": {
-            "subject": [
-                "container:Journal of NeuroInterventional Surgery"
+            "container_title": [
+                "Journal of NeuroInterventional Surgery"
             ]
         },
         "oai": {}
