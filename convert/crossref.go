@@ -216,7 +216,6 @@ func CrossrefWorkToFatcatRelease(work *crossref.Work) (*fatcat.Release, error) {
 	rel.Extra.Crossref.ContainterTitle = work.ContainerTitle
 	// Reference count
 	rel.Extra.Crossref.ReferenceCount = work.ReferenceCount
-	rel.Extra.Crossref.ReferencesCount = work.ReferencesCount
 	if len(work.URL) > 0 {
 		rel.Extra.Crossref.URL = append(rel.Extra.Crossref.URL, work.URL)
 	}
