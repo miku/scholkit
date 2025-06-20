@@ -9,3 +9,5 @@
 * we need an issn field?
 
 maybe need to run work => release and work => container conversions
+
+* there is also: short-container-title
