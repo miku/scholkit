@@ -80,6 +80,7 @@ var (
 		"datacite",
 		"pubmed",
 		"oai",
+		"europepmc",
 		// TODO: add dblp, doaj, wikicite (maybe), JALC, ...
 	}
 	yesterday = time.Now().Add(-86400 * time.Second)
@@ -310,6 +311,18 @@ func main() {
 				} else {
 					log.Printf("already synced: %v", dstFile)
 				}
+			}
+		case "europepmc":
+			if err := os.MkdirAll(config.FeedDir, 0755); err != nil {
+				log.Fatal(err)
+			}
+			// just sync per wget
+			cmd := exec.Command("wget", "-rkc", "-P", config.FeedDir, "https://europepmc.org/pub/databases/pmc/")
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
+			log.Println(cmd)
+			if err = cmd.Run(); err != nil {
+				log.Fatal(err)
 			}
 		case "oai":
 			baseDir := path.Join(config.FeedDir, "metha")
