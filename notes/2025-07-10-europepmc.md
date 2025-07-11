@@ -57,3 +57,9 @@ $ wget -rkc https://europepmc.org/ftp/pdf/
 
 Fulltext is in https://europepmc.org/ftp/pdf/PMCxxxx001/PMC6840001.zip files,
 just a PDF, zipped.
+
+Parsing:
+
+* https://cran.r-project.org/web/packages/tidypmc/vignettes/pmcftp.html
+
+Lot of parsing options in R.
