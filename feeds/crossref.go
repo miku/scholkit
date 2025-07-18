@@ -64,7 +64,7 @@ func (wr *WorksResponse) IsLast() bool {
 // WriteDaySlice is a helper function to atomically write crossref data for a
 // single day to file on disk under dir. Idempotent, once the data has been
 // captured. TODO: add compression.
-func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string) error {
+func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string) (string, error) {
 	start := now.With(t).BeginningOfDay()
 	end := now.With(t).EndOfDay()
 	fn := fmt.Sprintf("%s%s-%s-%s.json.zst",
@@ -76,23 +76,23 @@ func (c *CrossrefHarvester) WriteDaySlice(t time.Time, dir string, prefix string
 	if _, err := os.Stat(cachePath); os.IsNotExist(err) {
 		f, err := atomicfile.New(cachePath)
 		if err != nil {
-			return err
+			return "", err
 		}
 		enc, err := zstd.NewWriter(f)
 		if err != nil {
-			return err
+			return "", err
 		}
 		if err := c.WriteSlice(enc, start, end); err != nil {
-			return err
+			return "", err
 		}
 		if err := enc.Close(); err != nil {
-			return err
+			return "", err
 		}
 		if err := f.Close(); err != nil {
-			return err
+			return "", err
 		}
 	}
-	return nil
+	return cachePath, nil
 }
 
 // addOptionalEmail appends mailto parameter.

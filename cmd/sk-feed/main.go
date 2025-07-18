@@ -110,6 +110,11 @@ var (
 	crossrefFeedPrefix            = flag.String("crossref-feed-prefix", "crossref-feed-0-", "prefix for filename to distinguish different runs")
 	crossrefSyncStart  xflag.Date = xflag.Date{Time: dateutil.MustParse("2021-01-01")}
 	crossrefSyncEnd    xflag.Date = xflag.Date{Time: yesterday}
+	// S3 upload options for crossref
+	crossrefUploadToS3     = flag.Bool("crossref-upload-s3", false, "upload crossref dumps to S3")
+	crossrefS3Bucket       = flag.String("crossref-s3-bucket", "", "S3 bucket for crossref dumps")
+	crossrefS3Prefix       = flag.String("crossref-s3-prefix", "crossref-daily/", "S3 prefix for crossref dumps")
+	crossrefS3RcloneRemote = flag.String("crossref-s3-rclone-remote", "seaweedfs", "rclone remote name for S3")
 	// datacite specific options
 	dataciteSyncStart xflag.Date = xflag.Date{Time: dateutil.MustParse("2020-01-01")}
 	// oai specific options
@@ -215,12 +220,38 @@ func main() {
 			}
 			log.Println(ch)
 			ivs := dateutil.Daily(crossrefSyncStart.Time, crossrefSyncEnd.Time)
+			var processedFiles []string // collect files for S3 upload
 			for _, iv := range ivs {
+
+				filename := fmt.Sprintf("%s%s.ndjson", config.CrossrefFeedPrefix, iv.Start.Format("2006-01-02"))
+				filepath := path.Join(dstDir, filename)
+
 				// TODO: we only need the start date, because we limit
 				// ourselves to day slices
-				if err := ch.WriteDaySlice(iv.Start, dstDir, config.CrossrefFeedPrefix); err != nil {
+				cacheFile, err := ch.WriteDaySlice(iv.Start, dstDir, config.CrossrefFeedPrefix)
+				if err != nil {
 					log.Fatalf("crossref day slice: %v", err)
 				}
+
+				if *crossrefUploadToS3 {
+					if _, err := os.Stat(cacheFile); err == nil {
+						processedFiles = append(processedFiles, filepath)
+					}
+				}
+			}
+			if *crossrefUploadToS3 {
+				if *crossrefS3Bucket == "" {
+					log.Fatal("crossref-s3-bucket is required when crossref-upload-s3 is enabled")
+				}
+				log.Printf("uploading %d crossref files to S3...", len(processedFiles))
+				for _, filepath := range processedFiles {
+					if err := uploadFileToS3(filepath, *crossrefS3RcloneRemote, *crossrefS3Bucket, *crossrefS3Prefix); err != nil {
+						log.Fatalf("failed to upload %s to S3: %v", filepath, err)
+					}
+					log.Printf("uploaded: %s", filepath)
+				}
+
+				log.Println("crossref S3 upload completed")
 			}
 		case "datacite":
 			// TODO: fix GOAWAY
@@ -335,4 +366,18 @@ func main() {
 			}
 		}
 	}
+}
+
+func uploadFileToS3(localPath, rcloneRemote, bucket, s3Prefix string) error {
+	filename := path.Base(localPath)
+	s3Path := fmt.Sprintf("%s:%s/%s%s", rcloneRemote, bucket, s3Prefix, filename)
+
+	cmd := exec.Command("rclone", "copy", localPath, s3Path)
+
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("rclone copy failed: %v, output: %s", err, output)
+	}
+
+	return nil
 }
